@@ -1604,7 +1604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173565202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.07, y: 0.14, z: 2.17998}
+  m_LocalPosition: {x: 0.65, y: -0.94, z: 2.17998}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4389,7 +4389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368640040}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.708, y: 0.621, z: 2.17998}
+  m_LocalPosition: {x: 0.5799999, y: 0.29999998, z: 2.17998}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5529,7 +5529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479100171}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.72, y: -0.82, z: 2.17998}
+  m_LocalPosition: {x: 2.6999998, y: 1.56, z: 2.17998}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7480,6 +7480,8 @@ MonoBehaviour:
       playerCastBarFill: {fileID: 0}
       playerCastBarText: {fileID: 0}
       battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -7511,6 +7513,8 @@ MonoBehaviour:
       playerCastBarFill: {fileID: 0}
       playerCastBarText: {fileID: 0}
       battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -7542,6 +7546,8 @@ MonoBehaviour:
       playerCastBarFill: {fileID: 0}
       playerCastBarText: {fileID: 0}
       battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -7573,6 +7579,8 @@ MonoBehaviour:
       playerCastBarFill: {fileID: 0}
       playerCastBarText: {fileID: 0}
       battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -7604,6 +7612,8 @@ MonoBehaviour:
       playerCastBarFill: {fileID: 0}
       playerCastBarText: {fileID: 0}
       battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -7635,6 +7645,8 @@ MonoBehaviour:
       playerCastBarFill: {fileID: 0}
       playerCastBarText: {fileID: 0}
       battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -7666,6 +7678,8 @@ MonoBehaviour:
       playerCastBarFill: {fileID: 0}
       playerCastBarText: {fileID: 0}
       battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -7697,6 +7711,8 @@ MonoBehaviour:
       playerCastBarFill: {fileID: 0}
       playerCastBarText: {fileID: 0}
       battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -10769,7 +10785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949456385}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.07, y: -1.23, z: 2.17998}
+  m_LocalPosition: {x: 2.74, y: 0.33, z: 2.17998}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12224,6 +12240,8 @@ MonoBehaviour:
     playerCastBarFill: {fileID: 0}
     playerCastBarText: {fileID: 0}
     battleSprite: {fileID: 1153093890}
+    position: {x: 0, y: 0, z: 0}
+    target: {x: 0, y: 0, z: 0}
   Jemima:
     name: Jemima
     speed: 0
@@ -12246,6 +12264,8 @@ MonoBehaviour:
     playerCastBarFill: {fileID: 0}
     playerCastBarText: {fileID: 0}
     battleSprite: {fileID: 368640040}
+    position: {x: 0, y: 0, z: 0}
+    target: {x: 0, y: 0, z: 0}
   Jennifer:
     name: Jennifer
     speed: 0
@@ -12268,6 +12288,8 @@ MonoBehaviour:
     playerCastBarFill: {fileID: 0}
     playerCastBarText: {fileID: 0}
     battleSprite: {fileID: 173565202}
+    position: {x: 0, y: 0, z: 0}
+    target: {x: 0, y: 0, z: 0}
   Jessica:
     name: Jessica
     speed: 0
@@ -12290,6 +12312,8 @@ MonoBehaviour:
     playerCastBarFill: {fileID: 0}
     playerCastBarText: {fileID: 0}
     battleSprite: {fileID: 1432456486}
+    position: {x: 0, y: 0, z: 0}
+    target: {x: 0, y: 0, z: 0}
   Jody:
     name: Jody
     speed: 0
@@ -12312,6 +12336,8 @@ MonoBehaviour:
     playerCastBarFill: {fileID: 0}
     playerCastBarText: {fileID: 0}
     battleSprite: {fileID: 479100171}
+    position: {x: 0, y: 0, z: 0}
+    target: {x: 0, y: 0, z: 0}
   Jenny:
     name: Jenny
     speed: 0
@@ -12334,6 +12360,8 @@ MonoBehaviour:
     playerCastBarFill: {fileID: 0}
     playerCastBarText: {fileID: 0}
     battleSprite: {fileID: 949456385}
+    position: {x: 0, y: 0, z: 0}
+    target: {x: 0, y: 0, z: 0}
 --- !u!4 &1110468978
 Transform:
   m_ObjectHideFlags: 0
@@ -13132,7 +13160,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153093890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.43, y: 1.12, z: 2.17998}
+  m_LocalPosition: {x: 0.53999996, y: 1.53, z: 2.17998}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15802,7 +15830,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432456486}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.44, y: -0.34, z: 2.17998}
+  m_LocalPosition: {x: 0.6999999, y: -2.1499999, z: 2.17998}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16684,13 +16712,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc694585531b774c9cb4dcd1c229254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySprite: {fileID: 1153093890}
-  target: {x: 0, y: 0, z: 0}
   speed: 0
-  position: {x: 0, y: 0, z: 0}
-  moveForward: 0
-  moveIdle: 0
-  battle_Animation_Controller: {fileID: 0}
+  stepForward: 0
+  isReady: 0
+  isIdle: 0
+  isCasting: 0
+  attackAnimCoroutineIsPaused: 0
+  attackAnimIsDone: 0
+  castAnimCoroutineIsPaused: 0
+  castAnimIsDone: 0
   PlayersInBattle: []
   ActivePlayers: []
   activePlayer:
@@ -16715,6 +16745,8 @@ MonoBehaviour:
     playerCastBarFill: {fileID: 0}
     playerCastBarText: {fileID: 0}
     battleSprite: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    target: {x: 0, y: 0, z: 0}
   EnemiesInBattle: []
   ActiveEnemies: []
   activeEnemy:
@@ -16744,6 +16776,8 @@ MonoBehaviour:
       playerCastBarFill: {fileID: 0}
       playerCastBarText: {fileID: 0}
       battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
