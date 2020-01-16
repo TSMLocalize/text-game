@@ -10,8 +10,7 @@ public class Battle_Manager : MonoBehaviour
 {
     //Animation Attempt      
     public float speed;
-    public bool stepForward;
-    public bool stepBackward;
+    public bool stepForward;    
     public bool isReady;
     public bool isIdle;
     public bool isCasting;
@@ -885,7 +884,12 @@ public class Battle_Manager : MonoBehaviour
     }
 
     void populateActionList()
-    {        
+    {
+        for (int i = 0; i < PlayerOptions.Count; i++)
+        {
+            PlayerOptions[i].SetActive(false);
+        }
+
         if (activePlayer.isCastingSpell == true)
         {
             activePlayer.playerOptions.Clear();
