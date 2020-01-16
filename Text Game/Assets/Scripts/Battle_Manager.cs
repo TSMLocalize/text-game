@@ -17,7 +17,8 @@ public class Battle_Manager : MonoBehaviour
     public bool attackAnimCoroutineIsPaused;
     public bool attackAnimIsDone;
     public bool castAnimCoroutineIsPaused;
-    public bool castAnimIsDone;    
+    public bool castAnimIsDone;
+    //
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;    
@@ -74,7 +75,7 @@ public class Battle_Manager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
         setupCharacters();
         
         ColorUtility.TryParseHtmlString("#010078", out defaultBlueColor);
@@ -833,7 +834,7 @@ public class Battle_Manager : MonoBehaviour
             PlayersInBattle[i].playerCastBarFill = PlayerCastBarFills[i];            
             PlayerCastBars[i].SetActive(false);
             //Transforms for moving
-            PlayersInBattle[i].target = new Vector3(PlayersInBattle[i].battleSprite.transform.position.x - 1f, PlayersInBattle[i].battleSprite.transform.position.y,
+            PlayersInBattle[i].target = new Vector3(PlayersInBattle[i].battleSprite.transform.position.x - 1.5f, PlayersInBattle[i].battleSprite.transform.position.y,
                 PlayersInBattle[i].battleSprite.transform.position.z);            
             PlayersInBattle[i].position = PlayersInBattle[i].battleSprite.transform.position;
         }
@@ -847,13 +848,18 @@ public class Battle_Manager : MonoBehaviour
             EnemiesInBattle[i].enemyPanel = EnemyPanels[i];
             EnemiesInBattle[i].enemyPanelBackground = EnemyPanels[i].GetComponent<Image>();
         }                        
-    }
+    }   
 
     //Refactoring Functions
-    
+
     void resetChoicePanel()
     {
-        bmFunctions.battleManager.bmFunctions.resetChoicePanel();
+        for (int i = 0; i < PlayerOptions.Count; i++)
+        {
+            PlayerOptions[i].GetComponent<Image>().color = defaultBlueColor;
+            PlayerOptions[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+            PlayerOptions[i].SetActive(false);
+        }
     }
 
     void clearSpellOptionList()
