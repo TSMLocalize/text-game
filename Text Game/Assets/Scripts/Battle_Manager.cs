@@ -11,6 +11,7 @@ public class Battle_Manager : MonoBehaviour
     //Animation Attempt      
     public float speed;
     public bool stepForward;
+    public bool stepBackward;
     public bool isReady;
     public bool isIdle;
     public bool isCasting;
@@ -287,8 +288,10 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
+                                activePlayer.battleSprite.transform.position = activePlayer.position;
                                 activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
-                                activePlayer = ActivePlayers[i];
+                                activePlayer = ActivePlayers[i];                                
+                                stepForward = true;
                                 selectedCommand = null;
                                 battleStates = BattleStates.SELECT_ACTION;                                
                             }
@@ -345,6 +348,8 @@ public class Battle_Manager : MonoBehaviour
                             {
                                 resetChoicePanel();
                                 activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
+                                activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+                                activePlayer.battleSprite.transform.position = activePlayer.position;
                                 activePlayer = ActivePlayers[i];
                                 OptionPanel.SetActive(false);
                                 selectedCommand = null;
@@ -442,8 +447,11 @@ public class Battle_Manager : MonoBehaviour
                             {
                                 resetChoicePanel();
                                 activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
+                                activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+                                activePlayer.battleSprite.transform.position = activePlayer.position;
                                 activePlayer = ActivePlayers[i];
-                                selectedCommand = null;
+                                stepForward = true;
+                                selectedCommand = null;                                
                                 activePlayer.activeSpell = null;
                                 clearSpellOptionList();
                                 OptionPanel.SetActive(false);
@@ -502,9 +510,11 @@ public class Battle_Manager : MonoBehaviour
                     activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
                 
                     if (attackAnimIsDone)
-                    {                        
-                        attackAnimCoroutineIsPaused = true;                        
+                    {
+                        attackAnimCoroutineIsPaused = true;
+                        
                         standIdle(activePlayer);
+
                         activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
                         activePlayer.speedTotal -= 100f;
                         activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
@@ -569,6 +579,37 @@ public class Battle_Manager : MonoBehaviour
                     {
                         battleStates = BattleStates.SELECT_PLAYER;
                     }                    
+                }
+                else if (selectedCommand == "Wait")
+                {
+                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);                                                            
+                    standIdle(activePlayer);                    
+                    activePlayer.speedTotal = (100f - activePlayer.speed);
+                    activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
+                    resetChoicePanel();
+                    clearSpellOptionList();
+                    ActionPanel.SetActive(false);
+                    OptionPanel.SetActive(false);
+                    ActivePlayers.Remove(activePlayer);
+                    activePlayer = null;
+                    selectedCommand = null;
+
+                    if (ActivePlayers.Count == 0)
+                    {
+                        returningStarting = true;
+
+                        for (int i = 0; i < PlayersInBattle.Count; i++)
+                        {
+                            StartCoroutine(updatePlayerSpeedBars(PlayersInBattle[i]));
+                        }
+
+                        coroutineIsPaused = false;
+                        battleStates = BattleStates.DEFAULT;
+                    }
+                    else
+                    {
+                        battleStates = BattleStates.SELECT_PLAYER;
+                    }
                 }
 
                 break;
@@ -795,7 +836,7 @@ public class Battle_Manager : MonoBehaviour
             PlayerCastBars[i].SetActive(false);
             //Transforms for moving
             PlayersInBattle[i].target = new Vector3(PlayersInBattle[i].battleSprite.transform.position.x - 1.5f, PlayersInBattle[i].battleSprite.transform.position.y,
-                PlayersInBattle[i].battleSprite.transform.position.z);
+                PlayersInBattle[i].battleSprite.transform.position.z);            
             PlayersInBattle[i].position = PlayersInBattle[i].battleSprite.transform.position;
         }
 
