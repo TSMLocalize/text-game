@@ -885,7 +885,12 @@ public class Battle_Manager : MonoBehaviour
     }
 
     void populateActionList()
-    {        
+    {
+        for (int i = 0; i < PlayerOptions.Count; i++)
+        {
+            PlayerOptions[i].SetActive(false);
+        }
+
         if (activePlayer.isCastingSpell == true)
         {
             activePlayer.playerOptions.Clear();
