@@ -33,6 +33,7 @@ public class Player
     //In battle sprite
     public GameObject battleSprite;
     public Vector3 position;
-    public Vector3 target;    
+    public Vector3 target;
+    public Vector3 backtarget;
 
 }

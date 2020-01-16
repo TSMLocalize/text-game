@@ -134,6 +134,19 @@ public class Battle_Manager : MonoBehaviour
             }
         }
 
+        if (stepBackward)
+        {
+            speed = 4.0f;
+
+            float step = speed * Time.deltaTime;
+            activePlayer.battleSprite.transform.position = Vector3.MoveTowards(activePlayer.battleSprite.transform.position, activePlayer.backtarget, step);
+            
+            if (activePlayer.battleSprite.transform.position == activePlayer.backtarget)
+            {                                
+                stepBackward = false;
+            }
+        }
+
         if (isReady)
         {
             activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
@@ -147,10 +160,12 @@ public class Battle_Manager : MonoBehaviour
             isIdle = false;
         }
 
+        /*
         void standIdle(Player playerToIdle)
         {
-            playerToIdle.battleSprite.transform.position = playerToIdle.position;             
+           
         }
+        */
 
         m_PointerEventData = new PointerEventData(m_EventSystem);
         m_PointerEventData.position = Input.mousePosition;
@@ -254,11 +269,14 @@ public class Battle_Manager : MonoBehaviour
                 //RIGHT CLICK TO GO BACK
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
-                    standIdle(activePlayer);
-                    activePlayer = null;
-                    ActionPanel.SetActive(false);
-                    selectedCommand = null;
-                    battleStates = BattleStates.SELECT_PLAYER;
+                    stepBackward = true;
+                    if (stepBackward == false)
+                    {
+                        activePlayer = null;
+                        ActionPanel.SetActive(false);
+                        selectedCommand = null;
+                        battleStates = BattleStates.SELECT_PLAYER;
+                    }                    
                 }
 
                 //LEFT CLICK TO CHOOSE ACTION
@@ -512,9 +530,52 @@ public class Battle_Manager : MonoBehaviour
                     if (attackAnimIsDone)
                     {
                         attackAnimCoroutineIsPaused = true;
-                        
-                        standIdle(activePlayer);
 
+                        stepBackward = true;
+
+                        if (stepBackward == false)
+                        {
+                            activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
+                            activePlayer.speedTotal -= 100f;
+                            activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
+                            resetChoicePanel();
+                            clearSpellOptionList();
+                            ActionPanel.SetActive(false);
+                            OptionPanel.SetActive(false);
+                            ActivePlayers.Remove(activePlayer);
+                            activePlayer = null;
+                            selectedCommand = null;
+
+                            if (ActivePlayers.Count == 0)
+                            {
+                                returningStarting = true;
+
+                                for (int i = 0; i < PlayersInBattle.Count; i++)
+                                {
+                                    StartCoroutine(updatePlayerSpeedBars(PlayersInBattle[i]));
+                                }
+
+                                coroutineIsPaused = false;
+                                battleStates = BattleStates.DEFAULT;
+                            }
+                            else
+                            {
+                                battleStates = BattleStates.SELECT_PLAYER;
+                            }
+                        }                        
+                    }
+                }                                
+                else if (activePlayer.isCastingSpell)
+                {
+                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
+                    activePlayer.playerCastBar.SetActive(true);
+                    activePlayer.castSpeedTotal = activePlayer.activeSpell.castTime;
+
+                    stepBackward = true;
+
+                    if (stepBackward == false)
+                    {
                         activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
                         activePlayer.speedTotal -= 100f;
                         activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
@@ -542,74 +603,43 @@ public class Battle_Manager : MonoBehaviour
                         {
                             battleStates = BattleStates.SELECT_PLAYER;
                         }
-                    }
-                }                                
-                else if (activePlayer.isCastingSpell)
-                {
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
-                    activePlayer.playerCastBar.SetActive(true);
-                    activePlayer.castSpeedTotal = activePlayer.activeSpell.castTime;
-                    
-                    standIdle(activePlayer);
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
-                    activePlayer.speedTotal -= 100f;
-                    activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                    resetChoicePanel();
-                    clearSpellOptionList();
-                    ActionPanel.SetActive(false);
-                    OptionPanel.SetActive(false);
-                    ActivePlayers.Remove(activePlayer);
-                    activePlayer = null;
-                    selectedCommand = null;
-
-                    if (ActivePlayers.Count == 0)
-                    {
-                        returningStarting = true;
-
-                        for (int i = 0; i < PlayersInBattle.Count; i++)
-                        {
-                            StartCoroutine(updatePlayerSpeedBars(PlayersInBattle[i]));
-                        }
-
-                        coroutineIsPaused = false;
-                        battleStates = BattleStates.DEFAULT;
-                    }
-                    else
-                    {
-                        battleStates = BattleStates.SELECT_PLAYER;
-                    }                    
+                    }          
                 }
                 else if (selectedCommand == "Wait")
                 {
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);                                                            
-                    standIdle(activePlayer);                    
-                    activePlayer.speedTotal = (100f - activePlayer.speed);
-                    activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                    resetChoicePanel();
-                    clearSpellOptionList();
-                    ActionPanel.SetActive(false);
-                    OptionPanel.SetActive(false);
-                    ActivePlayers.Remove(activePlayer);
-                    activePlayer = null;
-                    selectedCommand = null;
+                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+                    
+                    stepBackward = true;
 
-                    if (ActivePlayers.Count == 0)
+                    if (stepBackward == false)
                     {
-                        returningStarting = true;
+                        activePlayer.speedTotal = (100f - activePlayer.speed);
+                        activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
+                        resetChoicePanel();
+                        clearSpellOptionList();
+                        ActionPanel.SetActive(false);
+                        OptionPanel.SetActive(false);
+                        ActivePlayers.Remove(activePlayer);
+                        activePlayer = null;
+                        selectedCommand = null;
 
-                        for (int i = 0; i < PlayersInBattle.Count; i++)
+                        if (ActivePlayers.Count == 0)
                         {
-                            StartCoroutine(updatePlayerSpeedBars(PlayersInBattle[i]));
-                        }
+                            returningStarting = true;
 
-                        coroutineIsPaused = false;
-                        battleStates = BattleStates.DEFAULT;
-                    }
-                    else
-                    {
-                        battleStates = BattleStates.SELECT_PLAYER;
-                    }
+                            for (int i = 0; i < PlayersInBattle.Count; i++)
+                            {
+                                StartCoroutine(updatePlayerSpeedBars(PlayersInBattle[i]));
+                            }
+
+                            coroutineIsPaused = false;
+                            battleStates = BattleStates.DEFAULT;
+                        }
+                        else
+                        {
+                            battleStates = BattleStates.SELECT_PLAYER;
+                        }
+                    }                    
                 }
 
                 break;
@@ -625,35 +655,40 @@ public class Battle_Manager : MonoBehaviour
                 {
                     castAnimCoroutineIsPaused = true;
                     activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
-                    standIdle(activePlayer);
-                    activePlayer.isCastingSpell = false;
-                    activePlayer.playerCastBar.SetActive(false);
-                    activePlayer.castSpeedTotal = 0f;
-                    activePlayer.playerOptions.Remove("Cast");
+                    
+                    stepBackward = true;
 
-                    activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                    resetChoicePanel();
-                    ActionPanel.SetActive(false);
-                    ActivePlayers.Remove(activePlayer);
-                    activePlayer = null;
-                    selectedCommand = null;
-
-                    if (ActivePlayers.Count == 0)
+                    if (stepBackward == false)
                     {
-                        returningStarting = true;
+                        activePlayer.isCastingSpell = false;
+                        activePlayer.playerCastBar.SetActive(false);
+                        activePlayer.castSpeedTotal = 0f;
+                        activePlayer.playerOptions.Remove("Cast");
 
-                        for (int i = 0; i < PlayersInBattle.Count; i++)
+                        activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
+                        resetChoicePanel();
+                        ActionPanel.SetActive(false);
+                        ActivePlayers.Remove(activePlayer);
+                        activePlayer = null;
+                        selectedCommand = null;
+
+                        if (ActivePlayers.Count == 0)
                         {
-                            StartCoroutine(updatePlayerSpeedBars(PlayersInBattle[i]));
-                        }
+                            returningStarting = true;
 
-                        coroutineIsPaused = false;
-                        battleStates = BattleStates.DEFAULT;
-                    }
-                    else
-                    {
-                        battleStates = BattleStates.SELECT_PLAYER;
-                    }
+                            for (int i = 0; i < PlayersInBattle.Count; i++)
+                            {
+                                StartCoroutine(updatePlayerSpeedBars(PlayersInBattle[i]));
+                            }
+
+                            coroutineIsPaused = false;
+                            battleStates = BattleStates.DEFAULT;
+                        }
+                        else
+                        {
+                            battleStates = BattleStates.SELECT_PLAYER;
+                        }
+                    }                    
                 }                
 
                 break;
@@ -709,7 +744,7 @@ public class Battle_Manager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             castAnimIsDone = true;
         }
-    }
+    }    
 
     IEnumerator updatePlayerSpeedBars(Player player)
     {
@@ -803,6 +838,7 @@ public class Battle_Manager : MonoBehaviour
             }
         }
     }
+
     // SET UP
 
     public void setupCharacters()
@@ -835,8 +871,10 @@ public class Battle_Manager : MonoBehaviour
             PlayersInBattle[i].playerCastBarFill = PlayerCastBarFills[i];            
             PlayerCastBars[i].SetActive(false);
             //Transforms for moving
-            PlayersInBattle[i].target = new Vector3(PlayersInBattle[i].battleSprite.transform.position.x - 1.5f, PlayersInBattle[i].battleSprite.transform.position.y,
-                PlayersInBattle[i].battleSprite.transform.position.z);            
+            PlayersInBattle[i].target = new Vector3(PlayersInBattle[i].battleSprite.transform.position.x - 1.2f, PlayersInBattle[i].battleSprite.transform.position.y,
+                PlayersInBattle[i].battleSprite.transform.position.z);
+            PlayersInBattle[i].backtarget = new Vector3(PlayersInBattle[i].battleSprite.transform.position.x, PlayersInBattle[i].battleSprite.transform.position.y,
+                PlayersInBattle[i].battleSprite.transform.position.z);
             PlayersInBattle[i].position = PlayersInBattle[i].battleSprite.transform.position;
         }
 
