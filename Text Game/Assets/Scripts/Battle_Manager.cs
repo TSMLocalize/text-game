@@ -289,7 +289,7 @@ public class Battle_Manager : MonoBehaviour
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
                                 activePlayer.battleSprite.transform.position = activePlayer.position;
-                                activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;                                
+                                activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
                                 activePlayer = ActivePlayers[i];                                
                                 stepForward = true;
                                 selectedCommand = null;
@@ -885,26 +885,21 @@ public class Battle_Manager : MonoBehaviour
     }
 
     void populateActionList()
-    {
-        for (int i = 0; i < PlayerOptions.Count; i++)
-        {
-            PlayerOptions[i].SetActive(false);
-        }
-
+    {        
         if (activePlayer.isCastingSpell == true)
-        {            
+        {
             activePlayer.playerOptions.Clear();
             
             activePlayer.playerOptions.Add("Cast");
 
             for (int i = 0; i < activePlayer.playerOptions.Count; i++)
-            {                
+            {
                 PlayerOptions[i].SetActive(true);
                 PlayerOptions[i].GetComponentInChildren<TextMeshProUGUI>().text = activePlayer.playerOptions[i];
             }            
         }
         else if (activePlayer.isCastingSpell == false)
-        {            
+        {
             activePlayer.playerOptions.Clear();
 
             activePlayer.playerOptions.Add("Attack");
