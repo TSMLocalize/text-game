@@ -37,26 +37,32 @@ public class Party_Manager : MonoBehaviour
         Jody.castSpeed = 3f;
         Jenny.castSpeed = 1f;
 
+        Josie.playerRowPosition = "1";
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
 
+        Jemima.playerRowPosition = "2";
         Jemima.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Jemima.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Jemima.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
 
+        Jennifer.playerRowPosition = "3";
         Jennifer.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Jennifer.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Jennifer.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
 
+        Jessica.playerRowPosition = "4";
         Jessica.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Jessica.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Jessica.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
 
+        Jody.playerRowPosition = "5";
         Jody.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Jody.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Jody.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
 
+        Jenny.playerRowPosition = "6";
         Jenny.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Jenny.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Jenny.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
