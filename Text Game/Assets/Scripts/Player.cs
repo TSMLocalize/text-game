@@ -20,9 +20,6 @@ public class Player
     public Spell activeSpell = null;
     public bool isCastingSpell;
 
-    //In-battle position
-    public string playerRowPosition;
-
     //Battle UI Player Elements    
     public Sprite PlayerPortrait;
     public GameObject playerPanel;

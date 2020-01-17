@@ -18,7 +18,6 @@ public class Battle_Manager : MonoBehaviour
     public bool attackAnimIsDone;
     public bool castAnimCoroutineIsPaused;
     public bool castAnimIsDone;
-    public Battle_Row_Manager brManager;
     //
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
@@ -78,9 +77,7 @@ public class Battle_Manager : MonoBehaviour
     void Start()
     {
         setupCharacters();
-
-        brManager = new Battle_Row_Manager();        
-
+        
         ColorUtility.TryParseHtmlString("#010078", out defaultBlueColor);
         defaultColor = ActionPanel.GetComponent<Image>().color;
 
@@ -113,8 +110,6 @@ public class Battle_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        brManager.initiateRowPositions();
-
         if (stepForward)
         {
             speed = 4.0f;
