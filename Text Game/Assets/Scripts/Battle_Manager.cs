@@ -64,7 +64,8 @@ public class Battle_Manager : MonoBehaviour
         SELECT_PLAYER,
         SELECT_ACTION,
         SELECT_OPTION,
-        SELECT_TARGET,
+        SELECT_TARGET,   
+        CHANGE_ROW,
         RESOLVE_ACTION,
         RESOLVE_SPELL,
         SELECT_ENEMY_ACTION,
@@ -498,6 +499,11 @@ public class Battle_Manager : MonoBehaviour
                         }
                     }
                 }
+
+                break;
+            case BattleStates.CHANGE_ROW:
+
+
 
                 break;
             case BattleStates.RESOLVE_ACTION:
@@ -941,6 +947,7 @@ public class Battle_Manager : MonoBehaviour
 
             activePlayer.playerOptions.Add("Attack");
             activePlayer.playerOptions.Add("Magic");
+            activePlayer.playerOptions.Add("Change Row");
             activePlayer.playerOptions.Add("Wait");
 
             for (int i = 0; i < activePlayer.playerOptions.Count; i++)
@@ -1010,6 +1017,10 @@ public class Battle_Manager : MonoBehaviour
             else if (selectedCommand == "Cast")
             {
                 battleStates = BattleStates.RESOLVE_SPELL;
+            }
+            else if (selectedCommand == "Change Row")
+            {
+                battleStates = BattleStates.CHANGE_ROW;
             }
         }
     }    
