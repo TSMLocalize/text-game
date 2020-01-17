@@ -37,6 +37,6 @@ public class Player
     public string currentRowPositionID;
     public GameObject currentRowPosition;
     public GameObject currentRowPositionIcon;
-    public string currentAnimationState;
+    public string constantAnimationState;
 
 }

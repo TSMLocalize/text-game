@@ -119,21 +119,18 @@ public class Battle_Manager : MonoBehaviour
         {
             speed = 4.0f;
 
-            animationController(activePlayer, "IsWalking");
-            activePlayer.battleSprite.GetComponent<Animator>().SetBool(activePlayer.currentAnimationState, false);            
-
             //Transform the Sprite forward a set distance and set walking animation
-            activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
+            animationController(activePlayer, "IsWalking");
+            
             float step = speed * Time.deltaTime;
             activePlayer.battleSprite.transform.position = Vector3.MoveTowards(activePlayer.battleSprite.transform.position, activePlayer.target, step);
 
             if (activePlayer.battleSprite.transform.position == activePlayer.target)
-            {                
-                activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsWalking", false);
+            {
+                animationController(activePlayer);
                 if (activePlayer.isCastingSpell)
                 {
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
-                    activePlayer.currentAnimationState = "IsChanting";
+                    animationController(activePlayer, "IsChanting");
                 }
                 stepForward = false;
             }
@@ -340,7 +337,7 @@ public class Battle_Manager : MonoBehaviour
                             {
                                 resetChoicePanel();
                                 activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
-                                activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+                                animationController(activePlayer);
                                 activePlayer.battleSprite.transform.position = activePlayer.position;
                                 activePlayer = ActivePlayers[i];
                                 OptionPanel.SetActive(false);
@@ -372,9 +369,9 @@ public class Battle_Manager : MonoBehaviour
                 }                
 
                 break;
-            case BattleStates.SELECT_TARGET:                
+            case BattleStates.SELECT_TARGET:
 
-                isReady = true;
+                animationController(activePlayer, "IsReady");
 
                 //Color all potential target options yellow
                 for (int i = 0; i < EnemiesInBattle.Count; i++)
@@ -385,7 +382,7 @@ public class Battle_Manager : MonoBehaviour
                 //Right click to go back to select action
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
-                    isIdle = true;
+                    animationController(activePlayer);
 
                     for (int i = 0; i < EnemiesInBattle.Count; i++)
                     {
@@ -422,8 +419,7 @@ public class Battle_Manager : MonoBehaviour
                             if (result.gameObject == EnemyPanels[i])
                             {
                                 if (selectedCommand == "Magic")
-                                {
-                                    Debug.Log("this fired");
+                                {                                    
                                     activePlayer.isCastingSpell = true;                                    
                                 }
 
@@ -439,7 +435,7 @@ public class Battle_Manager : MonoBehaviour
                             {
                                 resetChoicePanel();
                                 activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
-                                activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+                                animationController(activePlayer);
                                 activePlayer.battleSprite.transform.position = activePlayer.position;
                                 activePlayer = ActivePlayers[i];
                                 stepForward = true;
@@ -497,8 +493,8 @@ public class Battle_Manager : MonoBehaviour
                 //Populate Row Change Icons, minus the activeplayer's
                 if (!rowSelected)
                 {
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
-                    
+                    animationController(activePlayer, "IsReady");
+
                     for (int i = 0; i < RowChangeIcons.Count; i++)
                     {
                         if (RowChangeIcons[i] != activePlayer.currentRowPositionIcon)
@@ -511,7 +507,7 @@ public class Battle_Manager : MonoBehaviour
                 //If clicking a row icon, set that row icon as the target and start a hands up animation
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+                    animationController(activePlayer);
 
                     foreach (RaycastResult result in results)
                     {
@@ -519,9 +515,8 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == RowChangeIcons[i])
                             {
-                                RowToSwitch = Rows[i];   
-                                
-                                activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
+                                RowToSwitch = Rows[i];
+                                animationController(activePlayer, "IsCasting");
                                 rowSelected = true;
                             }
                         }                        
@@ -543,11 +538,10 @@ public class Battle_Manager : MonoBehaviour
                             playerToSwitchRowWith = PlayersInBattle[i];
 
                             //Set hands up animation
-                            PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool(PlayersInBattle[i].currentAnimationState, false);
-                            PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
+                            animationController(PlayersInBattle[i], "IsCasting");                            
 
                             PlayersInBattle[i].battleSprite.transform.position = Vector3.MoveTowards(PlayersInBattle[i].battleSprite.transform.position, 
-                                activePlayer.currentRowPosition.transform.position, step);
+                                activePlayer.position, step);
                         }
                     }
 
@@ -556,12 +550,9 @@ public class Battle_Manager : MonoBehaviour
                     {
                         if (playerToSwitchRowWith != null)
                         {
-                            playerToSwitchRowWith.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
-                            playerToSwitchRowWith.battleSprite.GetComponent<Animator>().SetBool(playerToSwitchRowWith.currentAnimationState, true);
+                            animationController(playerToSwitchRowWith);                            
                         }
-                        
-                        activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
-                        Debug.Log("this worked");
+                        animationController(activePlayer);                                                
                         rowSelected = false;
                     }                    
                 }
@@ -574,8 +565,7 @@ public class Battle_Manager : MonoBehaviour
                 {
                     attackAnimCoroutineIsPaused = false;
                     StartCoroutine(waitForAttackAnimation());
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
+                    animationController(activePlayer, "IsAttacking");                    
                 
                     if (attackAnimIsDone)
                     {
@@ -583,7 +573,7 @@ public class Battle_Manager : MonoBehaviour
                         
                         standIdle(activePlayer);
 
-                        activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
+                        animationController(activePlayer);                        
                         activePlayer.speedTotal -= 100f;
                         activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
                         resetChoicePanel();
@@ -614,14 +604,16 @@ public class Battle_Manager : MonoBehaviour
                 }                                
                 else if (activePlayer.isCastingSpell)
                 {
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool(activePlayer.currentAnimationState, false);
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
-                    activePlayer.currentAnimationState = "IsChanting";
+                    animationController(activePlayer, "IsChanting");                    
+                    activePlayer.constantAnimationState = "IsChanting";
                     activePlayer.playerCastBar.SetActive(true);
                     activePlayer.castSpeedTotal = activePlayer.activeSpell.castTime;
                     
                     standIdle(activePlayer);
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
+                    
+                    //reset attack animation to idle
+                    animationController(activePlayer);
+
                     activePlayer.speedTotal -= 100f;
                     activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
                     resetChoicePanel();
@@ -651,7 +643,7 @@ public class Battle_Manager : MonoBehaviour
                 }
                 else if (selectedCommand == "Wait")
                 {
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);                                                            
+                    animationController(activePlayer);
                     standIdle(activePlayer);                    
                     activePlayer.speedTotal = (100f - activePlayer.speed);
                     activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
@@ -687,13 +679,13 @@ public class Battle_Manager : MonoBehaviour
 
                 castAnimCoroutineIsPaused = false;
                 StartCoroutine(waitForCastAnimation());
-                activePlayer.battleSprite.GetComponent<Animator>().SetBool(activePlayer.currentAnimationState, false);
-                activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
+                animationController(activePlayer, "IsCasting");
 
                 if (castAnimIsDone)
                 {
                     castAnimCoroutineIsPaused = true;
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
+                    activePlayer.constantAnimationState = null;
+                    animationController(activePlayer);
                     standIdle(activePlayer);
                     activePlayer.isCastingSpell = false;
                     activePlayer.playerCastBar.SetActive(false);
@@ -1092,7 +1084,8 @@ public class Battle_Manager : MonoBehaviour
         }
     }    
 
-    public void animationController(Player player, string state)
+    //Sets the animation to idle, or to animation specified, or to what the previous animation was if a currentAnimationState is set
+    public void animationController(Player player, string state = null)
     {
         player.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
@@ -1119,6 +1112,10 @@ public class Battle_Manager : MonoBehaviour
         else if (state == "IsWalking")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
+        }     
+        else if (player.constantAnimationState != null)
+        {
+            player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationState, true);
         }
     }
 }
