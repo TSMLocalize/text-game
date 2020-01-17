@@ -14,6 +14,9 @@ public class Player
     public float castSpeed;
     public float castSpeedTotal;
 
+    //Sprite position
+    public string rowPosition;
+
     //Spell & ability related
     public List<string> playerOptions;
     public List<Spell> spellBook;

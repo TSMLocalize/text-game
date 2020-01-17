@@ -18,6 +18,7 @@ public class Battle_Manager : MonoBehaviour
     public bool attackAnimIsDone;
     public bool castAnimCoroutineIsPaused;
     public bool castAnimIsDone;
+    public List<GameObject> Rows;
     //
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
@@ -833,10 +834,12 @@ public class Battle_Manager : MonoBehaviour
             PlayersInBattle[i].playerCastBarText = PlayerCastBarTexts[i];
             PlayersInBattle[i].playerCastBarFill = PlayerCastBarFills[i];            
             PlayerCastBars[i].SetActive(false);
+            //Set battle sprites to their correct row
+            AssignRows();
             //Transforms for moving
             PlayersInBattle[i].target = new Vector3(PlayersInBattle[i].battleSprite.transform.position.x - 1.5f, PlayersInBattle[i].battleSprite.transform.position.y,
                 PlayersInBattle[i].battleSprite.transform.position.z);            
-            PlayersInBattle[i].position = PlayersInBattle[i].battleSprite.transform.position;
+            PlayersInBattle[i].position = PlayersInBattle[i].battleSprite.transform.position;            
         }
 
         for (int i = 0; i < EnemiesInBattle.Count; i++)
@@ -849,6 +852,36 @@ public class Battle_Manager : MonoBehaviour
             EnemiesInBattle[i].enemyPanelBackground = EnemyPanels[i].GetComponent<Image>();
         }                        
     }   
+
+    void AssignRows()
+    {
+        //Assign battle sprites to rows
+        for (int i = 0; i < PlayersInBattle.Count; i++)
+        {
+            for (int y = 0; y < Rows.Count; y++)
+            {
+                if (Rows[y].gameObject.name == PlayersInBattle[i].rowPosition)
+                {
+                    PlayersInBattle[i].battleSprite.transform.position = Rows[y].gameObject.transform.position;
+                    PlayersInBattle[i].position = Rows[y].gameObject.transform.position;
+
+                    if (PlayersInBattle[i].rowPosition == "Front Row 1" || PlayersInBattle[i].rowPosition ==  "Front Row 1")
+                    {
+                        PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                    } else if (PlayersInBattle[i].rowPosition == "Front Row 2" || PlayersInBattle[i].rowPosition == "Back Row 2")
+                    {
+                        PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                    } else if (PlayersInBattle[i].rowPosition == "Front Row 3" || PlayersInBattle[i].rowPosition == "Back Row 3")
+                    {
+                        PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                    } else if (PlayersInBattle[i].rowPosition == "Front Row 4" || PlayersInBattle[i].rowPosition == "Back Row 4")
+                    {
+                        PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 4;
+                    }
+                }
+            }
+        }        
+    }
 
     //Refactoring Functions
 
