@@ -37,32 +37,32 @@ public class Party_Manager : MonoBehaviour
         Jody.castSpeed = 3f;
         Jenny.castSpeed = 1f;
 
-        Josie.rowPosition = "Back Row 2";
+        Josie.currentRowPositionID = "Back Row 2";
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
 
-        Jemima.rowPosition = "Back Row 1";
+        Jemima.currentRowPositionID = "Back Row 1";
         Jemima.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Jemima.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Jemima.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
 
-        Jennifer.rowPosition = "Front Row 4";
+        Jennifer.currentRowPositionID = "Front Row 4";
         Jennifer.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Jennifer.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Jennifer.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
 
-        Jessica.rowPosition = "Front Row 3";
+        Jessica.currentRowPositionID = "Front Row 3";
         Jessica.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Jessica.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Jessica.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
 
-        Jody.rowPosition = "Front Row 2";
+        Jody.currentRowPositionID = "Front Row 2";
         Jody.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Jody.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Jody.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
 
-        Jenny.rowPosition = "Front Row 1";
+        Jenny.currentRowPositionID = "Front Row 1";
         Jenny.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Jenny.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Jenny.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);

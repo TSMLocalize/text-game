@@ -12,10 +12,7 @@ public class Player
     public float speed;
     public float speedTotal;
     public float castSpeed;
-    public float castSpeedTotal;
-
-    //Sprite position
-    public string rowPosition;
+    public float castSpeedTotal;    
 
     //Spell & ability related
     public List<string> playerOptions;
@@ -33,9 +30,13 @@ public class Player
     public GameObject playerCastBarFill;
     public TextMeshProUGUI playerCastBarText;
 
-    //In battle sprite
+    //Battle sprite related
     public GameObject battleSprite;
     public Vector3 position;
     public Vector3 target;    
+    public string currentRowPositionID;
+    public GameObject currentRowPosition;
+    public GameObject currentRowPositionIcon;
+    public string currentAnimationState;
 
 }

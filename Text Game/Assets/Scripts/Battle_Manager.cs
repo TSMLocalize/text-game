@@ -11,14 +11,17 @@ public class Battle_Manager : MonoBehaviour
     //Animation Attempt      
     public float speed;
     public bool stepForward;    
-    public bool isReady;
-    public bool isIdle;
+
     public bool isCasting;
     public bool attackAnimCoroutineIsPaused;
     public bool attackAnimIsDone;
     public bool castAnimCoroutineIsPaused;
     public bool castAnimIsDone;
+    public bool rowSelected;
     public List<GameObject> Rows;
+    public List<GameObject> RowChangeIcons;
+    public GameObject RowToSwitch;
+    public Player playerToSwitchRowWith;
     //
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
@@ -116,8 +119,8 @@ public class Battle_Manager : MonoBehaviour
         {
             speed = 4.0f;
 
-            activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
-            activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
+            animationController(activePlayer, "IsWalking");
+            activePlayer.battleSprite.GetComponent<Animator>().SetBool(activePlayer.currentAnimationState, false);            
 
             //Transform the Sprite forward a set distance and set walking animation
             activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
@@ -130,23 +133,11 @@ public class Battle_Manager : MonoBehaviour
                 if (activePlayer.isCastingSpell)
                 {
                     activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
+                    activePlayer.currentAnimationState = "IsChanting";
                 }
                 stepForward = false;
             }
-        }
-
-        if (isReady)
-        {
-            activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
-            isReady = false;
-        }
-
-        if (isIdle)
-        {
-            activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
-            activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
-            isIdle = false;
-        }
+        }        
 
         void standIdle(Player playerToIdle)
         {
@@ -503,6 +494,77 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.CHANGE_ROW:
 
+                //Populate Row Change Icons, minus the activeplayer's
+                if (!rowSelected)
+                {
+                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+                    
+                    for (int i = 0; i < RowChangeIcons.Count; i++)
+                    {
+                        if (RowChangeIcons[i] != activePlayer.currentRowPositionIcon)
+                        {
+                            RowChangeIcons[i].SetActive(true);
+                        }
+                    }
+                }                
+
+                //If clicking a row icon, set that row icon as the target and start a hands up animation
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+
+                    foreach (RaycastResult result in results)
+                    {
+                        for (int i = 0; i < RowChangeIcons.Count; i++)
+                        {
+                            if (result.gameObject == RowChangeIcons[i])
+                            {
+                                RowToSwitch = Rows[i];   
+                                
+                                activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
+                                rowSelected = true;
+                            }
+                        }                        
+                    }            
+                }
+
+                //Once a row icon is clicked, check if there's a player there and switch with them
+                if (rowSelected)
+                {                    
+                    speed = 8.0f;
+
+                    float step = speed * Time.deltaTime;
+                    activePlayer.battleSprite.transform.position = Vector3.MoveTowards(activePlayer.battleSprite.transform.position, RowToSwitch.transform.position, step);
+
+                    for (int i = 0; i < PlayersInBattle.Count; i++)
+                    {
+                        if (PlayersInBattle[i].currentRowPosition == RowToSwitch)
+                        {
+                            playerToSwitchRowWith = PlayersInBattle[i];
+
+                            //Set hands up animation
+                            PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool(PlayersInBattle[i].currentAnimationState, false);
+                            PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
+
+                            PlayersInBattle[i].battleSprite.transform.position = Vector3.MoveTowards(PlayersInBattle[i].battleSprite.transform.position, 
+                                activePlayer.currentRowPosition.transform.position, step);
+                        }
+                    }
+
+                    //Once switch is completed finish up
+                    if (activePlayer.battleSprite.transform.position == RowToSwitch.transform.position)
+                    {
+                        if (playerToSwitchRowWith != null)
+                        {
+                            playerToSwitchRowWith.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
+                            playerToSwitchRowWith.battleSprite.GetComponent<Animator>().SetBool(playerToSwitchRowWith.currentAnimationState, true);
+                        }
+                        
+                        activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
+                        Debug.Log("this worked");
+                        rowSelected = false;
+                    }                    
+                }
 
 
                 break;
@@ -552,8 +614,9 @@ public class Battle_Manager : MonoBehaviour
                 }                                
                 else if (activePlayer.isCastingSpell)
                 {
-                    activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+                    activePlayer.battleSprite.GetComponent<Animator>().SetBool(activePlayer.currentAnimationState, false);
                     activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
+                    activePlayer.currentAnimationState = "IsChanting";
                     activePlayer.playerCastBar.SetActive(true);
                     activePlayer.castSpeedTotal = activePlayer.activeSpell.castTime;
                     
@@ -624,7 +687,7 @@ public class Battle_Manager : MonoBehaviour
 
                 castAnimCoroutineIsPaused = false;
                 StartCoroutine(waitForCastAnimation());
-                activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
+                activePlayer.battleSprite.GetComponent<Animator>().SetBool(activePlayer.currentAnimationState, false);
                 activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
 
                 if (castAnimIsDone)
@@ -843,7 +906,7 @@ public class Battle_Manager : MonoBehaviour
             //Set battle sprites to their correct row
             AssignRows();
             //Transforms for moving
-            PlayersInBattle[i].target = new Vector3(PlayersInBattle[i].battleSprite.transform.position.x - 1.5f, PlayersInBattle[i].battleSprite.transform.position.y,
+            PlayersInBattle[i].target = new Vector3(PlayersInBattle[i].battleSprite.transform.position.x - 1f, PlayersInBattle[i].battleSprite.transform.position.y,
                 PlayersInBattle[i].battleSprite.transform.position.z);            
             PlayersInBattle[i].position = PlayersInBattle[i].battleSprite.transform.position;            
         }
@@ -866,21 +929,25 @@ public class Battle_Manager : MonoBehaviour
         {
             for (int y = 0; y < Rows.Count; y++)
             {
-                if (Rows[y].gameObject.name == PlayersInBattle[i].rowPosition)
+                if (Rows[y].gameObject.name == PlayersInBattle[i].currentRowPositionID)
                 {
+                    //Setup new movement position for the sprite
                     PlayersInBattle[i].battleSprite.transform.position = Rows[y].gameObject.transform.position;
                     PlayersInBattle[i].position = Rows[y].gameObject.transform.position;
+                    //Assign the player with a physical row position
+                    PlayersInBattle[i].currentRowPosition = Rows[y].gameObject;
+                    PlayersInBattle[i].currentRowPositionIcon = RowChangeIcons[y];
 
-                    if (PlayersInBattle[i].rowPosition == "Front Row 1" || PlayersInBattle[i].rowPosition ==  "Front Row 1")
+                    if (PlayersInBattle[i].currentRowPositionID == "Front Row 1" || PlayersInBattle[i].currentRowPositionID ==  "Front Row 1")
                     {
                         PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 1;
-                    } else if (PlayersInBattle[i].rowPosition == "Front Row 2" || PlayersInBattle[i].rowPosition == "Back Row 2")
+                    } else if (PlayersInBattle[i].currentRowPositionID == "Front Row 2" || PlayersInBattle[i].currentRowPositionID == "Back Row 2")
                     {
                         PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 2;
-                    } else if (PlayersInBattle[i].rowPosition == "Front Row 3" || PlayersInBattle[i].rowPosition == "Back Row 3")
+                    } else if (PlayersInBattle[i].currentRowPositionID == "Front Row 3" || PlayersInBattle[i].currentRowPositionID == "Back Row 3")
                     {
                         PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 3;
-                    } else if (PlayersInBattle[i].rowPosition == "Front Row 4" || PlayersInBattle[i].rowPosition == "Back Row 4")
+                    } else if (PlayersInBattle[i].currentRowPositionID == "Front Row 4" || PlayersInBattle[i].currentRowPositionID == "Back Row 4")
                     {
                         PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 4;
                     }
@@ -1024,4 +1091,34 @@ public class Battle_Manager : MonoBehaviour
             }
         }
     }    
+
+    public void animationController(Player player, string state)
+    {
+        player.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
+        player.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
+        player.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+        player.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
+        player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", false);
+
+        if (state == "IsAttacking")
+        {
+            player.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
+        }
+        else if (state == "IsCasting")
+        {
+            player.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
+        }
+        else if (state == "IsReady")
+        {
+            player.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+        }
+        else if (state == "IsChanting")
+        {
+            player.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
+        }
+        else if (state == "IsWalking")
+        {
+            player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
+        }
+    }
 }
