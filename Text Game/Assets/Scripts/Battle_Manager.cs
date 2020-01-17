@@ -17,10 +17,13 @@ public class Battle_Manager : MonoBehaviour
     public bool castAnimCoroutineIsPaused;
     public bool castAnimIsDone;
     public bool rowSelected;
+    public bool isSwitchingWithOtherPlayer;
     public List<GameObject> Rows;
     public List<GameObject> RowChangeIcons;
     public GameObject RowToSwitch;
     public Player playerToSwitchRowWith;    
+
+    //
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;    
@@ -46,6 +49,7 @@ public class Battle_Manager : MonoBehaviour
     public GameObject OptionPanel;
     public GameObject PartyManager;
     public GameObject EnemyManager;
+    public GameObject RowManager;
     public Spells SpellManager;     
     public bool coroutineIsPaused = false;
     public bool returningStarting = true;
@@ -126,10 +130,7 @@ public class Battle_Manager : MonoBehaviour
             if (activePlayer.battleSprite.transform.position == activePlayer.target)
             {
                 animationController(activePlayer);
-                if (activePlayer.isCastingSpell)
-                {
-                    animationController(activePlayer, "IsChanting");
-                }
+                
                 stepForward = false;
             }
         }        
@@ -522,7 +523,7 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 //Once a row icon is clicked, check if there's a player there and switch with them
-                if (rowSelected)
+                if (rowSelected == true)
                 {                    
                     speed = 8.0f;
 
@@ -533,6 +534,8 @@ public class Battle_Manager : MonoBehaviour
                     {
                         if (PlayersInBattle[i].currentRowPosition == RowToSwitch)
                         {
+                            isSwitchingWithOtherPlayer = true;
+
                             playerToSwitchRowWith = PlayersInBattle[i];
 
                             //Set hands up animation
@@ -542,19 +545,41 @@ public class Battle_Manager : MonoBehaviour
                                 activePlayer.position, step);
                         }                        
                     }
-
-                    //Once switch is completed finish up
-                    if (activePlayer.battleSprite.transform.position == RowToSwitch.transform.position)
-                    {
-                        if (playerToSwitchRowWith.name != "")
+                    
+                    //Ensure both players are in position (if switching places)
+                    if (isSwitchingWithOtherPlayer)
+                    {                        
+                        if (activePlayer.battleSprite.transform.position == RowToSwitch.transform.position &&
+                            playerToSwitchRowWith.battleSprite.transform.position == activePlayer.position)
                         {
-                            animationController(playerToSwitchRowWith);                            
+                            animationController(playerToSwitchRowWith);
+                            animationController(activePlayer);
+                            rowSelected = false;                                                        
                         }
-                        
-                        animationController(activePlayer);                                                
-                        rowSelected = false;
+                    }
+                    //Ensure one player is in position (if not switching places)
+                    else
+                    {                        
+                        if (activePlayer.battleSprite.transform.position == RowToSwitch.transform.position)
+                        {                            
+                            animationController(activePlayer);
+                            rowSelected = false;                            
+                        }
+                    }
+
+                    //Finish up 
+                    if (rowSelected == false)
+                    {                        
+                        //reassign 'position' to the new position(s), reset new display layer order priority
+                        updateRowPositions();
+                        AssignRows();
+                        for (int i = 0; i < RowChangeIcons.Count; i++)
+                        {
+                            RowChangeIcons[i].SetActive(false);
+                        }
+                        RowToSwitch = null;
                         battleStates = BattleStates.RESOLVE_ACTION;
-                    }                    
+                    }
                 }
 
 
@@ -606,6 +631,7 @@ public class Battle_Manager : MonoBehaviour
                 {
                     animationController(activePlayer, "IsChanting");                    
                     activePlayer.constantAnimationState = "IsChanting";
+                    activePlayer.hasConstantAnimationState = true;
                     activePlayer.playerCastBar.SetActive(true);
                     activePlayer.castSpeedTotal = activePlayer.activeSpell.castTime;
                     
@@ -672,6 +698,44 @@ public class Battle_Manager : MonoBehaviour
                         battleStates = BattleStates.SELECT_PLAYER;
                     }
                 }
+                else if (selectedCommand == "Change Row")
+                {                    
+                    standIdle(activePlayer);
+
+                    animationController(activePlayer);
+                    activePlayer.speedTotal -= 100f;
+                    if (isSwitchingWithOtherPlayer)
+                    {
+                        playerToSwitchRowWith.speedTotal -= 100f;
+                        isSwitchingWithOtherPlayer = false;
+                    }
+                    playerToSwitchRowWith = null;
+                    activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
+                    resetChoicePanel();
+                    clearSpellOptionList();
+                    ActionPanel.SetActive(false);
+                    OptionPanel.SetActive(false);
+                    ActivePlayers.Remove(activePlayer);
+                    activePlayer = null;
+                    selectedCommand = null;
+
+                    if (ActivePlayers.Count == 0)
+                    {
+                        returningStarting = true;
+
+                        for (int i = 0; i < PlayersInBattle.Count; i++)
+                        {
+                            StartCoroutine(updatePlayerSpeedBars(PlayersInBattle[i]));
+                        }
+
+                        coroutineIsPaused = false;
+                        battleStates = BattleStates.DEFAULT;
+                    }
+                    else
+                    {
+                        battleStates = BattleStates.SELECT_PLAYER;
+                    }                    
+                }
 
                 break;
 
@@ -685,6 +749,7 @@ public class Battle_Manager : MonoBehaviour
                 {
                     castAnimCoroutineIsPaused = true;
                     activePlayer.constantAnimationState = null;
+                    activePlayer.hasConstantAnimationState = false;
                     animationController(activePlayer);
                     standIdle(activePlayer);
                     activePlayer.isCastingSpell = false;
@@ -921,7 +986,7 @@ public class Battle_Manager : MonoBehaviour
         {
             for (int y = 0; y < Rows.Count; y++)
             {
-                if (Rows[y].gameObject.name == PlayersInBattle[i].currentRowPositionID)
+                if (Rows[y].GetComponent<Row>().ID == PlayersInBattle[i].currentRowPositionID)
                 {
                     //Setup new movement position for the sprite
                     PlayersInBattle[i].battleSprite.transform.position = Rows[y].gameObject.transform.position;
@@ -930,19 +995,38 @@ public class Battle_Manager : MonoBehaviour
                     PlayersInBattle[i].currentRowPosition = Rows[y].gameObject;
                     PlayersInBattle[i].currentRowPositionIcon = RowChangeIcons[y];
 
-                    if (PlayersInBattle[i].currentRowPositionID == "Front Row 1" || PlayersInBattle[i].currentRowPositionID ==  "Front Row 1")
+                    if (PlayersInBattle[i].currentRowPositionID == 1 || PlayersInBattle[i].currentRowPositionID ==  5)
                     {
                         PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 1;
-                    } else if (PlayersInBattle[i].currentRowPositionID == "Front Row 2" || PlayersInBattle[i].currentRowPositionID == "Back Row 2")
+                    } else if (PlayersInBattle[i].currentRowPositionID == 2 || PlayersInBattle[i].currentRowPositionID == 6)
                     {
                         PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 2;
-                    } else if (PlayersInBattle[i].currentRowPositionID == "Front Row 3" || PlayersInBattle[i].currentRowPositionID == "Back Row 3")
+                    } else if (PlayersInBattle[i].currentRowPositionID == 3 || PlayersInBattle[i].currentRowPositionID == 7)
                     {
                         PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 3;
-                    } else if (PlayersInBattle[i].currentRowPositionID == "Front Row 4" || PlayersInBattle[i].currentRowPositionID == "Back Row 4")
+                    } else if (PlayersInBattle[i].currentRowPositionID == 4 || PlayersInBattle[i].currentRowPositionID == 8)
                     {
                         PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 4;
                     }
+                }
+            }
+        }        
+    }
+
+    void updateRowPositions()
+    {
+        for (int i = 0; i < Rows.Count; i++)
+        {
+            for (int y = 0; y < PlayersInBattle.Count; y++)
+            {
+                if (PlayersInBattle[y].battleSprite.transform.position == Rows[i].transform.position)
+                {
+                    PlayersInBattle[y].position = Rows[i].gameObject.transform.position;
+                    PlayersInBattle[y].target = new Vector3(PlayersInBattle[y].battleSprite.transform.position.x - 1f, PlayersInBattle[y].battleSprite.transform.position.y,
+                PlayersInBattle[y].battleSprite.transform.position.z);
+                    PlayersInBattle[y].currentRowPosition = Rows[i].gameObject;
+                    PlayersInBattle[y].currentRowPositionIcon = RowChangeIcons[i];
+                    PlayersInBattle[y].currentRowPositionID = Rows[i].GetComponent<Row>().ID;
                 }
             }
         }        
@@ -1097,23 +1181,23 @@ public class Battle_Manager : MonoBehaviour
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
         }
-        if (state == "IsCasting")
+        else if (state == "IsCasting")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
         }
-        if (state == "IsReady")
+        else if (state == "IsReady")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
         }
-        if (state == "IsChanting")
+        else if (state == "IsChanting")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
         }
-        if (state == "IsWalking")
+        else if (state == "IsWalking")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
         }     
-        if (player.constantAnimationState != "")
+        else if (player.hasConstantAnimationState)
         {
             player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationState, true);
         }

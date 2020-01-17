@@ -34,9 +34,10 @@ public class Player
     public GameObject battleSprite;
     public Vector3 position;
     public Vector3 target;    
-    public string currentRowPositionID;
+    public int currentRowPositionID;
     public GameObject currentRowPosition;
     public GameObject currentRowPositionIcon;
-    public string constantAnimationState;
+    public bool hasConstantAnimationState;
+    public string constantAnimationState = "";
 
 }

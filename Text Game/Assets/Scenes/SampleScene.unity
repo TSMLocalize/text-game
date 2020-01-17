@@ -2071,6 +2071,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207134267}
   m_CullTransparentMesh: 0
+--- !u!1 &215790227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 215790229}
+  - component: {fileID: 215790228}
+  m_Layer: 0
+  m_Name: RowManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &215790228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215790227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5f09b8709060244b212804f2336a6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rows:
+  - {fileID: 1474926304}
+  - {fileID: 519372044}
+  - {fileID: 319923196}
+  - {fileID: 2065805587}
+  - {fileID: 1501290637}
+  - {fileID: 262509674}
+  - {fileID: 977863425}
+  - {fileID: 1176269091}
+  playerPosition1: {fileID: 1474926304}
+  playerPosition2: {fileID: 519372044}
+  playerPosition3: {fileID: 0}
+  playerPosition4: {fileID: 0}
+  playerPosition5: {fileID: 0}
+  playerPosition6: {fileID: 0}
+  playerPosition7: {fileID: 0}
+  playerPosition8: {fileID: 0}
+--- !u!4 &215790229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215790227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 374.17072, y: 319.69385, z: -2.6875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1474926307}
+  - {fileID: 519372046}
+  - {fileID: 319923198}
+  - {fileID: 2065805589}
+  - {fileID: 1501290639}
+  - {fileID: 262509676}
+  - {fileID: 977863427}
+  - {fileID: 1176269093}
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &219087694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,6 +2693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 262509676}
   - component: {fileID: 262509675}
+  - component: {fileID: 262509677}
   m_Layer: 0
   m_Name: Back Row 2
   m_TagString: Untagged
@@ -2687,13 +2756,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262509674}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.69, y: 0, z: 2.4265945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -371.4807, y: -319.69385, z: 5.1140947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_Father: {fileID: 215790229}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262509677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262509674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1fed56452a73a49a32c28f7ee1a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 6
 --- !u!1 &264740440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3975,6 +4057,7 @@ GameObject:
   m_Component:
   - component: {fileID: 319923198}
   - component: {fileID: 319923197}
+  - component: {fileID: 319923199}
   m_Layer: 0
   m_Name: Front Row 3
   m_TagString: Untagged
@@ -4037,13 +4120,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319923196}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -1, z: 2.4265945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -373.67072, y: -320.69385, z: 5.1140947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_Father: {fileID: 215790229}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &319923199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319923196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1fed56452a73a49a32c28f7ee1a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 3
 --- !u!1 &327474208
 GameObject:
   m_ObjectHideFlags: 0
@@ -6149,6 +6245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 519372046}
   - component: {fileID: 519372045}
+  - component: {fileID: 519372047}
   m_Layer: 0
   m_Name: Front Row 2
   m_TagString: Untagged
@@ -6211,13 +6308,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519372044}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 2.4265945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -373.67072, y: -319.69385, z: 5.1140947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 215790229}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519372047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519372044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1fed56452a73a49a32c28f7ee1a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -7997,9 +8107,6 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
-      currentRowPositionID: 
-      currentRowPosition: {fileID: 0}
-      currentRowPositionIcon: {fileID: 0}
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -8018,6 +8125,10 @@ MonoBehaviour:
       battleSprite: {fileID: 0}
       position: {x: 0, y: 0, z: 0}
       target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -8033,9 +8144,6 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
-      currentRowPositionID: 
-      currentRowPosition: {fileID: 0}
-      currentRowPositionIcon: {fileID: 0}
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -8054,6 +8162,10 @@ MonoBehaviour:
       battleSprite: {fileID: 0}
       position: {x: 0, y: 0, z: 0}
       target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -8069,9 +8181,6 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
-      currentRowPositionID: 
-      currentRowPosition: {fileID: 0}
-      currentRowPositionIcon: {fileID: 0}
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -8090,6 +8199,10 @@ MonoBehaviour:
       battleSprite: {fileID: 0}
       position: {x: 0, y: 0, z: 0}
       target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -8105,9 +8218,6 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
-      currentRowPositionID: 
-      currentRowPosition: {fileID: 0}
-      currentRowPositionIcon: {fileID: 0}
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -8126,6 +8236,10 @@ MonoBehaviour:
       battleSprite: {fileID: 0}
       position: {x: 0, y: 0, z: 0}
       target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -8141,9 +8255,6 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
-      currentRowPositionID: 
-      currentRowPosition: {fileID: 0}
-      currentRowPositionIcon: {fileID: 0}
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -8162,6 +8273,10 @@ MonoBehaviour:
       battleSprite: {fileID: 0}
       position: {x: 0, y: 0, z: 0}
       target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -8177,9 +8292,6 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
-      currentRowPositionID: 
-      currentRowPosition: {fileID: 0}
-      currentRowPositionIcon: {fileID: 0}
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -8198,6 +8310,10 @@ MonoBehaviour:
       battleSprite: {fileID: 0}
       position: {x: 0, y: 0, z: 0}
       target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -8213,9 +8329,6 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
-      currentRowPositionID: 
-      currentRowPosition: {fileID: 0}
-      currentRowPositionIcon: {fileID: 0}
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -8234,6 +8347,10 @@ MonoBehaviour:
       battleSprite: {fileID: 0}
       position: {x: 0, y: 0, z: 0}
       target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -8249,9 +8366,6 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
-      currentRowPositionID: 
-      currentRowPosition: {fileID: 0}
-      currentRowPositionIcon: {fileID: 0}
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -8270,6 +8384,10 @@ MonoBehaviour:
       battleSprite: {fileID: 0}
       position: {x: 0, y: 0, z: 0}
       target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -11948,6 +12066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 977863427}
   - component: {fileID: 977863426}
+  - component: {fileID: 977863428}
   m_Layer: 0
   m_Name: Back Row 3
   m_TagString: Untagged
@@ -12010,13 +12129,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977863425}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.69, y: -1, z: 2.4265945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -371.4807, y: -320.69385, z: 5.1140947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_Father: {fileID: 215790229}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &977863428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977863425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1fed56452a73a49a32c28f7ee1a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 7
 --- !u!1 &979014126
 GameObject:
   m_ObjectHideFlags: 0
@@ -13200,9 +13332,6 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
-    currentRowPositionID: 
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -13221,15 +13350,16 @@ MonoBehaviour:
     battleSprite: {fileID: 1153093890}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
+    currentRowPositionID: 0
+    currentRowPosition: {fileID: 0}
+    currentRowPositionIcon: {fileID: 0}
+    constantAnimationState: 
   Jemima:
     name: Jemima
     speed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
-    currentRowPositionID: 
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -13248,15 +13378,16 @@ MonoBehaviour:
     battleSprite: {fileID: 368640040}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
+    currentRowPositionID: 0
+    currentRowPosition: {fileID: 0}
+    currentRowPositionIcon: {fileID: 0}
+    constantAnimationState: 
   Jennifer:
     name: Jennifer
     speed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
-    currentRowPositionID: 
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -13275,15 +13406,16 @@ MonoBehaviour:
     battleSprite: {fileID: 173565202}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
+    currentRowPositionID: 0
+    currentRowPosition: {fileID: 0}
+    currentRowPositionIcon: {fileID: 0}
+    constantAnimationState: 
   Jessica:
     name: Jessica
     speed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
-    currentRowPositionID: 
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -13302,15 +13434,16 @@ MonoBehaviour:
     battleSprite: {fileID: 1432456486}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
+    currentRowPositionID: 0
+    currentRowPosition: {fileID: 0}
+    currentRowPositionIcon: {fileID: 0}
+    constantAnimationState: 
   Jody:
     name: Jody
     speed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
-    currentRowPositionID: 
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -13329,15 +13462,16 @@ MonoBehaviour:
     battleSprite: {fileID: 479100171}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
+    currentRowPositionID: 0
+    currentRowPosition: {fileID: 0}
+    currentRowPositionIcon: {fileID: 0}
+    constantAnimationState: 
   Jenny:
     name: Jenny
     speed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
-    currentRowPositionID: 
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -13356,6 +13490,10 @@ MonoBehaviour:
     battleSprite: {fileID: 949456385}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
+    currentRowPositionID: 0
+    currentRowPosition: {fileID: 0}
+    currentRowPositionIcon: {fileID: 0}
+    constantAnimationState: 
 --- !u!4 &1110468978
 Transform:
   m_ObjectHideFlags: 0
@@ -14573,6 +14711,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1176269093}
   - component: {fileID: 1176269092}
+  - component: {fileID: 1176269094}
   m_Layer: 0
   m_Name: Back Row 4
   m_TagString: Untagged
@@ -14635,13 +14774,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176269091}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.69, y: -2, z: 2.4265945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -371.4807, y: -321.69385, z: 5.1140947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_Father: {fileID: 215790229}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1176269094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176269091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1fed56452a73a49a32c28f7ee1a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 8
 --- !u!1 &1184019707
 GameObject:
   m_ObjectHideFlags: 0
@@ -17228,6 +17380,7 @@ GameObject:
   - component: {fileID: 1474926307}
   - component: {fileID: 1474926305}
   - component: {fileID: 1474926306}
+  - component: {fileID: 1474926308}
   m_Layer: 0
   m_Name: Front Row 1
   m_TagString: Untagged
@@ -17298,18 +17451,31 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474926304}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.4265945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5.1140947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_Father: {fileID: 215790229}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -373.67072, y: -318.69385}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1474926308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474926304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1fed56452a73a49a32c28f7ee1a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 1
 --- !u!1 &1501290637
 GameObject:
   m_ObjectHideFlags: 0
@@ -17320,6 +17486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1501290639}
   - component: {fileID: 1501290638}
+  - component: {fileID: 1501290640}
   m_Layer: 0
   m_Name: Back Row 1
   m_TagString: Untagged
@@ -17382,13 +17549,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501290637}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.69, y: 1, z: 2.4265945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -371.4807, y: -318.69385, z: 5.1140947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_Father: {fileID: 215790229}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1501290640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501290637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1fed56452a73a49a32c28f7ee1a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 5
 --- !u!1 &1503136156
 GameObject:
   m_ObjectHideFlags: 0
@@ -17959,13 +18139,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   stepForward: 0
-  isReady: 0
-  isIdle: 0
   isCasting: 0
   attackAnimCoroutineIsPaused: 0
   attackAnimIsDone: 0
   castAnimCoroutineIsPaused: 0
   castAnimIsDone: 0
+  rowSelected: 0
   Rows:
   - {fileID: 1474926304}
   - {fileID: 519372044}
@@ -17985,17 +18164,12 @@ MonoBehaviour:
   - {fileID: 800097962}
   - {fileID: 277352058}
   RowToSwitch: {fileID: 0}
-  PlayersInBattle: []
-  ActivePlayers: []
-  activePlayer:
+  playerToSwitchRowWith:
     name: 
     speed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
-    currentRowPositionID: 
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -18014,6 +18188,40 @@ MonoBehaviour:
     battleSprite: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
+    currentRowPositionID: 0
+    currentRowPosition: {fileID: 0}
+    currentRowPositionIcon: {fileID: 0}
+    constantAnimationState: 
+  PlayersInBattle: []
+  ActivePlayers: []
+  activePlayer:
+    name: 
+    speed: 0
+    speedTotal: 0
+    castSpeed: 0
+    castSpeedTotal: 0
+    playerOptions: []
+    spellBook: []
+    activeSpell:
+      name: 
+      castTime: 0
+      spellIcon: {fileID: 0}
+    isCastingSpell: 0
+    PlayerPortrait: {fileID: 0}
+    playerPanel: {fileID: 0}
+    playerPanelBackground: {fileID: 0}
+    playerSpeedBar: {fileID: 0}
+    playerSpeedBarText: {fileID: 0}
+    playerCastBar: {fileID: 0}
+    playerCastBarFill: {fileID: 0}
+    playerCastBarText: {fileID: 0}
+    battleSprite: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    target: {x: 0, y: 0, z: 0}
+    currentRowPositionID: 0
+    currentRowPosition: {fileID: 0}
+    currentRowPositionIcon: {fileID: 0}
+    constantAnimationState: 
   EnemiesInBattle: []
   ActiveEnemies: []
   activeEnemy:
@@ -18027,9 +18235,6 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
-      currentRowPositionID: 
-      currentRowPosition: {fileID: 0}
-      currentRowPositionIcon: {fileID: 0}
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -18048,6 +18253,10 @@ MonoBehaviour:
       battleSprite: {fileID: 0}
       position: {x: 0, y: 0, z: 0}
       target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
@@ -18154,6 +18363,7 @@ MonoBehaviour:
   OptionPanel: {fileID: 1713860532}
   PartyManager: {fileID: 1110468976}
   EnemyManager: {fileID: 679064225}
+  RowManager: {fileID: 215790227}
   SpellManager: {fileID: 1376954847}
   coroutineIsPaused: 0
   returningStarting: 0
@@ -22746,6 +22956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2065805589}
   - component: {fileID: 2065805588}
+  - component: {fileID: 2065805590}
   m_Layer: 0
   m_Name: Front Row 4
   m_TagString: Untagged
@@ -22808,13 +23019,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065805587}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -2, z: 2.4265945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -373.67072, y: -321.69385, z: 5.1140947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_Father: {fileID: 215790229}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2065805590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065805587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1fed56452a73a49a32c28f7ee1a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 4
 --- !u!1 &2126799131
 GameObject:
   m_ObjectHideFlags: 0
