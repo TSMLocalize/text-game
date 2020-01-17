@@ -11,7 +11,6 @@ public class Battle_Manager : MonoBehaviour
     //Animation Attempt      
     public float speed;
     public bool stepForward;    
-
     public bool isCasting;
     public bool attackAnimCoroutineIsPaused;
     public bool attackAnimIsDone;
@@ -21,8 +20,7 @@ public class Battle_Manager : MonoBehaviour
     public List<GameObject> Rows;
     public List<GameObject> RowChangeIcons;
     public GameObject RowToSwitch;
-    public Player playerToSwitchRowWith;
-    //
+    public Player playerToSwitchRowWith;    
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;    
@@ -542,18 +540,20 @@ public class Battle_Manager : MonoBehaviour
 
                             PlayersInBattle[i].battleSprite.transform.position = Vector3.MoveTowards(PlayersInBattle[i].battleSprite.transform.position, 
                                 activePlayer.position, step);
-                        }
+                        }                        
                     }
 
                     //Once switch is completed finish up
                     if (activePlayer.battleSprite.transform.position == RowToSwitch.transform.position)
                     {
-                        if (playerToSwitchRowWith != null)
+                        if (playerToSwitchRowWith.name != "")
                         {
                             animationController(playerToSwitchRowWith);                            
                         }
+                        
                         animationController(activePlayer);                                                
                         rowSelected = false;
+                        battleStates = BattleStates.RESOLVE_ACTION;
                     }                    
                 }
 
@@ -1086,34 +1086,34 @@ public class Battle_Manager : MonoBehaviour
 
     //Sets the animation to idle, or to animation specified, or to what the previous animation was if a currentAnimationState is set
     public void animationController(Player player, string state = null)
-    {
+    {        
         player.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
-        player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", false);
+        player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", false);        
 
         if (state == "IsAttacking")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
         }
-        else if (state == "IsCasting")
+        if (state == "IsCasting")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
         }
-        else if (state == "IsReady")
+        if (state == "IsReady")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
         }
-        else if (state == "IsChanting")
+        if (state == "IsChanting")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
         }
-        else if (state == "IsWalking")
+        if (state == "IsWalking")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
         }     
-        else if (player.constantAnimationState != null)
+        if (player.constantAnimationState != "")
         {
             player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationState, true);
         }
