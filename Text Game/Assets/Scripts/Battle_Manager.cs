@@ -11,7 +11,6 @@ public class Battle_Manager : MonoBehaviour
     //Animation Attempt      
     public float speed;
     public bool stepForward;    
-    public bool isCasting;
     public bool attackAnimCoroutineIsPaused;
     public bool attackAnimIsDone;
     public bool castAnimCoroutineIsPaused;
@@ -22,8 +21,6 @@ public class Battle_Manager : MonoBehaviour
     public List<GameObject> RowChangeIcons;
     public GameObject RowToSwitch;
     public Player playerToSwitchRowWith;    
-
-    //
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;    
@@ -221,7 +218,7 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 break;
-            case BattleStates.SELECT_ACTION:
+            case BattleStates.SELECT_ACTION:                
 
                 //Populate action panel with active player's actions
                 populateActionList();
@@ -501,6 +498,26 @@ public class Battle_Manager : MonoBehaviour
                             RowChangeIcons[i].SetActive(true);
                         }
                     }
+                }
+
+                //Right click to go back to select action
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    animationController(activePlayer);                    
+                    
+                    for (int i = 0; i < PlayerOptions.Count; i++)
+                    {
+                        PlayerOptions[i].GetComponent<Image>().color = defaultBlueColor;
+                    }
+
+                    for (int y = 0; y < RowChangeIcons.Count; y++)
+                    {
+                        RowChangeIcons[y].SetActive(false);
+                    }
+
+                    selectedCommand = null;
+
+                    battleStates = BattleStates.SELECT_ACTION;                    
                 }                
 
                 //If clicking a row icon, set that row icon as the target and start a hands up animation
@@ -516,9 +533,62 @@ public class Battle_Manager : MonoBehaviour
                             {
                                 RowToSwitch = Rows[i];
                                 animationController(activePlayer, "IsCasting");
+                                
+                                for (int y = 0; y < RowChangeIcons.Count; y++)
+                                {
+                                    RowChangeIcons[y].SetActive(false);
+                                }
+
                                 rowSelected = true;
                             }
-                        }                        
+                        }
+                        //Left click another player to select them instead
+                        for (int i = 0; i < ActivePlayers.Count; i++)
+                        {
+                            if (result.gameObject == ActivePlayers[i].playerPanel)
+                            {
+                                resetChoicePanel();
+                                activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
+                                animationController(activePlayer);
+                                activePlayer.battleSprite.transform.position = activePlayer.position;
+                                activePlayer = ActivePlayers[i];
+                                stepForward = true;
+                                selectedCommand = null;
+                                activePlayer.activeSpell = null;
+                                clearSpellOptionList();
+                                OptionPanel.SetActive(false);
+                                
+                                for (int y = 0; y < RowChangeIcons.Count; y++)
+                                {
+                                    RowChangeIcons[y].SetActive(false);
+                                }
+
+                                battleStates = BattleStates.SELECT_ACTION;
+                            }
+                        }
+                        //Left click another action to select that instead
+                        for (int i = 0; i < PlayerOptions.Count; i++)
+                        {
+                            if (result.gameObject == PlayerOptions[i])
+                            {
+                                for (int y = 0; y < PlayerOptions.Count; y++)
+                                {
+                                    PlayerOptions[y].GetComponent<Image>().color = defaultBlueColor;
+                                    selectedCommand = PlayerOptions[i].GetComponentInChildren<TextMeshProUGUI>().text;
+                                }
+                                PlayerOptions[i].GetComponent<Image>().color = Color.yellow;
+
+                                activePlayer.activeSpell = null;
+                                OptionPanel.SetActive(false);
+
+                                for (int y = 0; y < RowChangeIcons.Count; y++)
+                                {
+                                    RowChangeIcons[y].SetActive(false);
+                                }
+
+                                battleStates = BattleStates.SELECT_ACTION;
+                            }
+                        }
                     }            
                 }
 
@@ -572,11 +642,7 @@ public class Battle_Manager : MonoBehaviour
                     {                        
                         //reassign 'position' to the new position(s), reset new display layer order priority
                         updateRowPositions();
-                        AssignRows();
-                        for (int i = 0; i < RowChangeIcons.Count; i++)
-                        {
-                            RowChangeIcons[i].SetActive(false);
-                        }
+                        AssignRows();                        
                         RowToSwitch = null;
                         battleStates = BattleStates.RESOLVE_ACTION;
                     }
