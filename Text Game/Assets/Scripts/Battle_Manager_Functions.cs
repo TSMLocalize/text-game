@@ -16,18 +16,8 @@ public class Battle_Manager_Functions : MonoBehaviour
         BM = GetComponent<Battle_Manager>();
     }
 
-
+    
     // BATTLE MANAGER FUNCTIONS
-
-    public void standIdle(Player playerToIdle)
-    {
-        playerToIdle.battleSprite.transform.position = playerToIdle.position;
-    }
-
-    public void enemyStandIdle(Enemy enemyToIdle)
-    {
-        enemyToIdle.battleSprite.transform.position = enemyToIdle.position;
-    }
 
     public void setupCharacters()
     {
@@ -301,38 +291,5 @@ public class Battle_Manager_Functions : MonoBehaviour
             player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationState, true);
         }
     }
-    
-    public void enemyAnimationController(Enemy enemy, string state = null)
-    {
-        enemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
-       /* enemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
-        enemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
-        enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
-        enemy.battleSprite.GetComponent<Animator>().SetBool("IsWalking", false); */
 
-        if (state == "IsAttacking")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
-        }
-        /*else if (state == "IsCasting")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
-        }
-        else if (state == "IsReady")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
-        }
-        else if (state == "IsChanting")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
-        }
-        else if (state == "IsWalking")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
-        }
-        else if (enemy.hasConstantAnimationState)
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool(enemy.constantAnimationState, true);
-        } */
-    }
 }

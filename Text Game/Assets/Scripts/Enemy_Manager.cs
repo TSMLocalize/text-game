@@ -26,8 +26,6 @@ public class Enemy_Manager : MonoBehaviour
         enemiesInBattle.Add(Paladin);
         enemiesInBattle.Add(Ranger);
         enemiesInBattle.Add(Bard);
-        enemiesInBattle.Add(Machinist);
-
-        Warrior.speed = 20;
+        enemiesInBattle.Add(Machinist);        
     }
 }

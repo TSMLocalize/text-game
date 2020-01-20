@@ -8089,237 +8089,309 @@ MonoBehaviour:
   enemiesInBattle: []
   SpellManager: {fileID: 1376954846}
   Warrior:
-    name: 
-    speed: 1
-    speedTotal: 0
-    castSpeed: 0
-    castSpeedTotal: 0
-    enemyOptions: []
-    spellBook: []
-    activeSpell:
-      name: 
-      castTime: 0
-      spellIcon: {fileID: 0}
-    isCastingSpell: 0
+    EnemyName: Warrior
     EnemyPortrait: {fileID: 21300000, guid: b16b1c81d2211db4b9c9c0004ac16789, type: 3}
-    enemyPanel: {fileID: 0}
-    enemyPanelBackground: {fileID: 0}
-    enemySpeedBar: {fileID: 0}
-    enemySpeedBarText: {fileID: 0}
-    enemyCastBar: {fileID: 0}
-    enemyCastBarFill: {fileID: 0}
-    enemyCastBarText: {fileID: 0}
-    battleSprite: {fileID: 1747065634}
-    position: {x: 0, y: 0, z: 0}
-    target: {x: 0, y: 0, z: 0}
-    currentRowPositionID: 0
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
-  Thief:
-    name: 
     speed: 1
     speedTotal: 0
-    castSpeed: 0
-    castSpeedTotal: 0
-    enemyOptions: []
-    spellBook: []
-    activeSpell:
+    enemyTarget:
       name: 
-      castTime: 0
-      spellIcon: {fileID: 0}
-    isCastingSpell: 0
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      playerOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      PlayerPortrait: {fileID: 0}
+      playerPanel: {fileID: 0}
+      playerPanelBackground: {fileID: 0}
+      playerSpeedBar: {fileID: 0}
+      playerSpeedBarText: {fileID: 0}
+      playerCastBar: {fileID: 0}
+      playerCastBarFill: {fileID: 0}
+      playerCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
+    enemyPanel: {fileID: 0}
+    enemyPanelBackground: {fileID: 0}
+    enemySpeedBar: {fileID: 0}
+    enemySpeedBarText: {fileID: 0}
+  Thief:
+    EnemyName: Thief
     EnemyPortrait: {fileID: 21300000, guid: 8e0148b3bc2e6b440bfc3cdbc1913824, type: 3}
+    speed: 1
+    speedTotal: 0
+    enemyTarget:
+      name: 
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      playerOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      PlayerPortrait: {fileID: 0}
+      playerPanel: {fileID: 0}
+      playerPanelBackground: {fileID: 0}
+      playerSpeedBar: {fileID: 0}
+      playerSpeedBarText: {fileID: 0}
+      playerCastBar: {fileID: 0}
+      playerCastBarFill: {fileID: 0}
+      playerCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
     enemySpeedBarText: {fileID: 0}
-    enemyCastBar: {fileID: 0}
-    enemyCastBarFill: {fileID: 0}
-    enemyCastBarText: {fileID: 0}
-    battleSprite: {fileID: 0}
-    position: {x: 0, y: 0, z: 0}
-    target: {x: 0, y: 0, z: 0}
-    currentRowPositionID: 0
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
   Wizard:
-    name: 
-    speed: 0
-    speedTotal: 0
-    castSpeed: 0
-    castSpeedTotal: 0
-    enemyOptions: []
-    spellBook: []
-    activeSpell:
-      name: 
-      castTime: 0
-      spellIcon: {fileID: 0}
-    isCastingSpell: 0
+    EnemyName: Wizard
     EnemyPortrait: {fileID: 21300000, guid: 54cc4bd3fb94fc14ca88b81e50419667, type: 3}
+    speed: 0
+    speedTotal: 0
+    enemyTarget:
+      name: 
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      playerOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      PlayerPortrait: {fileID: 0}
+      playerPanel: {fileID: 0}
+      playerPanelBackground: {fileID: 0}
+      playerSpeedBar: {fileID: 0}
+      playerSpeedBarText: {fileID: 0}
+      playerCastBar: {fileID: 0}
+      playerCastBarFill: {fileID: 0}
+      playerCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
     enemySpeedBarText: {fileID: 0}
-    enemyCastBar: {fileID: 0}
-    enemyCastBarFill: {fileID: 0}
-    enemyCastBarText: {fileID: 0}
-    battleSprite: {fileID: 0}
-    position: {x: 0, y: 0, z: 0}
-    target: {x: 0, y: 0, z: 0}
-    currentRowPositionID: 0
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
   Priest:
-    name: 
-    speed: 0
-    speedTotal: 0
-    castSpeed: 0
-    castSpeedTotal: 0
-    enemyOptions: []
-    spellBook: []
-    activeSpell:
-      name: 
-      castTime: 0
-      spellIcon: {fileID: 0}
-    isCastingSpell: 0
+    EnemyName: Priest
     EnemyPortrait: {fileID: 21300000, guid: 2966398d1c117b84da49022f17c494c9, type: 3}
+    speed: 0
+    speedTotal: 0
+    enemyTarget:
+      name: 
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      playerOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      PlayerPortrait: {fileID: 0}
+      playerPanel: {fileID: 0}
+      playerPanelBackground: {fileID: 0}
+      playerSpeedBar: {fileID: 0}
+      playerSpeedBarText: {fileID: 0}
+      playerCastBar: {fileID: 0}
+      playerCastBarFill: {fileID: 0}
+      playerCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
     enemySpeedBarText: {fileID: 0}
-    enemyCastBar: {fileID: 0}
-    enemyCastBarFill: {fileID: 0}
-    enemyCastBarText: {fileID: 0}
-    battleSprite: {fileID: 0}
-    position: {x: 0, y: 0, z: 0}
-    target: {x: 0, y: 0, z: 0}
-    currentRowPositionID: 0
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
   Paladin:
-    name: 
-    speed: 0
-    speedTotal: 0
-    castSpeed: 0
-    castSpeedTotal: 0
-    enemyOptions: []
-    spellBook: []
-    activeSpell:
-      name: 
-      castTime: 0
-      spellIcon: {fileID: 0}
-    isCastingSpell: 0
+    EnemyName: Paladin
     EnemyPortrait: {fileID: 21300000, guid: ca65f4047d989b643931d4144ac3d3db, type: 3}
+    speed: 0
+    speedTotal: 0
+    enemyTarget:
+      name: 
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      playerOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      PlayerPortrait: {fileID: 0}
+      playerPanel: {fileID: 0}
+      playerPanelBackground: {fileID: 0}
+      playerSpeedBar: {fileID: 0}
+      playerSpeedBarText: {fileID: 0}
+      playerCastBar: {fileID: 0}
+      playerCastBarFill: {fileID: 0}
+      playerCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
     enemySpeedBarText: {fileID: 0}
-    enemyCastBar: {fileID: 0}
-    enemyCastBarFill: {fileID: 0}
-    enemyCastBarText: {fileID: 0}
-    battleSprite: {fileID: 0}
-    position: {x: 0, y: 0, z: 0}
-    target: {x: 0, y: 0, z: 0}
-    currentRowPositionID: 0
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
   Ranger:
-    name: 
-    speed: 0
-    speedTotal: 0
-    castSpeed: 0
-    castSpeedTotal: 0
-    enemyOptions: []
-    spellBook: []
-    activeSpell:
-      name: 
-      castTime: 0
-      spellIcon: {fileID: 0}
-    isCastingSpell: 0
+    EnemyName: Ranger
     EnemyPortrait: {fileID: 21300000, guid: 7d224dd25783c8f47970ffcf9b611f8c, type: 3}
+    speed: 0
+    speedTotal: 0
+    enemyTarget:
+      name: 
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      playerOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      PlayerPortrait: {fileID: 0}
+      playerPanel: {fileID: 0}
+      playerPanelBackground: {fileID: 0}
+      playerSpeedBar: {fileID: 0}
+      playerSpeedBarText: {fileID: 0}
+      playerCastBar: {fileID: 0}
+      playerCastBarFill: {fileID: 0}
+      playerCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
     enemySpeedBarText: {fileID: 0}
-    enemyCastBar: {fileID: 0}
-    enemyCastBarFill: {fileID: 0}
-    enemyCastBarText: {fileID: 0}
-    battleSprite: {fileID: 0}
-    position: {x: 0, y: 0, z: 0}
-    target: {x: 0, y: 0, z: 0}
-    currentRowPositionID: 0
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
   Bard:
-    name: 
-    speed: 0
-    speedTotal: 0
-    castSpeed: 0
-    castSpeedTotal: 0
-    enemyOptions: []
-    spellBook: []
-    activeSpell:
-      name: 
-      castTime: 0
-      spellIcon: {fileID: 0}
-    isCastingSpell: 0
+    EnemyName: Bard
     EnemyPortrait: {fileID: 21300000, guid: c1584bd6c35dd074082052506393517d, type: 3}
-    enemyPanel: {fileID: 0}
-    enemyPanelBackground: {fileID: 0}
-    enemySpeedBar: {fileID: 0}
-    enemySpeedBarText: {fileID: 0}
-    enemyCastBar: {fileID: 0}
-    enemyCastBarFill: {fileID: 0}
-    enemyCastBarText: {fileID: 0}
-    battleSprite: {fileID: 0}
-    position: {x: 0, y: 0, z: 0}
-    target: {x: 0, y: 0, z: 0}
-    currentRowPositionID: 0
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
-  Machinist:
-    name: 
     speed: 0
     speedTotal: 0
-    castSpeed: 0
-    castSpeedTotal: 0
-    enemyOptions: []
-    spellBook: []
-    activeSpell:
+    enemyTarget:
       name: 
-      castTime: 0
-      spellIcon: {fileID: 0}
-    isCastingSpell: 0
-    EnemyPortrait: {fileID: 21300000, guid: 13f5404eac497804b9df53e401e0ec89, type: 3}
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      playerOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      PlayerPortrait: {fileID: 0}
+      playerPanel: {fileID: 0}
+      playerPanelBackground: {fileID: 0}
+      playerSpeedBar: {fileID: 0}
+      playerSpeedBarText: {fileID: 0}
+      playerCastBar: {fileID: 0}
+      playerCastBarFill: {fileID: 0}
+      playerCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
     enemySpeedBarText: {fileID: 0}
-    enemyCastBar: {fileID: 0}
-    enemyCastBarFill: {fileID: 0}
-    enemyCastBarText: {fileID: 0}
-    battleSprite: {fileID: 0}
-    position: {x: 0, y: 0, z: 0}
-    target: {x: 0, y: 0, z: 0}
-    currentRowPositionID: 0
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
+  Machinist:
+    EnemyName: Machinist
+    EnemyPortrait: {fileID: 21300000, guid: 13f5404eac497804b9df53e401e0ec89, type: 3}
+    speed: 0
+    speedTotal: 0
+    enemyTarget:
+      name: 
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      playerOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      PlayerPortrait: {fileID: 0}
+      playerPanel: {fileID: 0}
+      playerPanelBackground: {fileID: 0}
+      playerSpeedBar: {fileID: 0}
+      playerSpeedBarText: {fileID: 0}
+      playerCastBar: {fileID: 0}
+      playerCastBarFill: {fileID: 0}
+      playerCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
+    enemyPanel: {fileID: 0}
+    enemyPanelBackground: {fileID: 0}
+    enemySpeedBar: {fileID: 0}
+    enemySpeedBarText: {fileID: 0}
 --- !u!4 &679064227
 Transform:
   m_ObjectHideFlags: 0
@@ -18054,7 +18126,6 @@ GameObject:
   - component: {fileID: 1548464333}
   - component: {fileID: 1548464335}
   - component: {fileID: 1548464336}
-  - component: {fileID: 1548464337}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -18076,7 +18147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BM_Funcs: {fileID: 1548464335}
   BM_Enums: {fileID: 0}
-  BM_Enemy: {fileID: 0}
   speed: 0
   stepForward: 0
   attackAnimCoroutineIsPaused: 0
@@ -18167,34 +18237,43 @@ MonoBehaviour:
   EnemiesInBattle: []
   ActiveEnemies: []
   activeEnemy:
-    name: 
+    EnemyName: 
+    EnemyPortrait: {fileID: 0}
     speed: 0
     speedTotal: 0
-    castSpeed: 0
-    castSpeedTotal: 0
-    enemyOptions: []
-    spellBook: []
-    activeSpell:
+    enemyTarget:
       name: 
-      castTime: 0
-      spellIcon: {fileID: 0}
-    isCastingSpell: 0
-    EnemyPortrait: {fileID: 0}
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      playerOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      PlayerPortrait: {fileID: 0}
+      playerPanel: {fileID: 0}
+      playerPanelBackground: {fileID: 0}
+      playerSpeedBar: {fileID: 0}
+      playerSpeedBarText: {fileID: 0}
+      playerCastBar: {fileID: 0}
+      playerCastBarFill: {fileID: 0}
+      playerCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      currentRowPositionID: 0
+      currentRowPosition: {fileID: 0}
+      currentRowPositionIcon: {fileID: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
     enemyPanel: {fileID: 0}
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
     enemySpeedBarText: {fileID: 0}
-    enemyCastBar: {fileID: 0}
-    enemyCastBarFill: {fileID: 0}
-    enemyCastBarText: {fileID: 0}
-    battleSprite: {fileID: 0}
-    position: {x: 0, y: 0, z: 0}
-    target: {x: 0, y: 0, z: 0}
-    currentRowPositionID: 0
-    currentRowPosition: {fileID: 0}
-    currentRowPositionIcon: {fileID: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
   PlayerPanels:
   - {fileID: 419919506}
   - {fileID: 1617675858}
@@ -18351,23 +18430,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BM: {fileID: 1548464333}
---- !u!114 &1548464337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548464332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a37e9fd1fb9213a4db8781fd7604de2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BM: {fileID: 0}
-  BM_Funcs: {fileID: 0}
-  BM_Enums: {fileID: 0}
-  enemySelectedCommand: 
-  enemyStates: 0
 --- !u!1 &1551812233
 GameObject:
   m_ObjectHideFlags: 0
@@ -20324,105 +20386,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745852076}
   m_CullTransparentMesh: 0
---- !u!1 &1747065634
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1747065636}
-  - component: {fileID: 1747065635}
-  - component: {fileID: 1747065637}
-  m_Layer: 0
-  m_Name: Enemy Sprite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &1747065635
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747065634}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300740, guid: 28cf10aa9c444fa44801db86c8b4c150, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.24}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1747065636
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747065634}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.28, y: 0.07, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1747065637
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747065634}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e969902ae139e10409ecc814ad55796e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1772146467
 GameObject:
   m_ObjectHideFlags: 0
