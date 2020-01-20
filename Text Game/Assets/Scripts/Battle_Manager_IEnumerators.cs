@@ -31,6 +31,20 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
         }
     }
 
+    public IEnumerator waitForEnemyAttackAnimation()
+    {
+        while (BM.enemyAttackAnimCoroutineIsPaused == true)
+        {
+            yield return null;
+        }
+
+        while (BM.enemyAttackAnimCoroutineIsPaused == false)
+        {
+            yield return new WaitForSeconds(1f);
+            BM.enemyAttackAnimIsDone = true;
+        }
+    }
+
     public IEnumerator waitForCastAnimation()
     {
         while (BM.castAnimCoroutineIsPaused == true)
@@ -117,6 +131,7 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
         }
     }
 
+    /*
     public IEnumerator delayWhileEnemyTurn()
     {
         while (BM.enemyTurnCoroutineIsPaused == true)
@@ -139,4 +154,5 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
             }
         }
     }
+    */
 }

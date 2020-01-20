@@ -10,10 +10,14 @@ public class Battle_Manager : MonoBehaviour
 {    
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
+    public Battle_Manager_EnemyTurn BM_Enemy;
     public float speed;
+    public bool EnemyTurnFinished;
     public bool stepForward;    
     public bool attackAnimCoroutineIsPaused;
+    public bool enemyAttackAnimCoroutineIsPaused;
     public bool attackAnimIsDone;
+    public bool enemyAttackAnimIsDone;
     public bool castAnimCoroutineIsPaused;
     public bool castAnimIsDone;
     public bool rowSelected;
@@ -50,8 +54,7 @@ public class Battle_Manager : MonoBehaviour
     public GameObject RowManager;
     public Spells SpellManager;     
     public bool coroutineIsPaused = false;
-    public bool returningStarting = true;
-    public bool enemyTurnCoroutineIsPaused = false;
+    public bool returningStarting = true;    
     public float enemyTurnPauseCounter;
     public string selectedCommand = null;    
     public Color defaultColor;
@@ -71,9 +74,7 @@ public class Battle_Manager : MonoBehaviour
         CHANGE_ROW,
         RESOLVE_ACTION,
         RESOLVE_SPELL,
-        SELECT_ENEMY_ACTION,
-        SELECT_ENEMY_TARGET,
-        RESOLVE_ENEMY_ACTION
+        ENEMY_TURN
     }
 
     public BattleStates battleStates;        
@@ -83,6 +84,7 @@ public class Battle_Manager : MonoBehaviour
     {
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
+        BM_Enemy = GetComponent<Battle_Manager_EnemyTurn>();
 
         BM_Funcs.setupCharacters();
         
@@ -99,7 +101,7 @@ public class Battle_Manager : MonoBehaviour
             StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
         }
 
-        StartCoroutine(BM_Enums.delayWhileEnemyTurn());        
+        //StartCoroutine(BM_Enums.delayWhileEnemyTurn());
 
         castAnimCoroutineIsPaused = true;
         castAnimIsDone = false;
@@ -118,6 +120,8 @@ public class Battle_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if (stepForward)
         {
             speed = 4.0f;
@@ -134,12 +138,7 @@ public class Battle_Manager : MonoBehaviour
                 
                 stepForward = false;
             }
-        }        
-
-        void standIdle(Player playerToIdle)
-        {
-            playerToIdle.battleSprite.transform.position = playerToIdle.position;             
-        }
+        }                
 
         m_PointerEventData = new PointerEventData(m_EventSystem);
         m_PointerEventData.position = Input.mousePosition;
@@ -156,38 +155,41 @@ public class Battle_Manager : MonoBehaviour
 
                 attackAnimIsDone = false;
                 castAnimIsDone = false;
+                enemyAttackAnimCoroutineIsPaused = true;
 
                 //Check if a player is above 100 Speed, and pause the Coroutine
                 for (int i = 0; i < PlayersInBattle.Count; i++)
                 {
                     if (PlayersInBattle[i].speedTotal >= 100 || (PlayersInBattle[i].isCastingSpell && PlayersInBattle[i].castSpeedTotal <= 0))
                     {
-                        coroutineIsPaused = true;
                         ActivePlayers.Add(PlayersInBattle[i]);
+                        coroutineIsPaused = true;
                     }
                 }
                 //Check if an enemy is above 100 Speed, and pause the Coroutine
                 for (int i = 0; i < EnemiesInBattle.Count; i++)
                 {
                     if (EnemiesInBattle[i].speedTotal >= 100)
-                    {                        
-                        EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
+                    {
                         ActiveEnemies.Add(EnemiesInBattle[i]);
                         coroutineIsPaused = true;
                     }
                 }
 
-                if (ActivePlayers.Count > 0)
-                {
-                    battleStates = BattleStates.SELECT_PLAYER;
-                } else if (ActiveEnemies.Count > 0)
+                if (ActiveEnemies.Count > 0)
                 {
                     for (int i = 0; i < ActiveEnemies.Count; i++)
                     {
                         activeEnemy = ActiveEnemies[i];
                     }
 
-                    battleStates = BattleStates.SELECT_ENEMY_TARGET;
+                    BM_Enemy.enemyStates = Battle_Manager_EnemyTurn.EnemyStates.SELECT_ENEMY;
+                    battleStates = BattleStates.ENEMY_TURN;
+
+                }
+                else if (ActivePlayers.Count > 0)
+                {
+                    battleStates = BattleStates.SELECT_PLAYER;
                 }
 
                 break;
@@ -195,6 +197,7 @@ public class Battle_Manager : MonoBehaviour
 
                 attackAnimIsDone = false;
                 castAnimIsDone = false;
+                enemyAttackAnimCoroutineIsPaused = true;
 
                 for (int i = 0; i < ActivePlayers.Count; i++)
                 {
@@ -229,6 +232,7 @@ public class Battle_Manager : MonoBehaviour
 
                 attackAnimIsDone = false;
                 castAnimIsDone = false;
+                enemyAttackAnimCoroutineIsPaused = true;
 
                 //Instant redirect if not waiting for a mouse click
                 BM_Funcs.redirectAction();
@@ -243,7 +247,7 @@ public class Battle_Manager : MonoBehaviour
                 //RIGHT CLICK TO GO BACK
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
-                    standIdle(activePlayer);
+                    BM_Funcs.standIdle(activePlayer);
                     activePlayer = null;
                     ActionPanel.SetActive(false);
                     selectedCommand = null;
@@ -667,7 +671,7 @@ public class Battle_Manager : MonoBehaviour
                     {
                         attackAnimCoroutineIsPaused = true;
                         
-                        standIdle(activePlayer);
+                        BM_Funcs.standIdle(activePlayer);
 
                         BM_Funcs.animationController(activePlayer);                        
                         activePlayer.speedTotal -= 100f;
@@ -705,8 +709,8 @@ public class Battle_Manager : MonoBehaviour
                     activePlayer.hasConstantAnimationState = true;
                     activePlayer.playerCastBar.SetActive(true);
                     activePlayer.castSpeedTotal = activePlayer.activeSpell.castTime;
-                    
-                    standIdle(activePlayer);
+
+                    BM_Funcs.standIdle(activePlayer);
 
                     //reset attack animation to idle
                     BM_Funcs.animationController(activePlayer);
@@ -741,7 +745,7 @@ public class Battle_Manager : MonoBehaviour
                 else if (selectedCommand == "Wait")
                 {
                     BM_Funcs.animationController(activePlayer);
-                    standIdle(activePlayer);                    
+                    BM_Funcs.standIdle(activePlayer);                    
                     activePlayer.speedTotal = (100f - activePlayer.speed);
                     activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
                     BM_Funcs.resetChoicePanel();
@@ -770,8 +774,8 @@ public class Battle_Manager : MonoBehaviour
                     }
                 }
                 else if (selectedCommand == "Change Row")
-                {                    
-                    standIdle(activePlayer);
+                {
+                    BM_Funcs.standIdle(activePlayer);
 
                     BM_Funcs.animationController(activePlayer);
                     activePlayer.speedTotal -= 100f;
@@ -822,7 +826,7 @@ public class Battle_Manager : MonoBehaviour
                     activePlayer.constantAnimationState = null;
                     activePlayer.hasConstantAnimationState = false;
                     BM_Funcs.animationController(activePlayer);
-                    standIdle(activePlayer);
+                    BM_Funcs.standIdle(activePlayer);
                     activePlayer.isCastingSpell = false;
                     activePlayer.playerCastBar.SetActive(false);
                     activePlayer.castSpeedTotal = 0f;
@@ -854,24 +858,8 @@ public class Battle_Manager : MonoBehaviour
                 }                
 
                 break;
-            case BattleStates.SELECT_ENEMY_ACTION:
+            case BattleStates.ENEMY_TURN:
 
-                break;
-            case BattleStates.SELECT_ENEMY_TARGET:
-
-                int selectedNumber = Random.Range(0, PlayersInBattle.Count);
-
-                for (int i = 0; i < PlayersInBattle.Count; i++)
-                {
-                    if (selectedNumber == i)
-                    {
-                        activeEnemy.enemyTarget = PlayersInBattle[i];
-                        battleStates = BattleStates.RESOLVE_ENEMY_ACTION;
-                    }                    
-                }
-                
-                break;
-            case BattleStates.RESOLVE_ENEMY_ACTION:
                 break;
             default:
                 break;
