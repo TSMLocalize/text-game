@@ -18,4 +18,9 @@ public class Enemy
     public Image enemyPanelBackground;
     public GameObject enemySpeedBar;
     public TextMeshProUGUI enemySpeedBarText;
+
+    //Battle Sprite Elements
+    public GameObject battleSprite;
+    public Vector3 position;
+    public Vector3 target;
 }

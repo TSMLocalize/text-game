@@ -859,6 +859,8 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.SELECT_ENEMY_TARGET:
 
+                activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+
                 int selectedNumber = Random.Range(0, PlayersInBattle.Count);
 
                 for (int i = 0; i < PlayersInBattle.Count; i++)
