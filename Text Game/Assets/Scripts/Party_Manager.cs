@@ -24,15 +24,15 @@ public class Party_Manager : MonoBehaviour
         partyMembers.Add(Jenny);
         
         Josie.speed = 3f;
-        Jemima.speed = 2f;
+        Jemima.speed = 20f;
         Jennifer.speed = 1f;
-        Jessica.speed = 1f;
+        Jessica.speed = 2f;
         Jody.speed = 2f;
         Jenny.speed = 2f;
 
         Josie.castSpeed = 2f;
         Jemima.castSpeed = 3f;
-        Jennifer.castSpeed = 10f;
+        Jennifer.castSpeed = 2f;
         Jessica.castSpeed = 2f;
         Jody.castSpeed = 3f;
         Jenny.castSpeed = 1f;

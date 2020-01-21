@@ -11,6 +11,7 @@ public class Battle_Manager : MonoBehaviour
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
     public float speed;
+    public bool startRoutinesGoingAgain;
     public bool stepForward;        
     public bool attackAnimIsDone;
     public bool castAnimIsDone;
@@ -96,14 +97,7 @@ public class Battle_Manager : MonoBehaviour
         defaultColor = ActionPanel.GetComponent<Image>().color;
 
         //Start SpeedBar coroutines for players and enemies
-        for (int i = 0; i < PlayersInBattle.Count; i++)
-        {
-            StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
-        }
-        for (int i = 0; i < EnemiesInBattle.Count; i++)
-        {
-            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
-        }              
+        startSpeedCoroutines();
 
         castAnimCoroutineIsPaused = true;
         castAnimIsDone = false;
@@ -164,12 +158,18 @@ public class Battle_Manager : MonoBehaviour
                 attackAnimIsDone = false;
                 castAnimIsDone = false;
 
+                if (startRoutinesGoingAgain)
+                {
+                    startSpeedCoroutines();
+                    startRoutinesGoingAgain = false;
+                }
+
                 //Check if a player is above 100 Speed, and pause the Coroutine
                 for (int i = 0; i < PlayersInBattle.Count; i++)
                 {
                     if (PlayersInBattle[i].speedTotal >= 100 || (PlayersInBattle[i].isCastingSpell && PlayersInBattle[i].castSpeedTotal <= 0))
                     {
-                        coroutineIsPaused = true;                        
+                                               
                         ActivePlayers.Add(PlayersInBattle[i]);
                     }
                 }
@@ -179,17 +179,18 @@ public class Battle_Manager : MonoBehaviour
                     if (EnemiesInBattle[i].speedTotal >= 100)
                     {                        
                         EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
-                        coroutineIsPaused = true;
-                        ActiveEnemies.Add(EnemiesInBattle[i]);                                                
+                        ActiveEnemies.Add(EnemiesInBattle[i]);                         
                     }
                 }
 
                 if (ActivePlayers.Count > 0)
                 {
+                    coroutineIsPaused = true;
                     battleStates = BattleStates.SELECT_PLAYER;
                 } 
                 else if (ActiveEnemies.Count > 0)
                 {
+                    coroutineIsPaused = true;
                     battleStates = BattleStates.SELECT_ENEMY;
                 }
 
@@ -685,19 +686,9 @@ public class Battle_Manager : MonoBehaviour
 
                         if (ActivePlayers.Count == 0)
                         {
-                            returningStarting = true;                            
+                            returningStarting = true;
 
-                            for (int i = 0; i < PlayersInBattle.Count; i++)
-                            {
-                                StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
-                            }
-
-                            for (int i = 0; i < EnemiesInBattle.Count; i++)
-                            {
-                                StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
-                            }
-
-                            coroutineIsPaused = false;                            
+                            startRoutinesGoingAgain = true;
                             battleStates = BattleStates.DEFAULT;
                         }
                         else
@@ -731,19 +722,9 @@ public class Battle_Manager : MonoBehaviour
 
                     if (ActivePlayers.Count == 0)
                     {
-                        returningStarting = true;                        
+                        returningStarting = true;
 
-                        for (int i = 0; i < PlayersInBattle.Count; i++)
-                        {
-                            StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
-                        }
-
-                        for (int i = 0; i < EnemiesInBattle.Count; i++)
-                        {
-                            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
-                        }
-
-                        coroutineIsPaused = false;                        
+                        startRoutinesGoingAgain = true;
                         battleStates = BattleStates.DEFAULT;
                     }
                     else
@@ -767,19 +748,9 @@ public class Battle_Manager : MonoBehaviour
 
                     if (ActivePlayers.Count == 0)
                     {
-                        returningStarting = true;                        
+                        returningStarting = true;
 
-                        for (int i = 0; i < PlayersInBattle.Count; i++)
-                        {
-                            StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
-                        }
-
-                        for (int i = 0; i < EnemiesInBattle.Count; i++)
-                        {
-                            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
-                        }
-
-                        coroutineIsPaused = false;                        
+                        startRoutinesGoingAgain = true;
                         battleStates = BattleStates.DEFAULT;
                     }
                     else
@@ -810,19 +781,9 @@ public class Battle_Manager : MonoBehaviour
 
                     if (ActivePlayers.Count == 0)
                     {
-                        returningStarting = true;                        
+                        returningStarting = true;
 
-                        for (int i = 0; i < PlayersInBattle.Count; i++)
-                        {
-                            StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
-                        }
-
-                        for (int i = 0; i < EnemiesInBattle.Count; i++)
-                        {
-                            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
-                        }
-
-                        coroutineIsPaused = false;                        
+                        startRoutinesGoingAgain = true;
                         battleStates = BattleStates.DEFAULT;
                     }
                     else
@@ -860,19 +821,9 @@ public class Battle_Manager : MonoBehaviour
 
                     if (ActivePlayers.Count == 0)
                     {
-                        returningStarting = true;                        
+                        returningStarting = true;
 
-                        for (int i = 0; i < PlayersInBattle.Count; i++)
-                        {
-                            StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
-                        }
-
-                        for (int i = 0; i < EnemiesInBattle.Count; i++)
-                        {
-                            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
-                        }
-
-                        coroutineIsPaused = false;                        
+                        startRoutinesGoingAgain = true;
                         battleStates = BattleStates.DEFAULT;
                     }
                     else
@@ -935,42 +886,30 @@ public class Battle_Manager : MonoBehaviour
 
                 if (enemyAttackAnimIsDone == true)
                 {
-                    battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     enemyAttackAnimCoroutineIsPaused = true;
+                    battleStates = BattleStates.RESOLVE_ENEMY_TURN;                     
                 }                
 
                 break;
             case BattleStates.RESOLVE_ENEMY_TURN:
 
-                activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);                                
-
-                if (enemyAttackAnimCoroutineIsPaused == true)
+                if (selectedCommand == "EnemyAttack")
                 {
+                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
                     enemyAttackAnimIsDone = false;
                     enemyReadyAnimIsDone = false;
                     enemyAttackAnimIsDone = false;
                     activeEnemy.speedTotal -= 100f;
                     activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
                     activeEnemy.enemyTarget = null;
-                    ActiveEnemies.Remove(activeEnemy);
+                    ActiveEnemies.Clear();
                     activeEnemy = null;
                     selectedCommand = null;
 
                     if (ActiveEnemies.Count == 0)
                     {
-                        returningStarting = true;
-
-                        for (int i = 0; i < EnemiesInBattle.Count; i++)
-                        {
-                            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
-                        }
-
-                        for (int i = 0; i < PlayersInBattle.Count; i++)
-                        {
-                            StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
-                        }
-
-                        coroutineIsPaused = false;
+                        returningStarting = true;                        
+                        startRoutinesGoingAgain = true;
                         battleStates = BattleStates.DEFAULT;
                     }
                     else
@@ -983,5 +922,18 @@ public class Battle_Manager : MonoBehaviour
             default:
                 break;
         }
-    }   
+    }  
+    void startSpeedCoroutines()
+    {
+        coroutineIsPaused = false;
+
+        for (int i = 0; i < PlayersInBattle.Count; i++)
+        {
+            StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
+        }
+        for (int i = 0; i < EnemiesInBattle.Count; i++)
+        {
+            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
+        }        
+    }        
 }
