@@ -689,7 +689,8 @@ public class Battle_Manager : MonoBehaviour
                             returningStarting = true;
 
                             startRoutinesGoingAgain = true;
-                            battleStates = BattleStates.DEFAULT;
+
+                            BM_Funcs.redirectAction();             
                         }
                         else
                         {
@@ -723,9 +724,8 @@ public class Battle_Manager : MonoBehaviour
                     if (ActivePlayers.Count == 0)
                     {
                         returningStarting = true;
-
                         startRoutinesGoingAgain = true;
-                        battleStates = BattleStates.DEFAULT;
+                        BM_Funcs.redirectAction();
                     }
                     else
                     {
@@ -749,9 +749,8 @@ public class Battle_Manager : MonoBehaviour
                     if (ActivePlayers.Count == 0)
                     {
                         returningStarting = true;
-
                         startRoutinesGoingAgain = true;
-                        battleStates = BattleStates.DEFAULT;
+                        BM_Funcs.redirectAction();
                     }
                     else
                     {
@@ -782,9 +781,8 @@ public class Battle_Manager : MonoBehaviour
                     if (ActivePlayers.Count == 0)
                     {
                         returningStarting = true;
-
                         startRoutinesGoingAgain = true;
-                        battleStates = BattleStates.DEFAULT;
+                        BM_Funcs.redirectAction();
                     }
                     else
                     {
@@ -824,7 +822,7 @@ public class Battle_Manager : MonoBehaviour
                         returningStarting = true;
 
                         startRoutinesGoingAgain = true;
-                        battleStates = BattleStates.DEFAULT;
+                        BM_Funcs.redirectAction();
                     }
                     else
                     {

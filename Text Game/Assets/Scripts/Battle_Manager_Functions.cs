@@ -231,7 +231,18 @@ public class Battle_Manager_Functions : MonoBehaviour
 
     public void redirectAction()
     {
-        if (BM.selectedCommand != "")
+        if (BM.startRoutinesGoingAgain)
+        {
+            if (BM.ActiveEnemies.Count > 0)
+            {
+                BM.battleStates = Battle_Manager.BattleStates.SELECT_ENEMY;
+            }
+            else
+            {
+                BM.battleStates = Battle_Manager.BattleStates.DEFAULT;
+            }
+        }
+        else if (BM.selectedCommand != "")
         {
             if (BM.selectedCommand == "Attack")
             {
@@ -254,7 +265,7 @@ public class Battle_Manager_Functions : MonoBehaviour
             {
                 BM.battleStates = Battle_Manager.BattleStates.CHANGE_ROW;
             }
-        }
+        }        
     }
 
     //Sets the animation to idle, or to animation specified, or to what the previous animation was if a currentAnimationState is set
