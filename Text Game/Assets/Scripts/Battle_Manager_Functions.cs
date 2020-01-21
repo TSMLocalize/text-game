@@ -276,8 +276,13 @@ public class Battle_Manager_Functions : MonoBehaviour
         player.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", false);
+        player.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);
 
-        if (state == "IsAttacking")
+        if (state == "TakeDamage")
+        {
+            player.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", true);
+        }
+        else if (state == "IsAttacking")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
         }

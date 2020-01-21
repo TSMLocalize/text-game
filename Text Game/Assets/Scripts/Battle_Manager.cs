@@ -877,6 +877,7 @@ public class Battle_Manager : MonoBehaviour
             case BattleStates.ENEMY_ATTACK:
                 
                 activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
+                BM_Funcs.animationController(activeEnemy.enemyTarget, "TakeDamage");
 
                 enemyAttackAnimCoroutineIsPaused = false;
 
@@ -884,6 +885,7 @@ public class Battle_Manager : MonoBehaviour
 
                 if (enemyAttackAnimIsDone == true)
                 {
+                    BM_Funcs.animationController(activeEnemy.enemyTarget);
                     enemyAttackAnimCoroutineIsPaused = true;
                     battleStates = BattleStates.RESOLVE_ENEMY_TURN;                     
                 }                
