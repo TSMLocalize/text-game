@@ -11,11 +11,17 @@ public class Battle_Manager : MonoBehaviour
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
     public float speed;
-    public bool stepForward;    
-    public bool attackAnimCoroutineIsPaused;
+    public bool stepForward;        
     public bool attackAnimIsDone;
-    public bool castAnimCoroutineIsPaused;
     public bool castAnimIsDone;
+    public bool attackAnimCoroutineIsPaused;
+    public bool castAnimCoroutineIsPaused;
+    public bool enemyReadyAnimIsDone;
+    public bool enemyAttackAnimIsDone;
+    public bool enemyCastAnimIsDone;
+    public bool enemyReadyAnimCoroutineIsPaused;
+    public bool enemyAttackAnimCoroutineIsPaused;
+    public bool enemyCastAnimCoroutineIsPaused;
     public bool rowSelected;
     public bool isSwitchingWithOtherPlayer;
     public List<GameObject> Rows;
@@ -49,10 +55,8 @@ public class Battle_Manager : MonoBehaviour
     public GameObject EnemyManager;
     public GameObject RowManager;
     public Spells SpellManager;     
-    public bool coroutineIsPaused = false;
-    public bool returningStarting = true;
-    public bool enemyTurnCoroutineIsPaused = false;
-    public float enemyTurnPauseCounter;
+    public bool coroutineIsPaused = false;    
+    public bool returningStarting = true;    
     public string selectedCommand = null;    
     public Color defaultColor;
     public Color defaultBlueColor;
@@ -71,9 +75,11 @@ public class Battle_Manager : MonoBehaviour
         CHANGE_ROW,
         RESOLVE_ACTION,
         RESOLVE_SPELL,
+        SELECT_ENEMY,
         SELECT_ENEMY_ACTION,
         SELECT_ENEMY_TARGET,
-        RESOLVE_ENEMY_ACTION
+        ENEMY_ATTACK,
+        RESOLVE_ENEMY_TURN        
     }
 
     public BattleStates battleStates;        
@@ -97,9 +103,7 @@ public class Battle_Manager : MonoBehaviour
         for (int i = 0; i < EnemiesInBattle.Count; i++)
         {
             StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
-        }
-
-        StartCoroutine(BM_Enums.delayWhileEnemyTurn());        
+        }              
 
         castAnimCoroutineIsPaused = true;
         castAnimIsDone = false;
@@ -154,6 +158,9 @@ public class Battle_Manager : MonoBehaviour
         {
             case BattleStates.DEFAULT:
 
+                enemyReadyAnimIsDone = false;
+                enemyAttackAnimIsDone = false;
+                enemyCastAnimIsDone = false;
                 attackAnimIsDone = false;
                 castAnimIsDone = false;
 
@@ -162,7 +169,7 @@ public class Battle_Manager : MonoBehaviour
                 {
                     if (PlayersInBattle[i].speedTotal >= 100 || (PlayersInBattle[i].isCastingSpell && PlayersInBattle[i].castSpeedTotal <= 0))
                     {
-                        coroutineIsPaused = true;
+                        coroutineIsPaused = true;                        
                         ActivePlayers.Add(PlayersInBattle[i]);
                     }
                 }
@@ -172,22 +179,18 @@ public class Battle_Manager : MonoBehaviour
                     if (EnemiesInBattle[i].speedTotal >= 100)
                     {                        
                         EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
-                        ActiveEnemies.Add(EnemiesInBattle[i]);
                         coroutineIsPaused = true;
+                        ActiveEnemies.Add(EnemiesInBattle[i]);                                                
                     }
                 }
 
                 if (ActivePlayers.Count > 0)
                 {
                     battleStates = BattleStates.SELECT_PLAYER;
-                } else if (ActiveEnemies.Count > 0)
+                } 
+                else if (ActiveEnemies.Count > 0)
                 {
-                    for (int i = 0; i < ActiveEnemies.Count; i++)
-                    {
-                        activeEnemy = ActiveEnemies[i];
-                    }
-
-                    battleStates = BattleStates.SELECT_ENEMY_TARGET;
+                    battleStates = BattleStates.SELECT_ENEMY;
                 }
 
                 break;
@@ -682,14 +685,19 @@ public class Battle_Manager : MonoBehaviour
 
                         if (ActivePlayers.Count == 0)
                         {
-                            returningStarting = true;
+                            returningStarting = true;                            
 
                             for (int i = 0; i < PlayersInBattle.Count; i++)
                             {
                                 StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
                             }
 
-                            coroutineIsPaused = false;
+                            for (int i = 0; i < EnemiesInBattle.Count; i++)
+                            {
+                                StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
+                            }
+
+                            coroutineIsPaused = false;                            
                             battleStates = BattleStates.DEFAULT;
                         }
                         else
@@ -723,14 +731,19 @@ public class Battle_Manager : MonoBehaviour
 
                     if (ActivePlayers.Count == 0)
                     {
-                        returningStarting = true;
+                        returningStarting = true;                        
 
                         for (int i = 0; i < PlayersInBattle.Count; i++)
                         {
                             StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
                         }
 
-                        coroutineIsPaused = false;
+                        for (int i = 0; i < EnemiesInBattle.Count; i++)
+                        {
+                            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
+                        }
+
+                        coroutineIsPaused = false;                        
                         battleStates = BattleStates.DEFAULT;
                     }
                     else
@@ -754,14 +767,19 @@ public class Battle_Manager : MonoBehaviour
 
                     if (ActivePlayers.Count == 0)
                     {
-                        returningStarting = true;
+                        returningStarting = true;                        
 
                         for (int i = 0; i < PlayersInBattle.Count; i++)
                         {
                             StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
                         }
 
-                        coroutineIsPaused = false;
+                        for (int i = 0; i < EnemiesInBattle.Count; i++)
+                        {
+                            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
+                        }
+
+                        coroutineIsPaused = false;                        
                         battleStates = BattleStates.DEFAULT;
                     }
                     else
@@ -792,14 +810,19 @@ public class Battle_Manager : MonoBehaviour
 
                     if (ActivePlayers.Count == 0)
                     {
-                        returningStarting = true;
+                        returningStarting = true;                        
 
                         for (int i = 0; i < PlayersInBattle.Count; i++)
                         {
                             StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
                         }
 
-                        coroutineIsPaused = false;
+                        for (int i = 0; i < EnemiesInBattle.Count; i++)
+                        {
+                            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
+                        }
+
+                        coroutineIsPaused = false;                        
                         battleStates = BattleStates.DEFAULT;
                     }
                     else
@@ -837,7 +860,110 @@ public class Battle_Manager : MonoBehaviour
 
                     if (ActivePlayers.Count == 0)
                     {
+                        returningStarting = true;                        
+
+                        for (int i = 0; i < PlayersInBattle.Count; i++)
+                        {
+                            StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
+                        }
+
+                        for (int i = 0; i < EnemiesInBattle.Count; i++)
+                        {
+                            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
+                        }
+
+                        coroutineIsPaused = false;                        
+                        battleStates = BattleStates.DEFAULT;
+                    }
+                    else
+                    {
+                        battleStates = BattleStates.SELECT_PLAYER;
+                    }
+                }                
+
+                break;
+            case BattleStates.SELECT_ENEMY:
+
+                for (int i = 0; i < ActiveEnemies.Count; i++)
+                {
+                    activeEnemy = ActiveEnemies[i];
+                }
+
+                battleStates = BattleStates.SELECT_ENEMY_ACTION;
+                break;
+            case BattleStates.SELECT_ENEMY_ACTION:
+                selectedCommand = "EnemyAttack";
+                battleStates = BattleStates.SELECT_ENEMY_TARGET;
+                break;
+            case BattleStates.SELECT_ENEMY_TARGET:
+
+                int selectedNumber = Random.Range(0, PlayersInBattle.Count);
+
+                for (int i = 0; i < PlayersInBattle.Count; i++)
+                {
+                    if (selectedNumber == i)
+                    {
+                        activeEnemy.enemyTarget = PlayersInBattle[i];                        
+                    }
+                }
+
+                enemyReadyAnimCoroutineIsPaused = false;
+
+                StartCoroutine(BM_Enums.waitForEnemyReadyAnimation());
+
+                if (enemyReadyAnimIsDone == false)
+                {
+                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+                }                                
+
+                if (enemyReadyAnimIsDone == true)
+                {                    
+                    enemyReadyAnimCoroutineIsPaused = true;                    
+                    enemyReadyAnimIsDone = false;
+                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);                    
+                    battleStates = BattleStates.ENEMY_ATTACK;                    
+                }
+
+                break;
+            case BattleStates.ENEMY_ATTACK:
+                
+                activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
+
+                enemyAttackAnimCoroutineIsPaused = false;
+
+                StartCoroutine(BM_Enums.waitForEnemyAttackAnimation());
+
+                if (enemyAttackAnimIsDone == true)
+                {
+                    battleStates = BattleStates.RESOLVE_ENEMY_TURN;
+                    enemyAttackAnimCoroutineIsPaused = true;
+                }                
+
+                break;
+            case BattleStates.RESOLVE_ENEMY_TURN:
+
+                activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);                                
+
+                if (enemyAttackAnimCoroutineIsPaused == true)
+                {
+                    enemyAttackAnimIsDone = false;
+                    enemyReadyAnimIsDone = false;
+                    enemyAttackAnimIsDone = false;
+                    activeEnemy.speedTotal -= 100f;
+                    activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
+                    activeEnemy.enemyTarget = null;
+                    ActiveEnemies.Remove(activeEnemy);
+                    activeEnemy = null;
+                    selectedCommand = null;
+
+                    if (ActiveEnemies.Count == 0)
+                    {
                         returningStarting = true;
+
+                        for (int i = 0; i < EnemiesInBattle.Count; i++)
+                        {
+                            StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
+                        }
 
                         for (int i = 0; i < PlayersInBattle.Count; i++)
                         {
@@ -849,31 +975,10 @@ public class Battle_Manager : MonoBehaviour
                     }
                     else
                     {
-                        battleStates = BattleStates.SELECT_PLAYER;
+                        //battleStates = BattleStates.SELECT_ENEMY;
                     }
-                }                
+                }                            
 
-                break;
-            case BattleStates.SELECT_ENEMY_ACTION:
-
-                break;
-            case BattleStates.SELECT_ENEMY_TARGET:
-
-                activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
-
-                int selectedNumber = Random.Range(0, PlayersInBattle.Count);
-
-                for (int i = 0; i < PlayersInBattle.Count; i++)
-                {
-                    if (selectedNumber == i)
-                    {
-                        activeEnemy.enemyTarget = PlayersInBattle[i];
-                        battleStates = BattleStates.RESOLVE_ENEMY_ACTION;
-                    }                    
-                }
-                
-                break;
-            case BattleStates.RESOLVE_ENEMY_ACTION:
                 break;
             default:
                 break;

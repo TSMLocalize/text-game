@@ -16,7 +16,17 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
         BM = GetComponent<Battle_Manager>();
     }
 
-    // IENUMERATORS   
+
+    /**
+     * IENUMERATORS
+     * #1. Player Wait for Animations
+     * #2. Enemy Wait for Animations
+     * #3. Speed Bar Ticker for Players
+     * #4. Speed Bar Ticker for Enemies
+     */
+
+
+    //#1 Player Wait for Animations
     public IEnumerator waitForAttackAnimation()
     {
         while (BM.attackAnimCoroutineIsPaused == true)
@@ -45,6 +55,50 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
         }
     }
 
+    //#2 Enemy Wait for Animations
+    public IEnumerator waitForEnemyReadyAnimation()
+    {
+        while (BM.enemyReadyAnimCoroutineIsPaused == true)
+        {
+            yield return null;
+        }
+
+        while (BM.enemyReadyAnimCoroutineIsPaused == false)
+        {
+            yield return new WaitForSeconds(1f);
+            BM.enemyReadyAnimIsDone = true;
+        }
+    }
+
+    public IEnumerator waitForEnemyAttackAnimation()
+    {
+        while (BM.enemyAttackAnimCoroutineIsPaused == true)
+        {
+            yield return null;
+        }
+
+        while (BM.enemyAttackAnimCoroutineIsPaused == false)
+        {
+            yield return new WaitForSeconds(1f);
+            BM.enemyAttackAnimIsDone = true;
+        }
+    }
+
+    public IEnumerator waitForEnemyCastAnimation()
+    {
+        while (BM.enemyCastAnimCoroutineIsPaused == true)
+        {
+            yield return null;
+        }
+
+        while (BM.enemyCastAnimCoroutineIsPaused == false)
+        {
+            yield return new WaitForSeconds(1f);
+            BM.enemyCastAnimIsDone = true;
+        }
+    }
+
+    //#3 Speed bar ticker for Players
     public IEnumerator updatePlayerSpeedBars(Player player)
     {
         while (BM.coroutineIsPaused == true)
@@ -90,6 +144,7 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
         }
     }
 
+    //#4 Speed Bar ticker for Enemies
     public IEnumerator updateEnemySpeedBars(Enemy enemy)
     {
         while (BM.coroutineIsPaused == true)
@@ -113,29 +168,6 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
             {
                 enemy.speedTotal += enemy.speed;
                 yield return new WaitForSeconds(0.5f);
-            }
-        }
-    }
-
-    public IEnumerator delayWhileEnemyTurn()
-    {
-        while (BM.enemyTurnCoroutineIsPaused == true)
-        {
-            yield return null;
-        }
-
-        while (BM.enemyTurnCoroutineIsPaused == false)
-        {
-            if (BM.enemyTurnPauseCounter <= 10f)
-            {
-                BM.enemyTurnPauseCounter += 1f;
-                yield return new WaitForSeconds(0.5f);
-            }
-
-            if (BM.enemyTurnPauseCounter == 10f)
-            {
-                BM.enemyTurnPauseCounter = 0;
-                BM.enemyTurnCoroutineIsPaused = true;
             }
         }
     }
