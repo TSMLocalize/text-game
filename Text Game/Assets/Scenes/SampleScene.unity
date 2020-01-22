@@ -8662,7 +8662,7 @@ MonoBehaviour:
     enemyPanelBackground: {fileID: 0}
     enemySpeedBar: {fileID: 0}
     enemySpeedBarText: {fileID: 0}
-    battleSprite: {fileID: 0}
+    battleSprite: {fileID: 167591038}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
   Wizard:

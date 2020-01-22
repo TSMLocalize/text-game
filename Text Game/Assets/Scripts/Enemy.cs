@@ -23,4 +23,10 @@ public class Enemy
     public GameObject battleSprite;
     public Vector3 position;
     public Vector3 target;
+
+    //
+    public bool enemyAttackAnimCoroutineIsPaused;
+    public bool enemyReadyAnimCoroutineIsPaused;
+    public bool enemyAttackAnimIsDone;
+    public bool enemyReadyAnimIsDone;
 }

@@ -56,45 +56,31 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
     }
 
     //#2 Enemy Wait for Animations
-    public IEnumerator waitForEnemyReadyAnimation()
+    public IEnumerator waitForEnemyReadyAnimation(Enemy enemy)
     {
-        while (BM.enemyReadyAnimCoroutineIsPaused == true)
+        while (enemy.enemyReadyAnimCoroutineIsPaused == true)
         {
             yield return null;
         }
 
-        while (BM.enemyReadyAnimCoroutineIsPaused == false)
+        while (enemy.enemyReadyAnimCoroutineIsPaused == false)
         {
             yield return new WaitForSeconds(1f);
-            BM.enemyReadyAnimIsDone = true;
+            enemy.enemyReadyAnimIsDone = true;
         }
     }
 
-    public IEnumerator waitForEnemyAttackAnimation()
+    public IEnumerator waitForEnemyAttackAnimation(Enemy enemy)
     {
-        while (BM.enemyAttackAnimCoroutineIsPaused == true)
+        while (enemy.enemyAttackAnimCoroutineIsPaused == true)
         {
             yield return null;
         }
 
-        while (BM.enemyAttackAnimCoroutineIsPaused == false)
+        while (enemy.enemyAttackAnimCoroutineIsPaused == false)
         {
             yield return new WaitForSeconds(1f);
-            BM.enemyAttackAnimIsDone = true;
-        }
-    }
-
-    public IEnumerator waitForEnemyCastAnimation()
-    {
-        while (BM.enemyCastAnimCoroutineIsPaused == true)
-        {
-            yield return null;
-        }
-
-        while (BM.enemyCastAnimCoroutineIsPaused == false)
-        {
-            yield return new WaitForSeconds(1f);
-            BM.enemyCastAnimIsDone = true;
+            enemy.enemyAttackAnimIsDone = true;
         }
     }
 

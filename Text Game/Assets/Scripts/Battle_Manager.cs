@@ -17,12 +17,6 @@ public class Battle_Manager : MonoBehaviour
     public bool castAnimIsDone;
     public bool attackAnimCoroutineIsPaused;
     public bool castAnimCoroutineIsPaused;
-    public bool enemyReadyAnimIsDone;
-    public bool enemyAttackAnimIsDone;
-    public bool enemyCastAnimIsDone;
-    public bool enemyReadyAnimCoroutineIsPaused;
-    public bool enemyAttackAnimCoroutineIsPaused;
-    public bool enemyCastAnimCoroutineIsPaused;
     public bool rowSelected;
     public bool isSwitchingWithOtherPlayer;
     public List<GameObject> Rows;
@@ -151,12 +145,17 @@ public class Battle_Manager : MonoBehaviour
         switch (battleStates)
         {
             case BattleStates.DEFAULT:
-
-                enemyReadyAnimIsDone = false;
-                enemyAttackAnimIsDone = false;
-                enemyCastAnimIsDone = false;
+                
                 attackAnimIsDone = false;
                 castAnimIsDone = false;
+
+                for (int i = 0; i < EnemiesInBattle.Count; i++)
+                {
+                    EnemiesInBattle[i].enemyAttackAnimCoroutineIsPaused = true;
+                    EnemiesInBattle[i].enemyReadyAnimCoroutineIsPaused = true;
+                    EnemiesInBattle[i].enemyAttackAnimIsDone = false;
+                    EnemiesInBattle[i].enemyReadyAnimIsDone = false;
+                }                
 
                 if (startRoutinesGoingAgain)
                 {
@@ -831,18 +830,22 @@ public class Battle_Manager : MonoBehaviour
                 }                
 
                 break;
-            case BattleStates.SELECT_ENEMY:
+            case BattleStates.SELECT_ENEMY:                
 
                 for (int i = 0; i < ActiveEnemies.Count; i++)
                 {
                     activeEnemy = ActiveEnemies[i];
-                }
+                }                                
 
-                battleStates = BattleStates.SELECT_ENEMY_ACTION;
+                battleStates = BattleStates.SELECT_ENEMY_ACTION;                
+
                 break;
             case BattleStates.SELECT_ENEMY_ACTION:
-                selectedCommand = "EnemyAttack";
+
+                selectedCommand = "EnemyAttack";                
+
                 battleStates = BattleStates.SELECT_ENEMY_TARGET;
+
                 break;
             case BattleStates.SELECT_ENEMY_TARGET:
 
@@ -856,39 +859,36 @@ public class Battle_Manager : MonoBehaviour
                     }
                 }
 
-                enemyReadyAnimCoroutineIsPaused = false;
+                StartCoroutine(BM_Enums.waitForEnemyReadyAnimation(activeEnemy));
+                activeEnemy.enemyReadyAnimCoroutineIsPaused = false;                
 
-                StartCoroutine(BM_Enums.waitForEnemyReadyAnimation());
+                activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);                
 
-                if (enemyReadyAnimIsDone == false)
+                if (activeEnemy.enemyReadyAnimIsDone == true)
                 {
-                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
-                }                                
-
-                if (enemyReadyAnimIsDone == true)
-                {                    
-                    enemyReadyAnimCoroutineIsPaused = true;                    
-                    enemyReadyAnimIsDone = false;
+                    activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
+                    activeEnemy.enemyReadyAnimIsDone = false;
                     activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);                    
                     battleStates = BattleStates.ENEMY_ATTACK;                    
                 }
 
                 break;
             case BattleStates.ENEMY_ATTACK:
-                
+
                 activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
                 BM_Funcs.animationController(activeEnemy.enemyTarget, "TakeDamage");
 
-                enemyAttackAnimCoroutineIsPaused = false;
+                activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
 
-                StartCoroutine(BM_Enums.waitForEnemyAttackAnimation());
+                StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));
 
-                if (enemyAttackAnimIsDone == true)
+                if (activeEnemy.enemyAttackAnimIsDone == true)
                 {
+                    activeEnemy.enemyAttackAnimIsDone = false;
                     BM_Funcs.animationController(activeEnemy.enemyTarget);
-                    enemyAttackAnimCoroutineIsPaused = true;
-                    battleStates = BattleStates.RESOLVE_ENEMY_TURN;                     
-                }                
+                    activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
+                    battleStates = BattleStates.RESOLVE_ENEMY_TURN;
+                }                                
 
                 break;
             case BattleStates.RESOLVE_ENEMY_TURN:
@@ -896,27 +896,28 @@ public class Battle_Manager : MonoBehaviour
                 if (selectedCommand == "EnemyAttack")
                 {
                     activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
-                    enemyAttackAnimIsDone = false;
-                    enemyReadyAnimIsDone = false;
-                    enemyAttackAnimIsDone = false;
                     activeEnemy.speedTotal -= 100f;
                     activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
                     activeEnemy.enemyTarget = null;
-                    ActiveEnemies.Clear();
+                    ActiveEnemies.Remove(activeEnemy);
+                    activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
+                    activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
+                    activeEnemy.enemyAttackAnimIsDone = false;
+                    activeEnemy.enemyReadyAnimIsDone = false;
                     activeEnemy = null;
                     selectedCommand = null;
 
                     if (ActiveEnemies.Count == 0)
                     {
-                        returningStarting = true;                        
+                        returningStarting = true;
                         startRoutinesGoingAgain = true;
                         battleStates = BattleStates.DEFAULT;
                     }
                     else
                     {
-                        //battleStates = BattleStates.SELECT_ENEMY;
+                        battleStates = BattleStates.SELECT_ENEMY;
                     }
-                }                            
+                }
 
                 break;
             default:
@@ -932,7 +933,7 @@ public class Battle_Manager : MonoBehaviour
             StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
         }
         for (int i = 0; i < EnemiesInBattle.Count; i++)
-        {
+        {            
             StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
         }        
     }        

@@ -20,6 +20,7 @@ public class Enemy_Manager : MonoBehaviour
     void Start()
     {
         Warrior.speed = 20;
+        Thief.speed = 20;
 
         enemiesInBattle.Add(Warrior);
         enemiesInBattle.Add(Thief);
