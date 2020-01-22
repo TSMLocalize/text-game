@@ -44,6 +44,8 @@ public class Battle_Manager : MonoBehaviour
     public List<GameObject> EnemyCastBars;
     public List<GameObject> EnemyCastBarFills;
     public List<TextMeshProUGUI> EnemyCastBarTexts;
+    public List<TextMeshProUGUI> PlayerPanelTexts;
+    public List<TextMeshProUGUI> EnemyPanelTexts;
     public List<GameObject> PlayerOptions;
     public List<GameObject> SpellOptions;
     public GameObject UICanvas;
@@ -979,7 +981,6 @@ public class Battle_Manager : MonoBehaviour
                         battleStates = BattleStates.SELECT_ENEMY;
                     }
                 }
-
 
                 if (selectedCommand == "EnemyResolveSpell")
                 {                    

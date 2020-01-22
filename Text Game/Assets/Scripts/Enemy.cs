@@ -23,6 +23,7 @@ public class Enemy
     //Battle UI Player Elements
     public Sprite EnemyPortrait;
     public GameObject enemyPanel;
+    public TextMeshProUGUI enemyPanelText;
     public Image enemyPanelBackground;
     public GameObject enemySpeedBar;
     public TextMeshProUGUI enemySpeedBarText;

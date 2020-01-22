@@ -37,6 +37,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         {
             //Assign Panels and populate
             BM.PlayersInBattle[i].playerPanel = BM.PlayerPanels[i];
+            BM.PlayersInBattle[i].playerPanelText = BM.PlayerPanelTexts[i];
             BM.PlayersInBattle[i].playerPanelBackground = BM.PlayerPanels[i].GetComponent<Image>();
             BM.playerPanelArray = BM.PlayerPanels[i].GetComponentsInChildren<Image>();
             BM.playerPanelArray[3].overrideSprite = BM.PlayersInBattle[i].PlayerPortrait;
@@ -60,6 +61,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         {
             //Assign Panels and populate
             BM.EnemiesInBattle[i].enemyPanel = BM.EnemyPanels[i];
+            BM.EnemiesInBattle[i].enemyPanelText = BM.EnemyPanelTexts[i];
             BM.EnemiesInBattle[i].enemyPanelBackground = BM.EnemyPanels[i].GetComponent<Image>();
             BM.enemyPanelArray = BM.EnemyPanels[i].GetComponentsInChildren<Image>();
             BM.enemyPanelArray[1].overrideSprite = BM.EnemiesInBattle[i].EnemyPortrait;

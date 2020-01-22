@@ -23,6 +23,7 @@ public class Player
     //Battle UI Player Elements    
     public Sprite PlayerPortrait;
     public GameObject playerPanel;
+    public TextMeshProUGUI playerPanelText;
     public Image playerPanelBackground;
     public GameObject playerSpeedBar;
     public TextMeshProUGUI playerSpeedBarText;
