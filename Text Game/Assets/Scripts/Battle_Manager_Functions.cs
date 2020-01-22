@@ -58,12 +58,19 @@ public class Battle_Manager_Functions : MonoBehaviour
 
         for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
         {
-            BM.enemyPanelArray = BM.EnemyPanels[i].GetComponentsInChildren<Image>();
-            BM.enemyPanelArray[1].overrideSprite = BM.EnemiesInBattle[i].EnemyPortrait;
-            BM.EnemiesInBattle[i].enemySpeedBarText = BM.EnemySpeedBarTexts[i];
-            BM.EnemiesInBattle[i].enemySpeedBar = BM.EnemySpeedBars[i];
+            //Assign Panels and populate
             BM.EnemiesInBattle[i].enemyPanel = BM.EnemyPanels[i];
             BM.EnemiesInBattle[i].enemyPanelBackground = BM.EnemyPanels[i].GetComponent<Image>();
+            BM.enemyPanelArray = BM.EnemyPanels[i].GetComponentsInChildren<Image>();
+            BM.enemyPanelArray[1].overrideSprite = BM.EnemiesInBattle[i].EnemyPortrait;
+            //Speed Bar setup
+            BM.EnemiesInBattle[i].enemySpeedBarText = BM.EnemySpeedBarTexts[i];
+            BM.EnemiesInBattle[i].enemySpeedBar = BM.EnemySpeedBars[i];
+            //Cast Bar setup
+            BM.EnemiesInBattle[i].enemyCastBar = BM.EnemyCastBars[i];
+            BM.EnemiesInBattle[i].enemyCastBarText = BM.EnemyCastBarTexts[i];
+            BM.EnemiesInBattle[i].enemyCastBarFill = BM.EnemyCastBarFills[i];
+            BM.EnemyCastBars[i].SetActive(false);            
         }
     }
 
@@ -214,6 +221,20 @@ public class Battle_Manager_Functions : MonoBehaviour
             BM.EnemiesInBattle[i].enemySpeedBar.GetComponent<Image>().transform.localScale = new Vector3(Mathf.Clamp((BM.EnemiesInBattle[i].speedTotal / 100), 0, 1),
             BM.EnemiesInBattle[i].enemySpeedBar.GetComponent<Image>().transform.localScale.y,
             BM.EnemiesInBattle[i].enemySpeedBar.GetComponent<Image>().transform.localScale.z);
+
+            //Update and show cast bars while isCastingSpell is true for a enemy
+            if (BM.EnemiesInBattle[i].isCastingSpell == true)
+            {
+                BM.EnemiesInBattle[i].enemyCastBar.SetActive(true);
+                BM.EnemiesInBattle[i].enemyCastBarText.text = BM.EnemiesInBattle[i].castSpeedTotal + " (" + BM.EnemiesInBattle[i].castSpeed + ")";
+                BM.EnemiesInBattle[i].enemyCastBarFill.GetComponent<Image>().transform.localScale = new Vector3(Mathf.Clamp((BM.EnemiesInBattle[i].castSpeedTotal / 100), 0, 1),
+                BM.EnemiesInBattle[i].enemyCastBarFill.GetComponent<Image>().transform.localScale.y,
+                BM.EnemiesInBattle[i].enemyCastBarFill.GetComponent<Image>().transform.localScale.z);
+            }
+            else
+            {
+                BM.EnemiesInBattle[i].enemyCastBar.SetActive(false);
+            }
         }
     }
 

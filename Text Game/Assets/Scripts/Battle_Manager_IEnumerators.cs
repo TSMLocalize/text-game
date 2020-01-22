@@ -84,6 +84,20 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
         }
     }
 
+    public IEnumerator waitForEnemyCastAnimation(Enemy enemy)
+    {
+        while (enemy.enemyCastAnimCoroutineIsPaused == true)
+        {
+            yield return null;
+        }
+
+        while (enemy.enemyCastAnimCoroutineIsPaused == false)
+        {
+            yield return new WaitForSeconds(1f);
+            enemy.enemyCastAnimIsDone = true;
+        }
+    }
+
     //#3 Speed bar ticker for Players
     public IEnumerator updatePlayerSpeedBars(Player player)
     {
@@ -146,13 +160,31 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
                 BM.returningStarting = false;
             }
             //Forces scale to max when speed is 100+
-            if (enemy.speedTotal >= 100)
+            if (enemy.speedTotal >= 100 || (enemy.isCastingSpell && enemy.castSpeedTotal <= 0))
             {
-                enemy.enemySpeedBar.GetComponent<Image>().transform.localScale = new Vector3(1f, enemy.enemySpeedBar.GetComponent<Image>().transform.localScale.y);
+
+
+                if (enemy.isCastingSpell)
+                {
+                    enemy.enemyCastBar.GetComponent<Image>().transform.localScale = new Vector3(0f, enemy.enemyCastBar.GetComponent<Image>().transform.localScale.y);
+                }
+                else
+                {
+                    enemy.enemySpeedBar.GetComponent<Image>().transform.localScale = new Vector3(1f, enemy.enemySpeedBar.GetComponent<Image>().transform.localScale.y);
+                }
             }
             else
             {
-                enemy.speedTotal += enemy.speed;
+
+                if (enemy.isCastingSpell)
+                {
+                    enemy.castSpeedTotal -= enemy.castSpeed;
+                }
+                else
+                {
+                    enemy.speedTotal += enemy.speed;
+                }
+
                 yield return new WaitForSeconds(0.5f);
             }
         }

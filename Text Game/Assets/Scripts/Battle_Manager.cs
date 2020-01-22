@@ -76,6 +76,7 @@ public class Battle_Manager : MonoBehaviour
         SELECT_ENEMY,
         SELECT_ENEMY_ACTION,
         SELECT_ENEMY_TARGET,
+        ENEMY_START_CAST,
         ENEMY_ATTACK,
         RESOLVE_ENEMY_TURN        
     }
@@ -156,8 +157,10 @@ public class Battle_Manager : MonoBehaviour
                 {
                     EnemiesInBattle[i].enemyAttackAnimCoroutineIsPaused = true;
                     EnemiesInBattle[i].enemyReadyAnimCoroutineIsPaused = true;
+                    EnemiesInBattle[i].enemyCastAnimCoroutineIsPaused = true;
                     EnemiesInBattle[i].enemyAttackAnimIsDone = false;
                     EnemiesInBattle[i].enemyReadyAnimIsDone = false;
+                    EnemiesInBattle[i].enemyCastAnimIsDone = false;
                 }                
 
                 if (startRoutinesGoingAgain)
@@ -178,8 +181,13 @@ public class Battle_Manager : MonoBehaviour
                 //Check if an enemy is above 100 Speed, and pause the Coroutine
                 for (int i = 0; i < EnemiesInBattle.Count; i++)
                 {
-                    if (EnemiesInBattle[i].speedTotal >= 100)
-                    {                        
+                    if (EnemiesInBattle[i].speedTotal >= 100 || (EnemiesInBattle[i].isCastingSpell && EnemiesInBattle[i].castSpeedTotal <= 0))
+                    {
+                        if (EnemiesInBattle[i].isCastingSpell != true)
+                        {
+                            EnemiesInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+                        }
+                        
                         EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
                         ActiveEnemies.Add(EnemiesInBattle[i]);                         
                     }
@@ -845,34 +853,57 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.SELECT_ENEMY_ACTION:
 
-                selectedCommand = "EnemyAttack";                
+                if (activeEnemy.isCastingSpell == false)
+                {
+                    int randomActionNo = Random.Range(1, 3);                    
 
-                battleStates = BattleStates.SELECT_ENEMY_TARGET;
+                    if (randomActionNo == 1)
+                    {
+                        selectedCommand = "EnemyAttack";
+                    }
+                    else if (randomActionNo == 2)
+                    {                        
+                        selectedCommand = "EnemySpell";
+                    }
+
+                    battleStates = BattleStates.SELECT_ENEMY_TARGET;
+                } else if(activeEnemy.isCastingSpell == true)
+                {
+                    activeEnemy.enemyCastAnimCoroutineIsPaused = false;
+                    StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));
+                    selectedCommand = "EnemyResolveSpell";
+                    battleStates = BattleStates.RESOLVE_ENEMY_TURN;
+                }                
 
                 break;
             case BattleStates.SELECT_ENEMY_TARGET:
 
-                int selectedNumber = Random.Range(0, PlayersInBattle.Count);
+                int randomEnemyTargetNo = Random.Range(0, PlayersInBattle.Count);
 
                 for (int i = 0; i < PlayersInBattle.Count; i++)
                 {
-                    if (selectedNumber == i)
+                    if (randomEnemyTargetNo == i)
                     {
                         activeEnemy.enemyTarget = PlayersInBattle[i];                        
                     }
                 }
 
                 StartCoroutine(BM_Enums.waitForEnemyReadyAnimation(activeEnemy));
-                activeEnemy.enemyReadyAnimCoroutineIsPaused = false;                
-
-                activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);                
+                activeEnemy.enemyReadyAnimCoroutineIsPaused = false;                                               
 
                 if (activeEnemy.enemyReadyAnimIsDone == true)
                 {
                     activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
                     activeEnemy.enemyReadyAnimIsDone = false;
-                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);                    
-                    battleStates = BattleStates.ENEMY_ATTACK;                    
+                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+                    
+                    if (selectedCommand == "EnemyAttack")
+                    {
+                        battleStates = BattleStates.ENEMY_ATTACK;
+                    } else if (selectedCommand == "EnemySpell")
+                    {
+                        battleStates = BattleStates.RESOLVE_ENEMY_TURN;
+                    }
                 }
 
                 break;
@@ -919,6 +950,67 @@ public class Battle_Manager : MonoBehaviour
                     else
                     {
                         battleStates = BattleStates.SELECT_ENEMY;
+                    }
+                }
+
+                if (selectedCommand == "EnemySpell")
+                {
+                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);                                        
+                    activeEnemy.activeSpell = SpellManager.Fire;
+                    activeEnemy.isCastingSpell = true;
+                    activeEnemy.constantAnimationState = "IsChanting";
+                    activeEnemy.hasConstantAnimationState = true;                    
+                    activeEnemy.enemyCastBar.SetActive(true);
+                    activeEnemy.castSpeedTotal = activeEnemy.activeSpell.castTime;                                        
+                    activeEnemy.speedTotal -= 100f;
+                    activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;                                        
+                    ActiveEnemies.Remove(activeEnemy);
+                    activeEnemy = null;
+                    selectedCommand = null;
+
+                    if (ActiveEnemies.Count == 0)
+                    {
+                        returningStarting = true;
+                        startRoutinesGoingAgain = true;
+                        battleStates = BattleStates.DEFAULT;
+                    }
+                    else
+                    {
+                        battleStates = BattleStates.SELECT_ENEMY;
+                    }
+                }
+
+
+                if (selectedCommand == "EnemyResolveSpell")
+                {                    
+                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);                    
+                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);                    
+
+                    if (activeEnemy.enemyCastAnimIsDone)
+                    {
+                        activeEnemy.enemyCastAnimCoroutineIsPaused = true;
+                        activeEnemy.enemyCastAnimIsDone = false;
+                        activeEnemy.constantAnimationState = null;
+                        activeEnemy.hasConstantAnimationState = false;
+                        activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);                        
+                        activeEnemy.isCastingSpell = false;
+                        activeEnemy.enemyCastBar.SetActive(false);
+                        activeEnemy.castSpeedTotal = 0f;                        
+                        activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;                                                
+                        ActiveEnemies.Remove(activeEnemy);
+                        activeEnemy = null;
+                        selectedCommand = null;
+
+                        if (ActiveEnemies.Count == 0)
+                        {
+                            returningStarting = true;
+                            startRoutinesGoingAgain = true;
+                            battleStates = BattleStates.DEFAULT;
+                        }
+                        else
+                        {
+                            battleStates = BattleStates.SELECT_ENEMY;
+                        }
                     }
                 }
 
