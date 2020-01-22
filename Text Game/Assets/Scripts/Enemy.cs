@@ -7,7 +7,9 @@ using TMPro;
 [System.Serializable]
 public class Enemy
 {
-    public string EnemyName;    
+    public string EnemyName;
+    public float currentHP;
+    public float maxHP;
     public float speed;
     public float speedTotal;
     public float castSpeed;

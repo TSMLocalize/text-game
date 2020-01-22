@@ -8,7 +8,9 @@ using TMPro;
 public class Player
 {
     //Basic variables
-    public string name;    
+    public string name;
+    public float currentHP;
+    public float maxHP;
     public float speed;
     public float speedTotal;
     public float castSpeed;

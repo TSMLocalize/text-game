@@ -37,6 +37,20 @@ public class Party_Manager : MonoBehaviour
         Jody.castSpeed = 3f;
         Jenny.castSpeed = 1f;
 
+        Josie.maxHP = 10f;
+        Jemima.maxHP = 10f;
+        Jennifer.maxHP = 10f;
+        Jessica.maxHP = 10f;
+        Jody.maxHP = 10f;
+        Jenny.maxHP = 10f;
+
+        Josie.currentHP = 10f;
+        Jemima.currentHP = 10f;
+        Jennifer.currentHP = 10f;
+        Jessica.currentHP = 10f;
+        Jody.currentHP = 10f;
+        Jenny.currentHP = 10f;        
+
         Josie.currentRowPositionID = 1;
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);

@@ -35,7 +35,25 @@ public class Enemy_Manager : MonoBehaviour
         Paladin.castSpeed = 2f;
         Ranger.castSpeed = 2f;
         Bard.castSpeed = 2f;
-        Machinist.castSpeed = 2f;        
+        Machinist.castSpeed = 2f;
+
+        Warrior.maxHP = 10f;
+        Thief.maxHP = 10f;
+        Wizard.maxHP = 10f;
+        Priest.maxHP = 10f;
+        Paladin.maxHP = 10f;
+        Ranger.maxHP = 10f;
+        Bard.maxHP = 10f;
+        Machinist.maxHP = 10f;
+
+        Warrior.currentHP = 10f;
+        Thief.currentHP = 10f;
+        Wizard.currentHP = 10f;
+        Priest.currentHP = 10f;
+        Paladin.currentHP = 10f;
+        Ranger.currentHP = 10f;
+        Bard.currentHP = 10f;
+        Machinist.currentHP = 10f;
 
         enemiesInBattle.Add(Warrior);
         enemiesInBattle.Add(Thief);

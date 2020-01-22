@@ -38,9 +38,14 @@ public class Battle_Manager_Functions : MonoBehaviour
             //Assign Panels and populate
             BM.PlayersInBattle[i].playerPanel = BM.PlayerPanels[i];
             BM.PlayersInBattle[i].playerPanelText = BM.PlayerPanelTexts[i];
+            BM.PlayersInBattle[i].playerPanelText.fontSize = 12;
             BM.PlayersInBattle[i].playerPanelBackground = BM.PlayerPanels[i].GetComponent<Image>();
             BM.playerPanelArray = BM.PlayerPanels[i].GetComponentsInChildren<Image>();
             BM.playerPanelArray[3].overrideSprite = BM.PlayersInBattle[i].PlayerPortrait;
+            //Panel Text setup            
+            BM.PlayersInBattle[i].playerPanelText.text =
+                BM.PlayersInBattle[i].name + "\n" +
+                "HP: " + BM.PlayersInBattle[i].currentHP + "/" + BM.PlayersInBattle[i].maxHP;
             //Speed Bar setup
             BM.PlayersInBattle[i].playerSpeedBarText = BM.PlayerSpeedBarTexts[i];
             BM.PlayersInBattle[i].playerSpeedBar = BM.PlayerSpeedBars[i];
@@ -62,9 +67,14 @@ public class Battle_Manager_Functions : MonoBehaviour
             //Assign Panels and populate
             BM.EnemiesInBattle[i].enemyPanel = BM.EnemyPanels[i];
             BM.EnemiesInBattle[i].enemyPanelText = BM.EnemyPanelTexts[i];
+            BM.EnemiesInBattle[i].enemyPanelText.fontSize = 12;
             BM.EnemiesInBattle[i].enemyPanelBackground = BM.EnemyPanels[i].GetComponent<Image>();
             BM.enemyPanelArray = BM.EnemyPanels[i].GetComponentsInChildren<Image>();
             BM.enemyPanelArray[1].overrideSprite = BM.EnemiesInBattle[i].EnemyPortrait;
+            //Panel Text setup            
+            BM.EnemiesInBattle[i].enemyPanelText.text =
+                BM.EnemiesInBattle[i].EnemyName + "\n" +
+                "HP: " + BM.EnemiesInBattle[i].currentHP + "/" + BM.EnemiesInBattle[i].maxHP;
             //Speed Bar setup
             BM.EnemiesInBattle[i].enemySpeedBarText = BM.EnemySpeedBarTexts[i];
             BM.EnemiesInBattle[i].enemySpeedBar = BM.EnemySpeedBars[i];
