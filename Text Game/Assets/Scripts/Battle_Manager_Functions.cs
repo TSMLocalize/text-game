@@ -9,14 +9,11 @@ using TMPro;
 public class Battle_Manager_Functions : MonoBehaviour
 {
     public Battle_Manager BM;
-    public Battle_Manager_Enemy_Turn BMET;
-    public Battle_Manager_IEnumerators BM_Enums;
 
     // Start is called before the first frame update
     void Start()
     {
         BM = GetComponent<Battle_Manager>();
-        BMET = GetComponent<Battle_Manager_Enemy_Turn>();
     }
 
     
@@ -238,7 +235,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         {
             if (BM.ActiveEnemies.Count > 0)
             {
-                BMET.battleStates = Battle_Manager_Enemy_Turn.BattleStates.SELECT_ENEMY;
+                BM.battleStates = Battle_Manager.BattleStates.SELECT_ENEMY;
             }
             else
             {
