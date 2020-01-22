@@ -41,6 +41,9 @@ public class Battle_Manager : MonoBehaviour
     public List<GameObject> EnemyPanels;
     public List<GameObject> EnemySpeedBars;
     public List<TextMeshProUGUI> EnemySpeedBarTexts;
+    public List<GameObject> EnemyCastBars;
+    public List<GameObject> EnemyCastBarFills;
+    public List<TextMeshProUGUI> EnemyCastBarTexts;
     public List<GameObject> PlayerOptions;
     public List<GameObject> SpellOptions;
     public GameObject UICanvas;
