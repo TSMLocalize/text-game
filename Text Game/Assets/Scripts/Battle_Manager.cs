@@ -863,13 +863,15 @@ public class Battle_Manager : MonoBehaviour
                         selectedCommand = "EnemyAttack";
                     }
                     else if (randomActionNo == 2)
-                    {                        
+                    {
+                        activeEnemy.activeSpell = SpellManager.Fire;
                         selectedCommand = "EnemySpell";
                     }
 
                     battleStates = BattleStates.SELECT_ENEMY_TARGET;
                 } else if(activeEnemy.isCastingSpell == true)
                 {
+                    BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " casts " + activeEnemy.activeSpell.name + " on " + activeEnemy.enemyTarget.name + "!");
                     activeEnemy.enemyCastAnimCoroutineIsPaused = false;
                     StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));
                     selectedCommand = "EnemyResolveSpell";
@@ -899,12 +901,13 @@ public class Battle_Manager : MonoBehaviour
                     activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
                     
                     if (selectedCommand == "EnemyAttack")
-                    {
+                    {                        
                         BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " attacks " + activeEnemy.enemyTarget.name + "!");
 
                         battleStates = BattleStates.ENEMY_ATTACK;
                     } else if (selectedCommand == "EnemySpell")
                     {
+                        BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " starts casting " + activeEnemy.activeSpell.name + " on " + activeEnemy.enemyTarget.name + "!");
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     }
                 }
@@ -958,8 +961,7 @@ public class Battle_Manager : MonoBehaviour
 
                 if (selectedCommand == "EnemySpell")
                 {
-                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);                                        
-                    activeEnemy.activeSpell = SpellManager.Fire;
+                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);                                                            
                     activeEnemy.isCastingSpell = true;
                     activeEnemy.constantAnimationState = "IsChanting";
                     activeEnemy.hasConstantAnimationState = true;                    
