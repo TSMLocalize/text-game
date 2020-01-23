@@ -9,14 +9,53 @@ using TMPro;
 public class Battle_Manager_Functions : MonoBehaviour
 {
     public Battle_Manager BM;
+    public int maxMessages;
+    public List<Message> messageList;
+    public GameObject chatPanel;
+    public GameObject textObject;
 
     // Start is called before the first frame update
     void Start()
     {
+        maxMessages = 25;
+        messageList = new List<Message>();
         BM = GetComponent<Battle_Manager>();
     }
 
-    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SendMessagesToCombatLog("This is a Message");
+            Debug.Log("is this working");
+        }
+    }
+
+    [System.Serializable]
+    public class Message
+    {
+        public string text;
+        public TextMeshProUGUI textObject;
+    }
+
+    // COMBAT LOG FUNCTION
+    public void SendMessagesToCombatLog(string text)
+    {
+        
+        if (messageList.Count >= maxMessages)
+        {
+            Destroy(messageList[0].textObject.gameObject);
+            messageList.Remove(messageList[0]);
+        }        
+
+        Message newMessage = new Message();
+        newMessage.text = text;
+        GameObject newText = Instantiate(textObject, chatPanel.transform);
+        newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
+        newMessage.textObject.text = newMessage.text;
+        messageList.Add(newMessage);
+    }
+
     // BATTLE MANAGER FUNCTIONS
 
     public void setupCharacters()
@@ -340,5 +379,4 @@ public class Battle_Manager_Functions : MonoBehaviour
             player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationState, true);
         }
     }
-
 }
