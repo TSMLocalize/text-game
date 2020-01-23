@@ -175,8 +175,7 @@ public class Battle_Manager : MonoBehaviour
                 for (int i = 0; i < PlayersInBattle.Count; i++)
                 {
                     if (PlayersInBattle[i].speedTotal >= 100 || (PlayersInBattle[i].isCastingSpell && PlayersInBattle[i].castSpeedTotal <= 0))
-                    {
-                                               
+                    {                                               
                         ActivePlayers.Add(PlayersInBattle[i]);
                     }
                 }
@@ -901,6 +900,8 @@ public class Battle_Manager : MonoBehaviour
                     
                     if (selectedCommand == "EnemyAttack")
                     {
+                        BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " attacks " + activeEnemy.enemyTarget.name + "!");
+
                         battleStates = BattleStates.ENEMY_ATTACK;
                     } else if (selectedCommand == "EnemySpell")
                     {
@@ -916,7 +917,7 @@ public class Battle_Manager : MonoBehaviour
 
                 activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
 
-                StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));
+                StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));                                
 
                 if (activeEnemy.enemyAttackAnimIsDone == true)
                 {
