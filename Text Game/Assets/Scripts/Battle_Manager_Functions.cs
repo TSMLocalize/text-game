@@ -11,6 +11,8 @@ public class Battle_Manager_Functions : MonoBehaviour
     public Battle_Manager BM;
     public int maxMessages;
 
+    public Image[] comboPanelArray;
+
     public List<Message> messageList;    
     public GameObject chatPanel;   
     public GameObject textObject;
@@ -33,11 +35,21 @@ public class Battle_Manager_Functions : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SendToComboLog("myCombo");
+            SendToComboLog(BM.activePlayer);
 
             SendMessagesToCombatLog("This is a Message");
             Debug.Log("is this working");
         }
+
+        for (int i = 0; i < comboList.Count; i++)
+        {            
+            comboList[i].comboTextBox.text = comboList[i].comboBarPlayer.speedTotal + "/100 " + "(" + comboList[i].comboBarPlayer.speed + ")";
+            comboList[i].comboGameObject = comboObject;
+            comboList[i].comboFillBar.transform.localScale = new Vector3(Mathf.Clamp((comboList[i].comboBarPlayer.speedTotal / 100), 0, 1),
+            comboList[i].comboFillBar.transform.localScale.y,
+            comboList[i].comboFillBar.transform.localScale.z);
+        }
+
     }
 
     [System.Serializable]
@@ -49,8 +61,10 @@ public class Battle_Manager_Functions : MonoBehaviour
 
     public class ComboData
     {
+        public Player comboBarPlayer;
         public GameObject comboGameObject;
         public TextMeshProUGUI comboTextBox;
+        public Image comboFillBar;
     }
 
     // COMBAT LOG FUNCTION
@@ -71,17 +85,24 @@ public class Battle_Manager_Functions : MonoBehaviour
     }
 
     // COMBO LOG FUNCTION
-    public void SendToComboLog(string comboText)
+    public void SendToComboLog(Player player)
     {        
         ComboData comboData = new ComboData();  
         
         GameObject newComboData = Instantiate(comboObject, comboPanel.transform);
-        
+
+        comboPanelArray = newComboData.GetComponentsInChildren<Image>();
+        comboData.comboBarPlayer = player;
         comboData.comboGameObject = newComboData.GetComponent<GameObject>();
         comboData.comboTextBox = newComboData.GetComponentInChildren<TextMeshProUGUI>();
-        comboData.comboTextBox.text = comboText;
+        comboData.comboFillBar = comboPanelArray[1];        
+
+        comboData.comboTextBox.text = player.speedTotal + "/100 " + "(" + player.speed + ")";
         comboData.comboGameObject = comboObject;
-        
+        comboData.comboFillBar.transform.localScale = new Vector3(Mathf.Clamp((player.speedTotal / 100), 0, 1),
+        comboPanelArray[1].transform.localScale.y,
+        comboPanelArray[1].transform.localScale.z);        
+
         comboList.Add(comboData);
     }
 
