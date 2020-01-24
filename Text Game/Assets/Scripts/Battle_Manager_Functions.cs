@@ -10,15 +10,22 @@ public class Battle_Manager_Functions : MonoBehaviour
 {
     public Battle_Manager BM;
     public int maxMessages;
-    public List<Message> messageList;
-    public GameObject chatPanel;
+
+    public List<Message> messageList;    
+    public GameObject chatPanel;   
     public GameObject textObject;
+
+    public List<ComboData> comboList;
+    public GameObject comboPanel;
+    public GameObject comboObject;
+    public TextMeshProUGUI comboText;
 
     // Start is called before the first frame update
     void Start()
     {
         maxMessages = 25;
         messageList = new List<Message>();
+        comboList = new List<ComboData>();
         BM = GetComponent<Battle_Manager>();
     }
 
@@ -26,6 +33,8 @@ public class Battle_Manager_Functions : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            SendToComboLog("myCombo");
+
             SendMessagesToCombatLog("This is a Message");
             Debug.Log("is this working");
         }
@@ -38,10 +47,15 @@ public class Battle_Manager_Functions : MonoBehaviour
         public TextMeshProUGUI textObject;
     }
 
+    public class ComboData
+    {
+        public GameObject comboGameObject;
+        public TextMeshProUGUI comboTextBox;
+    }
+
     // COMBAT LOG FUNCTION
     public void SendMessagesToCombatLog(string text)
-    {
-        
+    {        
         if (messageList.Count >= maxMessages)
         {
             Destroy(messageList[0].textObject.gameObject);
@@ -55,6 +69,22 @@ public class Battle_Manager_Functions : MonoBehaviour
         newMessage.textObject.text = newMessage.text;
         messageList.Add(newMessage);
     }
+
+    // COMBO LOG FUNCTION
+    public void SendToComboLog(string comboText)
+    {        
+        ComboData comboData = new ComboData();  
+        
+        GameObject newComboData = Instantiate(comboObject, comboPanel.transform);
+        
+        comboData.comboGameObject = newComboData.GetComponent<GameObject>();
+        comboData.comboTextBox = newComboData.GetComponentInChildren<TextMeshProUGUI>();
+        comboData.comboTextBox.text = comboText;
+        comboData.comboGameObject = comboObject;
+        
+        comboList.Add(comboData);
+    }
+
 
     // BATTLE MANAGER FUNCTIONS
 

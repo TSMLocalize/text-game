@@ -224,7 +224,7 @@ public class Battle_Manager : MonoBehaviour
                         for (int i = 0; i < ActivePlayers.Count; i++)
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
-                            {                                                                
+                            {                                 
                                 activePlayer = ActivePlayers[i];
 
                                 stepForward = true;
