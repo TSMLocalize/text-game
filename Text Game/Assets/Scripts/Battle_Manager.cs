@@ -19,10 +19,6 @@ public class Battle_Manager : MonoBehaviour
     public bool castAnimCoroutineIsPaused;
     public bool rowSelected;
     public bool isSwitchingWithOtherPlayer;
-    
-    public bool waitForAnimationIsPaused;
-    public bool waitForAnimationIsDone;
-
     public List<GameObject> Rows;
     public List<GameObject> RowChangeIcons;
     public GameObject RowToSwitch;
@@ -103,8 +99,10 @@ public class Battle_Manager : MonoBehaviour
         //Start SpeedBar coroutines for players and enemies
         startSpeedCoroutines();
 
-        waitForAnimationIsPaused = true;
-        waitForAnimationIsDone = false;        
+        castAnimCoroutineIsPaused = true;
+        castAnimIsDone = false;
+        attackAnimCoroutineIsPaused = true;
+        attackAnimIsDone = false;
 
         //Fetch the Raycaster from the GameObject (the Canvas)
         m_Raycaster = UICanvas.GetComponent<GraphicRaycaster>();
@@ -153,9 +151,19 @@ public class Battle_Manager : MonoBehaviour
         switch (battleStates)
         {
             case BattleStates.DEFAULT:
+                
+                attackAnimIsDone = false;
+                castAnimIsDone = false;
 
-                waitForAnimationIsDone = false;
-                waitForAnimationIsPaused = false;        
+                for (int i = 0; i < EnemiesInBattle.Count; i++)
+                {
+                    EnemiesInBattle[i].enemyAttackAnimCoroutineIsPaused = true;
+                    EnemiesInBattle[i].enemyReadyAnimCoroutineIsPaused = true;
+                    EnemiesInBattle[i].enemyCastAnimCoroutineIsPaused = true;
+                    EnemiesInBattle[i].enemyAttackAnimIsDone = false;
+                    EnemiesInBattle[i].enemyReadyAnimIsDone = false;
+                    EnemiesInBattle[i].enemyCastAnimIsDone = false;
+                }                
 
                 if (startRoutinesGoingAgain)
                 {
@@ -200,7 +208,8 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.SELECT_PLAYER:
 
-                waitForAnimationIsDone = false;
+                attackAnimIsDone = false;
+                castAnimIsDone = false;
 
                 for (int i = 0; i < ActivePlayers.Count; i++)
                 {
@@ -233,7 +242,8 @@ public class Battle_Manager : MonoBehaviour
                 //Populate action panel with active player's actions
                 BM_Funcs.populateActionList();
 
-                waitForAnimationIsDone = false;                
+                attackAnimIsDone = false;
+                castAnimIsDone = false;
 
                 //Instant redirect if not waiting for a mouse click
                 BM_Funcs.redirectAction();
@@ -664,13 +674,13 @@ public class Battle_Manager : MonoBehaviour
 
                 if (selectedCommand == "Attack")
                 {
-                    waitForAnimationIsPaused = false;
-                    StartCoroutine(BM_Enums.waitForAnimation(1f));
+                    attackAnimCoroutineIsPaused = false;
+                    StartCoroutine(BM_Enums.waitForAttackAnimation());
                     BM_Funcs.animationController(activePlayer, "IsAttacking");                    
                 
-                    if (waitForAnimationIsDone)
+                    if (attackAnimIsDone)
                     {
-                        waitForAnimationIsPaused = true;
+                        attackAnimCoroutineIsPaused = true;
                         
                         standIdle(activePlayer);
 
@@ -795,14 +805,13 @@ public class Battle_Manager : MonoBehaviour
 
             case BattleStates.RESOLVE_SPELL:
 
-                waitForAnimationIsPaused = false;
-                StartCoroutine(BM_Enums.waitForAnimation(1f));
+                castAnimCoroutineIsPaused = false;
+                StartCoroutine(BM_Enums.waitForCastAnimation());
                 BM_Funcs.animationController(activePlayer, "IsCasting");
 
-                if (waitForAnimationIsDone)
+                if (castAnimIsDone)
                 {
-                    waitForAnimationIsPaused = true;
-                    waitForAnimationIsDone = false;
+                    castAnimCoroutineIsPaused = true;
                     activePlayer.constantAnimationState = null;
                     activePlayer.hasConstantAnimationState = false;
                     BM_Funcs.animationController(activePlayer);
@@ -863,8 +872,8 @@ public class Battle_Manager : MonoBehaviour
                 } else if(activeEnemy.isCastingSpell == true)
                 {
                     BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " casts " + activeEnemy.activeSpell.name + " on " + activeEnemy.enemyTarget.name + "!");
-                    waitForAnimationIsPaused = false;
-                    StartCoroutine(BM_Enums.waitForAnimation(1f));
+                    activeEnemy.enemyCastAnimCoroutineIsPaused = false;
+                    StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));
                     selectedCommand = "EnemyResolveSpell";
                     battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                 }                
@@ -882,13 +891,13 @@ public class Battle_Manager : MonoBehaviour
                     }
                 }
 
-                StartCoroutine(BM_Enums.waitForAnimation(1f));
-                waitForAnimationIsPaused = false;                                               
+                StartCoroutine(BM_Enums.waitForEnemyReadyAnimation(activeEnemy));
+                activeEnemy.enemyReadyAnimCoroutineIsPaused = false;                                               
 
-                if (waitForAnimationIsDone == true)
+                if (activeEnemy.enemyReadyAnimIsDone == true)
                 {
-                    waitForAnimationIsPaused = true;
-                    waitForAnimationIsDone = false;
+                    activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
+                    activeEnemy.enemyReadyAnimIsDone = false;
                     activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
                     
                     if (selectedCommand == "EnemyAttack")
@@ -909,15 +918,15 @@ public class Battle_Manager : MonoBehaviour
                 activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
                 BM_Funcs.animationController(activeEnemy.enemyTarget, "TakeDamage");
 
-                waitForAnimationIsDone = false;
+                activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
 
-                StartCoroutine(BM_Enums.waitForAnimation(1f));                                
+                StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));                                
 
-                if (waitForAnimationIsDone)
+                if (activeEnemy.enemyAttackAnimIsDone == true)
                 {
-                    waitForAnimationIsDone = false;
+                    activeEnemy.enemyAttackAnimIsDone = false;
                     BM_Funcs.animationController(activeEnemy.enemyTarget);
-                    waitForAnimationIsPaused = true;
+                    activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
                     battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                 }                                
 
@@ -931,8 +940,10 @@ public class Battle_Manager : MonoBehaviour
                     activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
                     activeEnemy.enemyTarget = null;
                     ActiveEnemies.Remove(activeEnemy);
-                    waitForAnimationIsPaused = true;
-                    waitForAnimationIsDone = false;                    
+                    activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
+                    activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
+                    activeEnemy.enemyAttackAnimIsDone = false;
+                    activeEnemy.enemyReadyAnimIsDone = false;
                     activeEnemy = null;
                     selectedCommand = null;
 
@@ -979,10 +990,10 @@ public class Battle_Manager : MonoBehaviour
                     activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);                    
                     activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);                    
 
-                    if (waitForAnimationIsDone)
+                    if (activeEnemy.enemyCastAnimIsDone)
                     {
-                        waitForAnimationIsPaused = true;
-                        waitForAnimationIsDone = false;
+                        activeEnemy.enemyCastAnimCoroutineIsPaused = true;
+                        activeEnemy.enemyCastAnimIsDone = false;
                         activeEnemy.constantAnimationState = null;
                         activeEnemy.hasConstantAnimationState = false;
                         activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);                        
