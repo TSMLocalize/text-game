@@ -14,11 +14,6 @@ public class Battle_Manager_Functions : MonoBehaviour
     public GameObject chatPanel;
     public GameObject textObject;
 
-    //Casting Log Stuff
-    public List<CastBar> castBarList;
-    public Image castBarFill;
-    public TextMeshProUGUI castBarText;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -43,12 +38,6 @@ public class Battle_Manager_Functions : MonoBehaviour
         public TextMeshProUGUI textObject;
     }
 
-    public class CastBar
-    {
-        public GameObject castBar;
-        public TextMeshProUGUI castBarText;
-    }
-
     // COMBAT LOG FUNCTION
     public void SendMessagesToCombatLog(string text)
     {
@@ -62,24 +51,6 @@ public class Battle_Manager_Functions : MonoBehaviour
         Message newMessage = new Message();
         newMessage.text = text;
         GameObject newText = Instantiate(textObject, chatPanel.transform);
-        newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
-        newMessage.textObject.text = newMessage.text;
-        messageList.Add(newMessage);
-    }
-
-    // COMBAT LOG FUNCTION
-    public void SendCastBarToCombatLog(GameObject castBar)
-    {
-
-        if (castBarList.Count >= maxMessages)
-        {
-            Destroy(castBarList[0].castBarFill.gameObject);
-            castBarList.Remove(castBarList[0]);
-        }
-
-        CastBar newCastBar = new CastBar();
-        castBarText.text = castBar.GetComponentInChildren<TextMeshProUGUI>().text;
-        GameObject newCastBar = Instantiate(, castBarLogPanel.transform);
         newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
         newMessage.textObject.text = newMessage.text;
         messageList.Add(newMessage);
