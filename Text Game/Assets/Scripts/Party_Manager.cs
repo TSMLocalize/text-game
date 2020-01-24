@@ -23,8 +23,8 @@ public class Party_Manager : MonoBehaviour
         partyMembers.Add(Jody);
         partyMembers.Add(Jenny);
         
-        Josie.speed = 20f;
-        Jemima.speed = 20f;
+        Josie.speed = 1f;
+        Jemima.speed = 1f;
         Jennifer.speed = 1f;
         Jessica.speed = 1f;
         Jody.speed = 1f;
