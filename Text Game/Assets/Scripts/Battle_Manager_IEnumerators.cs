@@ -27,17 +27,17 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
 
 
     //#1 Player Wait for Animations
-    public IEnumerator waitForAttackAnimation()
+    public IEnumerator waitForAnimation(float timeToWait)
     {
-        while (BM.attackAnimCoroutineIsPaused == true)
+        while (BM.waitForAnimationIsPaused == true)
         {
             yield return null;
         }
 
-        while (BM.attackAnimCoroutineIsPaused == false)
+        while (BM.waitForAnimationIsPaused == false)
         {
-            yield return new WaitForSeconds(1f);
-            BM.attackAnimIsDone = true;
+            yield return new WaitForSeconds(timeToWait);
+            BM.waitForAnimationIsDone = true;
         }
     }
 
