@@ -434,6 +434,14 @@ public class Battle_Manager : MonoBehaviour
 
                             if (result.gameObject == EnemyPanels[i])
                             {
+                                for (int y = 0; y < EnemiesInBattle.Count; y++)
+                                {
+                                    if (EnemiesInBattle[y].enemyPanel == EnemyPanels[i])
+                                    {
+                                        activePlayer.playerTarget = EnemiesInBattle[y];
+                                    }
+                                }
+
                                 if (selectedCommand == "Magic")
                                 {                                    
                                     activePlayer.isCastingSpell = true;                                    
@@ -673,13 +681,15 @@ public class Battle_Manager : MonoBehaviour
             case BattleStates.RESOLVE_ACTION:
 
                 if (selectedCommand == "Attack")
-                {
+                {                    
                     attackAnimCoroutineIsPaused = false;
                     StartCoroutine(BM_Enums.waitForAttackAnimation());
                     BM_Funcs.animationController(activePlayer, "IsAttacking");                    
-                
+
                     if (attackAnimIsDone)
                     {
+                        BM_Funcs.reportToLog("PlayerAttack");
+
                         attackAnimCoroutineIsPaused = true;
                         
                         standIdle(activePlayer);
@@ -711,6 +721,8 @@ public class Battle_Manager : MonoBehaviour
                 }                                
                 else if (activePlayer.isCastingSpell)
                 {
+                    BM_Funcs.reportToLog("PlayerStartCast");
+
                     BM_Funcs.animationController(activePlayer, "IsChanting");                    
                     activePlayer.constantAnimationState = "IsChanting";
                     activePlayer.hasConstantAnimationState = true;
@@ -745,6 +757,8 @@ public class Battle_Manager : MonoBehaviour
                 }
                 else if (selectedCommand == "Wait")
                 {
+                    BM_Funcs.reportToLog("PlayerWait");
+
                     BM_Funcs.animationController(activePlayer);
                     standIdle(activePlayer);                    
                     activePlayer.speedTotal = (100f - activePlayer.speed);

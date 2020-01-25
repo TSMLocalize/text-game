@@ -1029,7 +1029,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &73059372
@@ -9493,6 +9493,202 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
+      playerTarget:
+        EnemyName: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        enemyTarget:
+          name: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          playerTarget:
+            EnemyName: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            enemyTarget:
+              name: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              playerTarget:
+                EnemyName: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                enemyTarget:
+                  name: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  currentRowPositionID: 0
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                Accuracy: 0
+                Evasion: 0
+                enemyOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                EnemyPortrait: {fileID: 0}
+                enemyPanel: {fileID: 0}
+                enemyPanelText: {fileID: 0}
+                enemyPanelBackground: {fileID: 0}
+                enemySpeedBar: {fileID: 0}
+                enemySpeedBarText: {fileID: 0}
+                enemyCastBar: {fileID: 0}
+                enemyCastBarFill: {fileID: 0}
+                enemyCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+                enemyCastAnimCoroutineIsPaused: 0
+                enemyAttackAnimCoroutineIsPaused: 0
+                enemyReadyAnimCoroutineIsPaused: 0
+                enemyAttackAnimIsDone: 0
+                enemyCastAnimIsDone: 0
+                enemyReadyAnimIsDone: 0
+              Accuracy: 0
+              Evasion: 0
+              playerOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              PlayerPortrait: {fileID: 0}
+              playerPanel: {fileID: 0}
+              playerPanelText: {fileID: 0}
+              playerPanelBackground: {fileID: 0}
+              playerSpeedBar: {fileID: 0}
+              playerSpeedBarText: {fileID: 0}
+              playerCastBar: {fileID: 0}
+              playerCastBarFill: {fileID: 0}
+              playerCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              currentRowPositionID: 0
+              currentRowPosition: {fileID: 0}
+              currentRowPositionIcon: {fileID: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+            Accuracy: 0
+            Evasion: 0
+            enemyOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            EnemyPortrait: {fileID: 0}
+            enemyPanel: {fileID: 0}
+            enemyPanelText: {fileID: 0}
+            enemyPanelBackground: {fileID: 0}
+            enemySpeedBar: {fileID: 0}
+            enemySpeedBarText: {fileID: 0}
+            enemyCastBar: {fileID: 0}
+            enemyCastBarFill: {fileID: 0}
+            enemyCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+            enemyCastAnimCoroutineIsPaused: 0
+            enemyAttackAnimCoroutineIsPaused: 0
+            enemyReadyAnimCoroutineIsPaused: 0
+            enemyAttackAnimIsDone: 0
+            enemyCastAnimIsDone: 0
+            enemyReadyAnimIsDone: 0
+          Accuracy: 0
+          Evasion: 0
+          playerOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          PlayerPortrait: {fileID: 0}
+          playerPanel: {fileID: 0}
+          playerPanelText: {fileID: 0}
+          playerPanelBackground: {fileID: 0}
+          playerSpeedBar: {fileID: 0}
+          playerSpeedBarText: {fileID: 0}
+          playerCastBar: {fileID: 0}
+          playerCastBarFill: {fileID: 0}
+          playerCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          currentRowPositionID: 0
+          currentRowPosition: {fileID: 0}
+          currentRowPositionIcon: {fileID: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+        Accuracy: 0
+        Evasion: 0
+        enemyOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        EnemyPortrait: {fileID: 0}
+        enemyPanel: {fileID: 0}
+        enemyPanelText: {fileID: 0}
+        enemyPanelBackground: {fileID: 0}
+        enemySpeedBar: {fileID: 0}
+        enemySpeedBarText: {fileID: 0}
+        enemyCastBar: {fileID: 0}
+        enemyCastBarFill: {fileID: 0}
+        enemyCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+        enemyCastAnimCoroutineIsPaused: 0
+        enemyAttackAnimCoroutineIsPaused: 0
+        enemyReadyAnimCoroutineIsPaused: 0
+        enemyAttackAnimIsDone: 0
+        enemyCastAnimIsDone: 0
+        enemyReadyAnimIsDone: 0
+      Accuracy: 0
+      Evasion: 0
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -9517,6 +9713,8 @@ MonoBehaviour:
       currentRowPositionIcon: {fileID: 0}
       hasConstantAnimationState: 0
       constantAnimationState: 
+    Accuracy: 0
+    Evasion: 0
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -9560,6 +9758,202 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
+      playerTarget:
+        EnemyName: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        enemyTarget:
+          name: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          playerTarget:
+            EnemyName: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            enemyTarget:
+              name: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              playerTarget:
+                EnemyName: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                enemyTarget:
+                  name: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  currentRowPositionID: 0
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                Accuracy: 0
+                Evasion: 0
+                enemyOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                EnemyPortrait: {fileID: 0}
+                enemyPanel: {fileID: 0}
+                enemyPanelText: {fileID: 0}
+                enemyPanelBackground: {fileID: 0}
+                enemySpeedBar: {fileID: 0}
+                enemySpeedBarText: {fileID: 0}
+                enemyCastBar: {fileID: 0}
+                enemyCastBarFill: {fileID: 0}
+                enemyCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+                enemyCastAnimCoroutineIsPaused: 0
+                enemyAttackAnimCoroutineIsPaused: 0
+                enemyReadyAnimCoroutineIsPaused: 0
+                enemyAttackAnimIsDone: 0
+                enemyCastAnimIsDone: 0
+                enemyReadyAnimIsDone: 0
+              Accuracy: 0
+              Evasion: 0
+              playerOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              PlayerPortrait: {fileID: 0}
+              playerPanel: {fileID: 0}
+              playerPanelText: {fileID: 0}
+              playerPanelBackground: {fileID: 0}
+              playerSpeedBar: {fileID: 0}
+              playerSpeedBarText: {fileID: 0}
+              playerCastBar: {fileID: 0}
+              playerCastBarFill: {fileID: 0}
+              playerCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              currentRowPositionID: 0
+              currentRowPosition: {fileID: 0}
+              currentRowPositionIcon: {fileID: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+            Accuracy: 0
+            Evasion: 0
+            enemyOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            EnemyPortrait: {fileID: 0}
+            enemyPanel: {fileID: 0}
+            enemyPanelText: {fileID: 0}
+            enemyPanelBackground: {fileID: 0}
+            enemySpeedBar: {fileID: 0}
+            enemySpeedBarText: {fileID: 0}
+            enemyCastBar: {fileID: 0}
+            enemyCastBarFill: {fileID: 0}
+            enemyCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+            enemyCastAnimCoroutineIsPaused: 0
+            enemyAttackAnimCoroutineIsPaused: 0
+            enemyReadyAnimCoroutineIsPaused: 0
+            enemyAttackAnimIsDone: 0
+            enemyCastAnimIsDone: 0
+            enemyReadyAnimIsDone: 0
+          Accuracy: 0
+          Evasion: 0
+          playerOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          PlayerPortrait: {fileID: 0}
+          playerPanel: {fileID: 0}
+          playerPanelText: {fileID: 0}
+          playerPanelBackground: {fileID: 0}
+          playerSpeedBar: {fileID: 0}
+          playerSpeedBarText: {fileID: 0}
+          playerCastBar: {fileID: 0}
+          playerCastBarFill: {fileID: 0}
+          playerCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          currentRowPositionID: 0
+          currentRowPosition: {fileID: 0}
+          currentRowPositionIcon: {fileID: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+        Accuracy: 0
+        Evasion: 0
+        enemyOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        EnemyPortrait: {fileID: 0}
+        enemyPanel: {fileID: 0}
+        enemyPanelText: {fileID: 0}
+        enemyPanelBackground: {fileID: 0}
+        enemySpeedBar: {fileID: 0}
+        enemySpeedBarText: {fileID: 0}
+        enemyCastBar: {fileID: 0}
+        enemyCastBarFill: {fileID: 0}
+        enemyCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+        enemyCastAnimCoroutineIsPaused: 0
+        enemyAttackAnimCoroutineIsPaused: 0
+        enemyReadyAnimCoroutineIsPaused: 0
+        enemyAttackAnimIsDone: 0
+        enemyCastAnimIsDone: 0
+        enemyReadyAnimIsDone: 0
+      Accuracy: 0
+      Evasion: 0
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -9584,6 +9978,8 @@ MonoBehaviour:
       currentRowPositionIcon: {fileID: 0}
       hasConstantAnimationState: 0
       constantAnimationState: 
+    Accuracy: 0
+    Evasion: 0
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -9627,6 +10023,202 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
+      playerTarget:
+        EnemyName: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        enemyTarget:
+          name: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          playerTarget:
+            EnemyName: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            enemyTarget:
+              name: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              playerTarget:
+                EnemyName: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                enemyTarget:
+                  name: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  currentRowPositionID: 0
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                Accuracy: 0
+                Evasion: 0
+                enemyOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                EnemyPortrait: {fileID: 0}
+                enemyPanel: {fileID: 0}
+                enemyPanelText: {fileID: 0}
+                enemyPanelBackground: {fileID: 0}
+                enemySpeedBar: {fileID: 0}
+                enemySpeedBarText: {fileID: 0}
+                enemyCastBar: {fileID: 0}
+                enemyCastBarFill: {fileID: 0}
+                enemyCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+                enemyCastAnimCoroutineIsPaused: 0
+                enemyAttackAnimCoroutineIsPaused: 0
+                enemyReadyAnimCoroutineIsPaused: 0
+                enemyAttackAnimIsDone: 0
+                enemyCastAnimIsDone: 0
+                enemyReadyAnimIsDone: 0
+              Accuracy: 0
+              Evasion: 0
+              playerOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              PlayerPortrait: {fileID: 0}
+              playerPanel: {fileID: 0}
+              playerPanelText: {fileID: 0}
+              playerPanelBackground: {fileID: 0}
+              playerSpeedBar: {fileID: 0}
+              playerSpeedBarText: {fileID: 0}
+              playerCastBar: {fileID: 0}
+              playerCastBarFill: {fileID: 0}
+              playerCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              currentRowPositionID: 0
+              currentRowPosition: {fileID: 0}
+              currentRowPositionIcon: {fileID: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+            Accuracy: 0
+            Evasion: 0
+            enemyOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            EnemyPortrait: {fileID: 0}
+            enemyPanel: {fileID: 0}
+            enemyPanelText: {fileID: 0}
+            enemyPanelBackground: {fileID: 0}
+            enemySpeedBar: {fileID: 0}
+            enemySpeedBarText: {fileID: 0}
+            enemyCastBar: {fileID: 0}
+            enemyCastBarFill: {fileID: 0}
+            enemyCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+            enemyCastAnimCoroutineIsPaused: 0
+            enemyAttackAnimCoroutineIsPaused: 0
+            enemyReadyAnimCoroutineIsPaused: 0
+            enemyAttackAnimIsDone: 0
+            enemyCastAnimIsDone: 0
+            enemyReadyAnimIsDone: 0
+          Accuracy: 0
+          Evasion: 0
+          playerOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          PlayerPortrait: {fileID: 0}
+          playerPanel: {fileID: 0}
+          playerPanelText: {fileID: 0}
+          playerPanelBackground: {fileID: 0}
+          playerSpeedBar: {fileID: 0}
+          playerSpeedBarText: {fileID: 0}
+          playerCastBar: {fileID: 0}
+          playerCastBarFill: {fileID: 0}
+          playerCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          currentRowPositionID: 0
+          currentRowPosition: {fileID: 0}
+          currentRowPositionIcon: {fileID: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+        Accuracy: 0
+        Evasion: 0
+        enemyOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        EnemyPortrait: {fileID: 0}
+        enemyPanel: {fileID: 0}
+        enemyPanelText: {fileID: 0}
+        enemyPanelBackground: {fileID: 0}
+        enemySpeedBar: {fileID: 0}
+        enemySpeedBarText: {fileID: 0}
+        enemyCastBar: {fileID: 0}
+        enemyCastBarFill: {fileID: 0}
+        enemyCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+        enemyCastAnimCoroutineIsPaused: 0
+        enemyAttackAnimCoroutineIsPaused: 0
+        enemyReadyAnimCoroutineIsPaused: 0
+        enemyAttackAnimIsDone: 0
+        enemyCastAnimIsDone: 0
+        enemyReadyAnimIsDone: 0
+      Accuracy: 0
+      Evasion: 0
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -9651,6 +10243,8 @@ MonoBehaviour:
       currentRowPositionIcon: {fileID: 0}
       hasConstantAnimationState: 0
       constantAnimationState: 
+    Accuracy: 0
+    Evasion: 0
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -9694,6 +10288,202 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
+      playerTarget:
+        EnemyName: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        enemyTarget:
+          name: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          playerTarget:
+            EnemyName: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            enemyTarget:
+              name: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              playerTarget:
+                EnemyName: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                enemyTarget:
+                  name: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  currentRowPositionID: 0
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                Accuracy: 0
+                Evasion: 0
+                enemyOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                EnemyPortrait: {fileID: 0}
+                enemyPanel: {fileID: 0}
+                enemyPanelText: {fileID: 0}
+                enemyPanelBackground: {fileID: 0}
+                enemySpeedBar: {fileID: 0}
+                enemySpeedBarText: {fileID: 0}
+                enemyCastBar: {fileID: 0}
+                enemyCastBarFill: {fileID: 0}
+                enemyCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+                enemyCastAnimCoroutineIsPaused: 0
+                enemyAttackAnimCoroutineIsPaused: 0
+                enemyReadyAnimCoroutineIsPaused: 0
+                enemyAttackAnimIsDone: 0
+                enemyCastAnimIsDone: 0
+                enemyReadyAnimIsDone: 0
+              Accuracy: 0
+              Evasion: 0
+              playerOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              PlayerPortrait: {fileID: 0}
+              playerPanel: {fileID: 0}
+              playerPanelText: {fileID: 0}
+              playerPanelBackground: {fileID: 0}
+              playerSpeedBar: {fileID: 0}
+              playerSpeedBarText: {fileID: 0}
+              playerCastBar: {fileID: 0}
+              playerCastBarFill: {fileID: 0}
+              playerCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              currentRowPositionID: 0
+              currentRowPosition: {fileID: 0}
+              currentRowPositionIcon: {fileID: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+            Accuracy: 0
+            Evasion: 0
+            enemyOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            EnemyPortrait: {fileID: 0}
+            enemyPanel: {fileID: 0}
+            enemyPanelText: {fileID: 0}
+            enemyPanelBackground: {fileID: 0}
+            enemySpeedBar: {fileID: 0}
+            enemySpeedBarText: {fileID: 0}
+            enemyCastBar: {fileID: 0}
+            enemyCastBarFill: {fileID: 0}
+            enemyCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+            enemyCastAnimCoroutineIsPaused: 0
+            enemyAttackAnimCoroutineIsPaused: 0
+            enemyReadyAnimCoroutineIsPaused: 0
+            enemyAttackAnimIsDone: 0
+            enemyCastAnimIsDone: 0
+            enemyReadyAnimIsDone: 0
+          Accuracy: 0
+          Evasion: 0
+          playerOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          PlayerPortrait: {fileID: 0}
+          playerPanel: {fileID: 0}
+          playerPanelText: {fileID: 0}
+          playerPanelBackground: {fileID: 0}
+          playerSpeedBar: {fileID: 0}
+          playerSpeedBarText: {fileID: 0}
+          playerCastBar: {fileID: 0}
+          playerCastBarFill: {fileID: 0}
+          playerCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          currentRowPositionID: 0
+          currentRowPosition: {fileID: 0}
+          currentRowPositionIcon: {fileID: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+        Accuracy: 0
+        Evasion: 0
+        enemyOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        EnemyPortrait: {fileID: 0}
+        enemyPanel: {fileID: 0}
+        enemyPanelText: {fileID: 0}
+        enemyPanelBackground: {fileID: 0}
+        enemySpeedBar: {fileID: 0}
+        enemySpeedBarText: {fileID: 0}
+        enemyCastBar: {fileID: 0}
+        enemyCastBarFill: {fileID: 0}
+        enemyCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+        enemyCastAnimCoroutineIsPaused: 0
+        enemyAttackAnimCoroutineIsPaused: 0
+        enemyReadyAnimCoroutineIsPaused: 0
+        enemyAttackAnimIsDone: 0
+        enemyCastAnimIsDone: 0
+        enemyReadyAnimIsDone: 0
+      Accuracy: 0
+      Evasion: 0
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -9718,6 +10508,8 @@ MonoBehaviour:
       currentRowPositionIcon: {fileID: 0}
       hasConstantAnimationState: 0
       constantAnimationState: 
+    Accuracy: 0
+    Evasion: 0
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -9761,6 +10553,202 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
+      playerTarget:
+        EnemyName: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        enemyTarget:
+          name: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          playerTarget:
+            EnemyName: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            enemyTarget:
+              name: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              playerTarget:
+                EnemyName: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                enemyTarget:
+                  name: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  currentRowPositionID: 0
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                Accuracy: 0
+                Evasion: 0
+                enemyOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                EnemyPortrait: {fileID: 0}
+                enemyPanel: {fileID: 0}
+                enemyPanelText: {fileID: 0}
+                enemyPanelBackground: {fileID: 0}
+                enemySpeedBar: {fileID: 0}
+                enemySpeedBarText: {fileID: 0}
+                enemyCastBar: {fileID: 0}
+                enemyCastBarFill: {fileID: 0}
+                enemyCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+                enemyCastAnimCoroutineIsPaused: 0
+                enemyAttackAnimCoroutineIsPaused: 0
+                enemyReadyAnimCoroutineIsPaused: 0
+                enemyAttackAnimIsDone: 0
+                enemyCastAnimIsDone: 0
+                enemyReadyAnimIsDone: 0
+              Accuracy: 0
+              Evasion: 0
+              playerOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              PlayerPortrait: {fileID: 0}
+              playerPanel: {fileID: 0}
+              playerPanelText: {fileID: 0}
+              playerPanelBackground: {fileID: 0}
+              playerSpeedBar: {fileID: 0}
+              playerSpeedBarText: {fileID: 0}
+              playerCastBar: {fileID: 0}
+              playerCastBarFill: {fileID: 0}
+              playerCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              currentRowPositionID: 0
+              currentRowPosition: {fileID: 0}
+              currentRowPositionIcon: {fileID: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+            Accuracy: 0
+            Evasion: 0
+            enemyOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            EnemyPortrait: {fileID: 0}
+            enemyPanel: {fileID: 0}
+            enemyPanelText: {fileID: 0}
+            enemyPanelBackground: {fileID: 0}
+            enemySpeedBar: {fileID: 0}
+            enemySpeedBarText: {fileID: 0}
+            enemyCastBar: {fileID: 0}
+            enemyCastBarFill: {fileID: 0}
+            enemyCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+            enemyCastAnimCoroutineIsPaused: 0
+            enemyAttackAnimCoroutineIsPaused: 0
+            enemyReadyAnimCoroutineIsPaused: 0
+            enemyAttackAnimIsDone: 0
+            enemyCastAnimIsDone: 0
+            enemyReadyAnimIsDone: 0
+          Accuracy: 0
+          Evasion: 0
+          playerOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          PlayerPortrait: {fileID: 0}
+          playerPanel: {fileID: 0}
+          playerPanelText: {fileID: 0}
+          playerPanelBackground: {fileID: 0}
+          playerSpeedBar: {fileID: 0}
+          playerSpeedBarText: {fileID: 0}
+          playerCastBar: {fileID: 0}
+          playerCastBarFill: {fileID: 0}
+          playerCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          currentRowPositionID: 0
+          currentRowPosition: {fileID: 0}
+          currentRowPositionIcon: {fileID: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+        Accuracy: 0
+        Evasion: 0
+        enemyOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        EnemyPortrait: {fileID: 0}
+        enemyPanel: {fileID: 0}
+        enemyPanelText: {fileID: 0}
+        enemyPanelBackground: {fileID: 0}
+        enemySpeedBar: {fileID: 0}
+        enemySpeedBarText: {fileID: 0}
+        enemyCastBar: {fileID: 0}
+        enemyCastBarFill: {fileID: 0}
+        enemyCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+        enemyCastAnimCoroutineIsPaused: 0
+        enemyAttackAnimCoroutineIsPaused: 0
+        enemyReadyAnimCoroutineIsPaused: 0
+        enemyAttackAnimIsDone: 0
+        enemyCastAnimIsDone: 0
+        enemyReadyAnimIsDone: 0
+      Accuracy: 0
+      Evasion: 0
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -9785,6 +10773,8 @@ MonoBehaviour:
       currentRowPositionIcon: {fileID: 0}
       hasConstantAnimationState: 0
       constantAnimationState: 
+    Accuracy: 0
+    Evasion: 0
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -9828,6 +10818,202 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
+      playerTarget:
+        EnemyName: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        enemyTarget:
+          name: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          playerTarget:
+            EnemyName: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            enemyTarget:
+              name: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              playerTarget:
+                EnemyName: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                enemyTarget:
+                  name: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  currentRowPositionID: 0
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                Accuracy: 0
+                Evasion: 0
+                enemyOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                EnemyPortrait: {fileID: 0}
+                enemyPanel: {fileID: 0}
+                enemyPanelText: {fileID: 0}
+                enemyPanelBackground: {fileID: 0}
+                enemySpeedBar: {fileID: 0}
+                enemySpeedBarText: {fileID: 0}
+                enemyCastBar: {fileID: 0}
+                enemyCastBarFill: {fileID: 0}
+                enemyCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+                enemyCastAnimCoroutineIsPaused: 0
+                enemyAttackAnimCoroutineIsPaused: 0
+                enemyReadyAnimCoroutineIsPaused: 0
+                enemyAttackAnimIsDone: 0
+                enemyCastAnimIsDone: 0
+                enemyReadyAnimIsDone: 0
+              Accuracy: 0
+              Evasion: 0
+              playerOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              PlayerPortrait: {fileID: 0}
+              playerPanel: {fileID: 0}
+              playerPanelText: {fileID: 0}
+              playerPanelBackground: {fileID: 0}
+              playerSpeedBar: {fileID: 0}
+              playerSpeedBarText: {fileID: 0}
+              playerCastBar: {fileID: 0}
+              playerCastBarFill: {fileID: 0}
+              playerCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              currentRowPositionID: 0
+              currentRowPosition: {fileID: 0}
+              currentRowPositionIcon: {fileID: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+            Accuracy: 0
+            Evasion: 0
+            enemyOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            EnemyPortrait: {fileID: 0}
+            enemyPanel: {fileID: 0}
+            enemyPanelText: {fileID: 0}
+            enemyPanelBackground: {fileID: 0}
+            enemySpeedBar: {fileID: 0}
+            enemySpeedBarText: {fileID: 0}
+            enemyCastBar: {fileID: 0}
+            enemyCastBarFill: {fileID: 0}
+            enemyCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+            enemyCastAnimCoroutineIsPaused: 0
+            enemyAttackAnimCoroutineIsPaused: 0
+            enemyReadyAnimCoroutineIsPaused: 0
+            enemyAttackAnimIsDone: 0
+            enemyCastAnimIsDone: 0
+            enemyReadyAnimIsDone: 0
+          Accuracy: 0
+          Evasion: 0
+          playerOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          PlayerPortrait: {fileID: 0}
+          playerPanel: {fileID: 0}
+          playerPanelText: {fileID: 0}
+          playerPanelBackground: {fileID: 0}
+          playerSpeedBar: {fileID: 0}
+          playerSpeedBarText: {fileID: 0}
+          playerCastBar: {fileID: 0}
+          playerCastBarFill: {fileID: 0}
+          playerCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          currentRowPositionID: 0
+          currentRowPosition: {fileID: 0}
+          currentRowPositionIcon: {fileID: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+        Accuracy: 0
+        Evasion: 0
+        enemyOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        EnemyPortrait: {fileID: 0}
+        enemyPanel: {fileID: 0}
+        enemyPanelText: {fileID: 0}
+        enemyPanelBackground: {fileID: 0}
+        enemySpeedBar: {fileID: 0}
+        enemySpeedBarText: {fileID: 0}
+        enemyCastBar: {fileID: 0}
+        enemyCastBarFill: {fileID: 0}
+        enemyCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+        enemyCastAnimCoroutineIsPaused: 0
+        enemyAttackAnimCoroutineIsPaused: 0
+        enemyReadyAnimCoroutineIsPaused: 0
+        enemyAttackAnimIsDone: 0
+        enemyCastAnimIsDone: 0
+        enemyReadyAnimIsDone: 0
+      Accuracy: 0
+      Evasion: 0
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -9852,6 +11038,8 @@ MonoBehaviour:
       currentRowPositionIcon: {fileID: 0}
       hasConstantAnimationState: 0
       constantAnimationState: 
+    Accuracy: 0
+    Evasion: 0
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -9895,6 +11083,202 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
+      playerTarget:
+        EnemyName: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        enemyTarget:
+          name: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          playerTarget:
+            EnemyName: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            enemyTarget:
+              name: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              playerTarget:
+                EnemyName: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                enemyTarget:
+                  name: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  currentRowPositionID: 0
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                Accuracy: 0
+                Evasion: 0
+                enemyOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                EnemyPortrait: {fileID: 0}
+                enemyPanel: {fileID: 0}
+                enemyPanelText: {fileID: 0}
+                enemyPanelBackground: {fileID: 0}
+                enemySpeedBar: {fileID: 0}
+                enemySpeedBarText: {fileID: 0}
+                enemyCastBar: {fileID: 0}
+                enemyCastBarFill: {fileID: 0}
+                enemyCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+                enemyCastAnimCoroutineIsPaused: 0
+                enemyAttackAnimCoroutineIsPaused: 0
+                enemyReadyAnimCoroutineIsPaused: 0
+                enemyAttackAnimIsDone: 0
+                enemyCastAnimIsDone: 0
+                enemyReadyAnimIsDone: 0
+              Accuracy: 0
+              Evasion: 0
+              playerOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              PlayerPortrait: {fileID: 0}
+              playerPanel: {fileID: 0}
+              playerPanelText: {fileID: 0}
+              playerPanelBackground: {fileID: 0}
+              playerSpeedBar: {fileID: 0}
+              playerSpeedBarText: {fileID: 0}
+              playerCastBar: {fileID: 0}
+              playerCastBarFill: {fileID: 0}
+              playerCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              currentRowPositionID: 0
+              currentRowPosition: {fileID: 0}
+              currentRowPositionIcon: {fileID: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+            Accuracy: 0
+            Evasion: 0
+            enemyOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            EnemyPortrait: {fileID: 0}
+            enemyPanel: {fileID: 0}
+            enemyPanelText: {fileID: 0}
+            enemyPanelBackground: {fileID: 0}
+            enemySpeedBar: {fileID: 0}
+            enemySpeedBarText: {fileID: 0}
+            enemyCastBar: {fileID: 0}
+            enemyCastBarFill: {fileID: 0}
+            enemyCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+            enemyCastAnimCoroutineIsPaused: 0
+            enemyAttackAnimCoroutineIsPaused: 0
+            enemyReadyAnimCoroutineIsPaused: 0
+            enemyAttackAnimIsDone: 0
+            enemyCastAnimIsDone: 0
+            enemyReadyAnimIsDone: 0
+          Accuracy: 0
+          Evasion: 0
+          playerOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          PlayerPortrait: {fileID: 0}
+          playerPanel: {fileID: 0}
+          playerPanelText: {fileID: 0}
+          playerPanelBackground: {fileID: 0}
+          playerSpeedBar: {fileID: 0}
+          playerSpeedBarText: {fileID: 0}
+          playerCastBar: {fileID: 0}
+          playerCastBarFill: {fileID: 0}
+          playerCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          currentRowPositionID: 0
+          currentRowPosition: {fileID: 0}
+          currentRowPositionIcon: {fileID: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+        Accuracy: 0
+        Evasion: 0
+        enemyOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        EnemyPortrait: {fileID: 0}
+        enemyPanel: {fileID: 0}
+        enemyPanelText: {fileID: 0}
+        enemyPanelBackground: {fileID: 0}
+        enemySpeedBar: {fileID: 0}
+        enemySpeedBarText: {fileID: 0}
+        enemyCastBar: {fileID: 0}
+        enemyCastBarFill: {fileID: 0}
+        enemyCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+        enemyCastAnimCoroutineIsPaused: 0
+        enemyAttackAnimCoroutineIsPaused: 0
+        enemyReadyAnimCoroutineIsPaused: 0
+        enemyAttackAnimIsDone: 0
+        enemyCastAnimIsDone: 0
+        enemyReadyAnimIsDone: 0
+      Accuracy: 0
+      Evasion: 0
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -9919,6 +11303,8 @@ MonoBehaviour:
       currentRowPositionIcon: {fileID: 0}
       hasConstantAnimationState: 0
       constantAnimationState: 
+    Accuracy: 0
+    Evasion: 0
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -9962,6 +11348,202 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
+      playerTarget:
+        EnemyName: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        enemyTarget:
+          name: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          playerTarget:
+            EnemyName: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            enemyTarget:
+              name: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              playerTarget:
+                EnemyName: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                enemyTarget:
+                  name: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  currentRowPositionID: 0
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                Accuracy: 0
+                Evasion: 0
+                enemyOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                EnemyPortrait: {fileID: 0}
+                enemyPanel: {fileID: 0}
+                enemyPanelText: {fileID: 0}
+                enemyPanelBackground: {fileID: 0}
+                enemySpeedBar: {fileID: 0}
+                enemySpeedBarText: {fileID: 0}
+                enemyCastBar: {fileID: 0}
+                enemyCastBarFill: {fileID: 0}
+                enemyCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+                enemyCastAnimCoroutineIsPaused: 0
+                enemyAttackAnimCoroutineIsPaused: 0
+                enemyReadyAnimCoroutineIsPaused: 0
+                enemyAttackAnimIsDone: 0
+                enemyCastAnimIsDone: 0
+                enemyReadyAnimIsDone: 0
+              Accuracy: 0
+              Evasion: 0
+              playerOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              PlayerPortrait: {fileID: 0}
+              playerPanel: {fileID: 0}
+              playerPanelText: {fileID: 0}
+              playerPanelBackground: {fileID: 0}
+              playerSpeedBar: {fileID: 0}
+              playerSpeedBarText: {fileID: 0}
+              playerCastBar: {fileID: 0}
+              playerCastBarFill: {fileID: 0}
+              playerCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              currentRowPositionID: 0
+              currentRowPosition: {fileID: 0}
+              currentRowPositionIcon: {fileID: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+            Accuracy: 0
+            Evasion: 0
+            enemyOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            EnemyPortrait: {fileID: 0}
+            enemyPanel: {fileID: 0}
+            enemyPanelText: {fileID: 0}
+            enemyPanelBackground: {fileID: 0}
+            enemySpeedBar: {fileID: 0}
+            enemySpeedBarText: {fileID: 0}
+            enemyCastBar: {fileID: 0}
+            enemyCastBarFill: {fileID: 0}
+            enemyCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+            enemyCastAnimCoroutineIsPaused: 0
+            enemyAttackAnimCoroutineIsPaused: 0
+            enemyReadyAnimCoroutineIsPaused: 0
+            enemyAttackAnimIsDone: 0
+            enemyCastAnimIsDone: 0
+            enemyReadyAnimIsDone: 0
+          Accuracy: 0
+          Evasion: 0
+          playerOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          PlayerPortrait: {fileID: 0}
+          playerPanel: {fileID: 0}
+          playerPanelText: {fileID: 0}
+          playerPanelBackground: {fileID: 0}
+          playerSpeedBar: {fileID: 0}
+          playerSpeedBarText: {fileID: 0}
+          playerCastBar: {fileID: 0}
+          playerCastBarFill: {fileID: 0}
+          playerCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          currentRowPositionID: 0
+          currentRowPosition: {fileID: 0}
+          currentRowPositionIcon: {fileID: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+        Accuracy: 0
+        Evasion: 0
+        enemyOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        EnemyPortrait: {fileID: 0}
+        enemyPanel: {fileID: 0}
+        enemyPanelText: {fileID: 0}
+        enemyPanelBackground: {fileID: 0}
+        enemySpeedBar: {fileID: 0}
+        enemySpeedBarText: {fileID: 0}
+        enemyCastBar: {fileID: 0}
+        enemyCastBarFill: {fileID: 0}
+        enemyCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+        enemyCastAnimCoroutineIsPaused: 0
+        enemyAttackAnimCoroutineIsPaused: 0
+        enemyReadyAnimCoroutineIsPaused: 0
+        enemyAttackAnimIsDone: 0
+        enemyCastAnimIsDone: 0
+        enemyReadyAnimIsDone: 0
+      Accuracy: 0
+      Evasion: 0
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -9986,6 +11568,8 @@ MonoBehaviour:
       currentRowPositionIcon: {fileID: 0}
       hasConstantAnimationState: 0
       constantAnimationState: 
+    Accuracy: 0
+    Evasion: 0
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -14112,7 +15696,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1190124505}
   m_HandleRect: {fileID: 1190124504}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -15505,6 +17089,241 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    playerTarget:
+      EnemyName: 
+      currentHP: 0
+      maxHP: 0
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      enemyTarget:
+        name: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        playerTarget:
+          EnemyName: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          enemyTarget:
+            name: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            playerTarget:
+              EnemyName: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              enemyTarget:
+                name: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                playerTarget:
+                  EnemyName: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                  enemyCastAnimCoroutineIsPaused: 0
+                  enemyAttackAnimCoroutineIsPaused: 0
+                  enemyReadyAnimCoroutineIsPaused: 0
+                  enemyAttackAnimIsDone: 0
+                  enemyCastAnimIsDone: 0
+                  enemyReadyAnimIsDone: 0
+                Accuracy: 0
+                Evasion: 0
+                playerOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                PlayerPortrait: {fileID: 0}
+                playerPanel: {fileID: 0}
+                playerPanelText: {fileID: 0}
+                playerPanelBackground: {fileID: 0}
+                playerSpeedBar: {fileID: 0}
+                playerSpeedBarText: {fileID: 0}
+                playerCastBar: {fileID: 0}
+                playerCastBarFill: {fileID: 0}
+                playerCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                currentRowPositionID: 0
+                currentRowPosition: {fileID: 0}
+                currentRowPositionIcon: {fileID: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+              Accuracy: 0
+              Evasion: 0
+              enemyOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              EnemyPortrait: {fileID: 0}
+              enemyPanel: {fileID: 0}
+              enemyPanelText: {fileID: 0}
+              enemyPanelBackground: {fileID: 0}
+              enemySpeedBar: {fileID: 0}
+              enemySpeedBarText: {fileID: 0}
+              enemyCastBar: {fileID: 0}
+              enemyCastBarFill: {fileID: 0}
+              enemyCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+              enemyCastAnimCoroutineIsPaused: 0
+              enemyAttackAnimCoroutineIsPaused: 0
+              enemyReadyAnimCoroutineIsPaused: 0
+              enemyAttackAnimIsDone: 0
+              enemyCastAnimIsDone: 0
+              enemyReadyAnimIsDone: 0
+            Accuracy: 0
+            Evasion: 0
+            playerOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            PlayerPortrait: {fileID: 0}
+            playerPanel: {fileID: 0}
+            playerPanelText: {fileID: 0}
+            playerPanelBackground: {fileID: 0}
+            playerSpeedBar: {fileID: 0}
+            playerSpeedBarText: {fileID: 0}
+            playerCastBar: {fileID: 0}
+            playerCastBarFill: {fileID: 0}
+            playerCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            currentRowPositionID: 0
+            currentRowPosition: {fileID: 0}
+            currentRowPositionIcon: {fileID: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+          Accuracy: 0
+          Evasion: 0
+          enemyOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          EnemyPortrait: {fileID: 0}
+          enemyPanel: {fileID: 0}
+          enemyPanelText: {fileID: 0}
+          enemyPanelBackground: {fileID: 0}
+          enemySpeedBar: {fileID: 0}
+          enemySpeedBarText: {fileID: 0}
+          enemyCastBar: {fileID: 0}
+          enemyCastBarFill: {fileID: 0}
+          enemyCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+          enemyCastAnimCoroutineIsPaused: 0
+          enemyAttackAnimCoroutineIsPaused: 0
+          enemyReadyAnimCoroutineIsPaused: 0
+          enemyAttackAnimIsDone: 0
+          enemyCastAnimIsDone: 0
+          enemyReadyAnimIsDone: 0
+        Accuracy: 0
+        Evasion: 0
+        playerOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        PlayerPortrait: {fileID: 0}
+        playerPanel: {fileID: 0}
+        playerPanelText: {fileID: 0}
+        playerPanelBackground: {fileID: 0}
+        playerSpeedBar: {fileID: 0}
+        playerSpeedBarText: {fileID: 0}
+        playerCastBar: {fileID: 0}
+        playerCastBarFill: {fileID: 0}
+        playerCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        currentRowPositionID: 0
+        currentRowPosition: {fileID: 0}
+        currentRowPositionIcon: {fileID: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+      Accuracy: 0
+      Evasion: 0
+      enemyOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      EnemyPortrait: {fileID: 0}
+      enemyPanel: {fileID: 0}
+      enemyPanelText: {fileID: 0}
+      enemyPanelBackground: {fileID: 0}
+      enemySpeedBar: {fileID: 0}
+      enemySpeedBarText: {fileID: 0}
+      enemyCastBar: {fileID: 0}
+      enemyCastBarFill: {fileID: 0}
+      enemyCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
+      enemyCastAnimCoroutineIsPaused: 0
+      enemyAttackAnimCoroutineIsPaused: 0
+      enemyReadyAnimCoroutineIsPaused: 0
+      enemyAttackAnimIsDone: 0
+      enemyCastAnimIsDone: 0
+      enemyReadyAnimIsDone: 0
+    Accuracy: 0
+    Evasion: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -15537,6 +17356,241 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    playerTarget:
+      EnemyName: 
+      currentHP: 0
+      maxHP: 0
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      enemyTarget:
+        name: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        playerTarget:
+          EnemyName: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          enemyTarget:
+            name: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            playerTarget:
+              EnemyName: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              enemyTarget:
+                name: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                playerTarget:
+                  EnemyName: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                  enemyCastAnimCoroutineIsPaused: 0
+                  enemyAttackAnimCoroutineIsPaused: 0
+                  enemyReadyAnimCoroutineIsPaused: 0
+                  enemyAttackAnimIsDone: 0
+                  enemyCastAnimIsDone: 0
+                  enemyReadyAnimIsDone: 0
+                Accuracy: 0
+                Evasion: 0
+                playerOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                PlayerPortrait: {fileID: 0}
+                playerPanel: {fileID: 0}
+                playerPanelText: {fileID: 0}
+                playerPanelBackground: {fileID: 0}
+                playerSpeedBar: {fileID: 0}
+                playerSpeedBarText: {fileID: 0}
+                playerCastBar: {fileID: 0}
+                playerCastBarFill: {fileID: 0}
+                playerCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                currentRowPositionID: 0
+                currentRowPosition: {fileID: 0}
+                currentRowPositionIcon: {fileID: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+              Accuracy: 0
+              Evasion: 0
+              enemyOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              EnemyPortrait: {fileID: 0}
+              enemyPanel: {fileID: 0}
+              enemyPanelText: {fileID: 0}
+              enemyPanelBackground: {fileID: 0}
+              enemySpeedBar: {fileID: 0}
+              enemySpeedBarText: {fileID: 0}
+              enemyCastBar: {fileID: 0}
+              enemyCastBarFill: {fileID: 0}
+              enemyCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+              enemyCastAnimCoroutineIsPaused: 0
+              enemyAttackAnimCoroutineIsPaused: 0
+              enemyReadyAnimCoroutineIsPaused: 0
+              enemyAttackAnimIsDone: 0
+              enemyCastAnimIsDone: 0
+              enemyReadyAnimIsDone: 0
+            Accuracy: 0
+            Evasion: 0
+            playerOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            PlayerPortrait: {fileID: 0}
+            playerPanel: {fileID: 0}
+            playerPanelText: {fileID: 0}
+            playerPanelBackground: {fileID: 0}
+            playerSpeedBar: {fileID: 0}
+            playerSpeedBarText: {fileID: 0}
+            playerCastBar: {fileID: 0}
+            playerCastBarFill: {fileID: 0}
+            playerCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            currentRowPositionID: 0
+            currentRowPosition: {fileID: 0}
+            currentRowPositionIcon: {fileID: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+          Accuracy: 0
+          Evasion: 0
+          enemyOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          EnemyPortrait: {fileID: 0}
+          enemyPanel: {fileID: 0}
+          enemyPanelText: {fileID: 0}
+          enemyPanelBackground: {fileID: 0}
+          enemySpeedBar: {fileID: 0}
+          enemySpeedBarText: {fileID: 0}
+          enemyCastBar: {fileID: 0}
+          enemyCastBarFill: {fileID: 0}
+          enemyCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+          enemyCastAnimCoroutineIsPaused: 0
+          enemyAttackAnimCoroutineIsPaused: 0
+          enemyReadyAnimCoroutineIsPaused: 0
+          enemyAttackAnimIsDone: 0
+          enemyCastAnimIsDone: 0
+          enemyReadyAnimIsDone: 0
+        Accuracy: 0
+        Evasion: 0
+        playerOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        PlayerPortrait: {fileID: 0}
+        playerPanel: {fileID: 0}
+        playerPanelText: {fileID: 0}
+        playerPanelBackground: {fileID: 0}
+        playerSpeedBar: {fileID: 0}
+        playerSpeedBarText: {fileID: 0}
+        playerCastBar: {fileID: 0}
+        playerCastBarFill: {fileID: 0}
+        playerCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        currentRowPositionID: 0
+        currentRowPosition: {fileID: 0}
+        currentRowPositionIcon: {fileID: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+      Accuracy: 0
+      Evasion: 0
+      enemyOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      EnemyPortrait: {fileID: 0}
+      enemyPanel: {fileID: 0}
+      enemyPanelText: {fileID: 0}
+      enemyPanelBackground: {fileID: 0}
+      enemySpeedBar: {fileID: 0}
+      enemySpeedBarText: {fileID: 0}
+      enemyCastBar: {fileID: 0}
+      enemyCastBarFill: {fileID: 0}
+      enemyCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
+      enemyCastAnimCoroutineIsPaused: 0
+      enemyAttackAnimCoroutineIsPaused: 0
+      enemyReadyAnimCoroutineIsPaused: 0
+      enemyAttackAnimIsDone: 0
+      enemyCastAnimIsDone: 0
+      enemyReadyAnimIsDone: 0
+    Accuracy: 0
+    Evasion: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -15569,6 +17623,241 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    playerTarget:
+      EnemyName: 
+      currentHP: 0
+      maxHP: 0
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      enemyTarget:
+        name: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        playerTarget:
+          EnemyName: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          enemyTarget:
+            name: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            playerTarget:
+              EnemyName: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              enemyTarget:
+                name: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                playerTarget:
+                  EnemyName: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                  enemyCastAnimCoroutineIsPaused: 0
+                  enemyAttackAnimCoroutineIsPaused: 0
+                  enemyReadyAnimCoroutineIsPaused: 0
+                  enemyAttackAnimIsDone: 0
+                  enemyCastAnimIsDone: 0
+                  enemyReadyAnimIsDone: 0
+                Accuracy: 0
+                Evasion: 0
+                playerOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                PlayerPortrait: {fileID: 0}
+                playerPanel: {fileID: 0}
+                playerPanelText: {fileID: 0}
+                playerPanelBackground: {fileID: 0}
+                playerSpeedBar: {fileID: 0}
+                playerSpeedBarText: {fileID: 0}
+                playerCastBar: {fileID: 0}
+                playerCastBarFill: {fileID: 0}
+                playerCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                currentRowPositionID: 0
+                currentRowPosition: {fileID: 0}
+                currentRowPositionIcon: {fileID: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+              Accuracy: 0
+              Evasion: 0
+              enemyOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              EnemyPortrait: {fileID: 0}
+              enemyPanel: {fileID: 0}
+              enemyPanelText: {fileID: 0}
+              enemyPanelBackground: {fileID: 0}
+              enemySpeedBar: {fileID: 0}
+              enemySpeedBarText: {fileID: 0}
+              enemyCastBar: {fileID: 0}
+              enemyCastBarFill: {fileID: 0}
+              enemyCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+              enemyCastAnimCoroutineIsPaused: 0
+              enemyAttackAnimCoroutineIsPaused: 0
+              enemyReadyAnimCoroutineIsPaused: 0
+              enemyAttackAnimIsDone: 0
+              enemyCastAnimIsDone: 0
+              enemyReadyAnimIsDone: 0
+            Accuracy: 0
+            Evasion: 0
+            playerOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            PlayerPortrait: {fileID: 0}
+            playerPanel: {fileID: 0}
+            playerPanelText: {fileID: 0}
+            playerPanelBackground: {fileID: 0}
+            playerSpeedBar: {fileID: 0}
+            playerSpeedBarText: {fileID: 0}
+            playerCastBar: {fileID: 0}
+            playerCastBarFill: {fileID: 0}
+            playerCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            currentRowPositionID: 0
+            currentRowPosition: {fileID: 0}
+            currentRowPositionIcon: {fileID: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+          Accuracy: 0
+          Evasion: 0
+          enemyOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          EnemyPortrait: {fileID: 0}
+          enemyPanel: {fileID: 0}
+          enemyPanelText: {fileID: 0}
+          enemyPanelBackground: {fileID: 0}
+          enemySpeedBar: {fileID: 0}
+          enemySpeedBarText: {fileID: 0}
+          enemyCastBar: {fileID: 0}
+          enemyCastBarFill: {fileID: 0}
+          enemyCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+          enemyCastAnimCoroutineIsPaused: 0
+          enemyAttackAnimCoroutineIsPaused: 0
+          enemyReadyAnimCoroutineIsPaused: 0
+          enemyAttackAnimIsDone: 0
+          enemyCastAnimIsDone: 0
+          enemyReadyAnimIsDone: 0
+        Accuracy: 0
+        Evasion: 0
+        playerOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        PlayerPortrait: {fileID: 0}
+        playerPanel: {fileID: 0}
+        playerPanelText: {fileID: 0}
+        playerPanelBackground: {fileID: 0}
+        playerSpeedBar: {fileID: 0}
+        playerSpeedBarText: {fileID: 0}
+        playerCastBar: {fileID: 0}
+        playerCastBarFill: {fileID: 0}
+        playerCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        currentRowPositionID: 0
+        currentRowPosition: {fileID: 0}
+        currentRowPositionIcon: {fileID: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+      Accuracy: 0
+      Evasion: 0
+      enemyOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      EnemyPortrait: {fileID: 0}
+      enemyPanel: {fileID: 0}
+      enemyPanelText: {fileID: 0}
+      enemyPanelBackground: {fileID: 0}
+      enemySpeedBar: {fileID: 0}
+      enemySpeedBarText: {fileID: 0}
+      enemyCastBar: {fileID: 0}
+      enemyCastBarFill: {fileID: 0}
+      enemyCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
+      enemyCastAnimCoroutineIsPaused: 0
+      enemyAttackAnimCoroutineIsPaused: 0
+      enemyReadyAnimCoroutineIsPaused: 0
+      enemyAttackAnimIsDone: 0
+      enemyCastAnimIsDone: 0
+      enemyReadyAnimIsDone: 0
+    Accuracy: 0
+    Evasion: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -15601,6 +17890,241 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    playerTarget:
+      EnemyName: 
+      currentHP: 0
+      maxHP: 0
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      enemyTarget:
+        name: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        playerTarget:
+          EnemyName: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          enemyTarget:
+            name: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            playerTarget:
+              EnemyName: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              enemyTarget:
+                name: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                playerTarget:
+                  EnemyName: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                  enemyCastAnimCoroutineIsPaused: 0
+                  enemyAttackAnimCoroutineIsPaused: 0
+                  enemyReadyAnimCoroutineIsPaused: 0
+                  enemyAttackAnimIsDone: 0
+                  enemyCastAnimIsDone: 0
+                  enemyReadyAnimIsDone: 0
+                Accuracy: 0
+                Evasion: 0
+                playerOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                PlayerPortrait: {fileID: 0}
+                playerPanel: {fileID: 0}
+                playerPanelText: {fileID: 0}
+                playerPanelBackground: {fileID: 0}
+                playerSpeedBar: {fileID: 0}
+                playerSpeedBarText: {fileID: 0}
+                playerCastBar: {fileID: 0}
+                playerCastBarFill: {fileID: 0}
+                playerCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                currentRowPositionID: 0
+                currentRowPosition: {fileID: 0}
+                currentRowPositionIcon: {fileID: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+              Accuracy: 0
+              Evasion: 0
+              enemyOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              EnemyPortrait: {fileID: 0}
+              enemyPanel: {fileID: 0}
+              enemyPanelText: {fileID: 0}
+              enemyPanelBackground: {fileID: 0}
+              enemySpeedBar: {fileID: 0}
+              enemySpeedBarText: {fileID: 0}
+              enemyCastBar: {fileID: 0}
+              enemyCastBarFill: {fileID: 0}
+              enemyCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+              enemyCastAnimCoroutineIsPaused: 0
+              enemyAttackAnimCoroutineIsPaused: 0
+              enemyReadyAnimCoroutineIsPaused: 0
+              enemyAttackAnimIsDone: 0
+              enemyCastAnimIsDone: 0
+              enemyReadyAnimIsDone: 0
+            Accuracy: 0
+            Evasion: 0
+            playerOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            PlayerPortrait: {fileID: 0}
+            playerPanel: {fileID: 0}
+            playerPanelText: {fileID: 0}
+            playerPanelBackground: {fileID: 0}
+            playerSpeedBar: {fileID: 0}
+            playerSpeedBarText: {fileID: 0}
+            playerCastBar: {fileID: 0}
+            playerCastBarFill: {fileID: 0}
+            playerCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            currentRowPositionID: 0
+            currentRowPosition: {fileID: 0}
+            currentRowPositionIcon: {fileID: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+          Accuracy: 0
+          Evasion: 0
+          enemyOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          EnemyPortrait: {fileID: 0}
+          enemyPanel: {fileID: 0}
+          enemyPanelText: {fileID: 0}
+          enemyPanelBackground: {fileID: 0}
+          enemySpeedBar: {fileID: 0}
+          enemySpeedBarText: {fileID: 0}
+          enemyCastBar: {fileID: 0}
+          enemyCastBarFill: {fileID: 0}
+          enemyCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+          enemyCastAnimCoroutineIsPaused: 0
+          enemyAttackAnimCoroutineIsPaused: 0
+          enemyReadyAnimCoroutineIsPaused: 0
+          enemyAttackAnimIsDone: 0
+          enemyCastAnimIsDone: 0
+          enemyReadyAnimIsDone: 0
+        Accuracy: 0
+        Evasion: 0
+        playerOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        PlayerPortrait: {fileID: 0}
+        playerPanel: {fileID: 0}
+        playerPanelText: {fileID: 0}
+        playerPanelBackground: {fileID: 0}
+        playerSpeedBar: {fileID: 0}
+        playerSpeedBarText: {fileID: 0}
+        playerCastBar: {fileID: 0}
+        playerCastBarFill: {fileID: 0}
+        playerCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        currentRowPositionID: 0
+        currentRowPosition: {fileID: 0}
+        currentRowPositionIcon: {fileID: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+      Accuracy: 0
+      Evasion: 0
+      enemyOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      EnemyPortrait: {fileID: 0}
+      enemyPanel: {fileID: 0}
+      enemyPanelText: {fileID: 0}
+      enemyPanelBackground: {fileID: 0}
+      enemySpeedBar: {fileID: 0}
+      enemySpeedBarText: {fileID: 0}
+      enemyCastBar: {fileID: 0}
+      enemyCastBarFill: {fileID: 0}
+      enemyCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
+      enemyCastAnimCoroutineIsPaused: 0
+      enemyAttackAnimCoroutineIsPaused: 0
+      enemyReadyAnimCoroutineIsPaused: 0
+      enemyAttackAnimIsDone: 0
+      enemyCastAnimIsDone: 0
+      enemyReadyAnimIsDone: 0
+    Accuracy: 0
+    Evasion: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -15633,6 +18157,241 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    playerTarget:
+      EnemyName: 
+      currentHP: 0
+      maxHP: 0
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      enemyTarget:
+        name: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        playerTarget:
+          EnemyName: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          enemyTarget:
+            name: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            playerTarget:
+              EnemyName: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              enemyTarget:
+                name: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                playerTarget:
+                  EnemyName: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                  enemyCastAnimCoroutineIsPaused: 0
+                  enemyAttackAnimCoroutineIsPaused: 0
+                  enemyReadyAnimCoroutineIsPaused: 0
+                  enemyAttackAnimIsDone: 0
+                  enemyCastAnimIsDone: 0
+                  enemyReadyAnimIsDone: 0
+                Accuracy: 0
+                Evasion: 0
+                playerOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                PlayerPortrait: {fileID: 0}
+                playerPanel: {fileID: 0}
+                playerPanelText: {fileID: 0}
+                playerPanelBackground: {fileID: 0}
+                playerSpeedBar: {fileID: 0}
+                playerSpeedBarText: {fileID: 0}
+                playerCastBar: {fileID: 0}
+                playerCastBarFill: {fileID: 0}
+                playerCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                currentRowPositionID: 0
+                currentRowPosition: {fileID: 0}
+                currentRowPositionIcon: {fileID: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+              Accuracy: 0
+              Evasion: 0
+              enemyOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              EnemyPortrait: {fileID: 0}
+              enemyPanel: {fileID: 0}
+              enemyPanelText: {fileID: 0}
+              enemyPanelBackground: {fileID: 0}
+              enemySpeedBar: {fileID: 0}
+              enemySpeedBarText: {fileID: 0}
+              enemyCastBar: {fileID: 0}
+              enemyCastBarFill: {fileID: 0}
+              enemyCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+              enemyCastAnimCoroutineIsPaused: 0
+              enemyAttackAnimCoroutineIsPaused: 0
+              enemyReadyAnimCoroutineIsPaused: 0
+              enemyAttackAnimIsDone: 0
+              enemyCastAnimIsDone: 0
+              enemyReadyAnimIsDone: 0
+            Accuracy: 0
+            Evasion: 0
+            playerOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            PlayerPortrait: {fileID: 0}
+            playerPanel: {fileID: 0}
+            playerPanelText: {fileID: 0}
+            playerPanelBackground: {fileID: 0}
+            playerSpeedBar: {fileID: 0}
+            playerSpeedBarText: {fileID: 0}
+            playerCastBar: {fileID: 0}
+            playerCastBarFill: {fileID: 0}
+            playerCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            currentRowPositionID: 0
+            currentRowPosition: {fileID: 0}
+            currentRowPositionIcon: {fileID: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+          Accuracy: 0
+          Evasion: 0
+          enemyOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          EnemyPortrait: {fileID: 0}
+          enemyPanel: {fileID: 0}
+          enemyPanelText: {fileID: 0}
+          enemyPanelBackground: {fileID: 0}
+          enemySpeedBar: {fileID: 0}
+          enemySpeedBarText: {fileID: 0}
+          enemyCastBar: {fileID: 0}
+          enemyCastBarFill: {fileID: 0}
+          enemyCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+          enemyCastAnimCoroutineIsPaused: 0
+          enemyAttackAnimCoroutineIsPaused: 0
+          enemyReadyAnimCoroutineIsPaused: 0
+          enemyAttackAnimIsDone: 0
+          enemyCastAnimIsDone: 0
+          enemyReadyAnimIsDone: 0
+        Accuracy: 0
+        Evasion: 0
+        playerOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        PlayerPortrait: {fileID: 0}
+        playerPanel: {fileID: 0}
+        playerPanelText: {fileID: 0}
+        playerPanelBackground: {fileID: 0}
+        playerSpeedBar: {fileID: 0}
+        playerSpeedBarText: {fileID: 0}
+        playerCastBar: {fileID: 0}
+        playerCastBarFill: {fileID: 0}
+        playerCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        currentRowPositionID: 0
+        currentRowPosition: {fileID: 0}
+        currentRowPositionIcon: {fileID: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+      Accuracy: 0
+      Evasion: 0
+      enemyOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      EnemyPortrait: {fileID: 0}
+      enemyPanel: {fileID: 0}
+      enemyPanelText: {fileID: 0}
+      enemyPanelBackground: {fileID: 0}
+      enemySpeedBar: {fileID: 0}
+      enemySpeedBarText: {fileID: 0}
+      enemyCastBar: {fileID: 0}
+      enemyCastBarFill: {fileID: 0}
+      enemyCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
+      enemyCastAnimCoroutineIsPaused: 0
+      enemyAttackAnimCoroutineIsPaused: 0
+      enemyReadyAnimCoroutineIsPaused: 0
+      enemyAttackAnimIsDone: 0
+      enemyCastAnimIsDone: 0
+      enemyReadyAnimIsDone: 0
+    Accuracy: 0
+    Evasion: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -15665,6 +18424,241 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    playerTarget:
+      EnemyName: 
+      currentHP: 0
+      maxHP: 0
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      enemyTarget:
+        name: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        playerTarget:
+          EnemyName: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          enemyTarget:
+            name: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            playerTarget:
+              EnemyName: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              enemyTarget:
+                name: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                playerTarget:
+                  EnemyName: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                  enemyCastAnimCoroutineIsPaused: 0
+                  enemyAttackAnimCoroutineIsPaused: 0
+                  enemyReadyAnimCoroutineIsPaused: 0
+                  enemyAttackAnimIsDone: 0
+                  enemyCastAnimIsDone: 0
+                  enemyReadyAnimIsDone: 0
+                Accuracy: 0
+                Evasion: 0
+                playerOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                PlayerPortrait: {fileID: 0}
+                playerPanel: {fileID: 0}
+                playerPanelText: {fileID: 0}
+                playerPanelBackground: {fileID: 0}
+                playerSpeedBar: {fileID: 0}
+                playerSpeedBarText: {fileID: 0}
+                playerCastBar: {fileID: 0}
+                playerCastBarFill: {fileID: 0}
+                playerCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                currentRowPositionID: 0
+                currentRowPosition: {fileID: 0}
+                currentRowPositionIcon: {fileID: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+              Accuracy: 0
+              Evasion: 0
+              enemyOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              EnemyPortrait: {fileID: 0}
+              enemyPanel: {fileID: 0}
+              enemyPanelText: {fileID: 0}
+              enemyPanelBackground: {fileID: 0}
+              enemySpeedBar: {fileID: 0}
+              enemySpeedBarText: {fileID: 0}
+              enemyCastBar: {fileID: 0}
+              enemyCastBarFill: {fileID: 0}
+              enemyCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+              enemyCastAnimCoroutineIsPaused: 0
+              enemyAttackAnimCoroutineIsPaused: 0
+              enemyReadyAnimCoroutineIsPaused: 0
+              enemyAttackAnimIsDone: 0
+              enemyCastAnimIsDone: 0
+              enemyReadyAnimIsDone: 0
+            Accuracy: 0
+            Evasion: 0
+            playerOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            PlayerPortrait: {fileID: 0}
+            playerPanel: {fileID: 0}
+            playerPanelText: {fileID: 0}
+            playerPanelBackground: {fileID: 0}
+            playerSpeedBar: {fileID: 0}
+            playerSpeedBarText: {fileID: 0}
+            playerCastBar: {fileID: 0}
+            playerCastBarFill: {fileID: 0}
+            playerCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            currentRowPositionID: 0
+            currentRowPosition: {fileID: 0}
+            currentRowPositionIcon: {fileID: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+          Accuracy: 0
+          Evasion: 0
+          enemyOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          EnemyPortrait: {fileID: 0}
+          enemyPanel: {fileID: 0}
+          enemyPanelText: {fileID: 0}
+          enemyPanelBackground: {fileID: 0}
+          enemySpeedBar: {fileID: 0}
+          enemySpeedBarText: {fileID: 0}
+          enemyCastBar: {fileID: 0}
+          enemyCastBarFill: {fileID: 0}
+          enemyCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+          enemyCastAnimCoroutineIsPaused: 0
+          enemyAttackAnimCoroutineIsPaused: 0
+          enemyReadyAnimCoroutineIsPaused: 0
+          enemyAttackAnimIsDone: 0
+          enemyCastAnimIsDone: 0
+          enemyReadyAnimIsDone: 0
+        Accuracy: 0
+        Evasion: 0
+        playerOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        PlayerPortrait: {fileID: 0}
+        playerPanel: {fileID: 0}
+        playerPanelText: {fileID: 0}
+        playerPanelBackground: {fileID: 0}
+        playerSpeedBar: {fileID: 0}
+        playerSpeedBarText: {fileID: 0}
+        playerCastBar: {fileID: 0}
+        playerCastBarFill: {fileID: 0}
+        playerCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        currentRowPositionID: 0
+        currentRowPosition: {fileID: 0}
+        currentRowPositionIcon: {fileID: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+      Accuracy: 0
+      Evasion: 0
+      enemyOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      EnemyPortrait: {fileID: 0}
+      enemyPanel: {fileID: 0}
+      enemyPanelText: {fileID: 0}
+      enemyPanelBackground: {fileID: 0}
+      enemySpeedBar: {fileID: 0}
+      enemySpeedBarText: {fileID: 0}
+      enemyCastBar: {fileID: 0}
+      enemyCastBarFill: {fileID: 0}
+      enemyCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
+      enemyCastAnimCoroutineIsPaused: 0
+      enemyAttackAnimCoroutineIsPaused: 0
+      enemyReadyAnimCoroutineIsPaused: 0
+      enemyAttackAnimIsDone: 0
+      enemyCastAnimIsDone: 0
+      enemyReadyAnimIsDone: 0
+    Accuracy: 0
+    Evasion: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -21548,6 +24542,241 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    playerTarget:
+      EnemyName: 
+      currentHP: 0
+      maxHP: 0
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      enemyTarget:
+        name: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        playerTarget:
+          EnemyName: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          enemyTarget:
+            name: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            playerTarget:
+              EnemyName: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              enemyTarget:
+                name: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                playerTarget:
+                  EnemyName: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                  enemyCastAnimCoroutineIsPaused: 0
+                  enemyAttackAnimCoroutineIsPaused: 0
+                  enemyReadyAnimCoroutineIsPaused: 0
+                  enemyAttackAnimIsDone: 0
+                  enemyCastAnimIsDone: 0
+                  enemyReadyAnimIsDone: 0
+                Accuracy: 0
+                Evasion: 0
+                playerOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                PlayerPortrait: {fileID: 0}
+                playerPanel: {fileID: 0}
+                playerPanelText: {fileID: 0}
+                playerPanelBackground: {fileID: 0}
+                playerSpeedBar: {fileID: 0}
+                playerSpeedBarText: {fileID: 0}
+                playerCastBar: {fileID: 0}
+                playerCastBarFill: {fileID: 0}
+                playerCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                currentRowPositionID: 0
+                currentRowPosition: {fileID: 0}
+                currentRowPositionIcon: {fileID: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+              Accuracy: 0
+              Evasion: 0
+              enemyOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              EnemyPortrait: {fileID: 0}
+              enemyPanel: {fileID: 0}
+              enemyPanelText: {fileID: 0}
+              enemyPanelBackground: {fileID: 0}
+              enemySpeedBar: {fileID: 0}
+              enemySpeedBarText: {fileID: 0}
+              enemyCastBar: {fileID: 0}
+              enemyCastBarFill: {fileID: 0}
+              enemyCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+              enemyCastAnimCoroutineIsPaused: 0
+              enemyAttackAnimCoroutineIsPaused: 0
+              enemyReadyAnimCoroutineIsPaused: 0
+              enemyAttackAnimIsDone: 0
+              enemyCastAnimIsDone: 0
+              enemyReadyAnimIsDone: 0
+            Accuracy: 0
+            Evasion: 0
+            playerOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            PlayerPortrait: {fileID: 0}
+            playerPanel: {fileID: 0}
+            playerPanelText: {fileID: 0}
+            playerPanelBackground: {fileID: 0}
+            playerSpeedBar: {fileID: 0}
+            playerSpeedBarText: {fileID: 0}
+            playerCastBar: {fileID: 0}
+            playerCastBarFill: {fileID: 0}
+            playerCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            currentRowPositionID: 0
+            currentRowPosition: {fileID: 0}
+            currentRowPositionIcon: {fileID: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+          Accuracy: 0
+          Evasion: 0
+          enemyOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          EnemyPortrait: {fileID: 0}
+          enemyPanel: {fileID: 0}
+          enemyPanelText: {fileID: 0}
+          enemyPanelBackground: {fileID: 0}
+          enemySpeedBar: {fileID: 0}
+          enemySpeedBarText: {fileID: 0}
+          enemyCastBar: {fileID: 0}
+          enemyCastBarFill: {fileID: 0}
+          enemyCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+          enemyCastAnimCoroutineIsPaused: 0
+          enemyAttackAnimCoroutineIsPaused: 0
+          enemyReadyAnimCoroutineIsPaused: 0
+          enemyAttackAnimIsDone: 0
+          enemyCastAnimIsDone: 0
+          enemyReadyAnimIsDone: 0
+        Accuracy: 0
+        Evasion: 0
+        playerOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        PlayerPortrait: {fileID: 0}
+        playerPanel: {fileID: 0}
+        playerPanelText: {fileID: 0}
+        playerPanelBackground: {fileID: 0}
+        playerSpeedBar: {fileID: 0}
+        playerSpeedBarText: {fileID: 0}
+        playerCastBar: {fileID: 0}
+        playerCastBarFill: {fileID: 0}
+        playerCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        currentRowPositionID: 0
+        currentRowPosition: {fileID: 0}
+        currentRowPositionIcon: {fileID: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+      Accuracy: 0
+      Evasion: 0
+      enemyOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      EnemyPortrait: {fileID: 0}
+      enemyPanel: {fileID: 0}
+      enemyPanelText: {fileID: 0}
+      enemyPanelBackground: {fileID: 0}
+      enemySpeedBar: {fileID: 0}
+      enemySpeedBarText: {fileID: 0}
+      enemyCastBar: {fileID: 0}
+      enemyCastBarFill: {fileID: 0}
+      enemyCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
+      enemyCastAnimCoroutineIsPaused: 0
+      enemyAttackAnimCoroutineIsPaused: 0
+      enemyReadyAnimCoroutineIsPaused: 0
+      enemyAttackAnimIsDone: 0
+      enemyCastAnimIsDone: 0
+      enemyReadyAnimIsDone: 0
+    Accuracy: 0
+    Evasion: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -21582,6 +24811,241 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    playerTarget:
+      EnemyName: 
+      currentHP: 0
+      maxHP: 0
+      speed: 0
+      speedTotal: 0
+      castSpeed: 0
+      castSpeedTotal: 0
+      enemyTarget:
+        name: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        playerTarget:
+          EnemyName: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          enemyTarget:
+            name: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            playerTarget:
+              EnemyName: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              enemyTarget:
+                name: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                playerTarget:
+                  EnemyName: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                  enemyCastAnimCoroutineIsPaused: 0
+                  enemyAttackAnimCoroutineIsPaused: 0
+                  enemyReadyAnimCoroutineIsPaused: 0
+                  enemyAttackAnimIsDone: 0
+                  enemyCastAnimIsDone: 0
+                  enemyReadyAnimIsDone: 0
+                Accuracy: 0
+                Evasion: 0
+                playerOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                PlayerPortrait: {fileID: 0}
+                playerPanel: {fileID: 0}
+                playerPanelText: {fileID: 0}
+                playerPanelBackground: {fileID: 0}
+                playerSpeedBar: {fileID: 0}
+                playerSpeedBarText: {fileID: 0}
+                playerCastBar: {fileID: 0}
+                playerCastBarFill: {fileID: 0}
+                playerCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                currentRowPositionID: 0
+                currentRowPosition: {fileID: 0}
+                currentRowPositionIcon: {fileID: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+              Accuracy: 0
+              Evasion: 0
+              enemyOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              EnemyPortrait: {fileID: 0}
+              enemyPanel: {fileID: 0}
+              enemyPanelText: {fileID: 0}
+              enemyPanelBackground: {fileID: 0}
+              enemySpeedBar: {fileID: 0}
+              enemySpeedBarText: {fileID: 0}
+              enemyCastBar: {fileID: 0}
+              enemyCastBarFill: {fileID: 0}
+              enemyCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+              enemyCastAnimCoroutineIsPaused: 0
+              enemyAttackAnimCoroutineIsPaused: 0
+              enemyReadyAnimCoroutineIsPaused: 0
+              enemyAttackAnimIsDone: 0
+              enemyCastAnimIsDone: 0
+              enemyReadyAnimIsDone: 0
+            Accuracy: 0
+            Evasion: 0
+            playerOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            PlayerPortrait: {fileID: 0}
+            playerPanel: {fileID: 0}
+            playerPanelText: {fileID: 0}
+            playerPanelBackground: {fileID: 0}
+            playerSpeedBar: {fileID: 0}
+            playerSpeedBarText: {fileID: 0}
+            playerCastBar: {fileID: 0}
+            playerCastBarFill: {fileID: 0}
+            playerCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            currentRowPositionID: 0
+            currentRowPosition: {fileID: 0}
+            currentRowPositionIcon: {fileID: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+          Accuracy: 0
+          Evasion: 0
+          enemyOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          EnemyPortrait: {fileID: 0}
+          enemyPanel: {fileID: 0}
+          enemyPanelText: {fileID: 0}
+          enemyPanelBackground: {fileID: 0}
+          enemySpeedBar: {fileID: 0}
+          enemySpeedBarText: {fileID: 0}
+          enemyCastBar: {fileID: 0}
+          enemyCastBarFill: {fileID: 0}
+          enemyCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+          enemyCastAnimCoroutineIsPaused: 0
+          enemyAttackAnimCoroutineIsPaused: 0
+          enemyReadyAnimCoroutineIsPaused: 0
+          enemyAttackAnimIsDone: 0
+          enemyCastAnimIsDone: 0
+          enemyReadyAnimIsDone: 0
+        Accuracy: 0
+        Evasion: 0
+        playerOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        PlayerPortrait: {fileID: 0}
+        playerPanel: {fileID: 0}
+        playerPanelText: {fileID: 0}
+        playerPanelBackground: {fileID: 0}
+        playerSpeedBar: {fileID: 0}
+        playerSpeedBarText: {fileID: 0}
+        playerCastBar: {fileID: 0}
+        playerCastBarFill: {fileID: 0}
+        playerCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        currentRowPositionID: 0
+        currentRowPosition: {fileID: 0}
+        currentRowPositionIcon: {fileID: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+      Accuracy: 0
+      Evasion: 0
+      enemyOptions: []
+      spellBook: []
+      activeSpell:
+        name: 
+        castTime: 0
+        spellIcon: {fileID: 0}
+      isCastingSpell: 0
+      EnemyPortrait: {fileID: 0}
+      enemyPanel: {fileID: 0}
+      enemyPanelText: {fileID: 0}
+      enemyPanelBackground: {fileID: 0}
+      enemySpeedBar: {fileID: 0}
+      enemySpeedBarText: {fileID: 0}
+      enemyCastBar: {fileID: 0}
+      enemyCastBarFill: {fileID: 0}
+      enemyCastBarText: {fileID: 0}
+      battleSprite: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      hasConstantAnimationState: 0
+      constantAnimationState: 
+      enemyCastAnimCoroutineIsPaused: 0
+      enemyAttackAnimCoroutineIsPaused: 0
+      enemyReadyAnimCoroutineIsPaused: 0
+      enemyAttackAnimIsDone: 0
+      enemyCastAnimIsDone: 0
+      enemyReadyAnimIsDone: 0
+    Accuracy: 0
+    Evasion: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -21624,6 +25088,202 @@ MonoBehaviour:
       speedTotal: 0
       castSpeed: 0
       castSpeedTotal: 0
+      playerTarget:
+        EnemyName: 
+        currentHP: 0
+        maxHP: 0
+        speed: 0
+        speedTotal: 0
+        castSpeed: 0
+        castSpeedTotal: 0
+        enemyTarget:
+          name: 
+          currentHP: 0
+          maxHP: 0
+          speed: 0
+          speedTotal: 0
+          castSpeed: 0
+          castSpeedTotal: 0
+          playerTarget:
+            EnemyName: 
+            currentHP: 0
+            maxHP: 0
+            speed: 0
+            speedTotal: 0
+            castSpeed: 0
+            castSpeedTotal: 0
+            enemyTarget:
+              name: 
+              currentHP: 0
+              maxHP: 0
+              speed: 0
+              speedTotal: 0
+              castSpeed: 0
+              castSpeedTotal: 0
+              playerTarget:
+                EnemyName: 
+                currentHP: 0
+                maxHP: 0
+                speed: 0
+                speedTotal: 0
+                castSpeed: 0
+                castSpeedTotal: 0
+                enemyTarget:
+                  name: 
+                  currentHP: 0
+                  maxHP: 0
+                  speed: 0
+                  speedTotal: 0
+                  castSpeed: 0
+                  castSpeedTotal: 0
+                  Accuracy: 0
+                  Evasion: 0
+                  isCastingSpell: 0
+                  position: {x: 0, y: 0, z: 0}
+                  target: {x: 0, y: 0, z: 0}
+                  currentRowPositionID: 0
+                  hasConstantAnimationState: 0
+                  constantAnimationState: 
+                Accuracy: 0
+                Evasion: 0
+                enemyOptions: []
+                spellBook: []
+                activeSpell:
+                  name: 
+                  castTime: 0
+                isCastingSpell: 0
+                EnemyPortrait: {fileID: 0}
+                enemyPanel: {fileID: 0}
+                enemyPanelText: {fileID: 0}
+                enemyPanelBackground: {fileID: 0}
+                enemySpeedBar: {fileID: 0}
+                enemySpeedBarText: {fileID: 0}
+                enemyCastBar: {fileID: 0}
+                enemyCastBarFill: {fileID: 0}
+                enemyCastBarText: {fileID: 0}
+                battleSprite: {fileID: 0}
+                position: {x: 0, y: 0, z: 0}
+                target: {x: 0, y: 0, z: 0}
+                hasConstantAnimationState: 0
+                constantAnimationState: 
+                enemyCastAnimCoroutineIsPaused: 0
+                enemyAttackAnimCoroutineIsPaused: 0
+                enemyReadyAnimCoroutineIsPaused: 0
+                enemyAttackAnimIsDone: 0
+                enemyCastAnimIsDone: 0
+                enemyReadyAnimIsDone: 0
+              Accuracy: 0
+              Evasion: 0
+              playerOptions: []
+              spellBook: []
+              activeSpell:
+                name: 
+                castTime: 0
+                spellIcon: {fileID: 0}
+              isCastingSpell: 0
+              PlayerPortrait: {fileID: 0}
+              playerPanel: {fileID: 0}
+              playerPanelText: {fileID: 0}
+              playerPanelBackground: {fileID: 0}
+              playerSpeedBar: {fileID: 0}
+              playerSpeedBarText: {fileID: 0}
+              playerCastBar: {fileID: 0}
+              playerCastBarFill: {fileID: 0}
+              playerCastBarText: {fileID: 0}
+              battleSprite: {fileID: 0}
+              position: {x: 0, y: 0, z: 0}
+              target: {x: 0, y: 0, z: 0}
+              currentRowPositionID: 0
+              currentRowPosition: {fileID: 0}
+              currentRowPositionIcon: {fileID: 0}
+              hasConstantAnimationState: 0
+              constantAnimationState: 
+            Accuracy: 0
+            Evasion: 0
+            enemyOptions: []
+            spellBook: []
+            activeSpell:
+              name: 
+              castTime: 0
+              spellIcon: {fileID: 0}
+            isCastingSpell: 0
+            EnemyPortrait: {fileID: 0}
+            enemyPanel: {fileID: 0}
+            enemyPanelText: {fileID: 0}
+            enemyPanelBackground: {fileID: 0}
+            enemySpeedBar: {fileID: 0}
+            enemySpeedBarText: {fileID: 0}
+            enemyCastBar: {fileID: 0}
+            enemyCastBarFill: {fileID: 0}
+            enemyCastBarText: {fileID: 0}
+            battleSprite: {fileID: 0}
+            position: {x: 0, y: 0, z: 0}
+            target: {x: 0, y: 0, z: 0}
+            hasConstantAnimationState: 0
+            constantAnimationState: 
+            enemyCastAnimCoroutineIsPaused: 0
+            enemyAttackAnimCoroutineIsPaused: 0
+            enemyReadyAnimCoroutineIsPaused: 0
+            enemyAttackAnimIsDone: 0
+            enemyCastAnimIsDone: 0
+            enemyReadyAnimIsDone: 0
+          Accuracy: 0
+          Evasion: 0
+          playerOptions: []
+          spellBook: []
+          activeSpell:
+            name: 
+            castTime: 0
+            spellIcon: {fileID: 0}
+          isCastingSpell: 0
+          PlayerPortrait: {fileID: 0}
+          playerPanel: {fileID: 0}
+          playerPanelText: {fileID: 0}
+          playerPanelBackground: {fileID: 0}
+          playerSpeedBar: {fileID: 0}
+          playerSpeedBarText: {fileID: 0}
+          playerCastBar: {fileID: 0}
+          playerCastBarFill: {fileID: 0}
+          playerCastBarText: {fileID: 0}
+          battleSprite: {fileID: 0}
+          position: {x: 0, y: 0, z: 0}
+          target: {x: 0, y: 0, z: 0}
+          currentRowPositionID: 0
+          currentRowPosition: {fileID: 0}
+          currentRowPositionIcon: {fileID: 0}
+          hasConstantAnimationState: 0
+          constantAnimationState: 
+        Accuracy: 0
+        Evasion: 0
+        enemyOptions: []
+        spellBook: []
+        activeSpell:
+          name: 
+          castTime: 0
+          spellIcon: {fileID: 0}
+        isCastingSpell: 0
+        EnemyPortrait: {fileID: 0}
+        enemyPanel: {fileID: 0}
+        enemyPanelText: {fileID: 0}
+        enemyPanelBackground: {fileID: 0}
+        enemySpeedBar: {fileID: 0}
+        enemySpeedBarText: {fileID: 0}
+        enemyCastBar: {fileID: 0}
+        enemyCastBarFill: {fileID: 0}
+        enemyCastBarText: {fileID: 0}
+        battleSprite: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        target: {x: 0, y: 0, z: 0}
+        hasConstantAnimationState: 0
+        constantAnimationState: 
+        enemyCastAnimCoroutineIsPaused: 0
+        enemyAttackAnimCoroutineIsPaused: 0
+        enemyReadyAnimCoroutineIsPaused: 0
+        enemyAttackAnimIsDone: 0
+        enemyCastAnimIsDone: 0
+        enemyReadyAnimIsDone: 0
+      Accuracy: 0
+      Evasion: 0
       playerOptions: []
       spellBook: []
       activeSpell:
@@ -21648,6 +25308,8 @@ MonoBehaviour:
       currentRowPositionIcon: {fileID: 0}
       hasConstantAnimationState: 0
       constantAnimationState: 
+    Accuracy: 0
+    Evasion: 0
     enemyOptions: []
     spellBook: []
     activeSpell:

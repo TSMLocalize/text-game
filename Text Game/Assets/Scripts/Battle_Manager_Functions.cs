@@ -9,8 +9,8 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager_Functions : MonoBehaviour
 {
-    public Battle_Manager BM;
-    
+    public Battle_Manager BM;    
+
     public int maxMessages;
     public List<Message> messageList;    
     public GameObject chatPanel;   
@@ -32,6 +32,45 @@ public class Battle_Manager_Functions : MonoBehaviour
         public string text;
         public TextMeshProUGUI textObject;
     }    
+
+    //Math Functions
+
+    public void reportToLog(string report)
+    {
+        switch (report)
+        {
+            case "PlayerAttack":
+                float random = Random.Range(1, 101);
+                float outcome = BM.activePlayer.Accuracy + random;
+
+                SendMessagesToCombatLog(
+                        BM.activePlayer.name + "'s hit score is " + outcome + " (" + random + " + " + BM.activePlayer.Accuracy + " acc)" +
+                        " vs " + BM.activePlayer.playerTarget.EnemyName + "'s evasion of " + BM.activePlayer.playerTarget.Evasion + ".");
+
+                if (outcome > BM.activePlayer.playerTarget.Evasion)
+                {
+                    SendMessagesToCombatLog(
+                    BM.activePlayer.name + " hits the enemy!");
+
+                }
+                else
+                {
+                    SendMessagesToCombatLog(
+                    BM.activePlayer.name + " misses the enemy...");
+                }
+                break;
+            case "PlayerWait":
+                SendMessagesToCombatLog(
+                    BM.activePlayer.name + " waits.");
+                break;
+            case "PlayerStartCast":
+                SendMessagesToCombatLog(
+                    BM.activePlayer.name + " starts casting " + BM.activePlayer.activeSpell.name + " on " + BM.activePlayer.playerTarget.EnemyName + ".");
+                break;
+            default:
+                break;
+        }
+    }
 
     // COMBAT LOG FUNCTION
     public void SendMessagesToCombatLog(string text)
