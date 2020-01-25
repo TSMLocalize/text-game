@@ -7,7 +7,8 @@ using TMPro;
 
 [System.Serializable]
 public class Battle_Manager : MonoBehaviour
-{    
+{
+    public TextMeshPro floatingDamage;
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
     public float speed;
@@ -115,7 +116,7 @@ public class Battle_Manager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
         if (stepForward)
         {
             speed = 4.0f;
@@ -225,7 +226,7 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {                                 
-                                activePlayer = ActivePlayers[i];
+                                activePlayer = ActivePlayers[i];                                
 
                                 stepForward = true;
 
@@ -238,6 +239,11 @@ public class Battle_Manager : MonoBehaviour
 
                 break;
             case BattleStates.SELECT_ACTION:
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Instantiate(floatingDamage, activePlayer.battleSprite.transform.position, Quaternion.identity);
+                }
 
                 //Populate action panel with active player's actions
                 BM_Funcs.populateActionList();
