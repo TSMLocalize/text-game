@@ -8,7 +8,10 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager : MonoBehaviour
 {
-    public TextMeshPro floatingDamage;
+    public GameObject floatingDamage = null;
+    public GameObject instantiatedFloatingDamage;
+    public bool floatUp;
+    public Vector3 floatingNumberTarget;
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
     public float speed;
@@ -133,7 +136,21 @@ public class Battle_Manager : MonoBehaviour
                 
                 stepForward = false;
             }
-        }        
+        }
+
+        if (floatUp)
+        {
+            speed = 4.0f;
+
+            float step = speed * Time.deltaTime;
+            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
+
+            if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
+            {
+                Destroy(instantiatedFloatingDamage);
+                floatUp = false;
+            }
+        }
 
         void standIdle(Player playerToIdle)
         {
@@ -226,7 +243,9 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {                                 
-                                activePlayer = ActivePlayers[i];                                
+                                activePlayer = ActivePlayers[i];
+
+                                createFloatingText(activePlayer.battleSprite.transform.position, 123);
 
                                 stepForward = true;
 
@@ -238,12 +257,7 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 break;
-            case BattleStates.SELECT_ACTION:
-
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    Instantiate(floatingDamage, activePlayer.battleSprite.transform.position, Quaternion.identity);
-                }
+            case BattleStates.SELECT_ACTION:                
 
                 //Populate action panel with active player's actions
                 BM_Funcs.populateActionList();
@@ -1055,5 +1069,16 @@ public class Battle_Manager : MonoBehaviour
         {            
             StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
         }        
-    }        
+    }
+
+    void createFloatingText(Vector3 position, float amount)
+    {                
+        instantiatedFloatingDamage = Instantiate(floatingDamage, position, Quaternion.identity);
+
+        instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount.ToString();
+
+        floatingNumberTarget = new Vector3(instantiatedFloatingDamage.transform.position.x, instantiatedFloatingDamage.transform.position.y + 1f);
+
+        floatUp = true;
+    }
 }
