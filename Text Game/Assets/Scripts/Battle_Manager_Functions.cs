@@ -26,7 +26,6 @@ public class Battle_Manager_Functions : MonoBehaviour
         BM = GetComponent<Battle_Manager>();
     }
 
-    [System.Serializable]
     public class Message
     {
         public string text;
