@@ -9,8 +9,7 @@ using TMPro;
 public class Battle_Manager : MonoBehaviour
 {    
     public Battle_Manager_Functions BM_Funcs;
-    public Battle_Manager_IEnumerators BM_Enums;    
-    public Battle_Manager_CombatFuncs BM_Combat;
+    public Battle_Manager_IEnumerators BM_Enums;
     public float speed;
     public bool startRoutinesGoingAgain;
     public bool stepForward;        
@@ -91,7 +90,6 @@ public class Battle_Manager : MonoBehaviour
     {
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
-        BM_Combat = GetComponent<Battle_Manager_CombatFuncs>();
 
         BM_Funcs.setupCharacters();
         
@@ -441,14 +439,6 @@ public class Battle_Manager : MonoBehaviour
                                     activePlayer.isCastingSpell = true;                                    
                                 }
 
-                                for (int y = 0; y < EnemiesInBattle.Count; y++)
-                                {
-                                    if (EnemiesInBattle[y].enemyPanel == EnemyPanels[i])
-                                    {
-                                        activePlayer.playerTarget = EnemiesInBattle[y];
-                                    }
-                                }                                
-
                                 EnemyPanels[i].GetComponent<Image>().color = Color.red;                                
                                 battleStates = BattleStates.RESOLVE_ACTION;
                             }
@@ -690,7 +680,6 @@ public class Battle_Manager : MonoBehaviour
                 
                     if (attackAnimIsDone)
                     {
-                        calculateAccuracy(activePlayer, activePlayer.playerTarget);
                         attackAnimCoroutineIsPaused = true;
                         
                         standIdle(activePlayer);
@@ -945,7 +934,7 @@ public class Battle_Manager : MonoBehaviour
             case BattleStates.RESOLVE_ENEMY_TURN:
 
                 if (selectedCommand == "EnemyAttack")
-                {                    
+                {
                     activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
                     activeEnemy.speedTotal -= 100f;
                     activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
@@ -1046,24 +1035,5 @@ public class Battle_Manager : MonoBehaviour
         {            
             StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
         }        
-    }
-
-    public void calculateAccuracy(Player player, Enemy enemy)
-    {
-        float diceRoll = Random.Range(1, 101);
-        float outcome = diceRoll + player.Accuracy;
-
-        if (outcome > enemy.Evasion)
-        {
-            BM_Funcs.SendMessagesToCombatLog
-                (player.name + " scores " + diceRoll + " + (" + player.Accuracy + ") for a total of " + outcome + "\n" +
-                "Beating " + enemy.EnemyName + "'s Evasion of " + enemy.Evasion + "!");
-        }
-        else
-        {
-            BM_Funcs.SendMessagesToCombatLog
-                (player.name + " scores " + diceRoll + " + (" + player.Accuracy + ") for a total of " + outcome + "\n" +
-                "Hence failing to beat " + enemy.EnemyName + "'s Evasion of " + enemy.Evasion + "...");
-        }
-    }
+    }        
 }

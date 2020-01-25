@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class Enemy_Manager : MonoBehaviour
 {
-
     public List<Enemy> enemiesInBattle;
     public GameObject SpellManager;
     public Enemy Warrior;
