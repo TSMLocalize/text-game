@@ -32,10 +32,10 @@ public class Battle_Manager_Functions : MonoBehaviour
         public string text;
         public TextMeshProUGUI textObject;
     }    
-    
-//Math Functions
 
-public void reportToLog(string report)
+    //Math Functions
+
+    public void reportToLog(string report)
     {
         switch (report)
         {
