@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using UnityEngine.EventSystems;
 using TMPro;
 
@@ -17,10 +18,14 @@ public class Battle_Manager_Functions : MonoBehaviour
     public GameObject chatPanel;   
     public GameObject textObject;
 
+    public int currentOrder;
+    public List<string> order;
     public List<ComboData> comboList;
     public GameObject comboPanel;
     public GameObject comboObject;
     public TextMeshProUGUI comboText;
+
+    int m_IndexNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -32,25 +37,33 @@ public class Battle_Manager_Functions : MonoBehaviour
     }
 
     void Update()
-    {
+    {        
+
+        var sortedList = comboList.OrderBy(comboData => comboData.comboBarPlayer.speedTotal).ToList();
+
+        for (int i = 0; i < sortedList.Count; i++)
+        {
+            sortedList[i].comboGameObject.transform.SetSiblingIndex(i);
+            sortedList[i].comboTextBox.text = sortedList[i].comboBarPlayer.speedTotal + "/100 " + "(" + sortedList[i].comboBarPlayer.speed + ")";
+            sortedList[i].comboGameObject = comboObject;
+            sortedList[i].comboFillBar.transform.localScale = new Vector3(Mathf.Clamp((sortedList[i].comboBarPlayer.speedTotal / 100), 0, 1),
+            sortedList[i].comboFillBar.transform.localScale.y,
+            sortedList[i].comboFillBar.transform.localScale.z);            
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SendToComboLog(BM.activePlayer);
 
             SendMessagesToCombatLog("This is a Message");
             Debug.Log("is this working");
-        }
 
-        for (int i = 0; i < comboList.Count; i++)
-        {            
-            comboList[i].comboTextBox.text = comboList[i].comboBarPlayer.speedTotal + "/100 " + "(" + comboList[i].comboBarPlayer.speed + ")";
-            comboList[i].comboGameObject = comboObject;
-            comboList[i].comboFillBar.transform.localScale = new Vector3(Mathf.Clamp((comboList[i].comboBarPlayer.speedTotal / 100), 0, 1),
-            comboList[i].comboFillBar.transform.localScale.y,
-            comboList[i].comboFillBar.transform.localScale.z);
+            for (int i = 0; i < sortedList.Count; i++)
+            {
+                Debug.Log(sortedList[i].comboGameObject.transform.GetSiblingIndex());
+            }
         }
-
-    }
+}
 
     [System.Serializable]
     public class Message
@@ -59,6 +72,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         public TextMeshProUGUI textObject;
     }
 
+    [System.Serializable]
     public class ComboData
     {
         public Player comboBarPlayer;
@@ -95,14 +109,14 @@ public class Battle_Manager_Functions : MonoBehaviour
         comboData.comboBarPlayer = player;
         comboData.comboGameObject = newComboData.GetComponent<GameObject>();
         comboData.comboTextBox = newComboData.GetComponentInChildren<TextMeshProUGUI>();
-        comboData.comboFillBar = comboPanelArray[1];        
+        comboData.comboFillBar = comboPanelArray[1];            
 
         comboData.comboTextBox.text = player.speedTotal + "/100 " + "(" + player.speed + ")";
         comboData.comboGameObject = comboObject;
         comboData.comboFillBar.transform.localScale = new Vector3(Mathf.Clamp((player.speedTotal / 100), 0, 1),
         comboPanelArray[1].transform.localScale.y,
         comboPanelArray[1].transform.localScale.z);        
-
+        
         comboList.Add(comboData);
     }
 
