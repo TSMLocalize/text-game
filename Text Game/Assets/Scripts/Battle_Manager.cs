@@ -67,7 +67,9 @@ public class Battle_Manager : MonoBehaviour
     public Image[] optionsArray;
     public Image[] playerPanelArray;
     public Image[] enemyPanelArray;
-    public Image[] actionPanelArray;    
+    public Image[] actionPanelArray;
+    public Enemy playerTarget;
+    public Player enemyTarget;
 
     public enum BattleStates
     {
@@ -140,7 +142,7 @@ public class Battle_Manager : MonoBehaviour
 
         if (floatUp)
         {
-            speed = 4.0f;
+            speed = 5.0f;
 
             float step = speed * Time.deltaTime;
             instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
@@ -245,7 +247,7 @@ public class Battle_Manager : MonoBehaviour
                             {                                 
                                 activePlayer = ActivePlayers[i];
 
-                                createFloatingText(activePlayer.battleSprite.transform.position, 123);
+                                createFloatingText(activePlayer.battleSprite.transform.position, 123.ToString());
 
                                 stepForward = true;
 
@@ -458,7 +460,7 @@ public class Battle_Manager : MonoBehaviour
                                 {
                                     if (EnemiesInBattle[y].enemyPanel == EnemyPanels[i])
                                     {
-                                        activePlayer.playerTarget = EnemiesInBattle[y];
+                                        playerTarget = EnemiesInBattle[y];
                                     }
                                 }
 
@@ -905,7 +907,7 @@ public class Battle_Manager : MonoBehaviour
                     battleStates = BattleStates.SELECT_ENEMY_TARGET;
                 } else if(activeEnemy.isCastingSpell == true)
                 {
-                    BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " casts " + activeEnemy.activeSpell.name + " on " + activeEnemy.enemyTarget.name + "!");
+                    BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " casts " + activeEnemy.activeSpell.name + " on " + enemyTarget.name + "!");
                     activeEnemy.enemyCastAnimCoroutineIsPaused = false;
                     StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));
                     selectedCommand = "EnemyResolveSpell";
@@ -921,7 +923,7 @@ public class Battle_Manager : MonoBehaviour
                 {
                     if (randomEnemyTargetNo == i)
                     {
-                        activeEnemy.enemyTarget = PlayersInBattle[i];                        
+                        enemyTarget = PlayersInBattle[i];                        
                     }
                 }
 
@@ -936,12 +938,12 @@ public class Battle_Manager : MonoBehaviour
                     
                     if (selectedCommand == "EnemyAttack")
                     {                        
-                        BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " attacks " + activeEnemy.enemyTarget.name + "!");
+                        BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " attacks " + enemyTarget.name + "!");
 
                         battleStates = BattleStates.ENEMY_ATTACK;
                     } else if (selectedCommand == "EnemySpell")
                     {
-                        BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " starts casting " + activeEnemy.activeSpell.name + " on " + activeEnemy.enemyTarget.name + "!");
+                        BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " starts casting " + activeEnemy.activeSpell.name + " on " + enemyTarget.name + "!");
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     }
                 }
@@ -950,7 +952,7 @@ public class Battle_Manager : MonoBehaviour
             case BattleStates.ENEMY_ATTACK:
 
                 activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
-                BM_Funcs.animationController(activeEnemy.enemyTarget, "TakeDamage");
+                BM_Funcs.animationController(enemyTarget, "TakeDamage");
 
                 activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
 
@@ -959,7 +961,7 @@ public class Battle_Manager : MonoBehaviour
                 if (activeEnemy.enemyAttackAnimIsDone == true)
                 {
                     activeEnemy.enemyAttackAnimIsDone = false;
-                    BM_Funcs.animationController(activeEnemy.enemyTarget);
+                    BM_Funcs.animationController(enemyTarget);
                     activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
                     battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                 }                                
@@ -972,7 +974,7 @@ public class Battle_Manager : MonoBehaviour
                     activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
                     activeEnemy.speedTotal -= 100f;
                     activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
-                    activeEnemy.enemyTarget = null;
+                    enemyTarget = null;
                     ActiveEnemies.Remove(activeEnemy);
                     activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
                     activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
@@ -1071,11 +1073,11 @@ public class Battle_Manager : MonoBehaviour
         }        
     }
 
-    void createFloatingText(Vector3 position, float amount)
+    void createFloatingText(Vector3 position, string amount)
     {                
         instantiatedFloatingDamage = Instantiate(floatingDamage, position, Quaternion.identity);
 
-        instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount.ToString();
+        instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
 
         floatingNumberTarget = new Vector3(instantiatedFloatingDamage.transform.position.x, instantiatedFloatingDamage.transform.position.y + 1f);
 

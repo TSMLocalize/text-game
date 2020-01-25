@@ -45,9 +45,9 @@ public class Battle_Manager_Functions : MonoBehaviour
 
                 SendMessagesToCombatLog(
                         BM.activePlayer.name + "'s hit score is " + outcome + " (" + random + " + " + BM.activePlayer.Accuracy + " acc)" +
-                        " vs " + BM.activePlayer.playerTarget.EnemyName + "'s evasion of " + BM.activePlayer.playerTarget.Evasion + ".");
+                        " vs " + BM.playerTarget.EnemyName + "'s evasion of " + BM.playerTarget.Evasion + ".");
 
-                if (outcome > BM.activePlayer.playerTarget.Evasion)
+                if (outcome > BM.playerTarget.Evasion)
                 {
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " hits the enemy!");
@@ -65,7 +65,7 @@ public class Battle_Manager_Functions : MonoBehaviour
                 break;
             case "PlayerStartCast":
                 SendMessagesToCombatLog(
-                    BM.activePlayer.name + " starts casting " + BM.activePlayer.activeSpell.name + " on " + BM.activePlayer.playerTarget.EnemyName + ".");
+                    BM.activePlayer.name + " starts casting " + BM.activePlayer.activeSpell.name + " on " + BM.playerTarget.EnemyName + ".");
                 break;
             default:
                 break;
