@@ -10,20 +10,11 @@ using TMPro;
 public class Battle_Manager_Functions : MonoBehaviour
 {
     public Battle_Manager BM;
+    
     public int maxMessages;
-
-    public Image[] comboPanelArray;
-
     public List<Message> messageList;    
     public GameObject chatPanel;   
     public GameObject textObject;
-
-    public int currentOrder;
-    public List<string> order;
-    public List<ComboData> comboList;
-    public GameObject comboPanel;
-    public GameObject comboObject;
-    public TextMeshProUGUI comboText;
 
     int m_IndexNumber;
 
@@ -31,55 +22,21 @@ public class Battle_Manager_Functions : MonoBehaviour
     void Start()
     {
         maxMessages = 25;
-        messageList = new List<Message>();
-        comboList = new List<ComboData>();
+        messageList = new List<Message>();        
         BM = GetComponent<Battle_Manager>();
     }
 
     void Update()
-    {        
-
-        var sortedList = comboList.OrderBy(comboData => comboData.comboBarPlayer.speedTotal).ToList();
-
-        for (int i = 0; i < sortedList.Count; i++)
-        {
-            sortedList[i].comboGameObject.transform.SetSiblingIndex(i);
-            sortedList[i].comboTextBox.text = sortedList[i].comboBarPlayer.speedTotal + "/100 " + "(" + sortedList[i].comboBarPlayer.speed + ")";
-            sortedList[i].comboGameObject = comboObject;
-            sortedList[i].comboFillBar.transform.localScale = new Vector3(Mathf.Clamp((sortedList[i].comboBarPlayer.speedTotal / 100), 0, 1),
-            sortedList[i].comboFillBar.transform.localScale.y,
-            sortedList[i].comboFillBar.transform.localScale.z);            
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SendToComboLog(BM.activePlayer);
-
-            SendMessagesToCombatLog("This is a Message");
-            Debug.Log("is this working");
-
-            for (int i = 0; i < sortedList.Count; i++)
-            {
-                Debug.Log(sortedList[i].comboGameObject.transform.GetSiblingIndex());
-            }
-        }
-}
+    {             
+        
+    }
 
     [System.Serializable]
     public class Message
     {
         public string text;
         public TextMeshProUGUI textObject;
-    }
-
-    [System.Serializable]
-    public class ComboData
-    {
-        public Player comboBarPlayer;
-        public GameObject comboGameObject;
-        public TextMeshProUGUI comboTextBox;
-        public Image comboFillBar;
-    }
+    }    
 
     // COMBAT LOG FUNCTION
     public void SendMessagesToCombatLog(string text)
@@ -97,29 +54,6 @@ public class Battle_Manager_Functions : MonoBehaviour
         newMessage.textObject.text = newMessage.text;
         messageList.Add(newMessage);
     }
-
-    // COMBO LOG FUNCTION
-    public void SendToComboLog(Player player)
-    {        
-        ComboData comboData = new ComboData();  
-        
-        GameObject newComboData = Instantiate(comboObject, comboPanel.transform);
-
-        comboPanelArray = newComboData.GetComponentsInChildren<Image>();
-        comboData.comboBarPlayer = player;
-        comboData.comboGameObject = newComboData.GetComponent<GameObject>();
-        comboData.comboTextBox = newComboData.GetComponentInChildren<TextMeshProUGUI>();
-        comboData.comboFillBar = comboPanelArray[1];            
-
-        comboData.comboTextBox.text = player.speedTotal + "/100 " + "(" + player.speed + ")";
-        comboData.comboGameObject = comboObject;
-        comboData.comboFillBar.transform.localScale = new Vector3(Mathf.Clamp((player.speedTotal / 100), 0, 1),
-        comboPanelArray[1].transform.localScale.y,
-        comboPanelArray[1].transform.localScale.z);        
-        
-        comboList.Add(comboData);
-    }
-
 
     // BATTLE MANAGER FUNCTIONS
 
