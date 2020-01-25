@@ -7,9 +7,13 @@ using TMPro;
 
 [System.Serializable]
 public class Battle_Manager : MonoBehaviour
-{    
+{
+    //Floating Text
+    [SerializeField] public Transform pfDamagePopup;
+    //
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
+    public Floating_Text fText;
     public float speed;
     public bool startRoutinesGoingAgain;
     public bool stepForward;        
@@ -88,8 +92,12 @@ public class Battle_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
+        fText = FindObjectOfType<Floating_Text>();
+
+        fText.Create(Vector3.zero, 300);
 
         BM_Funcs.setupCharacters();
         
@@ -110,7 +118,6 @@ public class Battle_Manager : MonoBehaviour
         m_EventSystem = GetComponent<EventSystem>();
 
         battleStates = BattleStates.DEFAULT;        
-
     }
 
     // Update is called once per frame
