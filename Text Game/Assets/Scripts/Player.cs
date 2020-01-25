@@ -14,7 +14,11 @@ public class Player
     public float speed;
     public float speedTotal;
     public float castSpeed;
-    public float castSpeedTotal;    
+    public float castSpeedTotal;
+
+    //Battle variables
+    public float Accuracy;
+    public float Evasion;
 
     //Spell & ability related
     public List<string> playerOptions;

@@ -55,6 +55,24 @@ public class Enemy_Manager : MonoBehaviour
         Bard.currentHP = 10f;
         Machinist.currentHP = 10f;
 
+        Warrior.Accuracy = 5f;
+        Thief.Accuracy = 10f;
+        Wizard.Accuracy = 15f;
+        Priest.Accuracy = 20f;
+        Paladin.Accuracy = 25f;
+        Ranger.Accuracy = 30f;
+        Bard.Accuracy = 10f;
+        Machinist.Accuracy = 15f;
+
+        Warrior.Evasion = 5f;
+        Thief.Evasion = 10f;
+        Wizard.Evasion = 15f;
+        Priest.Evasion = 20f;
+        Paladin.Evasion = 25f;
+        Ranger.Evasion = 30f;
+        Bard.Evasion = 10f;
+        Machinist.Evasion = 15f;
+
         enemiesInBattle.Add(Warrior);
         enemiesInBattle.Add(Thief);
         enemiesInBattle.Add(Wizard);

@@ -7,6 +7,7 @@ using TMPro;
 [System.Serializable]
 public class Enemy
 {
+    //Basic variables
     public string EnemyName;
     public float currentHP;
     public float maxHP;
@@ -15,6 +16,10 @@ public class Enemy
     public float castSpeed;
     public float castSpeedTotal;
     public Player enemyTarget;
+
+    //Battle variables
+    public float Accuracy;
+    public float Evasion;
 
     //Spell & ability related
     public List<string> enemyOptions;

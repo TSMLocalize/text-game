@@ -49,7 +49,21 @@ public class Party_Manager : MonoBehaviour
         Jennifer.currentHP = 10f;
         Jessica.currentHP = 10f;
         Jody.currentHP = 10f;
-        Jenny.currentHP = 10f;        
+        Jenny.currentHP = 10f;
+
+        Josie.Accuracy = 5f;
+        Jemima.Accuracy = 10f;
+        Jennifer.Accuracy = 15f;
+        Jessica.Accuracy = 20f;
+        Jody.Accuracy = 25f;
+        Jenny.Accuracy = 30f;
+
+        Josie.Evasion = 5f;
+        Jemima.Evasion = 10f;
+        Jennifer.Evasion = 15f;
+        Jessica.Evasion = 20f;
+        Jody.Evasion = 25f;
+        Jenny.Evasion = 30f;
 
         Josie.currentRowPositionID = 1;
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
