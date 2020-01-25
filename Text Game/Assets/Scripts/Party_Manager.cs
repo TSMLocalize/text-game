@@ -65,6 +65,20 @@ public class Party_Manager : MonoBehaviour
         Jody.Evasion = 25f;
         Jenny.Evasion = 30f;
 
+        Josie.Attack = 5f;
+        Jemima.Attack = 10f;
+        Jennifer.Attack = 15f;
+        Jessica.Attack = 20f;
+        Jody.Attack = 25f;
+        Jenny.Attack = 30f;
+
+        Josie.Armor = 5f;
+        Jemima.Armor = 10f;
+        Jennifer.Armor = 15f;
+        Jessica.Armor = 20f;
+        Jody.Armor = 25f;
+        Jenny.Armor = 30f;
+
         Josie.currentRowPositionID = 1;
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);

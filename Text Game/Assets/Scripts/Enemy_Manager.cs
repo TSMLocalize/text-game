@@ -73,6 +73,24 @@ public class Enemy_Manager : MonoBehaviour
         Bard.Evasion = 90f;
         Machinist.Evasion = 100f;
 
+        Warrior.Armor = 55f;
+        Thief.Armor = 50f;
+        Wizard.Armor = 65f;
+        Priest.Armor = 70f;
+        Paladin.Armor = 75f;
+        Ranger.Armor = 80f;
+        Bard.Armor = 90f;
+        Machinist.Attack = 100f;
+
+        Warrior.Armor = 55f;
+        Thief.Armor = 50f;
+        Wizard.Armor = 65f;
+        Priest.Armor = 70f;
+        Paladin.Armor = 75f;
+        Ranger.Armor = 80f;
+        Bard.Armor = 90f;
+        Machinist.Armor = 100f;
+
         enemiesInBattle.Add(Warrior);
         enemiesInBattle.Add(Thief);
         enemiesInBattle.Add(Wizard);

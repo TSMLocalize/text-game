@@ -33,7 +33,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         public TextMeshProUGUI textObject;
     }    
 
-    //Math Functions
+    //GAMEPLAY FUNCTIONS
 
     public void reportToLog(string report)
     {
@@ -72,7 +72,19 @@ public class Battle_Manager_Functions : MonoBehaviour
         }
     }
 
-    // COMBAT LOG FUNCTION
+    // CREATE TEXT FUNCTIONS
+
+    public void createFloatingText(Vector3 position, string amount)
+    {
+        BM.instantiatedFloatingDamage = Instantiate(BM.floatingDamage, position, Quaternion.identity);
+
+        BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
+
+        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);
+
+        BM.floatUp = true;
+    }
+
     public void SendMessagesToCombatLog(string text)
     {        
         if (messageList.Count >= maxMessages)
@@ -89,7 +101,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         messageList.Add(newMessage);
     }
 
-    // BATTLE MANAGER FUNCTIONS
+    // BATTLE MANAGER UI FUNCTIONS
 
     public void setupCharacters()
     {

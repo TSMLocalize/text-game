@@ -247,7 +247,7 @@ public class Battle_Manager : MonoBehaviour
                             {                                 
                                 activePlayer = ActivePlayers[i];
 
-                                createFloatingText(activePlayer.battleSprite.transform.position, 123.ToString());
+                                BM_Funcs.createFloatingText(activePlayer.battleSprite.transform.position, 123.ToString());
 
                                 stepForward = true;
 
@@ -1071,16 +1071,5 @@ public class Battle_Manager : MonoBehaviour
         {            
             StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
         }        
-    }
-
-    void createFloatingText(Vector3 position, string amount)
-    {                
-        instantiatedFloatingDamage = Instantiate(floatingDamage, position, Quaternion.identity);
-
-        instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
-
-        floatingNumberTarget = new Vector3(instantiatedFloatingDamage.transform.position.x, instantiatedFloatingDamage.transform.position.y + 1f);
-
-        floatUp = true;
     }
 }
