@@ -11,6 +11,7 @@ public class Battle_Manager : MonoBehaviour
     public GameObject floatingDamage = null;
     public GameObject instantiatedFloatingDamage;
     public bool floatUp;
+    public float floatStep;
     public Vector3 floatingNumberTarget;
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
@@ -143,13 +144,13 @@ public class Battle_Manager : MonoBehaviour
 
         if (floatUp)
         {
-            floatingTextSpeed = 2.0f;
+            floatingTextSpeed = 2.0f;            
 
-            float floatStep = floatingTextSpeed * Time.deltaTime;
+            floatStep = floatingTextSpeed * Time.deltaTime;
             instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, floatStep);
 
             if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
-            {
+            {                
                 Destroy(instantiatedFloatingDamage);
                 floatUp = false;
             }
@@ -954,14 +955,18 @@ public class Battle_Manager : MonoBehaviour
                     if (selectedCommand == "EnemyAttack")
                     {
                         BM_Funcs.reportToLog("EnemyAttack");
-
-                        battleStates = BattleStates.ENEMY_ATTACK;                                                
+                     
+                        if (BM_Funcs.enemyAttackReportFinished == true)
+                        {
+                            BM_Funcs.enemyAttackReportFinished = false;
+                            battleStates = BattleStates.ENEMY_ATTACK;
+                        }
 
                     } else if (selectedCommand == "EnemySpell")
                     {
                         BM_Funcs.reportToLog("EnemyStartCast");
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
-                    }
+                    }                    
                 }
 
                 break;
@@ -974,7 +979,7 @@ public class Battle_Manager : MonoBehaviour
 
                 activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
 
-                StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));                                
+                StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));
 
                 if (activeEnemy.enemyAttackAnimIsDone == true)
                 {
@@ -982,13 +987,13 @@ public class Battle_Manager : MonoBehaviour
                     BM_Funcs.animationController(enemyTarget);
                     activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
                     battleStates = BattleStates.RESOLVE_ENEMY_TURN;
-                }                                
+                }                
 
                 break;
             case BattleStates.RESOLVE_ENEMY_TURN:
 
                 if (selectedCommand == "EnemyAttack")
-                {
+                {                    
                     BM_Funcs.enemyAnimationController(activeEnemy);                    
                     activeEnemy.speedTotal -= 100f;
                     activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
