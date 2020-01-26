@@ -85,10 +85,8 @@ public class Battle_Manager_Functions : MonoBehaviour
                     spellReportFinished = true;
                 }                
                 break;
-            case "EnemyAttack":         
-                
+            case "EnemyAttack":                
                 setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
-                
                 float enemyRandom = Random.Range(1, 101);
                 float enemyOutcome = BM.activeEnemy.Accuracy + enemyRandom;
 
@@ -106,7 +104,7 @@ public class Battle_Manager_Functions : MonoBehaviour
                 {
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " misses the player...");
-                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");
+                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");                    
                 }
                 break;            
             case "EnemyStartCast":
