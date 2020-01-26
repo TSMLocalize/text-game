@@ -9,13 +9,18 @@ using TMPro;
 public class Battle_Manager : MonoBehaviour
 {
     public GameObject floatingDamage = null;
+    public GameObject enemyfloatingDamage = null;
     public GameObject instantiatedFloatingDamage;
+    public GameObject enemyInstantiatedFloatingDamage;
     public bool floatUp;
+    public bool enemyFloatUp;
     public Vector3 floatingNumberTarget;
+    public Vector3 enemyfloatingNumberTarget;
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
     public float speed;
     public float floatingTextSpeed;
+    public float enemyFloatingTextSpeed;
     public bool startRoutinesGoingAgain;
     public bool stepForward;        
     public bool attackAnimIsDone;
@@ -62,6 +67,7 @@ public class Battle_Manager : MonoBehaviour
     public Spells SpellManager;     
     public bool coroutineIsPaused = false;    
     public bool returningStarting = true;    
+
     public string selectedCommand = null;    
     public Color defaultColor;
     public Color defaultBlueColor;
@@ -152,6 +158,20 @@ public class Battle_Manager : MonoBehaviour
             {
                 Destroy(instantiatedFloatingDamage);
                 floatUp = false;
+            }
+        }
+
+        if (enemyFloatUp)
+        {
+            enemyFloatingTextSpeed = 2.0f;
+
+            float enemyFloatStep = enemyFloatingTextSpeed * Time.deltaTime;
+            enemyInstantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(enemyInstantiatedFloatingDamage.gameObject.transform.position, enemyfloatingNumberTarget, enemyFloatStep);
+
+            if (enemyInstantiatedFloatingDamage.transform.position == enemyfloatingNumberTarget)
+            {
+                Destroy(enemyInstantiatedFloatingDamage);
+                enemyFloatUp = false;
             }
         }
 
@@ -955,7 +975,7 @@ public class Battle_Manager : MonoBehaviour
                     {
                         BM_Funcs.reportToLog("EnemyAttack");
 
-                        battleStates = BattleStates.ENEMY_ATTACK;                                                
+                        battleStates = BattleStates.RESOLVE_ENEMY_TURN;                                                
 
                     } else if (selectedCommand == "EnemySpell")
                     {
@@ -965,52 +985,40 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 break;
-            case BattleStates.ENEMY_ATTACK:
-
-                BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
-
-                BM_Funcs.enemyAnimationController(activeEnemy, "IsAttacking");
-                BM_Funcs.animationController(enemyTarget, "TakeDamage");
-
-                activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
-
-                StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));                                
-
-                if (activeEnemy.enemyAttackAnimIsDone == true)
-                {
-                    activeEnemy.enemyAttackAnimIsDone = false;
-                    BM_Funcs.animationController(enemyTarget);
-                    activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
-                    battleStates = BattleStates.RESOLVE_ENEMY_TURN;
-                }                                
-
-                break;
             case BattleStates.RESOLVE_ENEMY_TURN:
 
                 if (selectedCommand == "EnemyAttack")
                 {
-                    BM_Funcs.enemyAnimationController(activeEnemy);                    
-                    activeEnemy.speedTotal -= 100f;
-                    activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
-                    activeEnemy.EnemyTargetID = null;
-                    enemyTarget = null;
-                    ActiveEnemies.Remove(activeEnemy);
-                    activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
-                    activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
-                    activeEnemy.enemyAttackAnimIsDone = false;
-                    activeEnemy.enemyReadyAnimIsDone = false;
-                    activeEnemy = null;
-                    selectedCommand = null;
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
+                    activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
+                    StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));
+                    BM_Funcs.enemyAnimationController(activeEnemy, "IsAttacking");
+                    BM_Funcs.animationController(enemyTarget, "TakeDamage");
 
-                    if (ActiveEnemies.Count == 0)
+                    if (activeEnemy.enemyAttackAnimIsDone)
                     {
-                        returningStarting = true;
-                        startRoutinesGoingAgain = true;
-                        battleStates = BattleStates.DEFAULT;
-                    }
-                    else
-                    {
-                        battleStates = BattleStates.SELECT_ENEMY;
+                        activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
+                        activeEnemy.enemyAttackAnimIsDone = false;
+                        BM_Funcs.animationController(enemyTarget);
+                        BM_Funcs.enemyAnimationController(activeEnemy);
+                        activeEnemy.speedTotal -= 100f;
+                        activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
+                        ActiveEnemies.Remove(activeEnemy);
+                        activeEnemy = null;
+                        selectedCommand = null;
+
+                        if (ActiveEnemies.Count == 0)
+                        {
+                            returningStarting = true;
+                            startRoutinesGoingAgain = true;
+
+                            BM_Funcs.redirectAction();
+                            battleStates = BattleStates.DEFAULT;
+                        }
+                        else
+                        {
+                            battleStates = BattleStates.SELECT_ENEMY;
+                        }
                     }
                 }
 

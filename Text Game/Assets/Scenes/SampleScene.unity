@@ -1029,7 +1029,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000015258789}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &73059372
@@ -13896,7 +13896,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1190124505}
   m_HandleRect: {fileID: 1190124504}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -21326,13 +21326,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingDamage: {fileID: 2614911549536912700, guid: ee9280d83beb36a4183dfc82241d258d,
     type: 3}
+  enemyfloatingDamage: {fileID: 2614911549536912700, guid: 445208f359dcee84aa026e475c0ee79b,
+    type: 3}
   instantiatedFloatingDamage: {fileID: 0}
+  enemyInstantiatedFloatingDamage: {fileID: 0}
   floatUp: 0
+  enemyFloatUp: 0
   floatingNumberTarget: {x: 0, y: 0, z: 0}
+  enemyfloatingNumberTarget: {x: 0, y: 0, z: 0}
   BM_Funcs: {fileID: 1548464335}
   BM_Enums: {fileID: 0}
   speed: 0
   floatingTextSpeed: 0
+  enemyFloatingTextSpeed: 0
   startRoutinesGoingAgain: 0
   stepForward: 0
   attackAnimIsDone: 0
