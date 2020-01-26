@@ -142,7 +142,7 @@ public class Battle_Manager : MonoBehaviour
 
         if (floatUp)
         {
-            speed = 5.0f;
+            speed = 2.0f;
 
             float step = speed * Time.deltaTime;
             instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
@@ -242,12 +242,10 @@ public class Battle_Manager : MonoBehaviour
                     foreach (RaycastResult result in results)
                     {
                         for (int i = 0; i < ActivePlayers.Count; i++)
-                        {
+                        {                            
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {                                 
-                                activePlayer = ActivePlayers[i];
-
-                                BM_Funcs.createFloatingText(activePlayer.battleSprite.transform.position, 123.ToString());
+                                activePlayer = ActivePlayers[i];                                
 
                                 stepForward = true;
 
@@ -469,7 +467,10 @@ public class Battle_Manager : MonoBehaviour
                                     activePlayer.isCastingSpell = true;                                    
                                 }
 
-                                EnemyPanels[i].GetComponent<Image>().color = Color.red;                                
+                                EnemyPanels[i].GetComponent<Image>().color = Color.red;
+
+                                BM_Funcs.reportToLog("PlayerAttack");
+
                                 battleStates = BattleStates.RESOLVE_ACTION;
                             }
                         }
@@ -709,9 +710,7 @@ public class Battle_Manager : MonoBehaviour
                     BM_Funcs.animationController(activePlayer, "IsAttacking");                    
 
                     if (attackAnimIsDone)
-                    {
-                        BM_Funcs.reportToLog("PlayerAttack");
-
+                    {                                                
                         attackAnimCoroutineIsPaused = true;
                         
                         standIdle(activePlayer);

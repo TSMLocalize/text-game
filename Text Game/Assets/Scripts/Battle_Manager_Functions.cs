@@ -51,12 +51,14 @@ public class Battle_Manager_Functions : MonoBehaviour
                 {
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " hits the enemy!");
+                    createFloatingText(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
 
                 }
                 else
                 {
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " misses the enemy...");
+                    createFloatingText(BM.playerTarget.battleSprite.transform.position, "Miss!");
                 }
                 break;
             case "PlayerWait":
