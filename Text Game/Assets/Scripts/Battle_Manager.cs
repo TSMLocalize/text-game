@@ -206,7 +206,7 @@ public class Battle_Manager : MonoBehaviour
                     {
                         if (EnemiesInBattle[i].isCastingSpell != true)
                         {
-                            EnemiesInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+                            BM_Funcs.enemyAnimationController(EnemiesInBattle[i], "IsReady");
                         }
                         
                         EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
@@ -300,10 +300,13 @@ public class Battle_Manager : MonoBehaviour
                                 if (selectedCommand == "Magic")
                                 {
                                     BM_Funcs.populateSpellOptionList();
-                                    //populateSpellOptionList();
+                                    
+                                }                                
+                                else if (selectedCommand == "Cast")
+                                {
+                                    BM_Funcs.reportToLog("PlayerFinishCast");                                   
                                 }
 
-                                //Chooses the switch statement based on whether Attack, Magic etc. selected
                                 BM_Funcs.redirectAction();
                             }
                         }
@@ -458,7 +461,7 @@ public class Battle_Manager : MonoBehaviour
                                 {
                                     if (EnemiesInBattle[y].enemyPanel == EnemyPanels[i])
                                     {
-                                        playerTarget = EnemiesInBattle[y];
+                                        activePlayer.PlayerTargetID = EnemiesInBattle[y].EnemyName;
                                     }
                                 }
 
@@ -466,10 +469,12 @@ public class Battle_Manager : MonoBehaviour
                                 {                                    
                                     activePlayer.isCastingSpell = true;                                    
                                 }
+                                else if (selectedCommand == "Attack")
+                                {
+                                    BM_Funcs.reportToLog("PlayerAttack");
+                                }                                
 
-                                EnemyPanels[i].GetComponent<Image>().color = Color.red;
-
-                                BM_Funcs.reportToLog("PlayerAttack");
+                                EnemyPanels[i].GetComponent<Image>().color = Color.red;                                
 
                                 battleStates = BattleStates.RESOLVE_ACTION;
                             }
@@ -702,9 +707,10 @@ public class Battle_Manager : MonoBehaviour
 
                 break;
             case BattleStates.RESOLVE_ACTION:
-
+                
                 if (selectedCommand == "Attack")
                 {                    
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(activePlayer, null);
                     attackAnimCoroutineIsPaused = false;
                     StartCoroutine(BM_Enums.waitForAttackAnimation());
                     BM_Funcs.animationController(activePlayer, "IsAttacking");                    
@@ -742,6 +748,7 @@ public class Battle_Manager : MonoBehaviour
                 }                                
                 else if (activePlayer.isCastingSpell)
                 {
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(activePlayer, null);
                     BM_Funcs.reportToLog("PlayerStartCast");
 
                     BM_Funcs.animationController(activePlayer, "IsChanting");                    
@@ -840,39 +847,44 @@ public class Battle_Manager : MonoBehaviour
 
             case BattleStates.RESOLVE_SPELL:
 
-                castAnimCoroutineIsPaused = false;
-                StartCoroutine(BM_Enums.waitForCastAnimation());
-                BM_Funcs.animationController(activePlayer, "IsCasting");
-
-                if (castAnimIsDone)
+                if (selectedCommand == "Cast")
                 {
-                    castAnimCoroutineIsPaused = true;
-                    activePlayer.constantAnimationState = null;
-                    activePlayer.hasConstantAnimationState = false;
-                    BM_Funcs.animationController(activePlayer);
-                    standIdle(activePlayer);
-                    activePlayer.isCastingSpell = false;
-                    activePlayer.playerCastBar.SetActive(false);
-                    activePlayer.castSpeedTotal = 0f;
-                    activePlayer.playerOptions.Remove("Cast");
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(activePlayer, null);
+                    castAnimCoroutineIsPaused = false;
+                    StartCoroutine(BM_Enums.waitForCastAnimation());
+                    BM_Funcs.animationController(activePlayer, "IsCasting");
 
-                    activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                    BM_Funcs.resetChoicePanel();
-                    ActionPanel.SetActive(false);
-                    ActivePlayers.Remove(activePlayer);
-                    activePlayer = null;
-                    selectedCommand = null;
-
-                    if (ActivePlayers.Count == 0)
+                    if (castAnimIsDone)
                     {
-                        returningStarting = true;
+                        BM_Funcs.spellReportFinished = false;
+                        castAnimCoroutineIsPaused = true;
+                        activePlayer.constantAnimationState = null;
+                        activePlayer.hasConstantAnimationState = false;
+                        BM_Funcs.animationController(activePlayer);
+                        standIdle(activePlayer);
+                        activePlayer.isCastingSpell = false;
+                        activePlayer.playerCastBar.SetActive(false);
+                        activePlayer.castSpeedTotal = 0f;
+                        activePlayer.playerOptions.Remove("Cast");
 
-                        startRoutinesGoingAgain = true;
-                        BM_Funcs.redirectAction();
-                    }
-                    else
-                    {
-                        battleStates = BattleStates.SELECT_PLAYER;
+                        activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
+                        BM_Funcs.resetChoicePanel();
+                        ActionPanel.SetActive(false);
+                        ActivePlayers.Remove(activePlayer);
+                        activePlayer = null;
+                        selectedCommand = null;
+
+                        if (ActivePlayers.Count == 0)
+                        {
+                            returningStarting = true;
+
+                            startRoutinesGoingAgain = true;
+                            BM_Funcs.redirectAction();
+                        }
+                        else
+                        {
+                            battleStates = BattleStates.SELECT_PLAYER;
+                        }
                     }
                 }                
 
@@ -904,8 +916,10 @@ public class Battle_Manager : MonoBehaviour
                     }
 
                     battleStates = BattleStates.SELECT_ENEMY_TARGET;
+
                 } else if(activeEnemy.isCastingSpell == true)
                 {
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
                     BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " casts " + activeEnemy.activeSpell.name + " on " + enemyTarget.name + "!");
                     activeEnemy.enemyCastAnimCoroutineIsPaused = false;
                     StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));
@@ -922,7 +936,7 @@ public class Battle_Manager : MonoBehaviour
                 {
                     if (randomEnemyTargetNo == i)
                     {
-                        enemyTarget = PlayersInBattle[i];                        
+                        activeEnemy.EnemyTargetID = PlayersInBattle[i].name;                        
                     }
                 }
 
@@ -933,15 +947,18 @@ public class Battle_Manager : MonoBehaviour
                 {
                     activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
                     activeEnemy.enemyReadyAnimIsDone = false;
-                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
-                    
+                    BM_Funcs.enemyAnimationController(activeEnemy);
+
                     if (selectedCommand == "EnemyAttack")
-                    {                        
+                    {
+                        BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
+                        BM_Funcs.createFloatingText(enemyTarget.battleSprite.transform.position, activeEnemy.Attack.ToString());
                         BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " attacks " + enemyTarget.name + "!");
 
                         battleStates = BattleStates.ENEMY_ATTACK;
                     } else if (selectedCommand == "EnemySpell")
                     {
+                        BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
                         BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " starts casting " + activeEnemy.activeSpell.name + " on " + enemyTarget.name + "!");
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     }
@@ -950,7 +967,9 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.ENEMY_ATTACK:
 
-                activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
+                BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
+
+                BM_Funcs.enemyAnimationController(activeEnemy, "IsAttacking");
                 BM_Funcs.animationController(enemyTarget, "TakeDamage");
 
                 activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
@@ -970,9 +989,10 @@ public class Battle_Manager : MonoBehaviour
 
                 if (selectedCommand == "EnemyAttack")
                 {
-                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
+                    BM_Funcs.enemyAnimationController(activeEnemy);                    
                     activeEnemy.speedTotal -= 100f;
                     activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
+                    activeEnemy.EnemyTargetID = null;
                     enemyTarget = null;
                     ActiveEnemies.Remove(activeEnemy);
                     activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
@@ -995,10 +1015,10 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 if (selectedCommand == "EnemySpell")
-                {
-                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);                                                            
-                    activeEnemy.isCastingSpell = true;
+                {                                                                                
                     activeEnemy.constantAnimationState = "IsChanting";
+                    BM_Funcs.enemyAnimationController(activeEnemy, "IsChanting");
+                    activeEnemy.isCastingSpell = true;                    
                     activeEnemy.hasConstantAnimationState = true;                    
                     activeEnemy.enemyCastBar.SetActive(true);
                     activeEnemy.castSpeedTotal = activeEnemy.activeSpell.castTime;                                        
@@ -1021,22 +1041,22 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 if (selectedCommand == "EnemyResolveSpell")
-                {                    
-                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);                    
-                    activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);                    
+                {                                                      
+                    BM_Funcs.enemyAnimationController(activeEnemy, "IsCasting");
 
                     if (activeEnemy.enemyCastAnimIsDone)
                     {
                         activeEnemy.enemyCastAnimCoroutineIsPaused = true;
                         activeEnemy.enemyCastAnimIsDone = false;
                         activeEnemy.constantAnimationState = null;
-                        activeEnemy.hasConstantAnimationState = false;
-                        activeEnemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);                        
+                        BM_Funcs.enemyAnimationController(activeEnemy);                        
                         activeEnemy.isCastingSpell = false;
                         activeEnemy.enemyCastBar.SetActive(false);
                         activeEnemy.castSpeedTotal = 0f;                        
                         activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;                                                
                         ActiveEnemies.Remove(activeEnemy);
+                        activeEnemy.EnemyTargetID = null;
+                        enemyTarget = null;
                         activeEnemy = null;
                         selectedCommand = null;
 

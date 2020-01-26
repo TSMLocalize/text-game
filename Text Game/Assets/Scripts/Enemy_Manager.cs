@@ -19,8 +19,8 @@ public class Enemy_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {        
-        Warrior.speed = 2f;
-        Thief.speed = 2f;
+        Warrior.speed = 20f;
+        Thief.speed = 20f;
         Wizard.speed = 1f;
         Priest.speed = 1f;
         Paladin.speed = 1f;
@@ -73,13 +73,13 @@ public class Enemy_Manager : MonoBehaviour
         Bard.Evasion = 90f;
         Machinist.Evasion = 100f;
 
-        Warrior.Armor = 55f;
-        Thief.Armor = 50f;
-        Wizard.Armor = 65f;
-        Priest.Armor = 70f;
-        Paladin.Armor = 75f;
-        Ranger.Armor = 80f;
-        Bard.Armor = 90f;
+        Warrior.Attack = 55f;
+        Thief.Attack = 50f;
+        Wizard.Attack = 65f;
+        Priest.Attack = 70f;
+        Paladin.Attack = 75f;
+        Ranger.Attack = 80f;
+        Bard.Attack = 90f;
         Machinist.Attack = 100f;
 
         Warrior.Armor = 55f;

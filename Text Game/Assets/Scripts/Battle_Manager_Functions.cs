@@ -9,7 +9,8 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager_Functions : MonoBehaviour
 {
-    public Battle_Manager BM;    
+    public Battle_Manager BM;
+    public bool spellReportFinished;
 
     public int maxMessages;
     public List<Message> messageList;    
@@ -40,6 +41,9 @@ public class Battle_Manager_Functions : MonoBehaviour
         switch (report)
         {
             case "PlayerAttack":
+                
+                setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+
                 float random = Random.Range(1, 101);
                 float outcome = BM.activePlayer.Accuracy + random;
 
@@ -66,11 +70,50 @@ public class Battle_Manager_Functions : MonoBehaviour
                     BM.activePlayer.name + " waits.");
                 break;
             case "PlayerStartCast":
+                
+                setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+
                 SendMessagesToCombatLog(
                     BM.activePlayer.name + " starts casting " + BM.activePlayer.activeSpell.name + " on " + BM.playerTarget.EnemyName + ".");
                 break;
+            case "PlayerFinishCast":
+                while (spellReportFinished == false)
+                {
+                    setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+
+                    SendMessagesToCombatLog(
+                        BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
+                    spellReportFinished = true;
+                }                
+                break;
             default:
                 break;
+        }
+    }
+
+    //This method has been added because of serialization issues
+    //players and enemies store their target by a name ID instead
+    public void setPlayerOrEnemyTargetFromID(Player player = null, Enemy enemy = null) 
+    {
+        if (player != null)
+        {
+            for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+            {
+                if (player.PlayerTargetID == BM.EnemiesInBattle[i].EnemyName)
+                {
+                    BM.playerTarget = BM.EnemiesInBattle[i];
+                }
+            }
+        }
+        else if (enemy != null)
+        {
+            for (int i = 0; i < BM.PlayersInBattle.Count; i++)
+            {
+                if (enemy.EnemyTargetID == BM.PlayersInBattle[i].name)
+                {
+                    BM.enemyTarget = BM.PlayersInBattle[i];
+                }
+            }
         }
     }
 
@@ -349,7 +392,7 @@ public class Battle_Manager_Functions : MonoBehaviour
     }
 
     public void redirectAction()
-    {
+    {        
         if (BM.startRoutinesGoingAgain)
         {
             if (BM.ActiveEnemies.Count > 0)
@@ -368,8 +411,7 @@ public class Battle_Manager_Functions : MonoBehaviour
                 BM.battleStates = Battle_Manager.BattleStates.SELECT_TARGET;
             }
             else if (BM.selectedCommand == "Magic")
-            {
-                this.populateSpellOptionList();
+            {                
                 BM.battleStates = Battle_Manager.BattleStates.SELECT_OPTION;
             }
             else if (BM.selectedCommand == "Wait")
@@ -377,7 +419,7 @@ public class Battle_Manager_Functions : MonoBehaviour
                 BM.battleStates = Battle_Manager.BattleStates.RESOLVE_ACTION;
             }
             else if (BM.selectedCommand == "Cast")
-            {
+            {               
                 BM.battleStates = Battle_Manager.BattleStates.RESOLVE_SPELL;
             }
             else if (BM.selectedCommand == "Change Row")
@@ -425,5 +467,44 @@ public class Battle_Manager_Functions : MonoBehaviour
         {
             player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationState, true);
         }
+    }
+
+    public void enemyAnimationController(Enemy enemy, string state = null)
+    {
+        enemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
+        enemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
+        enemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
+        enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
+        //enemy.battleSprite.GetComponent<Animator>().SetBool("IsWalking", false);
+        //enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);
+
+        if (state == "TakeDamage")
+        {
+            enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", true);
+        }
+        else if (state == "IsAttacking")
+        {
+            enemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
+        }
+        else if (state == "IsCasting")
+        {
+            enemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
+        }
+        else if (state == "IsReady")
+        {
+            enemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+        }
+        else if (state == "IsChanting")
+        {
+            enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
+        }
+        else if (state == "IsWalking")
+        {
+            enemy.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
+        }
+        /*else if (enemy.hasConstantAnimationState)
+        {
+            enemy.battleSprite.GetComponent<Animator>().SetBool(enemy.constantAnimationState, true);
+        } */
     }
 }

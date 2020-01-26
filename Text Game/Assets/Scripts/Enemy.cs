@@ -14,7 +14,8 @@ public class Enemy
     public float speed;
     public float speedTotal;
     public float castSpeed;
-    public float castSpeedTotal;    
+    public float castSpeedTotal;
+    public string EnemyTargetID;
 
     //Battle variables
     public float Accuracy;

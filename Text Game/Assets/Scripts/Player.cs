@@ -14,7 +14,8 @@ public class Player
     public float speed;
     public float speedTotal;
     public float castSpeed;
-    public float castSpeedTotal;    
+    public float castSpeedTotal;
+    public string PlayerTargetID;
 
     //Battle variables
     public float Accuracy;
@@ -48,5 +49,4 @@ public class Player
     public GameObject currentRowPositionIcon;
     public bool hasConstantAnimationState;
     public string constantAnimationState = "";
-
 }

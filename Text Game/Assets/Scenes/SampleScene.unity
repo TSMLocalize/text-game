@@ -9485,6 +9485,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    EnemyTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -9524,6 +9525,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    EnemyTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -9563,6 +9565,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    EnemyTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -9602,6 +9605,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    EnemyTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -9641,6 +9645,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    EnemyTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -9680,6 +9685,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    EnemyTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -9719,6 +9725,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    EnemyTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -9758,6 +9765,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    EnemyTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -15281,6 +15289,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    PlayerTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -15317,6 +15326,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    PlayerTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -15353,6 +15363,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    PlayerTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -15389,6 +15400,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    PlayerTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -15425,6 +15437,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    PlayerTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -15461,6 +15474,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    PlayerTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -21353,6 +21367,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    PlayerTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -21391,6 +21406,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    PlayerTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -21429,6 +21445,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    EnemyTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -21624,6 +21641,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    EnemyTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -21663,6 +21681,7 @@ MonoBehaviour:
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
+    PlayerTargetID: 
     Accuracy: 0
     Evasion: 0
     Attack: 0
@@ -21719,6 +21738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BM: {fileID: 1548464333}
+  spellReportFinished: 0
   maxMessages: 0
   messageList: []
   chatPanel: {fileID: 73059370}
