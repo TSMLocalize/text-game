@@ -942,33 +942,23 @@ public class Battle_Manager : MonoBehaviour
                     }
                 }
 
-                StartCoroutine(BM_Enums.waitForEnemyReadyAnimation(activeEnemy));
-                activeEnemy.enemyReadyAnimCoroutineIsPaused = false;                                               
+                BM_Funcs.enemyAnimationController(activeEnemy);
 
-                if (activeEnemy.enemyReadyAnimIsDone == true)
+                if (selectedCommand == "EnemyAttack")
                 {
-                    activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
-                    activeEnemy.enemyReadyAnimIsDone = false;
-                    BM_Funcs.enemyAnimationController(activeEnemy);
-
-                    if (selectedCommand == "EnemyAttack")
-                    {
-                        BM_Funcs.reportToLog("EnemyAttack");
-
-                        battleStates = BattleStates.ENEMY_ATTACK;                                                
-
-                    } else if (selectedCommand == "EnemySpell")
-                    {
-                        BM_Funcs.reportToLog("EnemyStartCast");
-                        battleStates = BattleStates.RESOLVE_ENEMY_TURN;
-                    }
+                    BM_Funcs.reportToLog("EnemyAttack");
+                    battleStates = BattleStates.ENEMY_ATTACK;
+                }
+                else if (selectedCommand == "EnemySpell")
+                {
+                    BM_Funcs.reportToLog("EnemyStartCast");
+                    battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                 }
 
                 break;
             case BattleStates.ENEMY_ATTACK:
 
-                BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
-
+                BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);                
                 BM_Funcs.enemyAnimationController(activeEnemy, "IsAttacking");
                 BM_Funcs.animationController(enemyTarget, "TakeDamage");
 
