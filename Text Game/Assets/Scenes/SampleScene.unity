@@ -21332,6 +21332,7 @@ MonoBehaviour:
   BM_Funcs: {fileID: 1548464335}
   BM_Enums: {fileID: 0}
   speed: 0
+  floatingTextSpeed: 0
   startRoutinesGoingAgain: 0
   stepForward: 0
   attackAnimIsDone: 0

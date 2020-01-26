@@ -20,7 +20,7 @@ public class Enemy_Manager : MonoBehaviour
     void Start()
     {        
         Warrior.speed = 20f;
-        Thief.speed = 20f;
+        Thief.speed = 2f;
         Wizard.speed = 1f;
         Priest.speed = 1f;
         Paladin.speed = 1f;
