@@ -98,13 +98,13 @@ public class Battle_Manager_Functions : MonoBehaviour
                 {
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " hits the player!");
-                    createEnemyFloatingText(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString());                    
+                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString());                    
                 }
                 else
                 {
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " misses the player...");
-                    createEnemyFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");                    
+                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");                    
                 }
                 break;            
             case "EnemyStartCast":
@@ -166,17 +166,6 @@ public class Battle_Manager_Functions : MonoBehaviour
         BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);
 
         BM.floatUp = true;
-    }
-
-    public void createEnemyFloatingText(Vector3 position, string amount)
-    {
-        BM.enemyInstantiatedFloatingDamage = Instantiate(BM.enemyfloatingDamage, position, Quaternion.identity);
-
-        BM.enemyInstantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
-
-        BM.enemyfloatingNumberTarget = new Vector3(BM.enemyInstantiatedFloatingDamage.transform.position.x, BM.enemyInstantiatedFloatingDamage.transform.position.y + 1f);
-
-        BM.enemyFloatUp = true;
     }
 
     public void SendMessagesToCombatLog(string text)
