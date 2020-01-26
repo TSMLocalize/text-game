@@ -11,7 +11,6 @@ public class Battle_Manager_Functions : MonoBehaviour
 {
     public Battle_Manager BM;
     public bool spellReportFinished;
-    public bool enemyAttackReportFinished;
     public int maxMessages;
     public List<Message> messageList;    
     public GameObject chatPanel;   
@@ -99,15 +98,13 @@ public class Battle_Manager_Functions : MonoBehaviour
                 {
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " hits the player!");
-                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString());
-                    enemyAttackReportFinished = true;
+                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString());                    
                 }
                 else
                 {
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " misses the player...");
-                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");
-                    enemyAttackReportFinished = true;
+                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");                    
                 }
                 break;            
             case "EnemyStartCast":
@@ -166,7 +163,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 
         BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
 
-        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);        
+        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);
 
         BM.floatUp = true;
     }
