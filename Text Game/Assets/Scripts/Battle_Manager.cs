@@ -8,13 +8,10 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager : MonoBehaviour
 {
-    //Floating Text Vars
     public GameObject floatingDamage = null;
     public GameObject instantiatedFloatingDamage;
-    public List<GameObject> floatsToFloat;
     public bool floatUp;
     public Vector3 floatingNumberTarget;
-    
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
     public float speed;
@@ -145,23 +142,16 @@ public class Battle_Manager : MonoBehaviour
 
         if (floatUp)
         {
-            for (int i = 0; i < floatsToFloat.Count; i++)
+            speed = 5.0f;
+
+            float step = speed * Time.deltaTime;
+            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
+
+            if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
             {
-                speed = 5.0f;
-
-                floatingNumberTarget = new Vector3(floatsToFloat[i].transform.position.x, floatsToFloat[i].transform.position.y + 1f);
-
-                float step = speed * Time.deltaTime;
-                floatsToFloat[i].gameObject.transform.position = Vector3.MoveTowards(floatsToFloat[i].gameObject.transform.position, floatingNumberTarget, step);
-
-                if (floatsToFloat[i].transform.position == floatingNumberTarget)
-                {
-                    floatsToFloat.Remove(floatsToFloat[i]);
-                    Destroy(instantiatedFloatingDamage);                 
-                }
+                Destroy(instantiatedFloatingDamage);
+                floatUp = false;
             }
-
-            floatUp = false;
         }
 
         void standIdle(Player playerToIdle)
@@ -253,13 +243,11 @@ public class Battle_Manager : MonoBehaviour
                     {
                         for (int i = 0; i < ActivePlayers.Count; i++)
                         {
-                            BM_Funcs.createFloatingText(ActivePlayers[i].battleSprite.transform.position, 1234.ToString());
-
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {                                 
                                 activePlayer = ActivePlayers[i];
 
-                                floatUp = true;
+                                BM_Funcs.createFloatingText(activePlayer.battleSprite.transform.position, 123.ToString());
 
                                 stepForward = true;
 

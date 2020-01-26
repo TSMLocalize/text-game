@@ -78,9 +78,11 @@ public class Battle_Manager_Functions : MonoBehaviour
     {
         BM.instantiatedFloatingDamage = Instantiate(BM.floatingDamage, position, Quaternion.identity);
 
-        BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;        
+        BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
 
-        BM.floatsToFloat.Add(BM.instantiatedFloatingDamage);        
+        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);
+
+        BM.floatUp = true;
     }
 
     public void SendMessagesToCombatLog(string text)
