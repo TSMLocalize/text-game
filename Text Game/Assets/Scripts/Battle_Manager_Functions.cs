@@ -11,6 +11,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 {
     public Battle_Manager BM;
     public bool spellReportFinished;
+
     public int maxMessages;
     public List<Message> messageList;    
     public GameObject chatPanel;   
@@ -53,14 +54,14 @@ public class Battle_Manager_Functions : MonoBehaviour
                 if (outcome > BM.playerTarget.Evasion)
                 {
                     SendMessagesToCombatLog(
-                    BM.activePlayer.name + " hits the enemy!");                    
+                    BM.activePlayer.name + " hits the enemy!");
                     createFloatingText(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
 
                 }
                 else
                 {
                     SendMessagesToCombatLog(
-                    BM.activePlayer.name + " misses the enemy...");                    
+                    BM.activePlayer.name + " misses the enemy...");
                     createFloatingText(BM.playerTarget.battleSprite.transform.position, "Miss!");
                 }
                 break;
@@ -84,45 +85,6 @@ public class Battle_Manager_Functions : MonoBehaviour
                         BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
                     spellReportFinished = true;
                 }                
-                break;
-            case "EnemyAttack":                
-                setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
-                float enemyRandom = Random.Range(1, 101);
-                float enemyOutcome = BM.activeEnemy.Accuracy + enemyRandom;
-
-                SendMessagesToCombatLog(
-                        BM.activeEnemy.EnemyName + "'s hit score is " + enemyOutcome + " (" + enemyRandom + " + " + BM.activeEnemy.Accuracy + " acc)" +
-                        " vs " + BM.enemyTarget.name + "'s evasion of " + BM.enemyTarget.Evasion + ".");
-
-                if (enemyOutcome > BM.enemyTarget.Evasion)
-                {
-                    SendMessagesToCombatLog(
-                    BM.activeEnemy.EnemyName + " hits the player!");
-                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString());                    
-                }
-                else
-                {
-                    SendMessagesToCombatLog(
-                    BM.activeEnemy.EnemyName + " misses the player...");
-                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");                    
-                }
-                break;            
-            case "EnemyStartCast":
-
-                setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
-
-                SendMessagesToCombatLog(
-                    BM.activeEnemy.EnemyName + " starts casting " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + ".");
-                break;
-            case "EnemyFinishCast":
-                while (spellReportFinished == false)
-                {
-                    setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
-
-                    SendMessagesToCombatLog(
-                        BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on the " + BM.enemyTarget.name + "!");
-                    spellReportFinished = true;
-                }
                 break;
             default:
                 break;

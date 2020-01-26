@@ -15,7 +15,6 @@ public class Battle_Manager : MonoBehaviour
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
     public float speed;
-    public float floatingTextSpeed;
     public bool startRoutinesGoingAgain;
     public bool stepForward;        
     public bool attackAnimIsDone;
@@ -143,10 +142,10 @@ public class Battle_Manager : MonoBehaviour
 
         if (floatUp)
         {
-            floatingTextSpeed = 2.0f;
+            speed = 2.0f;
 
-            float floatStep = floatingTextSpeed * Time.deltaTime;
-            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, floatStep);
+            float step = speed * Time.deltaTime;
+            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
 
             if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
             {
@@ -904,9 +903,7 @@ public class Battle_Manager : MonoBehaviour
 
                 if (activeEnemy.isCastingSpell == false)
                 {
-                    //int randomActionNo = Random.Range(1, 3);                    
-
-                    int randomActionNo = 1;
+                    int randomActionNo = Random.Range(1, 3);                    
 
                     if (randomActionNo == 1)
                     {
@@ -922,7 +919,8 @@ public class Battle_Manager : MonoBehaviour
 
                 } else if(activeEnemy.isCastingSpell == true)
                 {
-                    BM_Funcs.reportToLog("EnemyFinishCast");                    
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
+                    BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " casts " + activeEnemy.activeSpell.name + " on " + enemyTarget.name + "!");
                     activeEnemy.enemyCastAnimCoroutineIsPaused = false;
                     StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));
                     selectedCommand = "EnemyResolveSpell";
@@ -953,13 +951,15 @@ public class Battle_Manager : MonoBehaviour
 
                     if (selectedCommand == "EnemyAttack")
                     {
-                        BM_Funcs.reportToLog("EnemyAttack");
+                        BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
+                        BM_Funcs.createFloatingText(enemyTarget.battleSprite.transform.position, activeEnemy.Attack.ToString());
+                        BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " attacks " + enemyTarget.name + "!");
 
-                        battleStates = BattleStates.ENEMY_ATTACK;                                                
-
+                        battleStates = BattleStates.ENEMY_ATTACK;
                     } else if (selectedCommand == "EnemySpell")
                     {
-                        BM_Funcs.reportToLog("EnemyStartCast");
+                        BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
+                        BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " starts casting " + activeEnemy.activeSpell.name + " on " + enemyTarget.name + "!");
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     }
                 }
