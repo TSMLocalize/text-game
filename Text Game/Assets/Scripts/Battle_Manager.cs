@@ -16,7 +16,7 @@ public class Battle_Manager : MonoBehaviour
     public Battle_Manager_IEnumerators BM_Enums;
     public float speed;
     public bool startRoutinesGoingAgain;
-    public bool stepForward;        
+    public bool stepForward;
     public bool attackAnimIsDone;
     public bool castAnimIsDone;
     public bool attackAnimCoroutineIsPaused;
@@ -26,10 +26,10 @@ public class Battle_Manager : MonoBehaviour
     public List<GameObject> Rows;
     public List<GameObject> RowChangeIcons;
     public GameObject RowToSwitch;
-    public Player playerToSwitchRowWith;    
+    public Player playerToSwitchRowWith;
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
-    EventSystem m_EventSystem;    
+    EventSystem m_EventSystem;
     public List<Player> PlayersInBattle;
     public List<Player> ActivePlayers;
     public Player activePlayer;
@@ -58,10 +58,10 @@ public class Battle_Manager : MonoBehaviour
     public GameObject PartyManager;
     public GameObject EnemyManager;
     public GameObject RowManager;
-    public Spells SpellManager;     
-    public bool coroutineIsPaused = false;    
-    public bool returningStarting = true;    
-    public string selectedCommand = null;    
+    public Spells SpellManager;
+    public bool coroutineIsPaused = false;
+    public bool returningStarting = true;
+    public string selectedCommand = null;
     public Color defaultColor;
     public Color defaultBlueColor;
     public Image[] optionsArray;
@@ -77,18 +77,18 @@ public class Battle_Manager : MonoBehaviour
         SELECT_PLAYER,
         SELECT_ACTION,
         SELECT_OPTION,
-        SELECT_TARGET,   
+        SELECT_TARGET,
         CHANGE_ROW,
         RESOLVE_ACTION,
         RESOLVE_SPELL,
         SELECT_ENEMY,
         SELECT_ENEMY_ACTION,
         SELECT_ENEMY_TARGET,
-        ENEMY_START_CAST,        
-        RESOLVE_ENEMY_TURN        
+        ENEMY_START_CAST,
+        RESOLVE_ENEMY_TURN
     }
 
-    public BattleStates battleStates;        
+    public BattleStates battleStates;
 
     // Start is called before the first frame update
     void Start()
@@ -97,7 +97,7 @@ public class Battle_Manager : MonoBehaviour
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
 
         BM_Funcs.setupCharacters();
-        
+
         ColorUtility.TryParseHtmlString("#010078", out defaultBlueColor);
         defaultColor = ActionPanel.GetComponent<Image>().color;
 
@@ -114,30 +114,30 @@ public class Battle_Manager : MonoBehaviour
         //Fetch the Event System from the Scene
         m_EventSystem = GetComponent<EventSystem>();
 
-        battleStates = BattleStates.DEFAULT;        
+        battleStates = BattleStates.DEFAULT;
 
     }
 
     // Update is called once per frame
     void Update()
-    {        
+    {
         if (stepForward)
         {
             speed = 4.0f;
 
             //Transform the Sprite forward a set distance and set walking animation
             BM_Funcs.animationController(activePlayer, "IsWalking");
-            
+
             float step = speed * Time.deltaTime;
             activePlayer.battleSprite.transform.position = Vector3.MoveTowards(activePlayer.battleSprite.transform.position, activePlayer.target, step);
 
             if (activePlayer.battleSprite.transform.position == activePlayer.target)
             {
                 BM_Funcs.animationController(activePlayer);
-                
+
                 stepForward = false;
             }
-        }        
+        }
 
         if (floatUp)
         {
@@ -156,7 +156,7 @@ public class Battle_Manager : MonoBehaviour
 
         void standIdle(Player playerToIdle)
         {
-            playerToIdle.battleSprite.transform.position = playerToIdle.position;             
+            playerToIdle.battleSprite.transform.position = playerToIdle.position;
         }
 
         m_PointerEventData = new PointerEventData(m_EventSystem);
@@ -171,7 +171,7 @@ public class Battle_Manager : MonoBehaviour
         switch (battleStates)
         {
             case BattleStates.DEFAULT:
-                
+
                 attackAnimIsDone = false;
                 castAnimIsDone = false;
 
@@ -183,7 +183,7 @@ public class Battle_Manager : MonoBehaviour
                     EnemiesInBattle[i].enemyAttackAnimIsDone = false;
                     EnemiesInBattle[i].enemyReadyAnimIsDone = false;
                     EnemiesInBattle[i].enemyCastAnimIsDone = false;
-                }                
+                }
 
                 if (startRoutinesGoingAgain)
                 {
@@ -195,7 +195,7 @@ public class Battle_Manager : MonoBehaviour
                 for (int i = 0; i < PlayersInBattle.Count; i++)
                 {
                     if (PlayersInBattle[i].speedTotal >= 100 || (PlayersInBattle[i].isCastingSpell && PlayersInBattle[i].castSpeedTotal <= 0))
-                    {                                               
+                    {
                         ActivePlayers.Add(PlayersInBattle[i]);
                     }
                 }
@@ -207,10 +207,12 @@ public class Battle_Manager : MonoBehaviour
                         if (EnemiesInBattle[i].isCastingSpell != true)
                         {
                             BM_Funcs.enemyAnimationController(EnemiesInBattle[i], "IsReady");
+                            EnemiesInBattle[i].constantAnimationState = "IsReady";
+                            EnemiesInBattle[i].hasConstantAnimationState = true;
                         }
-                        
+
                         EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
-                        ActiveEnemies.Add(EnemiesInBattle[i]);                         
+                        ActiveEnemies.Add(EnemiesInBattle[i]);
                     }
                 }
 
@@ -218,7 +220,7 @@ public class Battle_Manager : MonoBehaviour
                 {
                     coroutineIsPaused = true;
                     battleStates = BattleStates.SELECT_PLAYER;
-                } 
+                }
                 else if (ActiveEnemies.Count > 0)
                 {
                     coroutineIsPaused = true;
@@ -226,14 +228,14 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 break;
-            case BattleStates.SELECT_PLAYER:                                
+            case BattleStates.SELECT_PLAYER:
 
                 attackAnimIsDone = false;
                 castAnimIsDone = false;
 
                 for (int i = 0; i < ActivePlayers.Count; i++)
                 {
-                    ActivePlayers[i].playerPanelBackground.color = Color.yellow;                                        
+                    ActivePlayers[i].playerPanelBackground.color = Color.yellow;
                 }
 
                 if (Input.GetKeyUp(KeyCode.Mouse0))
@@ -242,22 +244,22 @@ public class Battle_Manager : MonoBehaviour
                     foreach (RaycastResult result in results)
                     {
                         for (int i = 0; i < ActivePlayers.Count; i++)
-                        {                            
+                        {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
-                            {                                 
-                                activePlayer = ActivePlayers[i];                                
+                            {
+                                activePlayer = ActivePlayers[i];
 
                                 stepForward = true;
 
                                 battleStates = BattleStates.SELECT_ACTION;
-                                
+
                             }
-                        }                        
+                        }
                     }
                 }
 
                 break;
-            case BattleStates.SELECT_ACTION:                
+            case BattleStates.SELECT_ACTION:
 
                 //Populate action panel with active player's actions
                 BM_Funcs.populateActionList();
@@ -273,7 +275,7 @@ public class Battle_Manager : MonoBehaviour
 
                 //Set the action panel portrait to the current player
                 actionPanelArray = ActionPanel.GetComponentsInChildren<Image>();
-                actionPanelArray[1].overrideSprite = activePlayer.PlayerPortrait;                         
+                actionPanelArray[1].overrideSprite = activePlayer.PlayerPortrait;
 
                 //RIGHT CLICK TO GO BACK
                 if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -300,11 +302,11 @@ public class Battle_Manager : MonoBehaviour
                                 if (selectedCommand == "Magic")
                                 {
                                     BM_Funcs.populateSpellOptionList();
-                                    
-                                }                                
+
+                                }
                                 else if (selectedCommand == "Cast")
                                 {
-                                    BM_Funcs.reportToLog("PlayerFinishCast");                                   
+                                    BM_Funcs.reportToLog("PlayerFinishCast");
                                 }
 
                                 BM_Funcs.redirectAction();
@@ -318,10 +320,10 @@ public class Battle_Manager : MonoBehaviour
                             {
                                 activePlayer.battleSprite.transform.position = activePlayer.position;
                                 activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
-                                activePlayer = ActivePlayers[i];                                
+                                activePlayer = ActivePlayers[i];
                                 stepForward = true;
                                 selectedCommand = null;
-                                battleStates = BattleStates.SELECT_ACTION;                                
+                                battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
                     }
@@ -334,7 +336,7 @@ public class Battle_Manager : MonoBehaviour
 
                 //RIGHT CLICK TO GO BACK
                 if (Input.GetKeyDown(KeyCode.Mouse1))
-                {                    
+                {
                     for (int i = 0; i < PlayerOptions.Count; i++)
                     {
                         PlayerOptions[i].GetComponent<Image>().color = defaultBlueColor;
@@ -365,7 +367,7 @@ public class Battle_Manager : MonoBehaviour
                                     }
                                 }
 
-                                SpellOptions[i].GetComponentInChildren<Image>().color = Color.magenta;                                
+                                SpellOptions[i].GetComponentInChildren<Image>().color = Color.magenta;
                                 battleStates = BattleStates.SELECT_TARGET;
                             }
                         }
@@ -401,11 +403,11 @@ public class Battle_Manager : MonoBehaviour
                                     selectedCommand = PlayerOptions[i].GetComponentInChildren<TextMeshProUGUI>().text;
                                     BM_Funcs.clearSpellOptionList();
                                     battleStates = BattleStates.SELECT_ACTION;
-                                }                                                 
+                                }
                             }
                         }
                     }
-                }                
+                }
 
                 break;
             case BattleStates.SELECT_TARGET:
@@ -432,7 +434,7 @@ public class Battle_Manager : MonoBehaviour
                         PlayerOptions[i].GetComponent<Image>().color = defaultBlueColor;
                     }
                     selectedCommand = null;
-                                        
+
                     battleStates = BattleStates.SELECT_ACTION;
 
                     //Right click to cancel selected spell option
@@ -466,15 +468,16 @@ public class Battle_Manager : MonoBehaviour
                                 }
 
                                 if (selectedCommand == "Magic")
-                                {                                    
-                                    activePlayer.isCastingSpell = true;                                    
+                                {
+                                    activePlayer.isCastingSpell = true;
                                 }
                                 else if (selectedCommand == "Attack")
                                 {
                                     BM_Funcs.reportToLog("PlayerAttack");
-                                }                                
+                                    floatTheFloatingNumbers();
+                                }
 
-                                EnemyPanels[i].GetComponent<Image>().color = Color.red;                                
+                                EnemyPanels[i].GetComponent<Image>().color = Color.red;
 
                                 battleStates = BattleStates.RESOLVE_ACTION;
                             }
@@ -491,7 +494,7 @@ public class Battle_Manager : MonoBehaviour
                                 activePlayer.battleSprite.transform.position = activePlayer.position;
                                 activePlayer = ActivePlayers[i];
                                 stepForward = true;
-                                selectedCommand = null;                                
+                                selectedCommand = null;
                                 activePlayer.activeSpell = null;
                                 BM_Funcs.clearSpellOptionList();
                                 OptionPanel.SetActive(false);
@@ -528,11 +531,11 @@ public class Battle_Manager : MonoBehaviour
                                 {
                                     if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.spellBook[y].name)
                                     {
-                                        activePlayer.activeSpell = activePlayer.spellBook[y];                                        
+                                        activePlayer.activeSpell = activePlayer.spellBook[y];
                                     }
                                 }
 
-                                SpellOptions[i].GetComponentInChildren<Image>().color = Color.magenta;                                
+                                SpellOptions[i].GetComponentInChildren<Image>().color = Color.magenta;
                                 battleStates = BattleStates.SELECT_TARGET;
                             }
                         }
@@ -559,8 +562,8 @@ public class Battle_Manager : MonoBehaviour
                 //Right click to go back to select action
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
-                    BM_Funcs.animationController(activePlayer);                    
-                    
+                    BM_Funcs.animationController(activePlayer);
+
                     for (int i = 0; i < PlayerOptions.Count; i++)
                     {
                         PlayerOptions[i].GetComponent<Image>().color = defaultBlueColor;
@@ -573,8 +576,8 @@ public class Battle_Manager : MonoBehaviour
 
                     selectedCommand = null;
 
-                    battleStates = BattleStates.SELECT_ACTION;                    
-                }                
+                    battleStates = BattleStates.SELECT_ACTION;
+                }
 
                 //If clicking a row icon, set that row icon as the target and start a hands up animation
                 if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -589,7 +592,7 @@ public class Battle_Manager : MonoBehaviour
                             {
                                 RowToSwitch = Rows[i];
                                 BM_Funcs.animationController(activePlayer, "IsCasting");
-                                
+
                                 for (int y = 0; y < RowChangeIcons.Count; y++)
                                 {
                                     RowChangeIcons[y].SetActive(false);
@@ -613,7 +616,7 @@ public class Battle_Manager : MonoBehaviour
                                 activePlayer.activeSpell = null;
                                 BM_Funcs.clearSpellOptionList();
                                 OptionPanel.SetActive(false);
-                                
+
                                 for (int y = 0; y < RowChangeIcons.Count; y++)
                                 {
                                     RowChangeIcons[y].SetActive(false);
@@ -645,12 +648,12 @@ public class Battle_Manager : MonoBehaviour
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
-                    }            
+                    }
                 }
 
                 //Once a row icon is clicked, check if there's a player there and switch with them
                 if (rowSelected == true)
-                {                    
+                {
                     speed = 8.0f;
 
                     float step = speed * Time.deltaTime;
@@ -665,31 +668,31 @@ public class Battle_Manager : MonoBehaviour
                             playerToSwitchRowWith = PlayersInBattle[i];
 
                             //Set hands up animation
-                            BM_Funcs.animationController(PlayersInBattle[i], "IsCasting");                            
+                            BM_Funcs.animationController(PlayersInBattle[i], "IsCasting");
 
-                            PlayersInBattle[i].battleSprite.transform.position = Vector3.MoveTowards(PlayersInBattle[i].battleSprite.transform.position, 
+                            PlayersInBattle[i].battleSprite.transform.position = Vector3.MoveTowards(PlayersInBattle[i].battleSprite.transform.position,
                                 activePlayer.position, step);
-                        }                        
+                        }
                     }
-                    
+
                     //Ensure both players are in position (if switching places)
                     if (isSwitchingWithOtherPlayer)
-                    {                        
+                    {
                         if (activePlayer.battleSprite.transform.position == RowToSwitch.transform.position &&
                             playerToSwitchRowWith.battleSprite.transform.position == activePlayer.position)
                         {
                             BM_Funcs.animationController(playerToSwitchRowWith);
                             BM_Funcs.animationController(activePlayer);
-                            rowSelected = false;                                                        
+                            rowSelected = false;
                         }
                     }
                     //Ensure one player is in position (if not switching places)
                     else
-                    {                        
+                    {
                         if (activePlayer.battleSprite.transform.position == RowToSwitch.transform.position)
                         {
                             BM_Funcs.animationController(activePlayer);
-                            rowSelected = false;                            
+                            rowSelected = false;
                         }
                     }
 
@@ -698,7 +701,7 @@ public class Battle_Manager : MonoBehaviour
                     {
                         //reassign 'position' to the new position(s), reset new display layer order priority
                         BM_Funcs.updateRowPositions();
-                        BM_Funcs.AssignRows();                        
+                        BM_Funcs.AssignRows();
                         RowToSwitch = null;
                         battleStates = BattleStates.RESOLVE_ACTION;
                     }
@@ -707,21 +710,23 @@ public class Battle_Manager : MonoBehaviour
 
                 break;
             case BattleStates.RESOLVE_ACTION:
-                
+
                 if (selectedCommand == "Attack")
-                {                    
+                {
                     BM_Funcs.setPlayerOrEnemyTargetFromID(activePlayer, null);
                     attackAnimCoroutineIsPaused = false;
                     StartCoroutine(BM_Enums.waitForAttackAnimation());
-                    BM_Funcs.animationController(activePlayer, "IsAttacking");                    
+                    BM_Funcs.animationController(activePlayer, "IsAttacking");
+                    BM_Funcs.enemyAnimationController(playerTarget, "TakeDamage");
 
                     if (attackAnimIsDone)
-                    {                                                
+                    {
                         attackAnimCoroutineIsPaused = true;
-                        
+
                         standIdle(activePlayer);
 
-                        BM_Funcs.animationController(activePlayer);                        
+                        BM_Funcs.animationController(activePlayer);
+                        BM_Funcs.enemyAnimationController(playerTarget);
                         activePlayer.speedTotal -= 100f;
                         activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
                         BM_Funcs.resetChoicePanel();
@@ -738,25 +743,25 @@ public class Battle_Manager : MonoBehaviour
 
                             startRoutinesGoingAgain = true;
 
-                            BM_Funcs.redirectAction();             
+                            BM_Funcs.redirectAction();
                         }
                         else
                         {
                             battleStates = BattleStates.SELECT_PLAYER;
                         }
                     }
-                }                                
+                }
                 else if (activePlayer.isCastingSpell)
                 {
                     BM_Funcs.setPlayerOrEnemyTargetFromID(activePlayer, null);
                     BM_Funcs.reportToLog("PlayerStartCast");
 
-                    BM_Funcs.animationController(activePlayer, "IsChanting");                    
+                    BM_Funcs.animationController(activePlayer, "IsChanting");
                     activePlayer.constantAnimationState = "IsChanting";
                     activePlayer.hasConstantAnimationState = true;
                     activePlayer.playerCastBar.SetActive(true);
                     activePlayer.castSpeedTotal = activePlayer.activeSpell.castTime;
-                    
+
                     standIdle(activePlayer);
 
                     //reset attack animation to idle
@@ -781,14 +786,14 @@ public class Battle_Manager : MonoBehaviour
                     else
                     {
                         battleStates = BattleStates.SELECT_PLAYER;
-                    }                    
+                    }
                 }
                 else if (selectedCommand == "Wait")
                 {
                     BM_Funcs.reportToLog("PlayerWait");
 
                     BM_Funcs.animationController(activePlayer);
-                    standIdle(activePlayer);                    
+                    standIdle(activePlayer);
                     activePlayer.speedTotal = (100f - activePlayer.speed);
                     activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
                     BM_Funcs.resetChoicePanel();
@@ -811,7 +816,7 @@ public class Battle_Manager : MonoBehaviour
                     }
                 }
                 else if (selectedCommand == "Change Row")
-                {                    
+                {
                     standIdle(activePlayer);
 
                     BM_Funcs.animationController(activePlayer);
@@ -840,7 +845,7 @@ public class Battle_Manager : MonoBehaviour
                     else
                     {
                         battleStates = BattleStates.SELECT_PLAYER;
-                    }                    
+                    }
                 }
 
                 break;
@@ -886,24 +891,24 @@ public class Battle_Manager : MonoBehaviour
                             battleStates = BattleStates.SELECT_PLAYER;
                         }
                     }
-                }                
+                }
 
                 break;
-            case BattleStates.SELECT_ENEMY:                
+            case BattleStates.SELECT_ENEMY:
 
                 for (int i = 0; i < ActiveEnemies.Count; i++)
                 {
                     activeEnemy = ActiveEnemies[i];
-                }                                
+                }
 
-                battleStates = BattleStates.SELECT_ENEMY_ACTION;                
+                battleStates = BattleStates.SELECT_ENEMY_ACTION;
 
                 break;
             case BattleStates.SELECT_ENEMY_ACTION:
 
                 if (activeEnemy.isCastingSpell == false)
                 {
-                    int randomActionNo = Random.Range(1, 3);                    
+                    int randomActionNo = Random.Range(1, 3);
 
                     if (randomActionNo == 1)
                     {
@@ -917,13 +922,13 @@ public class Battle_Manager : MonoBehaviour
 
                     battleStates = BattleStates.SELECT_ENEMY_TARGET;
 
-                } else if(activeEnemy.isCastingSpell == true)
+                } else if (activeEnemy.isCastingSpell == true)
                 {
                     selectedCommand = "EnemyResolveSpell";
                     BM_Funcs.reportToLog("EnemyFinishCast");
-                    StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));                    
+                    StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));
                     battleStates = BattleStates.RESOLVE_ENEMY_TURN;
-                }                
+                }
 
                 break;
             case BattleStates.SELECT_ENEMY_TARGET:
@@ -934,12 +939,12 @@ public class Battle_Manager : MonoBehaviour
                 {
                     if (randomEnemyTargetNo == i)
                     {
-                        activeEnemy.EnemyTargetID = PlayersInBattle[i].name;                        
+                        activeEnemy.EnemyTargetID = PlayersInBattle[i].name;
                     }
                 }
 
                 StartCoroutine(BM_Enums.waitForEnemyReadyAnimation(activeEnemy));
-                activeEnemy.enemyReadyAnimCoroutineIsPaused = false;                                               
+                activeEnemy.enemyReadyAnimCoroutineIsPaused = false;
 
                 if (activeEnemy.enemyReadyAnimIsDone == true)
                 {
@@ -949,14 +954,16 @@ public class Battle_Manager : MonoBehaviour
 
                     if (selectedCommand == "EnemyAttack")
                     {
-                        BM_Funcs.reportToLog("EnemyAttack");                        
+                        BM_Funcs.reportToLog("EnemyAttack");
 
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
-                    } else if (selectedCommand == "EnemySpell")
+                    }
+                    else if (selectedCommand == "EnemySpell")
                     {
-                        BM_Funcs.reportToLog("EnemyStartCast");                        
+                        BM_Funcs.reportToLog("EnemyStartCast");
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     }
+
                 }
 
                 break;
@@ -965,16 +972,19 @@ public class Battle_Manager : MonoBehaviour
                 if (selectedCommand == "EnemyAttack")
                 {
                     BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
+                    activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
+                    StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));
                     BM_Funcs.enemyAnimationController(activeEnemy, "IsAttacking");
                     BM_Funcs.animationController(enemyTarget, "TakeDamage");
-                    activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
-
-                    StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));
+                    
+                    floatTheFloatingNumbers();
 
                     if (activeEnemy.enemyAttackAnimIsDone == true)
                     {
                         activeEnemy.enemyAttackAnimIsDone = false;
                         activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
+                        activeEnemy.constantAnimationState = null;
+                        activeEnemy.hasConstantAnimationState = false;
                         BM_Funcs.animationController(enemyTarget);
                         BM_Funcs.enemyAnimationController(activeEnemy);
                         activeEnemy.speedTotal -= 100f;
@@ -1003,15 +1013,17 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 if (selectedCommand == "EnemySpell")
-                {                                                                                
+                {
+                    activeEnemy.constantAnimationState = null;
+                    activeEnemy.hasConstantAnimationState = false;
                     activeEnemy.constantAnimationState = "IsChanting";
                     BM_Funcs.enemyAnimationController(activeEnemy, "IsChanting");
-                    activeEnemy.isCastingSpell = true;                    
-                    activeEnemy.hasConstantAnimationState = true;                    
+                    activeEnemy.isCastingSpell = true;
+                    activeEnemy.hasConstantAnimationState = true;
                     activeEnemy.enemyCastBar.SetActive(true);
-                    activeEnemy.castSpeedTotal = activeEnemy.activeSpell.castTime;                                        
+                    activeEnemy.castSpeedTotal = activeEnemy.activeSpell.castTime;
                     activeEnemy.speedTotal -= 100f;
-                    activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;                                        
+                    activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
                     ActiveEnemies.Remove(activeEnemy);
                     activeEnemy = null;
                     selectedCommand = null;
@@ -1029,7 +1041,9 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 if (selectedCommand == "EnemyResolveSpell")
-                {                                                      
+                {
+                    activeEnemy.constantAnimationState = null;
+                    activeEnemy.hasConstantAnimationState = false;
                     BM_Funcs.enemyAnimationController(activeEnemy, "IsCasting");
                     activeEnemy.enemyCastAnimCoroutineIsPaused = false;
 
@@ -1037,13 +1051,12 @@ public class Battle_Manager : MonoBehaviour
                     {
                         BM_Funcs.enemySpellReportFinished = false;
                         activeEnemy.enemyCastAnimIsDone = false;
-                        activeEnemy.enemyCastAnimCoroutineIsPaused = true;                        
-                        activeEnemy.constantAnimationState = null;
-                        BM_Funcs.enemyAnimationController(activeEnemy);                        
+                        activeEnemy.enemyCastAnimCoroutineIsPaused = true;                                                
+                        BM_Funcs.enemyAnimationController(activeEnemy);
                         activeEnemy.isCastingSpell = false;
                         activeEnemy.enemyCastBar.SetActive(false);
-                        activeEnemy.castSpeedTotal = 0f;                        
-                        activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;                                                
+                        activeEnemy.castSpeedTotal = 0f;
+                        activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
                         ActiveEnemies.Remove(activeEnemy);
                         activeEnemy.EnemyTargetID = null;
                         enemyTarget = null;
@@ -1067,7 +1080,7 @@ public class Battle_Manager : MonoBehaviour
             default:
                 break;
         }
-    }  
+    }
     void startSpeedCoroutines()
     {
         coroutineIsPaused = false;
@@ -1077,8 +1090,26 @@ public class Battle_Manager : MonoBehaviour
             StartCoroutine(BM_Enums.updatePlayerSpeedBars(PlayersInBattle[i]));
         }
         for (int i = 0; i < EnemiesInBattle.Count; i++)
-        {            
+        {
             StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
+        }
+    }
+
+    void floatTheFloatingNumbers()
+    {        
+        if (floatUp)
+        {
+            speed = 2.0f;
+
+            float step = speed * Time.deltaTime;
+
+            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
+
+            if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
+            {
+                Destroy(instantiatedFloatingDamage);
+                floatUp = false;
+            }
         }        
     }
 }

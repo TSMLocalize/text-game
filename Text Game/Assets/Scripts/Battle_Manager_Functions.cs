@@ -517,9 +517,8 @@ public class Battle_Manager_Functions : MonoBehaviour
         enemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
         enemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
         enemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
-        enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
-        //enemy.battleSprite.GetComponent<Animator>().SetBool("IsWalking", false);
-        //enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);
+        enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);        
+        enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);
 
         if (state == "TakeDamage")
         {
@@ -541,13 +540,9 @@ public class Battle_Manager_Functions : MonoBehaviour
         {
             enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
         }
-        else if (state == "IsWalking")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
-        }
-        /*else if (enemy.hasConstantAnimationState)
+        else if (enemy.hasConstantAnimationState)
         {
             enemy.battleSprite.GetComponent<Animator>().SetBool(enemy.constantAnimationState, true);
-        } */
+        }
     }
 }
