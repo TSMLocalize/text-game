@@ -84,8 +84,7 @@ public class Battle_Manager : MonoBehaviour
         SELECT_ENEMY,
         SELECT_ENEMY_ACTION,
         SELECT_ENEMY_TARGET,
-        ENEMY_START_CAST,
-        ENEMY_ATTACK,
+        ENEMY_START_CAST,        
         RESOLVE_ENEMY_TURN        
     }
 
@@ -226,7 +225,7 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 break;
-            case BattleStates.SELECT_PLAYER:
+            case BattleStates.SELECT_PLAYER:                                
 
                 attackAnimIsDone = false;
                 castAnimIsDone = false;
@@ -903,7 +902,7 @@ public class Battle_Manager : MonoBehaviour
 
                 if (activeEnemy.isCastingSpell == false)
                 {
-                    int randomActionNo = Random.Range(1, 3);                    
+                    int randomActionNo = Random.Range(1, 1);                    
 
                     if (randomActionNo == 1)
                     {
@@ -952,10 +951,10 @@ public class Battle_Manager : MonoBehaviour
                     if (selectedCommand == "EnemyAttack")
                     {
                         BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
-                        BM_Funcs.createFloatingText(enemyTarget.battleSprite.transform.position, activeEnemy.Attack.ToString());
+                        createFloatingText(enemyTarget.battleSprite.transform.position, activeEnemy.Attack.ToString());
                         BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " attacks " + enemyTarget.name + "!");
 
-                        battleStates = BattleStates.ENEMY_ATTACK;
+                        battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     } else if (selectedCommand == "EnemySpell")
                     {
                         BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
@@ -965,52 +964,45 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 break;
-            case BattleStates.ENEMY_ATTACK:
-
-                BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
-
-                BM_Funcs.enemyAnimationController(activeEnemy, "IsAttacking");
-                BM_Funcs.animationController(enemyTarget, "TakeDamage");
-
-                activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
-
-                StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));                                
-
-                if (activeEnemy.enemyAttackAnimIsDone == true)
-                {
-                    activeEnemy.enemyAttackAnimIsDone = false;
-                    BM_Funcs.animationController(enemyTarget);
-                    activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
-                    battleStates = BattleStates.RESOLVE_ENEMY_TURN;
-                }                                
-
-                break;
             case BattleStates.RESOLVE_ENEMY_TURN:
 
                 if (selectedCommand == "EnemyAttack")
                 {
-                    BM_Funcs.enemyAnimationController(activeEnemy);                    
-                    activeEnemy.speedTotal -= 100f;
-                    activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
-                    activeEnemy.EnemyTargetID = null;
-                    enemyTarget = null;
-                    ActiveEnemies.Remove(activeEnemy);
-                    activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
-                    activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
-                    activeEnemy.enemyAttackAnimIsDone = false;
-                    activeEnemy.enemyReadyAnimIsDone = false;
-                    activeEnemy = null;
-                    selectedCommand = null;
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
+                    BM_Funcs.enemyAnimationController(activeEnemy, "IsAttacking");
+                    BM_Funcs.animationController(enemyTarget, "TakeDamage");
+                    activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
 
-                    if (ActiveEnemies.Count == 0)
+                    StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));
+
+                    if (activeEnemy.enemyAttackAnimIsDone == true)
                     {
-                        returningStarting = true;
-                        startRoutinesGoingAgain = true;
-                        battleStates = BattleStates.DEFAULT;
-                    }
-                    else
-                    {
-                        battleStates = BattleStates.SELECT_ENEMY;
+                        activeEnemy.enemyAttackAnimIsDone = false;
+                        activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
+                        BM_Funcs.animationController(enemyTarget);
+                        BM_Funcs.enemyAnimationController(activeEnemy);
+                        activeEnemy.speedTotal -= 100f;
+                        activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
+                        activeEnemy.EnemyTargetID = null;
+                        enemyTarget = null;
+                        ActiveEnemies.Remove(activeEnemy);
+                        activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
+                        activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
+                        activeEnemy.enemyAttackAnimIsDone = false;
+                        activeEnemy.enemyReadyAnimIsDone = false;
+                        activeEnemy = null;
+                        selectedCommand = null;
+
+                        if (ActiveEnemies.Count == 0)
+                        {
+                            returningStarting = true;
+                            startRoutinesGoingAgain = true;
+                            battleStates = BattleStates.DEFAULT;
+                        }
+                        else
+                        {
+                            battleStates = BattleStates.SELECT_ENEMY;
+                        }
                     }
                 }
 
@@ -1090,5 +1082,16 @@ public class Battle_Manager : MonoBehaviour
         {            
             StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
         }        
+    }
+
+    public void createFloatingText(Vector3 position, string amount)
+    {
+        instantiatedFloatingDamage = Instantiate(floatingDamage, position, Quaternion.identity);
+
+        instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
+
+        floatingNumberTarget = new Vector3(instantiatedFloatingDamage.transform.position.x, instantiatedFloatingDamage.transform.position.y + 1f);
+
+        floatUp = true;
     }
 }
