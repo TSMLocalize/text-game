@@ -11,6 +11,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 {
     public Battle_Manager BM;
     public bool spellReportFinished;
+    public bool enemySpellReportFinished;
 
     public int maxMessages;
     public List<Message> messageList;    
@@ -55,14 +56,14 @@ public class Battle_Manager_Functions : MonoBehaviour
                 {
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " hits the enemy!");
-                    BM.createFloatingText(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
+                    createFloatingText(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
 
                 }
                 else
                 {
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " misses the enemy...");
-                    BM.createFloatingText(BM.playerTarget.battleSprite.transform.position, "Miss!");
+                    createFloatingText(BM.playerTarget.battleSprite.transform.position, "Miss!");
                 }
                 break;
             case "PlayerWait":
@@ -85,6 +86,49 @@ public class Battle_Manager_Functions : MonoBehaviour
                         BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
                     spellReportFinished = true;
                 }                
+                break;
+            case "EnemyAttack":
+
+                setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
+
+                float enemyRandom = Random.Range(1, 101);
+                float enemyOutcome = BM.activeEnemy.Accuracy + enemyRandom;
+
+                SendMessagesToCombatLog(
+                        BM.activeEnemy.EnemyName + "'s hit score is " + enemyOutcome + " (" + enemyRandom + " + " + BM.activeEnemy.Accuracy + " acc)" +
+                        " vs " + BM.enemyTarget.name + "'s evasion of " + BM.enemyTarget.Evasion + ".");
+
+                if (enemyOutcome > BM.enemyTarget.Evasion)
+                {
+                    SendMessagesToCombatLog(
+                    BM.activeEnemy.EnemyName + " hits " + BM.enemyTarget.name + "...");
+                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString());
+
+                }
+                else
+                {
+                    SendMessagesToCombatLog(
+                    BM.activeEnemy.EnemyName + " misses " + BM.enemyTarget.name + "!");
+                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");
+                }
+                break;            
+            case "EnemyStartCast":
+
+                setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
+
+                SendMessagesToCombatLog(
+                    BM.activeEnemy.EnemyName + " starts casting " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + ".");
+                break;
+            case "EnemyFinishCast":
+                while (enemySpellReportFinished == false)
+                {
+                    setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
+
+                    SendMessagesToCombatLog(
+                        BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
+                    enemySpellReportFinished = true;
+                }
+                    
                 break;
             default:
                 break;
@@ -118,6 +162,16 @@ public class Battle_Manager_Functions : MonoBehaviour
     }
 
     // CREATE TEXT FUNCTIONS
+    public void createFloatingText(Vector3 position, string amount)
+    {
+        BM.instantiatedFloatingDamage = Instantiate(BM.floatingDamage, position, Quaternion.identity);
+
+        BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
+
+        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);
+
+        BM.floatUp = true;
+    }
 
     public void SendMessagesToCombatLog(string text)
     {        

@@ -137,13 +137,14 @@ public class Battle_Manager : MonoBehaviour
                 
                 stepForward = false;
             }
-        }
+        }        
 
         if (floatUp)
         {
             speed = 2.0f;
 
             float step = speed * Time.deltaTime;
+
             instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
 
             if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
@@ -902,7 +903,7 @@ public class Battle_Manager : MonoBehaviour
 
                 if (activeEnemy.isCastingSpell == false)
                 {
-                    int randomActionNo = Random.Range(1, 1);                    
+                    int randomActionNo = Random.Range(1, 3);                    
 
                     if (randomActionNo == 1)
                     {
@@ -918,11 +919,9 @@ public class Battle_Manager : MonoBehaviour
 
                 } else if(activeEnemy.isCastingSpell == true)
                 {
-                    BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
-                    BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " casts " + activeEnemy.activeSpell.name + " on " + enemyTarget.name + "!");
-                    activeEnemy.enemyCastAnimCoroutineIsPaused = false;
-                    StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));
                     selectedCommand = "EnemyResolveSpell";
+                    BM_Funcs.reportToLog("EnemyFinishCast");
+                    StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));                    
                     battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                 }                
 
@@ -950,15 +949,12 @@ public class Battle_Manager : MonoBehaviour
 
                     if (selectedCommand == "EnemyAttack")
                     {
-                        BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
-                        createFloatingText(enemyTarget.battleSprite.transform.position, activeEnemy.Attack.ToString());
-                        BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " attacks " + enemyTarget.name + "!");
+                        BM_Funcs.reportToLog("EnemyAttack");                        
 
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     } else if (selectedCommand == "EnemySpell")
                     {
-                        BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
-                        BM_Funcs.SendMessagesToCombatLog(activeEnemy.EnemyName + " starts casting " + activeEnemy.activeSpell.name + " on " + enemyTarget.name + "!");
+                        BM_Funcs.reportToLog("EnemyStartCast");                        
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     }
                 }
@@ -1035,11 +1031,13 @@ public class Battle_Manager : MonoBehaviour
                 if (selectedCommand == "EnemyResolveSpell")
                 {                                                      
                     BM_Funcs.enemyAnimationController(activeEnemy, "IsCasting");
+                    activeEnemy.enemyCastAnimCoroutineIsPaused = false;
 
                     if (activeEnemy.enemyCastAnimIsDone)
                     {
-                        activeEnemy.enemyCastAnimCoroutineIsPaused = true;
+                        BM_Funcs.enemySpellReportFinished = false;
                         activeEnemy.enemyCastAnimIsDone = false;
+                        activeEnemy.enemyCastAnimCoroutineIsPaused = true;                        
                         activeEnemy.constantAnimationState = null;
                         BM_Funcs.enemyAnimationController(activeEnemy);                        
                         activeEnemy.isCastingSpell = false;
@@ -1082,16 +1080,5 @@ public class Battle_Manager : MonoBehaviour
         {            
             StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
         }        
-    }
-
-    public void createFloatingText(Vector3 position, string amount)
-    {
-        instantiatedFloatingDamage = Instantiate(floatingDamage, position, Quaternion.identity);
-
-        instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
-
-        floatingNumberTarget = new Vector3(instantiatedFloatingDamage.transform.position.x, instantiatedFloatingDamage.transform.position.y + 1f);
-
-        floatUp = true;
     }
 }
