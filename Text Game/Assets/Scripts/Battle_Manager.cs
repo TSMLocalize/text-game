@@ -8,8 +8,10 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager : MonoBehaviour
 {
-    public GameObject floatingDamage = null;
+    public GameObject instantiatedSelectPointer;
+    public GameObject selectPointer = null;
     public GameObject instantiatedFloatingDamage;
+    public GameObject floatingDamage = null;    
     public bool floatUp;
     public Vector3 floatingNumberTarget;
     public Battle_Manager_Functions BM_Funcs;
@@ -196,7 +198,15 @@ public class Battle_Manager : MonoBehaviour
                 {
                     if (PlayersInBattle[i].speedTotal >= 100 || (PlayersInBattle[i].isCastingSpell && PlayersInBattle[i].castSpeedTotal <= 0))
                     {
+                        if (PlayersInBattle[i].isCastingSpell != true)
+                        {
+                            BM_Funcs.animationController(PlayersInBattle[i], "IsReady");
+                            PlayersInBattle[i].constantAnimationState = "IsReady";
+                            PlayersInBattle[i].hasConstantAnimationState = true;
+                        }
+
                         ActivePlayers.Add(PlayersInBattle[i]);
+                        BM_Funcs.createSelectPointer(ActivePlayers[0].position);
                     }
                 }
                 //Check if an enemy is above 100 Speed, and pause the Coroutine
@@ -710,6 +720,12 @@ public class Battle_Manager : MonoBehaviour
 
                 break;
             case BattleStates.RESOLVE_ACTION:
+
+                if (activePlayer.constantAnimationState == "IsReady")
+                {
+                    activePlayer.constantAnimationState = null;
+                    activePlayer.hasConstantAnimationState = false;
+                }                                
 
                 if (selectedCommand == "Attack")
                 {
