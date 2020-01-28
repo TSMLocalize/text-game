@@ -49,4 +49,5 @@ public class Player
     public GameObject currentRowPositionIcon;
     public bool hasConstantAnimationState;
     public string constantAnimationState = "";
+    
 }
