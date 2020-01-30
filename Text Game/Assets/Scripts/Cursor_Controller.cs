@@ -37,24 +37,27 @@ public class Cursor_Controller : MonoBehaviour
             {
                 if (instantiatedSelectPointer.transform.position == new Vector3(BM.Rows[i].transform.position.x - 1, BM.Rows[i].transform.position.y))
                 {
-                    if (activePlayerRowList.Contains(BM.Rows[i + 1]))
+                    if (i < activePlayerRowList.Count)
                     {
-                        createSelectPointer(BM.Rows[i + 1].transform.position);
-                        updateRows();
-                        break;
-                    }
-                    else if (activePlayerRowList.Contains(BM.Rows[i + 2]))
-                    {
-                        createSelectPointer(BM.Rows[i + 2].transform.position);
-                        updateRows();
-                        break;
-                    }
-                    else if (activePlayerRowList.Contains(BM.Rows[i + 3]))
-                    {
-                        createSelectPointer(BM.Rows[i + 3].transform.position);
-                        updateRows();
-                        break;
-                    }
+                        if (activePlayerRowList.Contains(BM.Rows[i + 1]))
+                        {
+                            createSelectPointer(BM.Rows[i + 1].transform.position);
+                            updateRows();
+                            break;
+                        }
+                        else if (activePlayerRowList.Contains(BM.Rows[i + 2]))
+                        {
+                            createSelectPointer(BM.Rows[i + 2].transform.position);
+                            updateRows();
+                            break;
+                        }
+                        else if (activePlayerRowList.Contains(BM.Rows[i + 3]))
+                        {
+                            createSelectPointer(BM.Rows[i + 3].transform.position);
+                            updateRows();
+                            break;
+                        }
+                    }                    
                 }
             }
         }
@@ -65,23 +68,26 @@ public class Cursor_Controller : MonoBehaviour
             {
                 if (instantiatedSelectPointer.transform.position == new Vector3(BM.Rows[i].transform.position.x - 1, BM.Rows[i].transform.position.y))
                 {
-                    if (activePlayerRowList.Contains(BM.Rows[i - 1]))
+                    if (i > 0)
                     {
-                        createSelectPointer(BM.Rows[i - 1].transform.position);
-                        updateRows();
-                        break;
-                    }
-                    else if (activePlayerRowList.Contains(BM.Rows[i - 2]))
-                    {
-                        createSelectPointer(BM.Rows[i - 2].transform.position);
-                        updateRows();
-                        break;
-                    }
-                    else if (activePlayerRowList.Contains(BM.Rows[i - 3]))
-                    {
-                        createSelectPointer(BM.Rows[i - 3].transform.position);
-                        updateRows();
-                        break;
+                        if (activePlayerRowList.Contains(BM.Rows[i - 1]))
+                        {
+                            createSelectPointer(BM.Rows[i - 1].transform.position);
+                            updateRows();
+                            break;
+                        }
+                        else if (activePlayerRowList.Contains(BM.Rows[i - 2]))
+                        {
+                            createSelectPointer(BM.Rows[i - 2].transform.position);
+                            updateRows();
+                            break;
+                        }
+                        else if (activePlayerRowList.Contains(BM.Rows[i - 3]))
+                        {
+                            createSelectPointer(BM.Rows[i - 3].transform.position);
+                            updateRows();
+                            break;
+                        }
                     }                    
                 }
             }
@@ -92,13 +98,16 @@ public class Cursor_Controller : MonoBehaviour
             for (int i = 0; i < BM.Rows.Count; i++)
             {
                 if (instantiatedSelectPointer.transform.position == new Vector3(BM.Rows[i].transform.position.x - 1, BM.Rows[i].transform.position.y))
-                {                    
-                    if (activePlayerRowList.Contains(BM.Rows[i + 4]))
+                {
+                    if (i < 3)
                     {
-                        createSelectPointer(BM.Rows[i + 4].transform.position);
-                        updateRows();
-                        break;
-                    }
+                        if (activePlayerRowList.Contains(BM.Rows[i + 4]))
+                        {
+                            createSelectPointer(BM.Rows[i + 4].transform.position);
+                            updateRows();
+                            break;
+                        }
+                    }                    
                 }
             }
         }
@@ -109,12 +118,15 @@ public class Cursor_Controller : MonoBehaviour
             {
                 if (instantiatedSelectPointer.transform.position == new Vector3(BM.Rows[i].transform.position.x - 1, BM.Rows[i].transform.position.y))
                 {
-                    if (activePlayerRowList.Contains(BM.Rows[i - 4]))
+                    if (i > 3)
                     {
-                        createSelectPointer(BM.Rows[i - 4].transform.position);
-                        updateRows();
-                        break;
-                    }
+                        if (activePlayerRowList.Contains(BM.Rows[i - 4]))
+                        {
+                            createSelectPointer(BM.Rows[i - 4].transform.position);
+                            updateRows();
+                            break;
+                        }
+                    }                    
                 }
             }
         }
