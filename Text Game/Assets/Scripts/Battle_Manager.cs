@@ -8,11 +8,6 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager : MonoBehaviour
 {
-    public GameObject instantiatedSelectPointer;
-    public GameObject selectPointer = null;
-    public Vector3 selectPointerDestination;
-    public int newPos;
-
     public GameObject instantiatedFloatingDamage;
     public GameObject floatingDamage = null;    
     public bool floatUp;
@@ -230,8 +225,7 @@ public class Battle_Manager : MonoBehaviour
 
                 if (ActivePlayers.Count > 0)
                 {                    
-                    coroutineIsPaused = true;
-                    BM_Funcs.createSelectPointer(ActivePlayers[0].battleSprite.transform.position);                    
+                    coroutineIsPaused = true;                    
                     battleStates = BattleStates.SELECT_PLAYER;
                 }
                 else if (ActiveEnemies.Count > 0)
@@ -249,42 +243,6 @@ public class Battle_Manager : MonoBehaviour
                 for (int i = 0; i < ActivePlayers.Count; i++)
                 {
                     ActivePlayers[i].playerPanelBackground.color = Color.yellow;
-                }
-
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                {                    
-                    for (int i = 0; i < ActivePlayers.Count; i++)
-                    {
-                        if (ActivePlayers[i].currentRowPositionID <= 3 || (ActivePlayers[i].currentRowPositionID <= 7 && ActivePlayers[i].currentRowPositionID >= 5))
-                        {
-                            if (instantiatedSelectPointer.transform.position.y == ActivePlayers[i].battleSprite.transform.position.y)
-                            {
-                                BM_Funcs.animationController(ActivePlayers[i]);
-                                selectPointerDestination = ActivePlayers[i + 1].battleSprite.transform.position;
-                                BM_Funcs.animationController(ActivePlayers[i + 1], "IsReady");
-                                
-                            }
-                        }                        
-                    }
-
-                    BM_Funcs.createSelectPointer(selectPointerDestination);
-                }
-                
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    for (int i = 0; i < ActivePlayers.Count; i++)
-                    {
-                        if (ActivePlayers[i].currentRowPositionID > 1)
-                        {
-                            if (instantiatedSelectPointer.transform.position.y == ActivePlayers[i].battleSprite.transform.position.y)
-                            {
-                                BM_Funcs.animationController(ActivePlayers[i]);
-                                selectPointerDestination = ActivePlayers[i - 1].battleSprite.transform.position;
-                                BM_Funcs.animationController(ActivePlayers[i - 1], "IsReady");
-                                BM_Funcs.createSelectPointer(selectPointerDestination);
-                            }
-                        }                        
-                    }                    
                 }
 
                 if (Input.GetKeyUp(KeyCode.Mouse0))

@@ -173,15 +173,6 @@ public class Battle_Manager_Functions : MonoBehaviour
         BM.floatUp = true;
     }
 
-    public void createSelectPointer(Vector3 position)
-    {
-        Destroy(BM.instantiatedSelectPointer);
-
-        BM.instantiatedSelectPointer = Instantiate(BM.selectPointer, position, Quaternion.identity);    
-
-        BM.instantiatedSelectPointer.transform.position = new Vector3(BM.instantiatedSelectPointer.transform.position.x - 1f, BM.instantiatedSelectPointer.transform.position.y);        
-    }
-
     public void SendMessagesToCombatLog(string text)
     {        
         if (messageList.Count >= maxMessages)
