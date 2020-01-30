@@ -5,5 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class Row : MonoBehaviour
 {
-    public int ID;    
+    public int ID;
+    public bool playerAtPosition;
 }

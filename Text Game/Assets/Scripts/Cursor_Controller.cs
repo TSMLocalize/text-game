@@ -12,6 +12,7 @@ public class Cursor_Controller : MonoBehaviour
     public GameObject selectPointer = null;
     public Vector3 selectPointerDestination;
     public int newPos;
+    public List<GameObject> activePlayerRowList;
 
     // Start is called before the first frame update
     void Start()
@@ -23,79 +24,100 @@ public class Cursor_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        updateRows();
 
-        if (BM.ActivePlayers.Count > 0 && instantiatedSelectPointer == null)
-        {
-            createSelectPointer(BM.PlayersInBattle[0].battleSprite.transform.position);
+        if (BM.Rows.Count > 0 && instantiatedSelectPointer == null)
+        {                        
+            createSelectPointer(BM.Rows[0].transform.position);
         }
 
-        if (instantiatedSelectPointer != null)
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            for (int i = 0; i < BM.Rows.Count; i++)
             {
-                for (int i = 0; i < BM.ActivePlayers.Count; i++)
+                if (instantiatedSelectPointer.transform.position == new Vector3(BM.Rows[i].transform.position.x - 1, BM.Rows[i].transform.position.y))
                 {
-                    if (instantiatedSelectPointer.transform.position == new Vector3(BM.ActivePlayers[i].battleSprite.transform.position.x - 1f, BM.ActivePlayers[i].battleSprite.transform.position.y))
+                    if (activePlayerRowList.Contains(BM.Rows[i + 1]))
                     {
-                        Player lastPlayerInList = BM.ActivePlayers.Last();
-
-                        if (BM.ActivePlayers[i].currentRowPositionID != 4 && BM.ActivePlayers[i].currentRowPositionID != 8 && BM.ActivePlayers[i] != lastPlayerInList)
-                        {                            
-                            selectPointerDestination = BM.ActivePlayers[i + 1].battleSprite.transform.position;
-                            createSelectPointer(selectPointerDestination);
-                            break;
-                        }                        
+                        createSelectPointer(BM.Rows[i + 1].transform.position);
+                        updateRows();
+                        break;
+                    }
+                    else if (activePlayerRowList.Contains(BM.Rows[i + 2]))
+                    {
+                        createSelectPointer(BM.Rows[i + 2].transform.position);
+                        updateRows();
+                        break;
+                    }
+                    else if (activePlayerRowList.Contains(BM.Rows[i + 3]))
+                    {
+                        createSelectPointer(BM.Rows[i + 3].transform.position);
+                        updateRows();
+                        break;
                     }
                 }
             }
+        }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            for (int i = 0; i < BM.Rows.Count; i++)
             {
-                for (int i = 0; i < BM.ActivePlayers.Count; i++)
-                {                    
-                    if (instantiatedSelectPointer.transform.position == new Vector3(BM.ActivePlayers[i].battleSprite.transform.position.x - 1f, BM.ActivePlayers[i].battleSprite.transform.position.y))
+                if (instantiatedSelectPointer.transform.position == new Vector3(BM.Rows[i].transform.position.x - 1, BM.Rows[i].transform.position.y))
+                {
+                    if (activePlayerRowList.Contains(BM.Rows[i - 1]))
                     {
-                        if (BM.ActivePlayers[i].currentRowPositionID != 1 && BM.ActivePlayers[i].currentRowPositionID != 5)
-                        {
-                            selectPointerDestination = BM.ActivePlayers[i - 1].battleSprite.transform.position;
-                            createSelectPointer(selectPointerDestination);
-                            break;
-                        }                        
+                        createSelectPointer(BM.Rows[i - 1].transform.position);
+                        updateRows();
+                        break;
+                    }
+                    else if (activePlayerRowList.Contains(BM.Rows[i - 2]))
+                    {
+                        createSelectPointer(BM.Rows[i - 2].transform.position);
+                        updateRows();
+                        break;
+                    }
+                    else if (activePlayerRowList.Contains(BM.Rows[i - 3]))
+                    {
+                        createSelectPointer(BM.Rows[i - 3].transform.position);
+                        updateRows();
+                        break;
                     }                    
                 }
             }
+        }
 
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            for (int i = 0; i < BM.Rows.Count; i++)
             {
-                for (int i = 0; i < BM.ActivePlayers.Count; i++)
-                {
-                    if (BM.ActivePlayers[i].currentRowPositionID > 4)
+                if (instantiatedSelectPointer.transform.position == new Vector3(BM.Rows[i].transform.position.x - 1, BM.Rows[i].transform.position.y))
+                {                    
+                    if (activePlayerRowList.Contains(BM.Rows[i + 4]))
                     {
-                        if (instantiatedSelectPointer.transform.position.y == BM.ActivePlayers[i].battleSprite.transform.position.y)
-                        {
-                            selectPointerDestination = BM.ActivePlayers[i].battleSprite.transform.position;
-                            createSelectPointer(selectPointerDestination);
-                        }
+                        createSelectPointer(BM.Rows[i + 4].transform.position);
+                        updateRows();
+                        break;
                     }
                 }
             }
+        }
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            for (int i = 0; i < BM.Rows.Count; i++)
             {
-                for (int i = 0; i < BM.ActivePlayers.Count; i++)
+                if (instantiatedSelectPointer.transform.position == new Vector3(BM.Rows[i].transform.position.x - 1, BM.Rows[i].transform.position.y))
                 {
-                    if (BM.ActivePlayers[i].currentRowPositionID <= 4)
+                    if (activePlayerRowList.Contains(BM.Rows[i - 4]))
                     {
-                        if (instantiatedSelectPointer.transform.position.y == BM.ActivePlayers[i].battleSprite.transform.position.y)
-                        {
-                            selectPointerDestination = BM.ActivePlayers[i].battleSprite.transform.position;
-                            createSelectPointer(selectPointerDestination);
-                        }
+                        createSelectPointer(BM.Rows[i - 4].transform.position);
+                        updateRows();
+                        break;
                     }
                 }
             }
-        }        
+        }
     }
 
     public void createSelectPointer(Vector3 position)
@@ -103,5 +125,24 @@ public class Cursor_Controller : MonoBehaviour
         Destroy(instantiatedSelectPointer);
         instantiatedSelectPointer = Instantiate(selectPointer, position, Quaternion.identity);
         instantiatedSelectPointer.transform.position = new Vector3(instantiatedSelectPointer.transform.position.x - 1f, instantiatedSelectPointer.transform.position.y);
+    }        
+
+    public void updateRows()
+    {
+        activePlayerRowList.Clear();
+
+        if (BM.ActivePlayers.Count > 0 && activePlayerRowList.Count == 0)
+        {
+            for (int i = 0; i < BM.ActivePlayers.Count; i++)
+            {
+                for (int y = 0; y < BM.Rows.Count; y++)
+                {
+                    if (BM.ActivePlayers[i].battleSprite.transform.position == BM.Rows[y].transform.position)
+                    {
+                        activePlayerRowList.Add(BM.Rows[y]);
+                    }
+                }
+            }
+        }
     }
 }

@@ -3215,6 +3215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 6
+  playerAtPosition: 0
 --- !u!1 &264740440
 GameObject:
   m_ObjectHideFlags: 0
@@ -4740,6 +4741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 3
+  playerAtPosition: 0
 --- !u!1 &327474208
 GameObject:
   m_ObjectHideFlags: 0
@@ -7261,6 +7263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 2
+  playerAtPosition: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -13819,6 +13822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 7
+  playerAtPosition: 0
 --- !u!1 &979014126
 GameObject:
   m_ObjectHideFlags: 0
@@ -17028,6 +17032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 8
+  playerAtPosition: 0
 --- !u!1 &1184019707
 GameObject:
   m_ObjectHideFlags: 0
@@ -20662,6 +20667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 1
+  playerAtPosition: 0
 --- !u!1 &1501290637
 GameObject:
   m_ObjectHideFlags: 0
@@ -20755,6 +20761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 5
+  playerAtPosition: 0
 --- !u!1 &1503136156
 GameObject:
   m_ObjectHideFlags: 0
@@ -21400,11 +21407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc694585531b774c9cb4dcd1c229254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instantiatedSelectPointer: {fileID: 0}
-  selectPointer: {fileID: 6176879060707721230, guid: 84199bc6a1e34284f900dd418bec04bf,
-    type: 3}
-  selectPointerDestination: {x: 0, y: 0, z: 0}
-  newPos: 0
   instantiatedFloatingDamage: {fileID: 0}
   floatingDamage: {fileID: 2614911549536912700, guid: ee9280d83beb36a4183dfc82241d258d,
     type: 3}
@@ -21853,6 +21855,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BM: {fileID: 0}
   BM_Funcs: {fileID: 0}
+  instantiatedSelectPointer: {fileID: 0}
+  selectPointer: {fileID: 6176879060707721230, guid: 84199bc6a1e34284f900dd418bec04bf,
+    type: 3}
+  selectPointerDestination: {x: 0, y: 0, z: 0}
+  newPos: 0
+  activePlayerRowList: []
 --- !u!1 &1551812233
 GameObject:
   m_ObjectHideFlags: 0
@@ -26936,6 +26944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 4
+  playerAtPosition: 0
 --- !u!1 &2126799131
 GameObject:
   m_ObjectHideFlags: 0
