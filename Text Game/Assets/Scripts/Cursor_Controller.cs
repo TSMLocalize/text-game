@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [System.Serializable]
 public class Cursor_Controller : MonoBehaviour
@@ -22,6 +23,7 @@ public class Cursor_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (BM.ActivePlayers.Count > 0 && instantiatedSelectPointer == null)
         {
             createSelectPointer(BM.PlayersInBattle[0].battleSprite.transform.position);
@@ -36,9 +38,14 @@ public class Cursor_Controller : MonoBehaviour
                 {
                     if (instantiatedSelectPointer.transform.position == new Vector3(BM.ActivePlayers[i].battleSprite.transform.position.x - 1f, BM.ActivePlayers[i].battleSprite.transform.position.y))
                     {
-                        selectPointerDestination = BM.ActivePlayers[i + 1].battleSprite.transform.position;
-                        createSelectPointer(selectPointerDestination);
-                        break;
+                        Player lastPlayerInList = BM.ActivePlayers.Last();
+
+                        if (BM.ActivePlayers[i].currentRowPositionID != 4 && BM.ActivePlayers[i].currentRowPositionID != 8 && BM.ActivePlayers[i] != lastPlayerInList)
+                        {                            
+                            selectPointerDestination = BM.ActivePlayers[i + 1].battleSprite.transform.position;
+                            createSelectPointer(selectPointerDestination);
+                            break;
+                        }                        
                     }
                 }
             }
@@ -49,9 +56,12 @@ public class Cursor_Controller : MonoBehaviour
                 {                    
                     if (instantiatedSelectPointer.transform.position == new Vector3(BM.ActivePlayers[i].battleSprite.transform.position.x - 1f, BM.ActivePlayers[i].battleSprite.transform.position.y))
                     {
-                        selectPointerDestination = BM.ActivePlayers[i - 1].battleSprite.transform.position;
-                        createSelectPointer(selectPointerDestination);
-                        break;
+                        if (BM.ActivePlayers[i].currentRowPositionID != 1 && BM.ActivePlayers[i].currentRowPositionID != 5)
+                        {
+                            selectPointerDestination = BM.ActivePlayers[i - 1].battleSprite.transform.position;
+                            createSelectPointer(selectPointerDestination);
+                            break;
+                        }                        
                     }                    
                 }
             }
