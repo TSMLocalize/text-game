@@ -384,7 +384,7 @@ public class Battle_Manager_Functions : MonoBehaviour
             {
                 BM.PlayersInBattle[i].playerCastBar.SetActive(true);
                 BM.PlayersInBattle[i].playerCastBarText.text = BM.PlayersInBattle[i].castSpeedTotal + " (" + BM.PlayersInBattle[i].castSpeed + ")";
-                BM.PlayersInBattle[i].playerCastBarFill.GetComponent<Image>().transform.localScale = new Vector3(Mathf.Clamp((BM.PlayersInBattle[i].castSpeedTotal / 100), 0, 1),
+                BM.PlayersInBattle[i].playerCastBarFill.GetComponent<Image>().transform.localScale = new Vector3(Mathf.Clamp((BM.PlayersInBattle[i].castSpeedTotal / BM.PlayersInBattle[i].activeSpell.castTime), 0, 1),
                 BM.PlayersInBattle[i].playerCastBarFill.GetComponent<Image>().transform.localScale.y,
                 BM.PlayersInBattle[i].playerCastBarFill.GetComponent<Image>().transform.localScale.z);
             }
@@ -411,7 +411,7 @@ public class Battle_Manager_Functions : MonoBehaviour
             {
                 BM.EnemiesInBattle[i].enemyCastBar.SetActive(true);
                 BM.EnemiesInBattle[i].enemyCastBarText.text = BM.EnemiesInBattle[i].castSpeedTotal + " (" + BM.EnemiesInBattle[i].castSpeed + ")";
-                BM.EnemiesInBattle[i].enemyCastBarFill.GetComponent<Image>().transform.localScale = new Vector3(Mathf.Clamp((BM.EnemiesInBattle[i].castSpeedTotal / 100), 0, 1),
+                BM.EnemiesInBattle[i].enemyCastBarFill.GetComponent<Image>().transform.localScale = new Vector3(Mathf.Clamp((BM.EnemiesInBattle[i].castSpeedTotal / BM.EnemiesInBattle[i].activeSpell.castTime), 0, 1),
                 BM.EnemiesInBattle[i].enemyCastBarFill.GetComponent<Image>().transform.localScale.y,
                 BM.EnemiesInBattle[i].enemyCastBarFill.GetComponent<Image>().transform.localScale.z);
             }
