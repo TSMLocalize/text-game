@@ -42,6 +42,9 @@ public class Battle_Manager : MonoBehaviour
     public List<GameObject> PlayerCastBars;
     public List<GameObject> PlayerCastBarFills;
     public List<TextMeshProUGUI> PlayerCastBarTexts;
+    public List<GameObject> PlayerTPBars;
+    public List<GameObject> PlayerTPBarFills;
+    public List<TextMeshProUGUI> PlayerTPBarTexts;
     public List<GameObject> EnemyPanels;
     public List<GameObject> EnemySpeedBars;
     public List<TextMeshProUGUI> EnemySpeedBarTexts;
