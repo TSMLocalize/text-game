@@ -13,6 +13,8 @@ public class Player
     public float maxHP;
     public float speed;
     public float speedTotal;
+    public float TP;
+    public float tpTotal;
     public float castSpeed;
     public float castSpeedTotal;
     public string PlayerTargetID;
@@ -36,6 +38,9 @@ public class Player
     public Image playerPanelBackground;
     public GameObject playerSpeedBar;
     public TextMeshProUGUI playerSpeedBarText;
+    public GameObject playerTPBar;
+    public GameObject playerTPBarFill;
+    public TextMeshProUGUI playerTPBarText;
     public GameObject playerCastBar;
     public GameObject playerCastBarFill;
     public TextMeshProUGUI playerCastBarText;

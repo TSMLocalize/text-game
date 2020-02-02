@@ -221,6 +221,10 @@ public class Battle_Manager_Functions : MonoBehaviour
             //Speed Bar setup
             BM.PlayersInBattle[i].playerSpeedBarText = BM.PlayerSpeedBarTexts[i];
             BM.PlayersInBattle[i].playerSpeedBar = BM.PlayerSpeedBars[i];
+            //TP Bar setup
+            BM.PlayersInBattle[i].playerTPBarText = BM.PlayerTPBarTexts[i];
+            BM.PlayersInBattle[i].playerTPBar = BM.PlayerTPBars[i];
+            BM.PlayersInBattle[i].playerTPBarFill = BM.PlayerTPBarFills[i];
             //Cast Bar setup
             BM.PlayersInBattle[i].playerCastBar = BM.PlayerCastBars[i];
             BM.PlayersInBattle[i].playerCastBarText = BM.PlayerCastBarTexts[i];
@@ -378,6 +382,12 @@ public class Battle_Manager_Functions : MonoBehaviour
             BM.PlayersInBattle[i].playerSpeedBar.GetComponent<Image>().transform.localScale = new Vector3(Mathf.Clamp((BM.PlayersInBattle[i].speedTotal / 100), 0, 1),
             BM.PlayersInBattle[i].playerSpeedBar.GetComponent<Image>().transform.localScale.y,
             BM.PlayersInBattle[i].playerSpeedBar.GetComponent<Image>().transform.localScale.z);
+
+            //Update Player TP bar data every frame
+            BM.PlayersInBattle[i].playerTPBarText.text = BM.PlayersInBattle[i].tpTotal + "/100 " + "(" + BM.PlayersInBattle[i].TP + ")";
+            BM.PlayersInBattle[i].playerTPBarFill.GetComponent<Image>().transform.localScale = new Vector3(Mathf.Clamp((BM.PlayersInBattle[i].tpTotal / 100), 0, 1),
+            BM.PlayersInBattle[i].playerTPBarFill.GetComponent<Image>().transform.localScale.y,
+            BM.PlayersInBattle[i].playerTPBarFill.GetComponent<Image>().transform.localScale.z);
 
             //Update and show cast bars while isCastingSpell is true for a player
             if (BM.PlayersInBattle[i].isCastingSpell == true)
