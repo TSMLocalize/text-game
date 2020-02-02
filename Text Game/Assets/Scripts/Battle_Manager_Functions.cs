@@ -18,7 +18,10 @@ public class Battle_Manager_Functions : MonoBehaviour
     public GameObject chatPanel;   
     public GameObject textObject;
 
-    int m_IndexNumber;
+    public GameObject pfOption;
+    public List<GameObject> instantiatedOptions;
+    public GameObject instantiatedOption;
+    public GameObject OptionPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -320,11 +323,10 @@ public class Battle_Manager_Functions : MonoBehaviour
 
     public void resetChoicePanel()
     {
-        for (int i = 0; i < BM.PlayerOptions.Count; i++)
+        for (int i = 0; i < instantiatedOptions.Count; i++)
         {
-            BM.PlayerOptions[i].GetComponent<Image>().color = BM.defaultBlueColor;
-            BM.PlayerOptions[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
-            BM.PlayerOptions[i].SetActive(false);
+            instantiatedOptions[i].GetComponent<Image>().color = BM.defaultBlueColor;
+            instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text = "";            
         }
     }
 
@@ -338,11 +340,13 @@ public class Battle_Manager_Functions : MonoBehaviour
     }
 
     public void populateActionList()
-    {
-        for (int i = 0; i < BM.PlayerOptions.Count; i++)
-        {
-            BM.PlayerOptions[i].SetActive(false);
+    {        
+        for (int i = 0; i < instantiatedOptions.Count; i++)
+        {            
+            Destroy(instantiatedOptions[i]);            
         }
+
+        instantiatedOptions.Clear();
 
         if (BM.activePlayer.isCastingSpell == true)
         {
@@ -352,11 +356,12 @@ public class Battle_Manager_Functions : MonoBehaviour
 
             for (int i = 0; i < BM.activePlayer.playerOptions.Count; i++)
             {
-                BM.PlayerOptions[i].SetActive(true);
-                BM.PlayerOptions[i].GetComponentInChildren<TextMeshProUGUI>().text = BM.activePlayer.playerOptions[i];
+                pfOption.GetComponentInChildren<TextMeshProUGUI>().text = BM.activePlayer.playerOptions[i];
+                instantiatedOption = Instantiate(pfOption, OptionPanel.transform);
+                instantiatedOptions.Add(instantiatedOption);
             }
-        }
-        else if (BM.activePlayer.isCastingSpell == false)
+        } 
+        if (BM.activePlayer.isCastingSpell == false)
         {
             BM.activePlayer.playerOptions.Clear();
 
@@ -367,8 +372,9 @@ public class Battle_Manager_Functions : MonoBehaviour
 
             for (int i = 0; i < BM.activePlayer.playerOptions.Count; i++)
             {
-                BM.PlayerOptions[i].SetActive(true);
-                BM.PlayerOptions[i].GetComponentInChildren<TextMeshProUGUI>().text = BM.activePlayer.playerOptions[i];
+                pfOption.GetComponentInChildren<TextMeshProUGUI>().text = BM.activePlayer.playerOptions[i];
+                instantiatedOption = Instantiate(pfOption, OptionPanel.transform);
+                instantiatedOptions.Add(instantiatedOption);
             }
         }
     }
