@@ -66,7 +66,7 @@ public class Battle_Manager : MonoBehaviour
     public string selectedCommand = null;
     public Color defaultColor;
     public Color defaultBlueColor;
-    public Image[] optionsArray;
+    public Image[] spellOptionsArray;
     public Image[] playerPanelArray;
     public Image[] enemyPanelArray;
     public Image[] actionPanelArray;
@@ -339,9 +339,7 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.SELECT_OPTION:
 
-                OptionPanel.SetActive(true);
-
-                BM_Funcs.populateSpellOptionList();
+                OptionPanel.SetActive(true);                
 
                 //RIGHT CLICK TO GO BACK
                 if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -352,8 +350,7 @@ public class Battle_Manager : MonoBehaviour
                     }
 
                     OptionPanel.SetActive(false);
-                    selectedCommand = null;
-                    BM_Funcs.clearSpellOptionList();
+                    selectedCommand = null;                    
 
                     battleStates = BattleStates.SELECT_ACTION;
                 }
@@ -364,9 +361,9 @@ public class Battle_Manager : MonoBehaviour
                     foreach (RaycastResult result in results)
                     {
                         //Left click a spell option to pick it
-                        for (int i = 0; i < SpellOptions.Count; i++)
+                        for (int i = 0; i < BM_Funcs.instantiatedSpellOptions.Count; i++)
                         {
-                            if (result.gameObject == SpellOptions[i])
+                            if (result.gameObject == BM_Funcs.instantiatedSpellOptions[i])
                             {
                                 for (int y = 0; y < activePlayer.spellBook.Count; y++)
                                 {
@@ -376,7 +373,8 @@ public class Battle_Manager : MonoBehaviour
                                     }
                                 }
 
-                                SpellOptions[i].GetComponentInChildren<Image>().color = Color.magenta;
+                                BM_Funcs.instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = Color.yellow;
+
                                 battleStates = BattleStates.SELECT_TARGET;
                             }
                         }
@@ -390,9 +388,11 @@ public class Battle_Manager : MonoBehaviour
                                 BM_Funcs.animationController(activePlayer);
                                 activePlayer.battleSprite.transform.position = activePlayer.position;
                                 activePlayer = ActivePlayers[i];
-                                OptionPanel.SetActive(false);
+                                stepForward = true;
                                 selectedCommand = null;
-                                BM_Funcs.clearSpellOptionList();
+                                activePlayer.activeSpell = null;
+                                OptionPanel.SetActive(false);                                
+                                BM_Funcs.populateActionList();
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
@@ -407,10 +407,10 @@ public class Battle_Manager : MonoBehaviour
                                     {
                                         BM_Funcs.instantiatedOptions[y].GetComponent<Image>().color = defaultBlueColor;
                                     }
-                                    BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = Color.yellow;
+
+                                    BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = Color.yellow;                                    
                                     OptionPanel.SetActive(false);
-                                    selectedCommand = BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text;
-                                    BM_Funcs.clearSpellOptionList();
+                                    selectedCommand = BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text;                                    
                                     battleStates = BattleStates.SELECT_ACTION;
                                 }
                             }
@@ -429,31 +429,31 @@ public class Battle_Manager : MonoBehaviour
                     EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
                 }
 
-                //Right click to go back to select action
+                //Right click to go back to select option or select action
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
-                    BM_Funcs.animationController(activePlayer);
-
-                    for (int i = 0; i < EnemiesInBattle.Count; i++)
-                    {
-                        EnemiesInBattle[i].enemyPanelBackground.color = defaultColor;
-                    }
-                    for (int i = 0; i < BM_Funcs.instantiatedOptions.Count; i++)
-                    {
-                        BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = defaultBlueColor;
-                    }
-                    selectedCommand = null;
-
-                    battleStates = BattleStates.SELECT_ACTION;
-
-                    //Right click to cancel selected spell option
                     if (OptionPanel.activeSelf == true)
                     {
                         activePlayer.activeSpell = null;
-                        BM_Funcs.clearSpellOptionList();
                         BM_Funcs.populateSpellOptionList();
                         battleStates = BattleStates.SELECT_OPTION;
                     }
+                    else
+                    {
+                        BM_Funcs.animationController(activePlayer);
+
+                        for (int i = 0; i < EnemiesInBattle.Count; i++)
+                        {
+                            EnemiesInBattle[i].enemyPanelBackground.color = defaultColor;
+                        }
+                        for (int i = 0; i < BM_Funcs.instantiatedOptions.Count; i++)
+                        {
+                            BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = defaultBlueColor;
+                        }
+                        selectedCommand = null;
+
+                        battleStates = BattleStates.SELECT_ACTION;
+                    }                                        
                 }
 
 
@@ -504,9 +504,9 @@ public class Battle_Manager : MonoBehaviour
                                 activePlayer = ActivePlayers[i];
                                 stepForward = true;
                                 selectedCommand = null;
-                                activePlayer.activeSpell = null;
-                                BM_Funcs.clearSpellOptionList();
+                                activePlayer.activeSpell = null;                                
                                 OptionPanel.SetActive(false);
+                                BM_Funcs.populateActionList();
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
@@ -515,6 +515,13 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == BM_Funcs.instantiatedOptions[i])
                             {
+                                if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text != "Magic" && OptionPanel.activeSelf == true)
+                                {
+                                    activePlayer.activeSpell = null;
+                                    BM_Funcs.populateSpellOptionList();
+                                    battleStates = BattleStates.SELECT_OPTION;
+                                }
+
                                 for (int y = 0; y < BM_Funcs.instantiatedOptions.Count; y++)
                                 {
                                     BM_Funcs.instantiatedOptions[y].GetComponent<Image>().color = defaultBlueColor;                                    
@@ -530,11 +537,10 @@ public class Battle_Manager : MonoBehaviour
                             }
                         }
                         //Left click another option to select that instead
-                        for (int i = 0; i < SpellOptions.Count; i++)
+                        for (int i = 0; i < BM_Funcs.instantiatedSpellOptions.Count; i++)
                         {
-                            if (result.gameObject == SpellOptions[i])
-                            {
-                                BM_Funcs.clearSpellOptionList();
+                            if (result.gameObject == BM_Funcs.instantiatedSpellOptions[i])
+                            {                                
                                 BM_Funcs.populateSpellOptionList();
 
                                 for (int y = 0; y < activePlayer.spellBook.Count; y++)
@@ -545,7 +551,7 @@ public class Battle_Manager : MonoBehaviour
                                     }
                                 }
 
-                                SpellOptions[i].GetComponentInChildren<Image>().color = Color.magenta;
+                                BM_Funcs.instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = Color.yellow;
                                 battleStates = BattleStates.SELECT_TARGET;
                             }
                         }
@@ -623,8 +629,7 @@ public class Battle_Manager : MonoBehaviour
                                 activePlayer = ActivePlayers[i];
                                 stepForward = true;
                                 selectedCommand = null;
-                                activePlayer.activeSpell = null;
-                                BM_Funcs.clearSpellOptionList();
+                                activePlayer.activeSpell = null;                                
                                 OptionPanel.SetActive(false);
 
                                 for (int y = 0; y < RowChangeIcons.Count; y++)
@@ -632,6 +637,7 @@ public class Battle_Manager : MonoBehaviour
                                     RowChangeIcons[y].SetActive(false);
                                 }
 
+                                BM_Funcs.populateActionList();
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
@@ -654,7 +660,7 @@ public class Battle_Manager : MonoBehaviour
                                 {
                                     RowChangeIcons[y].SetActive(false);
                                 }
-
+                                
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
@@ -745,8 +751,7 @@ public class Battle_Manager : MonoBehaviour
                         BM_Funcs.enemyAnimationController(playerTarget);
                         activePlayer.speedTotal -= 100f;
                         activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                        BM_Funcs.resetChoicePanel();
-                        BM_Funcs.clearSpellOptionList();
+                        BM_Funcs.resetChoicePanel();                        
                         ActionPanel.SetActive(false);
                         OptionPanel.SetActive(false);
                         ActivePlayers.Remove(activePlayer);
@@ -785,8 +790,7 @@ public class Battle_Manager : MonoBehaviour
 
                     activePlayer.speedTotal -= 100f;
                     activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                    BM_Funcs.resetChoicePanel();
-                    BM_Funcs.clearSpellOptionList();
+                    BM_Funcs.resetChoicePanel();                    
                     ActionPanel.SetActive(false);
                     OptionPanel.SetActive(false);
                     ActivePlayers.Remove(activePlayer);
@@ -812,8 +816,7 @@ public class Battle_Manager : MonoBehaviour
                     standIdle(activePlayer);
                     activePlayer.speedTotal = (100f - activePlayer.speed);
                     activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                    BM_Funcs.resetChoicePanel();
-                    BM_Funcs.clearSpellOptionList();
+                    BM_Funcs.resetChoicePanel();                    
                     ActionPanel.SetActive(false);
                     OptionPanel.SetActive(false);
                     ActivePlayers.Remove(activePlayer);
@@ -844,8 +847,7 @@ public class Battle_Manager : MonoBehaviour
                     }
                     playerToSwitchRowWith = null;
                     activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                    BM_Funcs.resetChoicePanel();
-                    BM_Funcs.clearSpellOptionList();
+                    BM_Funcs.resetChoicePanel();                    
                     ActionPanel.SetActive(false);
                     OptionPanel.SetActive(false);
                     ActivePlayers.Remove(activePlayer);

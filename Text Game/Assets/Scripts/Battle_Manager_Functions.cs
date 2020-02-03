@@ -23,6 +23,11 @@ public class Battle_Manager_Functions : MonoBehaviour
     public GameObject instantiatedOption;
     public GameObject OptionPanel;
 
+    public GameObject pfSpellOption;
+    public List<GameObject> instantiatedSpellOptions;
+    public GameObject instantiatedSpellOption;
+    public GameObject SpellOptionPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -330,15 +335,6 @@ public class Battle_Manager_Functions : MonoBehaviour
         }
     }
 
-    public void clearSpellOptionList()
-    {
-        for (int i = 0; i < BM.SpellOptions.Count; i++)
-        {
-            BM.SpellOptions[i].GetComponentInChildren<Image>().color = BM.defaultBlueColor;
-            BM.SpellOptions[i].SetActive(false);
-        }
-    }
-
     public void populateActionList()
     {        
         for (int i = 0; i < instantiatedOptions.Count; i++)
@@ -376,6 +372,30 @@ public class Battle_Manager_Functions : MonoBehaviour
                 instantiatedOption = Instantiate(pfOption, OptionPanel.transform);
                 instantiatedOptions.Add(instantiatedOption);
             }
+        }
+    }
+
+    public void populateSpellOptionList()
+    {
+        for (int i = 0; i < instantiatedSpellOptions.Count; i++)
+        {
+            instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = BM.defaultBlueColor;            
+            Destroy(instantiatedSpellOptions[i]);
+        }
+
+        instantiatedSpellOptions.Clear();
+
+        for (int i = 0; i < BM.activePlayer.spellBook.Count; i++)
+        {            
+            instantiatedSpellOption = Instantiate(pfSpellOption, SpellOptionPanel.transform);
+
+            BM.spellOptionsArray = instantiatedSpellOption.GetComponentsInChildren<Image>();
+            BM.spellOptionsArray[1].overrideSprite = BM.activePlayer.spellBook[i].spellIcon;
+            BM.spellOptionsArray[0].color = BM.defaultBlueColor;
+
+            instantiatedSpellOption.GetComponentInChildren<TextMeshProUGUI>().text = BM.activePlayer.spellBook[i].name;
+            
+            instantiatedSpellOptions.Add(instantiatedSpellOption);
         }
     }
 
@@ -438,17 +458,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         }
     }
 
-    public void populateSpellOptionList()
-    {
-        for (int i = 0; i < BM.activePlayer.spellBook.Count; i++)
-        {
-            BM.optionsArray = BM.SpellOptions[i].GetComponentsInChildren<Image>();
-            BM.SpellOptions[i].SetActive(true);
-            BM.SpellOptions[i].GetComponentInChildren<TextMeshProUGUI>().text = BM.activePlayer.spellBook[i].name;
-            BM.optionsArray[1].overrideSprite = BM.activePlayer.spellBook[i].spellIcon;
-            BM.SpellOptions[i].GetComponentInChildren<Image>().color = BM.defaultBlueColor;
-        }
-    }
+
 
     public void redirectAction()
     {        
