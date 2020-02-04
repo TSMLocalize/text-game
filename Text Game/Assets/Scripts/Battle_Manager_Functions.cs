@@ -34,7 +34,14 @@ public class Battle_Manager_Functions : MonoBehaviour
     public List<GameObject> instantiatedSpellOptions;
     public GameObject instantiatedSpellOption;
     public GameObject SpellOptionPanel;
-    
+
+    public GameObject pfTimersOption;
+    public GameObject instantiatedTimersOption;
+    public List<GameObject> instantiatedTimersOptions;
+    public GameObject TimersOptionPanel;
+    public Image[] instantiatedTimersImageArray;
+    public TextMeshProUGUI[] instantiatedTimersTextArray;
+
 
     // Start is called before the first frame update
     void Start()
@@ -441,6 +448,47 @@ public class Battle_Manager_Functions : MonoBehaviour
             }
 
         }
+    }
+
+    public void updateTimersLog()
+    {
+        for (int i = 0; i < instantiatedTimersOptions.Count; i++)
+        {
+            instantiatedTimersImageArray = instantiatedTimersOptions[i].GetComponentsInChildren<Image>();
+            instantiatedTimersTextArray = instantiatedTimersOptions[i].GetComponentsInChildren<TextMeshProUGUI>();
+
+            for (int y = 0; y < BM.PlayersInBattle.Count; y++)
+            {
+                if (instantiatedTimersTextArray[0].text == BM.PlayersInBattle[y].activeSpell.name)
+                {
+                    instantiatedTimersImageArray[2].transform.localScale = new Vector3(Mathf.Clamp((BM.PlayersInBattle[y].castSpeedTotal / BM.PlayersInBattle[y].activeSpell.castTime), 0, 1),
+                    BM.PlayersInBattle[y].playerCastBarFill.GetComponent<Image>().transform.localScale.y,
+                    BM.PlayersInBattle[y].playerCastBarFill.GetComponent<Image>().transform.localScale.z);
+                }
+            }            
+        }
+    }
+
+    public void addToTimersLog(Player player = null)
+    {
+        instantiatedTimersOption = Instantiate(pfTimersOption, TimersOptionPanel.transform);
+        instantiatedTimersImageArray = instantiatedTimersOption.GetComponentsInChildren<Image>();
+        instantiatedTimersTextArray = instantiatedTimersOption.GetComponentsInChildren<TextMeshProUGUI>();
+
+        if (player.isCastingSpell)
+        {            
+            instantiatedTimersImageArray[1].overrideSprite = player.PlayerPortrait;
+            instantiatedTimersTextArray[0].text = player.activeSpell.name;            
+        }
+        else
+        {
+            instantiatedTimersImageArray[2].color = BM.defaultBlueColor;
+            instantiatedTimersImageArray[1].overrideSprite = player.PlayerPortrait;
+            instantiatedTimersTextArray[0].text = player.name;
+            
+        }
+
+        instantiatedTimersOptions.Add(instantiatedTimersOption);
     }
 
     public void updateEnemyUIBars()

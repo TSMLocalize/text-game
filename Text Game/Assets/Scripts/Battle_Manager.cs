@@ -170,6 +170,10 @@ public class Battle_Manager : MonoBehaviour
 
         BM_Funcs.updatePlayerUIBars();
 
+        //EXPERIMENTAL
+        BM_Funcs.updateTimersLog();
+        //
+
         switch (battleStates)
         {
             case BattleStates.DEFAULT:
@@ -479,6 +483,7 @@ public class Battle_Manager : MonoBehaviour
                                 if (selectedCommand == "Magic")
                                 {
                                     activePlayer.isCastingSpell = true;
+                                    BM_Funcs.addToTimersLog(activePlayer);
                                 }
                                 else if (selectedCommand == "Attack")
                                 {
