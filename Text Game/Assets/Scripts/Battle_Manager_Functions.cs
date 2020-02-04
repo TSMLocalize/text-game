@@ -18,6 +18,13 @@ public class Battle_Manager_Functions : MonoBehaviour
     public GameObject chatPanel;   
     public GameObject textObject;
 
+    public GameObject pfPlayerPanel;
+    public List<GameObject> instantiatedPlayerPanels;
+    public GameObject instantiatedPlayerPanel;
+    public GameObject PlayerPanels;
+    public Image[] instantiatedPlayerPanelImageArray;
+    public TextMeshProUGUI[] instantiatedPlayerPanelTextArray;
+
     public GameObject pfOption;
     public List<GameObject> instantiatedOptions;
     public GameObject instantiatedOption;
@@ -27,6 +34,7 @@ public class Battle_Manager_Functions : MonoBehaviour
     public List<GameObject> instantiatedSpellOptions;
     public GameObject instantiatedSpellOption;
     public GameObject SpellOptionPanel;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -215,29 +223,29 @@ public class Battle_Manager_Functions : MonoBehaviour
 
         for (int i = 0; i < BM.PlayersInBattle.Count; i++)
         {
+            //Instantiate Panels
+            instantiatedPlayerPanel = Instantiate(pfPlayerPanel, PlayerPanels.transform);
+            instantiatedPlayerPanelImageArray = instantiatedPlayerPanel.GetComponentsInChildren<Image>();
+            instantiatedPlayerPanelTextArray = instantiatedPlayerPanel.GetComponentsInChildren<TextMeshProUGUI>();
+            //instantiatedPlayerPanels.Add(instantiatedPlayerPanel);
             //Assign Panels and populate
-            BM.PlayersInBattle[i].playerPanel = BM.PlayerPanels[i];
-            BM.PlayersInBattle[i].playerPanelText = BM.PlayerPanelTexts[i];
-            BM.PlayersInBattle[i].playerPanelText.fontSize = 12;
-            BM.PlayersInBattle[i].playerPanelBackground = BM.PlayerPanels[i].GetComponent<Image>();
-            BM.playerPanelArray = BM.PlayerPanels[i].GetComponentsInChildren<Image>();
-            BM.playerPanelArray[3].overrideSprite = BM.PlayersInBattle[i].PlayerPortrait;
+            BM.PlayersInBattle[i].playerPanel = instantiatedPlayerPanel;
+            BM.PlayersInBattle[i].playerPanelText = instantiatedPlayerPanelTextArray[0];
+            BM.PlayersInBattle[i].playerPanelBackground = instantiatedPlayerPanelImageArray[0];            
+            instantiatedPlayerPanelImageArray[1].overrideSprite = BM.PlayersInBattle[i].PlayerPortrait;
             //Panel Text setup            
-            BM.PlayersInBattle[i].playerPanelText.text =
-                BM.PlayersInBattle[i].name + "\n" +
-                "HP: " + BM.PlayersInBattle[i].currentHP + "/" + BM.PlayersInBattle[i].maxHP;
+            BM.PlayersInBattle[i].playerPanelText.text = BM.PlayersInBattle[i].name;
             //Speed Bar setup
-            BM.PlayersInBattle[i].playerSpeedBarText = BM.PlayerSpeedBarTexts[i];
-            BM.PlayersInBattle[i].playerSpeedBar = BM.PlayerSpeedBars[i];
+            BM.PlayersInBattle[i].playerSpeedBarText = instantiatedPlayerPanelTextArray[4];
+            BM.PlayersInBattle[i].playerSpeedBar = instantiatedPlayerPanelImageArray[9].gameObject;
             //TP Bar setup
-            BM.PlayersInBattle[i].playerTPBarText = BM.PlayerTPBarTexts[i];
-            BM.PlayersInBattle[i].playerTPBar = BM.PlayerTPBars[i];
-            BM.PlayersInBattle[i].playerTPBarFill = BM.PlayerTPBarFills[i];
+            BM.PlayersInBattle[i].playerTPBarText = instantiatedPlayerPanelTextArray[3];
+            BM.PlayersInBattle[i].playerTPBar = instantiatedPlayerPanelImageArray[6].gameObject;
+            BM.PlayersInBattle[i].playerTPBarFill = instantiatedPlayerPanelImageArray[7].gameObject;
             //Cast Bar setup
-            BM.PlayersInBattle[i].playerCastBar = BM.PlayerCastBars[i];
-            BM.PlayersInBattle[i].playerCastBarText = BM.PlayerCastBarTexts[i];
-            BM.PlayersInBattle[i].playerCastBarFill = BM.PlayerCastBarFills[i];
-            BM.PlayerCastBars[i].SetActive(false);
+            BM.PlayersInBattle[i].playerCastBar = instantiatedPlayerPanelImageArray[10].gameObject;
+            BM.PlayersInBattle[i].playerCastBarText = instantiatedPlayerPanelTextArray[5];
+            BM.PlayersInBattle[i].playerCastBarFill = instantiatedPlayerPanelImageArray[11].gameObject;            
             //Set battle sprites to their correct row
             AssignRows();
             //Transforms for moving
@@ -415,7 +423,7 @@ public class Battle_Manager_Functions : MonoBehaviour
             BM.PlayersInBattle[i].playerTPBarFill.GetComponent<Image>().transform.localScale.y,
             BM.PlayersInBattle[i].playerTPBarFill.GetComponent<Image>().transform.localScale.z);
 
-            //Update and show cast bars while isCastingSpell is true for a player
+            //Update cast bars while isCastingSpell is true for a player, else "--" and scale 0
             if (BM.PlayersInBattle[i].isCastingSpell == true)
             {
                 BM.PlayersInBattle[i].playerCastBar.SetActive(true);
@@ -426,7 +434,10 @@ public class Battle_Manager_Functions : MonoBehaviour
             }
             else
             {
-                BM.PlayersInBattle[i].playerCastBar.SetActive(false);
+                BM.PlayersInBattle[i].playerCastBarFill.GetComponent<Image>().transform.localScale = new Vector3(Mathf.Clamp(0, 0, 1),
+                BM.PlayersInBattle[i].playerCastBarFill.GetComponent<Image>().transform.localScale.y,
+                BM.PlayersInBattle[i].playerCastBarFill.GetComponent<Image>().transform.localScale.z);
+                BM.PlayersInBattle[i].playerCastBarText.text = "--";                
             }
 
         }

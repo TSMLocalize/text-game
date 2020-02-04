@@ -886,7 +886,7 @@ public class Battle_Manager : MonoBehaviour
                         BM_Funcs.animationController(activePlayer);
                         standIdle(activePlayer);
                         activePlayer.isCastingSpell = false;
-                        activePlayer.playerCastBar.SetActive(false);
+                        //activePlayer.playerCastBar.SetActive(false);
                         activePlayer.castSpeedTotal = 0f;
                         activePlayer.playerOptions.Remove("Cast");
 
