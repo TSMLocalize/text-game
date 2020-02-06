@@ -465,12 +465,12 @@ public class Battle_Manager_Functions : MonoBehaviour
         {
             Destroy(instantiatedTimersOptions[i].timersEntry);
 
+            instantiatedTimersOptions[i].timersEntry = Instantiate(pfTimersOption, TimersOptionPanel.transform);
+            instantiatedTimersImageArray = instantiatedTimersOptions[i].timersEntry.GetComponentsInChildren<Image>();
+            instantiatedTimersTextArray = instantiatedTimersOptions[i].timersEntry.GetComponentsInChildren<TextMeshProUGUI>();
+
             if (instantiatedTimersOptions[i].player.isCastingSpell == true)
-            {
-                instantiatedTimersOptions[i].timersEntry = Instantiate(pfTimersOption, TimersOptionPanel.transform);
-                instantiatedTimersImageArray = instantiatedTimersOptions[i].timersEntry.GetComponentsInChildren<Image>();
-                instantiatedTimersTextArray = instantiatedTimersOptions[i].timersEntry.GetComponentsInChildren<TextMeshProUGUI>();
-                
+            {               
                 int toNextTurn = Mathf.CeilToInt(instantiatedTimersOptions[i].player.castSpeedTotal / instantiatedTimersOptions[i].player.castSpeed);
 
                 instantiatedTimersImageArray[1].overrideSprite = instantiatedTimersOptions[i].player.PlayerPortrait;
@@ -478,14 +478,14 @@ public class Battle_Manager_Functions : MonoBehaviour
                 instantiatedTimersTextArray[0].text =
                     instantiatedTimersOptions[i].player.name + "\n" +
                     instantiatedTimersOptions[i].player.activeSpell.name + " @" + toNextTurn;
-                
+
                 instantiatedTimersImageArray[2].transform.localScale =
                     new Vector3(Mathf.Clamp((instantiatedTimersOptions[i].player.castSpeedTotal / instantiatedTimersOptions[i].player.activeSpell.castTime), 0, 1),
                         instantiatedTimersOptions[i].player.playerCastBarFill.GetComponent<Image>().transform.localScale.y,
                         instantiatedTimersOptions[i].player.playerCastBarFill.GetComponent<Image>().transform.localScale.z);
             }
             else
-            {
+            {                             
                 Destroy(instantiatedTimersOptions[i].timersEntry);
                 instantiatedTimersOptions.Remove(instantiatedTimersOptions[i]);
             }            
