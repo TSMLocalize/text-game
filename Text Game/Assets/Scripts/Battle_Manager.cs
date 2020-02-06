@@ -938,7 +938,7 @@ public class Battle_Manager : MonoBehaviour
 
                 if (activeEnemy.isCastingSpell == false)
                 {
-                    int randomActionNo = Random.Range(1, 3);
+                    int randomActionNo = Random.Range(2, 3);
 
                     if (randomActionNo == 1)
                     {
@@ -1054,6 +1054,7 @@ public class Battle_Manager : MonoBehaviour
                     activeEnemy.castSpeedTotal = activeEnemy.activeSpell.castTime;
                     activeEnemy.speedTotal -= 100f;
                     activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
+                    Timers_Log.addToTimersLog(null, activeEnemy);                    
                     ActiveEnemies.Remove(activeEnemy);
                     activeEnemy = null;
                     selectedCommand = null;
