@@ -15,6 +15,7 @@ public class Battle_Manager : MonoBehaviour
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
     public Combat_Log Combat_Log;
+    public Timers_Log Timers_Log;
     public float speed;
     public bool startRoutinesGoingAgain;
     public bool stepForward;
@@ -99,6 +100,7 @@ public class Battle_Manager : MonoBehaviour
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
         Combat_Log = GetComponent<Combat_Log>();
+        Timers_Log = GetComponent<Timers_Log>();
 
         BM_Funcs.setupCharacters();
 
@@ -172,9 +174,9 @@ public class Battle_Manager : MonoBehaviour
 
         BM_Funcs.updatePlayerUIBars();
         
-        if (BM_Funcs.instantiatedTimersOptions.Count >= 1)
+        if (Timers_Log.instantiatedTimersOptions.Count >= 1)
         {
-            BM_Funcs.updateTimersLog();
+            Timers_Log.updateTimersLog();
         }        
 
         switch (battleStates)
@@ -486,7 +488,7 @@ public class Battle_Manager : MonoBehaviour
                                 if (selectedCommand == "Magic")
                                 {
                                     activePlayer.isCastingSpell = true;
-                                    BM_Funcs.addToTimersLog(activePlayer);
+                                    Timers_Log.addToTimersLog(activePlayer);
                                 }
                                 else if (selectedCommand == "Attack")
                                 {
@@ -1109,6 +1111,8 @@ public class Battle_Manager : MonoBehaviour
                 break;
         }
     }
+
+    //Functions that have to be in Battle Manager because of motion/update functionality
     void startSpeedCoroutines()
     {
         coroutineIsPaused = false;

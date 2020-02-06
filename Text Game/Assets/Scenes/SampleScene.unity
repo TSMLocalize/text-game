@@ -13755,6 +13755,7 @@ GameObject:
   - component: {fileID: 1548464335}
   - component: {fileID: 1548464336}
   - component: {fileID: 1548464337}
+  - component: {fileID: 1548464338}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -13782,6 +13783,7 @@ MonoBehaviour:
   BM_Funcs: {fileID: 1548464335}
   BM_Enums: {fileID: 0}
   Combat_Log: {fileID: 0}
+  Timers_Log: {fileID: 0}
   speed: 0
   startRoutinesGoingAgain: 0
   stepForward: 0
@@ -14235,13 +14237,6 @@ MonoBehaviour:
   instantiatedSpellOptions: []
   instantiatedSpellOption: {fileID: 0}
   SpellOptionPanel: {fileID: 2040265361}
-  pfTimersOption: {fileID: 8820856181307721942, guid: 4d453336385ed794fa9fac6d701c0101,
-    type: 3}
-  instantiatedTimersOption: {fileID: 0}
-  instantiatedTimersOptions: []
-  TimersOptionPanel: {fileID: 1777875758}
-  instantiatedTimersImageArray: []
-  instantiatedTimersTextArray: []
 --- !u!114 &1548464336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14276,6 +14271,27 @@ MonoBehaviour:
   chatPanel: {fileID: 73059370}
   textObject: {fileID: 4556254075669888279, guid: 1208e6a8c94dc0e4d94b8ce744fd1169,
     type: 3}
+--- !u!114 &1548464338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548464332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a54454035a25bf449a6acb37b79e40b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BM: {fileID: 0}
+  BM_Funcs: {fileID: 0}
+  pfTimersOption: {fileID: 8820856181307721942, guid: 4d453336385ed794fa9fac6d701c0101,
+    type: 3}
+  instantiatedTimersOption: {fileID: 0}
+  instantiatedTimersOptions: []
+  TimersOptionPanel: {fileID: 1777875758}
+  instantiatedTimersImageArray: []
+  instantiatedTimersTextArray: []
 --- !u!1 &1551812233
 GameObject:
   m_ObjectHideFlags: 0
