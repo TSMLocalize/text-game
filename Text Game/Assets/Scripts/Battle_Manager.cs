@@ -14,6 +14,7 @@ public class Battle_Manager : MonoBehaviour
     public Vector3 floatingNumberTarget;
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
+    public Timers_Bar BM_TMBar;
     public float speed;
     public bool startRoutinesGoingAgain;
     public bool stepForward;
@@ -97,6 +98,7 @@ public class Battle_Manager : MonoBehaviour
     {
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
+        BM_TMBar = GetComponent<Timers_Bar>();
 
         BM_Funcs.setupCharacters();
 
@@ -170,9 +172,9 @@ public class Battle_Manager : MonoBehaviour
 
         BM_Funcs.updatePlayerUIBars();
         
-        if (BM_Funcs.instantiatedTimersOptions.Count >= 1)
+        if (BM_TMBar.instantiatedTimersOptions.Count >= 1)
         {
-            BM_Funcs.updateTimersLog();
+            BM_TMBar.updateTimersLog();
         }        
 
         switch (battleStates)
@@ -484,7 +486,7 @@ public class Battle_Manager : MonoBehaviour
                                 if (selectedCommand == "Magic")
                                 {
                                     activePlayer.isCastingSpell = true;
-                                    BM_Funcs.addToTimersLog(activePlayer);
+                                    BM_TMBar.addToTimersLog(activePlayer);
                                 }
                                 else if (selectedCommand == "Attack")
                                 {
