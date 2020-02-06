@@ -169,13 +169,11 @@ public class Battle_Manager : MonoBehaviour
         BM_Funcs.updateEnemyUIBars();
 
         BM_Funcs.updatePlayerUIBars();
-
-        //EXPERIMENTAL
+        
         if (BM_Funcs.instantiatedTimersOptions.Count >= 1)
         {
             BM_Funcs.updateTimersLog();
         }        
-        //
 
         switch (battleStates)
         {
@@ -649,7 +647,7 @@ public class Battle_Manager : MonoBehaviour
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
-                        //Left click another action to select that instead
+                        //Left click another action to select that instead                        
                         for (int i = 0; i < BM_Funcs.instantiatedOptions.Count; i++)
                         {
                             if (result.gameObject == BM_Funcs.instantiatedOptions[i])
@@ -659,6 +657,7 @@ public class Battle_Manager : MonoBehaviour
                                     BM_Funcs.instantiatedOptions[y].GetComponent<Image>().color = defaultBlueColor;
                                     selectedCommand = BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text;
                                 }
+
                                 BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = Color.yellow;
 
                                 activePlayer.activeSpell = null;
@@ -668,7 +667,8 @@ public class Battle_Manager : MonoBehaviour
                                 {
                                     RowChangeIcons[y].SetActive(false);
                                 }
-                                
+
+                                BM_Funcs.populateSpellOptionList();
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
