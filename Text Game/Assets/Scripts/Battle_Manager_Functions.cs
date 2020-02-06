@@ -494,11 +494,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 
     public void addToTimersLog(Player player = null)
     {
-        TimersEntry newTimersEntry = new TimersEntry();
-        instantiatedTimersOption = Instantiate(pfTimersOption, TimersOptionPanel.transform);        
-        instantiatedTimersImageArray = instantiatedTimersOption.GetComponentsInChildren<Image>();
-        instantiatedTimersTextArray = instantiatedTimersOption.GetComponentsInChildren<TextMeshProUGUI>();                                                   
-        newTimersEntry.timersEntry = instantiatedTimersOption;
+        TimersEntry newTimersEntry = new TimersEntry();                
         newTimersEntry.player = player;
         instantiatedTimersOptions.Add(newTimersEntry);
     }
