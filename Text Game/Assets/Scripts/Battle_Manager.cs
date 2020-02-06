@@ -171,7 +171,10 @@ public class Battle_Manager : MonoBehaviour
         BM_Funcs.updatePlayerUIBars();
 
         //EXPERIMENTAL
-        BM_Funcs.updateTimersLog();
+        if (BM_Funcs.instantiatedTimersOptions.Count >= 1)
+        {
+            BM_Funcs.updateTimersLog();
+        }        
         //
 
         switch (battleStates)

@@ -37,7 +37,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 
     public GameObject pfTimersOption;
     public GameObject instantiatedTimersOption;
-    public List<GameObject> instantiatedTimersOptions;
+    public List<TimersEntry> instantiatedTimersOptions;
     public GameObject TimersOptionPanel;
     public Image[] instantiatedTimersImageArray;
     public TextMeshProUGUI[] instantiatedTimersTextArray;
@@ -56,7 +56,14 @@ public class Battle_Manager_Functions : MonoBehaviour
     {
         public string text;
         public TextMeshProUGUI textObject;
-    }    
+    }
+
+    [System.Serializable]
+    public class TimersEntry
+    {
+        public Player player;
+        public GameObject timersEntry;
+    }
 
     //GAMEPLAY FUNCTIONS
 
@@ -452,43 +459,48 @@ public class Battle_Manager_Functions : MonoBehaviour
 
     public void updateTimersLog()
     {
+        instantiatedTimersOptions = instantiatedTimersOptions.OrderByDescending(instantiatedTimersOption => Mathf.CeilToInt(instantiatedTimersOption.player.castSpeedTotal / instantiatedTimersOption.player.castSpeed)).ToList();
+
         for (int i = 0; i < instantiatedTimersOptions.Count; i++)
         {
-            instantiatedTimersImageArray = instantiatedTimersOptions[i].GetComponentsInChildren<Image>();
-            instantiatedTimersTextArray = instantiatedTimersOptions[i].GetComponentsInChildren<TextMeshProUGUI>();
+            Destroy(instantiatedTimersOptions[i].timersEntry);
 
-            for (int y = 0; y < BM.PlayersInBattle.Count; y++)
+            if (instantiatedTimersOptions[i].player.isCastingSpell == true)
             {
-                if (instantiatedTimersTextArray[0].text == BM.PlayersInBattle[y].activeSpell.name)
-                {
-                    instantiatedTimersImageArray[2].transform.localScale = new Vector3(Mathf.Clamp((BM.PlayersInBattle[y].castSpeedTotal / BM.PlayersInBattle[y].activeSpell.castTime), 0, 1),
-                    BM.PlayersInBattle[y].playerCastBarFill.GetComponent<Image>().transform.localScale.y,
-                    BM.PlayersInBattle[y].playerCastBarFill.GetComponent<Image>().transform.localScale.z);
-                }
+                instantiatedTimersOptions[i].timersEntry = Instantiate(pfTimersOption, TimersOptionPanel.transform);
+                instantiatedTimersImageArray = instantiatedTimersOptions[i].timersEntry.GetComponentsInChildren<Image>();
+                instantiatedTimersTextArray = instantiatedTimersOptions[i].timersEntry.GetComponentsInChildren<TextMeshProUGUI>();
+                
+                int toNextTurn = Mathf.CeilToInt(instantiatedTimersOptions[i].player.castSpeedTotal / instantiatedTimersOptions[i].player.castSpeed);
+
+                instantiatedTimersImageArray[1].overrideSprite = instantiatedTimersOptions[i].player.PlayerPortrait;
+
+                instantiatedTimersTextArray[0].text =
+                    instantiatedTimersOptions[i].player.name + "\n" +
+                    instantiatedTimersOptions[i].player.activeSpell.name + " @" + toNextTurn;
+                
+                instantiatedTimersImageArray[2].transform.localScale =
+                    new Vector3(Mathf.Clamp((instantiatedTimersOptions[i].player.castSpeedTotal / instantiatedTimersOptions[i].player.activeSpell.castTime), 0, 1),
+                        instantiatedTimersOptions[i].player.playerCastBarFill.GetComponent<Image>().transform.localScale.y,
+                        instantiatedTimersOptions[i].player.playerCastBarFill.GetComponent<Image>().transform.localScale.z);
+            }
+            else
+            {
+                Destroy(instantiatedTimersOptions[i].timersEntry);
+                instantiatedTimersOptions.Remove(instantiatedTimersOptions[i]);
             }            
-        }
+        }                
     }
 
     public void addToTimersLog(Player player = null)
     {
-        instantiatedTimersOption = Instantiate(pfTimersOption, TimersOptionPanel.transform);
+        TimersEntry newTimersEntry = new TimersEntry();
+        instantiatedTimersOption = Instantiate(pfTimersOption, TimersOptionPanel.transform);        
         instantiatedTimersImageArray = instantiatedTimersOption.GetComponentsInChildren<Image>();
-        instantiatedTimersTextArray = instantiatedTimersOption.GetComponentsInChildren<TextMeshProUGUI>();
-
-        if (player.isCastingSpell)
-        {            
-            instantiatedTimersImageArray[1].overrideSprite = player.PlayerPortrait;
-            instantiatedTimersTextArray[0].text = player.activeSpell.name;            
-        }
-        else
-        {
-            instantiatedTimersImageArray[2].color = BM.defaultBlueColor;
-            instantiatedTimersImageArray[1].overrideSprite = player.PlayerPortrait;
-            instantiatedTimersTextArray[0].text = player.name;
-            
-        }
-
-        instantiatedTimersOptions.Add(instantiatedTimersOption);
+        instantiatedTimersTextArray = instantiatedTimersOption.GetComponentsInChildren<TextMeshProUGUI>();                                                   
+        newTimersEntry.timersEntry = instantiatedTimersOption;
+        newTimersEntry.player = player;
+        instantiatedTimersOptions.Add(newTimersEntry);
     }
 
     public void updateEnemyUIBars()
