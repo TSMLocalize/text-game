@@ -525,7 +525,7 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == BM_Funcs.instantiatedOptions[i])
                             {
-                                if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text != "Magic" && OptionPanel.activeSelf == true)
+                                if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Magic" && OptionPanel.activeSelf != true)
                                 {
                                     activePlayer.activeSpell = null;
                                     BM_Funcs.populateSpellOptionList();
@@ -541,8 +541,7 @@ public class Battle_Manager : MonoBehaviour
                                 BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = Color.yellow;
 
                                 activePlayer.activeSpell = null;
-                                OptionPanel.SetActive(false);
-
+                                OptionPanel.SetActive(false);                                
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
