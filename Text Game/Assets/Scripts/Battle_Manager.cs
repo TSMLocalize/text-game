@@ -14,6 +14,7 @@ public class Battle_Manager : MonoBehaviour
     public Vector3 floatingNumberTarget;
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
+    public Combat_Log Combat_Log;
     public float speed;
     public bool startRoutinesGoingAgain;
     public bool stepForward;
@@ -97,6 +98,7 @@ public class Battle_Manager : MonoBehaviour
     {
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
+        Combat_Log = GetComponent<Combat_Log>();
 
         BM_Funcs.setupCharacters();
 
@@ -318,7 +320,7 @@ public class Battle_Manager : MonoBehaviour
                                 }
                                 else if (selectedCommand == "Cast")
                                 {
-                                    BM_Funcs.reportToLog("PlayerFinishCast");
+                                    Combat_Log.reportToLog("PlayerFinishCast");
                                 }
 
                                 BM_Funcs.redirectAction();
@@ -488,7 +490,7 @@ public class Battle_Manager : MonoBehaviour
                                 }
                                 else if (selectedCommand == "Attack")
                                 {
-                                    BM_Funcs.reportToLog("PlayerAttack");
+                                    Combat_Log.reportToLog("PlayerAttack");
                                     floatTheFloatingNumbers();
                                 }
 
@@ -783,7 +785,7 @@ public class Battle_Manager : MonoBehaviour
                 else if (activePlayer.isCastingSpell)
                 {
                     BM_Funcs.setPlayerOrEnemyTargetFromID(activePlayer, null);
-                    BM_Funcs.reportToLog("PlayerStartCast");
+                    Combat_Log.reportToLog("PlayerStartCast");
 
                     BM_Funcs.animationController(activePlayer, "IsChanting");
                     activePlayer.constantAnimationState = "IsChanting";
@@ -818,7 +820,7 @@ public class Battle_Manager : MonoBehaviour
                 }
                 else if (selectedCommand == "Wait")
                 {
-                    BM_Funcs.reportToLog("PlayerWait");
+                    Combat_Log.reportToLog("PlayerWait");
 
                     BM_Funcs.animationController(activePlayer);
                     standIdle(activePlayer);
@@ -887,7 +889,7 @@ public class Battle_Manager : MonoBehaviour
 
                     if (castAnimIsDone)
                     {
-                        BM_Funcs.spellReportFinished = false;
+                        Combat_Log.spellReportFinished = false;
                         castAnimCoroutineIsPaused = true;
                         activePlayer.constantAnimationState = null;
                         activePlayer.hasConstantAnimationState = false;
@@ -951,7 +953,7 @@ public class Battle_Manager : MonoBehaviour
                 } else if (activeEnemy.isCastingSpell == true)
                 {
                     selectedCommand = "EnemyResolveSpell";
-                    BM_Funcs.reportToLog("EnemyFinishCast");
+                    Combat_Log.reportToLog("EnemyFinishCast");
                     StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));
                     battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                 }
@@ -980,13 +982,13 @@ public class Battle_Manager : MonoBehaviour
 
                     if (selectedCommand == "EnemyAttack")
                     {
-                        BM_Funcs.reportToLog("EnemyAttack");
+                        Combat_Log.reportToLog("EnemyAttack");
 
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     }
                     else if (selectedCommand == "EnemySpell")
                     {
-                        BM_Funcs.reportToLog("EnemyStartCast");
+                        Combat_Log.reportToLog("EnemyStartCast");
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     }
 
@@ -1075,7 +1077,7 @@ public class Battle_Manager : MonoBehaviour
 
                     if (activeEnemy.enemyCastAnimIsDone)
                     {
-                        BM_Funcs.enemySpellReportFinished = false;
+                        Combat_Log.enemySpellReportFinished = false;
                         activeEnemy.enemyCastAnimIsDone = false;
                         activeEnemy.enemyCastAnimCoroutineIsPaused = true;                                                
                         BM_Funcs.enemyAnimationController(activeEnemy);

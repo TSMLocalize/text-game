@@ -9,14 +9,7 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager_Functions : MonoBehaviour
 {
-    public Battle_Manager BM;
-    public bool spellReportFinished;
-    public bool enemySpellReportFinished;
-
-    public int maxMessages;
-    public List<Message> messageList;    
-    public GameObject chatPanel;   
-    public GameObject textObject;
+    public Battle_Manager BM;    
 
     public GameObject pfPlayerPanel;
     public List<GameObject> instantiatedPlayerPanels;
@@ -45,125 +38,18 @@ public class Battle_Manager_Functions : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        maxMessages = 25;
-        messageList = new List<Message>();        
+    {   
         BM = GetComponent<Battle_Manager>();
     }
 
-    [System.Serializable]
-    public class Message
-    {
-        public string text;
-        public TextMeshProUGUI textObject;
-    }
+
 
     [System.Serializable]
     public class TimersEntry
     {
         public Player player;
         public GameObject timersEntry;
-    }
-
-    //GAMEPLAY FUNCTIONS
-
-    public void reportToLog(string report)
-    {
-        switch (report)
-        {
-            case "PlayerAttack":
-                
-                setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-
-                float random = Random.Range(1, 101);
-                float outcome = BM.activePlayer.Accuracy + random;
-
-                SendMessagesToCombatLog(
-                        BM.activePlayer.name + "'s hit score is " + outcome + " (" + random + " + " + BM.activePlayer.Accuracy + " acc)" +
-                        " vs " + BM.playerTarget.EnemyName + "'s evasion of " + BM.playerTarget.Evasion + ".");
-
-                if (outcome > BM.playerTarget.Evasion)
-                {
-                    SendMessagesToCombatLog(
-                    BM.activePlayer.name + " hits the enemy!");
-                    createFloatingText(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
-
-                }
-                else
-                {
-                    SendMessagesToCombatLog(
-                    BM.activePlayer.name + " misses the enemy...");
-                    createFloatingText(BM.playerTarget.battleSprite.transform.position, "Miss!");
-                }
-                break;
-            case "PlayerWait":
-                SendMessagesToCombatLog(
-                    BM.activePlayer.name + " waits.");
-                break;
-            case "PlayerStartCast":
-                
-                setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-
-                SendMessagesToCombatLog(
-                    BM.activePlayer.name + " starts casting " + BM.activePlayer.activeSpell.name + " on " + BM.playerTarget.EnemyName + ".");
-                break;
-            case "PlayerFinishCast":
-                while (spellReportFinished == false)
-                {
-                    setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-
-                    SendMessagesToCombatLog(
-                        BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
-                    spellReportFinished = true;
-                }                
-                break;
-            case "EnemyAttack":
-
-                setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
-
-                float enemyRandom = Random.Range(1, 101);
-                float enemyOutcome = BM.activeEnemy.Accuracy + enemyRandom;
-
-                SendMessagesToCombatLog(
-                        BM.activeEnemy.EnemyName + "'s hit score is " + enemyOutcome + " (" + enemyRandom + " + " + BM.activeEnemy.Accuracy + " acc)" +
-                        " vs " + BM.enemyTarget.name + "'s evasion of " + BM.enemyTarget.Evasion + ".");
-
-                if (enemyOutcome > BM.enemyTarget.Evasion)
-                {
-                    SendMessagesToCombatLog(
-                    BM.activeEnemy.EnemyName + " hits " + BM.enemyTarget.name + "...");
-                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString());
-
-                }
-                else
-                {
-                    SendMessagesToCombatLog(
-                    BM.activeEnemy.EnemyName + " misses " + BM.enemyTarget.name + "!");
-                    createFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");
-                }
-                break;            
-            case "EnemyStartCast":
-
-                setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
-
-                SendMessagesToCombatLog(
-                    BM.activeEnemy.EnemyName + " starts casting " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + ".");
-                break;
-            case "EnemyFinishCast":
-                while (enemySpellReportFinished == false)
-                {
-                    setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
-
-                    SendMessagesToCombatLog(
-                        BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
-                    enemySpellReportFinished = true;
-                }
-                    
-                break;
-            default:
-                break;
-        }
-    }
+    }   
 
     //This method has been added because of serialization issues
     //players and enemies store their target by a name ID instead
@@ -201,22 +87,6 @@ public class Battle_Manager_Functions : MonoBehaviour
         BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);
 
         BM.floatUp = true;
-    }
-
-    public void SendMessagesToCombatLog(string text)
-    {        
-        if (messageList.Count >= maxMessages)
-        {
-            Destroy(messageList[0].textObject.gameObject);
-            messageList.Remove(messageList[0]);
-        }        
-
-        Message newMessage = new Message();
-        newMessage.text = text;
-        GameObject newText = Instantiate(textObject, chatPanel.transform);
-        newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
-        newMessage.textObject.text = newMessage.text;
-        messageList.Add(newMessage);
     }
 
     // BATTLE MANAGER UI FUNCTIONS
@@ -463,7 +333,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 
         for (int i = 0; i < instantiatedTimersOptions.Count; i++)
         {
-            Destroy(instantiatedTimersOptions[i].timersEntry);
+            Destroy(instantiatedTimersOptions[i].timersEntry);            
 
             instantiatedTimersOptions[i].timersEntry = Instantiate(pfTimersOption, TimersOptionPanel.transform);
             instantiatedTimersImageArray = instantiatedTimersOptions[i].timersEntry.GetComponentsInChildren<Image>();
