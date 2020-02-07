@@ -8,6 +8,7 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager : MonoBehaviour
 {
+    
     public GameObject instantiatedFloatingDamage;
     public GameObject floatingDamage = null;    
     public bool floatUp;
@@ -25,6 +26,7 @@ public class Battle_Manager : MonoBehaviour
     public bool castAnimCoroutineIsPaused;
     public bool rowSelected;
     public bool isSwitchingWithOtherPlayer;
+    public bool panelChosen;
     public List<GameObject> Rows;
     public List<GameObject> RowChangeIcons;
     public GameObject RowToSwitch;
@@ -307,14 +309,20 @@ public class Battle_Manager : MonoBehaviour
                 //LEFT CLICK TO CHOOSE ACTION
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
+                    panelChosen = false;
+
                     foreach (RaycastResult result in results)
                     {
                         for (int i = 0; i < activePlayer.playerOptions.Count; i++)
                         {
                             if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.playerOptions[i])
-                            {
-                                BM_Funcs.instantiatedOptions[i].gameObject.GetComponent<Image>().color = Color.yellow;
-                                selectedCommand = activePlayer.playerOptions[i];
+                            {                                                                
+                                if (panelChosen == false)
+                                {
+                                    selectedCommand = activePlayer.playerOptions[i];
+                                    BM_Funcs.instantiatedOptions[i].gameObject.GetComponent<Image>().color = Color.yellow;
+                                    panelChosen = true;
+                                }                                
 
                                 if (selectedCommand == "Magic")
                                 {
@@ -326,7 +334,7 @@ public class Battle_Manager : MonoBehaviour
                                 }
 
                                 BM_Funcs.redirectAction();
-                            }
+                            }                            
                         }
 
                         //Left click another player to select them instead

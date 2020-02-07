@@ -39,9 +39,8 @@ public class Timers_Log : MonoBehaviour
 
     public void updateTimersLog()
     {
-        
         instantiatedTimersOptions = instantiatedTimersOptions.OrderByDescending(instantiatedTimersOption => Mathf.CeilToInt(instantiatedTimersOption.timeTilTurn)).ToList();
-         
+
         for (int i = 0; i < instantiatedTimersOptions.Count; i++)
         {
             Destroy(instantiatedTimersOptions[i].timersEntry);
