@@ -25,6 +25,10 @@ public class Player
     public float Attack;
     public float Armor;
 
+    //Weaponskill related
+    public List<WeaponSkill> weaponSkills;
+    public WeaponSkill selectedWeaponSkill;
+
     //Spell & ability related
     public List<string> playerOptions;
     public List<Spell> spellBook;

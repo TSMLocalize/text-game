@@ -236,6 +236,11 @@ public class Battle_Manager_Functions : MonoBehaviour
         {
             BM.activePlayer.playerOptions.Clear();
 
+            if (BM.activePlayer.TP > 100)
+            {
+                BM.activePlayer.playerOptions.Add("Weapon Skill");
+            }
+
             BM.activePlayer.playerOptions.Add("Attack");
             BM.activePlayer.playerOptions.Add("Magic");
             BM.activePlayer.playerOptions.Add("Change Row");
@@ -272,6 +277,30 @@ public class Battle_Manager_Functions : MonoBehaviour
             
             instantiatedSpellOptions.Add(instantiatedSpellOption);
         }
+    }
+
+    public void populateWeaponSkillOptionList()
+    {
+        for (int i = 0; i < instantiatedSpellOptions.Count; i++)
+        {
+            instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = BM.defaultBlueColor;
+            Destroy(instantiatedSpellOptions[i]);
+        }
+        
+        instantiatedSpellOptions.Clear();
+
+        for (int i = 0; i < BM.activePlayer.weaponSkills.Count; i++)
+        {
+            instantiatedSpellOption = Instantiate(pfSpellOption, SpellOptionPanel.transform);
+
+            BM.wsOptionsArray = instantiatedSpellOption.GetComponentsInChildren<Image>();
+            BM.wsOptionsArray[1].overrideSprite = BM.activePlayer.weaponSkills[i].weaponSkillIcon;
+            BM.wsOptionsArray[0].color = BM.defaultBlueColor;
+
+            instantiatedSpellOption.GetComponentInChildren<TextMeshProUGUI>().text = BM.activePlayer.weaponSkills[i].name;
+
+            instantiatedSpellOptions.Add(instantiatedSpellOption);
+        }        
     }
 
     public void updatePlayerUIBars()
@@ -357,7 +386,13 @@ public class Battle_Manager_Functions : MonoBehaviour
                 BM.battleStates = Battle_Manager.BattleStates.SELECT_TARGET;
             }
             else if (BM.selectedCommand == "Magic")
-            {                
+            {
+                populateSpellOptionList();
+                BM.battleStates = Battle_Manager.BattleStates.SELECT_OPTION;
+            }
+            else if (BM.selectedCommand == "Weapon Skill")
+            {
+                populateWeaponSkillOptionList();
                 BM.battleStates = Battle_Manager.BattleStates.SELECT_OPTION;
             }
             else if (BM.selectedCommand == "Wait")
@@ -367,7 +402,7 @@ public class Battle_Manager_Functions : MonoBehaviour
             else if (BM.selectedCommand == "Cast")
             {               
                 BM.battleStates = Battle_Manager.BattleStates.RESOLVE_SPELL;
-            }
+            }            
             else if (BM.selectedCommand == "Change Row")
             {
                 BM.battleStates = Battle_Manager.BattleStates.CHANGE_ROW;

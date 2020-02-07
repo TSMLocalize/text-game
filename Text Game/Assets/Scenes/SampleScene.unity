@@ -9526,6 +9526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partyMembers: []
   SpellManager: {fileID: 1376954846}
+  WSManager: {fileID: 1859550954}
   Josie:
     name: Josie
     currentHP: 0
@@ -9541,6 +9542,12 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    weaponSkills: []
+    selectedWeaponSkill:
+      name: 
+      element: 
+      TPCost: 0
+      weaponSkillIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -9583,6 +9590,12 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    weaponSkills: []
+    selectedWeaponSkill:
+      name: 
+      element: 
+      TPCost: 0
+      weaponSkillIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -9625,6 +9638,12 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    weaponSkills: []
+    selectedWeaponSkill:
+      name: 
+      element: 
+      TPCost: 0
+      weaponSkillIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -9667,6 +9686,12 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    weaponSkills: []
+    selectedWeaponSkill:
+      name: 
+      element: 
+      TPCost: 0
+      weaponSkillIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -9709,6 +9734,12 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    weaponSkills: []
+    selectedWeaponSkill:
+      name: 
+      element: 
+      TPCost: 0
+      weaponSkillIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -9751,6 +9782,12 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    weaponSkills: []
+    selectedWeaponSkill:
+      name: 
+      element: 
+      TPCost: 0
+      weaponSkillIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -13793,6 +13830,7 @@ MonoBehaviour:
   castAnimCoroutineIsPaused: 0
   rowSelected: 0
   isSwitchingWithOtherPlayer: 0
+  panelChosen: 0
   Rows:
   - {fileID: 1474926304}
   - {fileID: 519372044}
@@ -13827,6 +13865,12 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    weaponSkills: []
+    selectedWeaponSkill:
+      name: 
+      element: 
+      TPCost: 0
+      weaponSkillIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -13871,6 +13915,12 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    weaponSkills: []
+    selectedWeaponSkill:
+      name: 
+      element: 
+      TPCost: 0
+      weaponSkillIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -14107,6 +14157,7 @@ MonoBehaviour:
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   defaultBlueColor: {r: 0, g: 0, b: 0, a: 0}
   spellOptionsArray: []
+  wsOptionsArray: []
   playerPanelArray: []
   enemyPanelArray: []
   actionPanelArray: []
@@ -14165,6 +14216,12 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    weaponSkills: []
+    selectedWeaponSkill:
+      name: 
+      element: 
+      TPCost: 0
+      weaponSkillIcon: {fileID: 0}
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -14292,6 +14349,7 @@ MonoBehaviour:
   TimersOptionPanel: {fileID: 1777875758}
   instantiatedTimersImageArray: []
   instantiatedTimersTextArray: []
+  ListPositions: []
 --- !u!1 &1551812233
 GameObject:
   m_ObjectHideFlags: 0
@@ -16269,6 +16327,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856676124}
   m_CullTransparentMesh: 0
+--- !u!1 &1859550954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1859550956}
+  - component: {fileID: 1859550955}
+  m_Layer: 0
+  m_Name: WeaponSkillManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1859550955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859550954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a415293e441204fb5912261d50b4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fast_Blade:
+    name: 
+    element: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: a3808dd39fa94ff4286ac84eee162ce0, type: 3}
+  Raging_Axe:
+    name: 
+    element: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: 2c5175d3e79bc1e4aaca3f0b35f76ce3, type: 3}
+  Penta_Thrust:
+    name: 
+    element: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: 45c4199c0a4942040a19c3707b255e62, type: 3}
+--- !u!4 &1859550956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859550954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 429.32532, y: 180.35504, z: -11.2975025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1885925994
 GameObject:
   m_ObjectHideFlags: 0

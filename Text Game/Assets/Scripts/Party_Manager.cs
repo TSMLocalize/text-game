@@ -7,6 +7,7 @@ public class Party_Manager : MonoBehaviour
 {
     public List<Player> partyMembers;
     public GameObject SpellManager;
+    public GameObject WSManager;
     public Player Josie;
     public Player Jemima;
     public Player Jennifer;
@@ -24,13 +25,13 @@ public class Party_Manager : MonoBehaviour
         partyMembers.Add(Jenny);
         
         Josie.speed = 20f;
-        Jemima.speed = 20f;
+        Jemima.speed = 1f;
         Jennifer.speed = 1f;
         Jessica.speed = 1f;
         Jody.speed = 1f;
         Jenny.speed = 1f;
 
-        Josie.TP = 20f;
+        Josie.TP = 120f;
         Jemima.TP = 1f;
         Jennifer.TP = 1f;
         Jessica.TP = 1f;
@@ -97,6 +98,9 @@ public class Party_Manager : MonoBehaviour
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
+        Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Fast_Blade);
+        Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Raging_Axe);
+        Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Penta_Thrust);
 
         Jemima.currentRowPositionID = 2;
         Jemima.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);

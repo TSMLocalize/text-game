@@ -71,6 +71,7 @@ public class Battle_Manager : MonoBehaviour
     public Color defaultColor;
     public Color defaultBlueColor;
     public Image[] spellOptionsArray;
+    public Image[] wsOptionsArray;
     public Image[] playerPanelArray;
     public Image[] enemyPanelArray;
     public Image[] actionPanelArray;
@@ -328,6 +329,10 @@ public class Battle_Manager : MonoBehaviour
                                 {
                                     BM_Funcs.populateSpellOptionList();
                                 }
+                                else if (selectedCommand == "Weapon Skill")
+                                {
+                                    BM_Funcs.populateWeaponSkillOptionList();
+                                }
                                 else if (selectedCommand == "Cast")
                                 {
                                     Combat_Log.reportToLog("PlayerFinishCast");
@@ -377,7 +382,7 @@ public class Battle_Manager : MonoBehaviour
                 {
                     foreach (RaycastResult result in results)
                     {
-                        //Left click a spell option to pick it
+                        //Left click a Spell/WS/Ability to pick it
                         for (int i = 0; i < BM_Funcs.instantiatedSpellOptions.Count; i++)
                         {
                             if (result.gameObject == BM_Funcs.instantiatedSpellOptions[i])
@@ -387,6 +392,14 @@ public class Battle_Manager : MonoBehaviour
                                     if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.spellBook[y].name)
                                     {
                                         activePlayer.activeSpell = activePlayer.spellBook[y];
+                                    }
+                                }
+
+                                for (int x = 0; x < activePlayer.weaponSkills.Count; x++)
+                                {
+                                    if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.weaponSkills[x].name)
+                                    {
+                                        activePlayer.selectedWeaponSkill = activePlayer.weaponSkills[x];
                                     }
                                 }
 
@@ -408,6 +421,7 @@ public class Battle_Manager : MonoBehaviour
                                 stepForward = true;
                                 selectedCommand = null;
                                 activePlayer.activeSpell = null;
+                                activePlayer.selectedWeaponSkill = null;
                                 OptionPanel.SetActive(false);                                
                                 BM_Funcs.populateActionList();
                                 battleStates = BattleStates.SELECT_ACTION;
@@ -418,7 +432,7 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == BM_Funcs.instantiatedOptions[i])
                             {
-                                if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text != "Magic")
+                                if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text != selectedCommand)
                                 {
                                     for (int y = 0; y < BM_Funcs.instantiatedOptions.Count; y++)
                                     {
