@@ -14,7 +14,8 @@ public class Battle_Manager : MonoBehaviour
     public bool floatUp;
     public Vector3 floatingNumberTarget;
     public Battle_Manager_Functions BM_Funcs;
-    public Battle_Manager_IEnumerators BM_Enums;
+    public Battle_Manager_UIFunctions BM_UIFuncs;
+    public Battle_Manager_IEnumerators BM_Enums;    
     public Combat_Log Combat_Log;
     public Timers_Log Timers_Log;
     public Combo_Manager combo_Manager;
@@ -101,12 +102,13 @@ public class Battle_Manager : MonoBehaviour
     void Start()
     {
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
+        BM_UIFuncs = GetComponent<Battle_Manager_UIFunctions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
         Combat_Log = GetComponent<Combat_Log>();
         Timers_Log = GetComponent<Timers_Log>();
         combo_Manager = GetComponent<Combo_Manager>();
 
-        BM_Funcs.setupCharacters();
+        BM_UIFuncs.setupCharacters();
 
         ColorUtility.TryParseHtmlString("#010078", out defaultBlueColor);
         defaultColor = ActionPanel.GetComponent<Image>().color;
@@ -169,9 +171,9 @@ public class Battle_Manager : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
         m_Raycaster.Raycast(m_PointerEventData, results);
 
-        BM_Funcs.updateEnemyUIBars();
+        BM_UIFuncs.updateEnemyUIBars();
 
-        BM_Funcs.updatePlayerUIBars();
+        BM_UIFuncs.updatePlayerUIBars();
         
         if (Timers_Log.instantiatedTimersOptions.Count >= 1)
         {
@@ -268,7 +270,7 @@ public class Battle_Manager : MonoBehaviour
 
                                 stepForward = true;
 
-                                BM_Funcs.populateActionList();
+                                BM_UIFuncs.populateActionList();
 
                                 battleStates = BattleStates.SELECT_ACTION;
 
@@ -323,11 +325,11 @@ public class Battle_Manager : MonoBehaviour
 
                                 if (selectedCommand == "Magic")
                                 {
-                                    BM_Funcs.populateSpellOptionList();
+                                    BM_UIFuncs.populateSpellOptionList();
                                 }
                                 else if (selectedCommand == "Weapon Skill")
                                 {
-                                    BM_Funcs.populateWeaponSkillOptionList();
+                                    BM_UIFuncs.populateWeaponSkillOptionList();
                                 }
                                 else if (selectedCommand == "Cast")
                                 {
@@ -409,7 +411,7 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
-                                BM_Funcs.resetChoicePanel();
+                                BM_UIFuncs.resetChoicePanel();
                                 activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
                                 BM_Funcs.animationController(activePlayer);
                                 activePlayer.battleSprite.transform.position = activePlayer.position;
@@ -419,7 +421,7 @@ public class Battle_Manager : MonoBehaviour
                                 activePlayer.activeSpell = null;
                                 activePlayer.selectedWeaponSkill = null;
                                 OptionPanel.SetActive(false);                                
-                                BM_Funcs.populateActionList();
+                                BM_UIFuncs.populateActionList();
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
@@ -464,12 +466,12 @@ public class Battle_Manager : MonoBehaviour
                         if (activePlayer.selectedWeaponSkill != null)
                         {
                             activePlayer.selectedWeaponSkill = null;
-                            BM_Funcs.populateWeaponSkillOptionList();
+                            BM_UIFuncs.populateWeaponSkillOptionList();
                         }
                         else if (activePlayer.activeSpell != null)
                         {
                             activePlayer.activeSpell = null;
-                            BM_Funcs.populateSpellOptionList();
+                            BM_UIFuncs.populateSpellOptionList();
                         }
 
                         for (int i = 0; i < EnemiesInBattle.Count; i++)
@@ -543,7 +545,7 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
-                                BM_Funcs.resetChoicePanel();
+                                BM_UIFuncs.resetChoicePanel();
                                 activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
                                 BM_Funcs.animationController(activePlayer);
                                 activePlayer.battleSprite.transform.position = activePlayer.position;
@@ -552,7 +554,7 @@ public class Battle_Manager : MonoBehaviour
                                 selectedCommand = null;
                                 activePlayer.activeSpell = null;                                
                                 OptionPanel.SetActive(false);
-                                BM_Funcs.populateActionList();
+                                BM_UIFuncs.populateActionList();
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
@@ -566,7 +568,7 @@ public class Battle_Manager : MonoBehaviour
                                     activePlayer.selectedWeaponSkill = null;
                                     activePlayer.activeSpell = null;
                                     
-                                    BM_Funcs.populateSpellOptionList();
+                                    BM_UIFuncs.populateSpellOptionList();
                                     battleStates = BattleStates.SELECT_OPTION;
                                 } 
                                 else if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Weapon Skill" && OptionPanel.activeSelf != true)
@@ -574,7 +576,7 @@ public class Battle_Manager : MonoBehaviour
                                     activePlayer.selectedWeaponSkill = null;
                                     activePlayer.activeSpell = null;
 
-                                    BM_Funcs.populateWeaponSkillOptionList();
+                                    BM_UIFuncs.populateWeaponSkillOptionList();
                                     battleStates = BattleStates.SELECT_OPTION;
                                 }
 
@@ -687,7 +689,7 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
-                                BM_Funcs.resetChoicePanel();
+                                BM_UIFuncs.resetChoicePanel();
                                 activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
                                 BM_Funcs.animationController(activePlayer);
                                 activePlayer.battleSprite.transform.position = activePlayer.position;
@@ -702,7 +704,7 @@ public class Battle_Manager : MonoBehaviour
                                     RowChangeIcons[y].SetActive(false);
                                 }
 
-                                BM_Funcs.populateActionList();
+                                BM_UIFuncs.populateActionList();
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
@@ -727,7 +729,7 @@ public class Battle_Manager : MonoBehaviour
                                     RowChangeIcons[y].SetActive(false);
                                 }
 
-                                BM_Funcs.populateSpellOptionList();
+                                BM_UIFuncs.populateSpellOptionList();
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
