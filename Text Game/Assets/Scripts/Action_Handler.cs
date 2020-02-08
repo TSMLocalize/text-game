@@ -7,16 +7,16 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 [System.Serializable]
-public class Combat_Log : MonoBehaviour
+public class Action_Handler : MonoBehaviour
 {
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
     public bool spellReportFinished;
-    public bool enemySpellReportFinished;    
+    public bool enemySpellReportFinished;
     public int maxMessages;
     public List<Message> messageList;
     public GameObject chatPanel;
-    public GameObject textObject;    
+    public GameObject textObject;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class Combat_Log : MonoBehaviour
 
     //GAMEPLAY FUNCTIONS
 
-    public void reportToLog(string report)
+    public void reportOutcome(string report)
     {
         switch (report)
         {
@@ -53,10 +53,11 @@ public class Combat_Log : MonoBehaviour
 
                 if (outcome > BM.playerTarget.Evasion)
                 {
-                    SendMessagesToCombatLog(
-                    BM.activePlayer.name + " hits the enemy!");
-                    BM_Funcs.createFloatingText(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
+                    BM.activePlayer.tpTotal += 10 + BM.activePlayer.storeTP;
 
+                    SendMessagesToCombatLog(
+                    BM.activePlayer.name + " hits the enemy!");                    
+                    BM_Funcs.createFloatingText(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
                 }
                 else
                 {
@@ -133,7 +134,7 @@ public class Combat_Log : MonoBehaviour
                 break;
         }
     }
-    
+
     public void SendMessagesToCombatLog(string text)
     {
         if (messageList.Count >= maxMessages)

@@ -11,14 +11,14 @@ public class Combo_Manager : MonoBehaviour
 {
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
-    public Combat_Log Combat_Log;
+    public Action_Handler ActionHandler;
 
     // Start is called before the first frame update
     void Start()
     {
         BM = GetComponent<Battle_Manager>();
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
-        Combat_Log = GetComponent<Combat_Log>();
+        ActionHandler = GetComponent<Action_Handler>();
     }
 
     void Update()
@@ -31,15 +31,15 @@ public class Combo_Manager : MonoBehaviour
         switch (weaponSkill)
         {
             case "Fast Blade":
-                Combat_Log.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill + " on the " + target);
+                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill + " on the " + target);
                 break;
 
             case "Raging Axe":
-                Combat_Log.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill + " on the " + target);
+                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill + " on the " + target);
                 break;
 
             case "Penta Thrust":
-                Combat_Log.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill + " on the " + target);
+                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill + " on the " + target);
                 break;
 
             default:

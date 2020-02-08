@@ -13791,9 +13791,9 @@ GameObject:
   - component: {fileID: 1548464333}
   - component: {fileID: 1548464335}
   - component: {fileID: 1548464336}
-  - component: {fileID: 1548464337}
   - component: {fileID: 1548464338}
   - component: {fileID: 1548464339}
+  - component: {fileID: 1548464337}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -14279,6 +14279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BM: {fileID: 1548464333}
+  BM_Enums: {fileID: 0}
+  combat_Log: {fileID: 0}
   pfPlayerPanel: {fileID: 6137343275098270327, guid: 1fce35e2deace414d974eb0123323568,
     type: 3}
   instantiatedPlayerPanels: []
@@ -14318,7 +14320,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1548464332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd4ecf9fead23404b8f68e4212d2215d, type: 3}
+  m_Script: {fileID: 11500000, guid: 465edfa0bd650ee458ee05c174632135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BM: {fileID: 0}

@@ -9,13 +9,13 @@ using TMPro;
 public class Battle_Manager : MonoBehaviour
 {
     
-    public GameObject instantiatedFloatingDamage;
+    public GameObject instantiatedFloatingDamage;    
     public GameObject floatingDamage = null;    
     public bool floatUp;
     public Vector3 floatingNumberTarget;
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
-    public Combat_Log Combat_Log;
+    public Action_Handler ActionHandler;
     public Timers_Log Timers_Log;
     public Combo_Manager combo_Manager;
     public float speed;
@@ -102,7 +102,7 @@ public class Battle_Manager : MonoBehaviour
     {
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
-        Combat_Log = GetComponent<Combat_Log>();
+        ActionHandler = GetComponent<Action_Handler>();
         Timers_Log = GetComponent<Timers_Log>();
         combo_Manager = GetComponent<Combo_Manager>();
 
@@ -153,7 +153,7 @@ public class Battle_Manager : MonoBehaviour
         {
             speed = 2.0f;
 
-            float step = speed * Time.deltaTime;
+            float step = speed * Time.deltaTime;                       
 
             instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
 
@@ -331,7 +331,7 @@ public class Battle_Manager : MonoBehaviour
                                 }
                                 else if (selectedCommand == "Cast")
                                 {
-                                    Combat_Log.reportToLog("PlayerFinishCast");
+                                    ActionHandler.reportOutcome("PlayerFinishCast");
                                 }
 
                                 BM_Funcs.redirectAction();
@@ -524,7 +524,7 @@ public class Battle_Manager : MonoBehaviour
                                 }
                                 else if (selectedCommand == "Attack")
                                 {
-                                    Combat_Log.reportToLog("PlayerAttack");
+                                    ActionHandler.reportOutcome("PlayerAttack");
                                     floatTheFloatingNumbers();
                                 }
                                 else if (selectedCommand == "Weapon Skill")
@@ -834,7 +834,7 @@ public class Battle_Manager : MonoBehaviour
                 } else if (activeEnemy.isCastingSpell == true)
                 {
                     selectedCommand = "EnemyResolveSpell";
-                    Combat_Log.reportToLog("EnemyFinishCast");
+                    ActionHandler.reportOutcome("EnemyFinishCast");
                     StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));
                     battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                 }
@@ -863,13 +863,13 @@ public class Battle_Manager : MonoBehaviour
 
                     if (selectedCommand == "EnemyAttack")
                     {
-                        Combat_Log.reportToLog("EnemyAttack");
+                        ActionHandler.reportOutcome("EnemyAttack");
 
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     }
                     else if (selectedCommand == "EnemySpell")
                     {
-                        Combat_Log.reportToLog("EnemyStartCast");
+                        ActionHandler.reportOutcome("EnemyStartCast");
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     }
 
@@ -959,7 +959,7 @@ public class Battle_Manager : MonoBehaviour
 
                     if (activeEnemy.enemyCastAnimIsDone)
                     {
-                        Combat_Log.enemySpellReportFinished = false;
+                        ActionHandler.enemySpellReportFinished = false;
                         activeEnemy.enemyCastAnimIsDone = false;
                         activeEnemy.enemyCastAnimCoroutineIsPaused = true;                                                
                         BM_Funcs.enemyAnimationController(activeEnemy);

@@ -31,7 +31,7 @@ public class Party_Manager : MonoBehaviour
         Jody.speed = 1f;
         Jenny.speed = 1f;
 
-        Josie.storeTP = 12f;
+        Josie.storeTP = 42f;
         Jemima.storeTP = 1f;
         Jennifer.storeTP = 1f;
         Jessica.storeTP = 1f;
@@ -66,8 +66,8 @@ public class Party_Manager : MonoBehaviour
         Jody.currentHP = 10f;
         Jenny.currentHP = 10f;
 
-        Josie.Accuracy = 5f;
-        Jemima.Accuracy = 10f;
+        Josie.Accuracy = 100f;
+        Jemima.Accuracy = 100f;
         Jennifer.Accuracy = 15f;
         Jessica.Accuracy = 20f;
         Jody.Accuracy = 25f;

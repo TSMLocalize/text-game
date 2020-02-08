@@ -11,7 +11,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 {
     public Battle_Manager BM;
     public Battle_Manager_IEnumerators BM_Enums;
-    public Combat_Log combat_Log;
+    public Action_Handler ActionHandler;
 
     public GameObject pfPlayerPanel;
     public List<GameObject> instantiatedPlayerPanels;
@@ -35,7 +35,7 @@ public class Battle_Manager_Functions : MonoBehaviour
     {   
         BM = GetComponent<Battle_Manager>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
-        combat_Log = GetComponent<Combat_Log>();
+        ActionHandler = GetComponent<Action_Handler>();
     }
 
     public void standIdle(Player playerToIdle)
@@ -91,7 +91,7 @@ public class Battle_Manager_Functions : MonoBehaviour
                 break;
             case "Magic":
                 setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                combat_Log.reportToLog("PlayerStartCast");
+                ActionHandler.reportOutcome("PlayerStartCast");
                 animationController(BM.activePlayer, "IsChanting");
                 BM.activePlayer.constantAnimationState = "IsChanting";
                 BM.activePlayer.hasConstantAnimationState = true;
@@ -101,7 +101,7 @@ public class Battle_Manager_Functions : MonoBehaviour
                 resolveAction(default);
                 break;
             case "Wait":
-                combat_Log.reportToLog("PlayerWait");                
+                ActionHandler.reportOutcome("PlayerWait");                
                 BM.activePlayer.speedTotal = (100f - BM.activePlayer.speed);
                 resolveAction(default);
                 break;
@@ -139,7 +139,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 
                 if (BM.castAnimIsDone)
                 {
-                    combat_Log.spellReportFinished = false;
+                    ActionHandler.spellReportFinished = false;
                     BM.castAnimCoroutineIsPaused = true;
                     BM.activePlayer.constantAnimationState = null;
                     BM.activePlayer.hasConstantAnimationState = false;                    
@@ -181,7 +181,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 
         BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
 
-        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);
+        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);        
 
         BM.floatUp = true;
     }
