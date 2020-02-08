@@ -14391,7 +14391,7 @@ MonoBehaviour:
     type: 3}
   instantiatedPlayerPanels: []
   instantiatedPlayerPanel: {fileID: 0}
-  PlayerPanels: {fileID: 1384828798}
+  PlayerPanels: {fileID: 0}
   instantiatedPlayerPanelImageArray: []
   instantiatedPlayerPanelTextArray: []
   pfOption: {fileID: 5274338218156712339, guid: dc5bccbc5fc206f41aab485d9b6fc260,
