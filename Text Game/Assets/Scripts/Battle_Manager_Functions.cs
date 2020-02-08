@@ -12,6 +12,7 @@ public class Battle_Manager_Functions : MonoBehaviour
     public Battle_Manager BM;
     public Battle_Manager_IEnumerators BM_Enums;
     public Combat_Log combat_Log;
+    public Timers_Log timers_Log;
 
     public GameObject pfPlayerPanel;
     public List<GameObject> instantiatedPlayerPanels;
@@ -36,6 +37,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         BM = GetComponent<Battle_Manager>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
         combat_Log = GetComponent<Combat_Log>();
+        timers_Log = GetComponent<Timers_Log>();
     }
 
     public void standIdle(Player playerToIdle)
@@ -43,8 +45,8 @@ public class Battle_Manager_Functions : MonoBehaviour
         playerToIdle.battleSprite.transform.position = playerToIdle.position;
     }
 
-    //This method has been added because of serialization issues
-    //players and enemies store their target by a name ID instead
+    /*This method has been added because of serialization issues
+    players and enemies store their target by a name ID instead*/
     public void setPlayerOrEnemyTargetFromID(Player player = null, Enemy enemy = null) 
     {
         if (player != null)
@@ -69,6 +71,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         }
     }
 
+    //The Logic for resolving actions
     public void resolveAction(string Command)
     {
         switch (Command)
@@ -169,6 +172,89 @@ public class Battle_Manager_Functions : MonoBehaviour
                 else
                 {
                     BM.battleStates = Battle_Manager.BattleStates.SELECT_PLAYER;
+                }
+                break;
+        }
+    }
+
+    //The Logic for resolving enemy actions
+    public void resolveEnemyAction(string Command)
+    {
+        switch (Command)
+        {
+            case "EnemyAttack":
+                setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
+                combat_Log.reportToLog("EnemyAttack");
+                BM.activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
+                StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(BM.activeEnemy));
+                enemyAnimationController(BM.activeEnemy, "IsAttacking");
+                animationController(BM.enemyTarget, "TakeDamage");                
+
+                if (BM.activeEnemy.enemyAttackAnimIsDone == true)
+                {
+                    BM.activeEnemy.constantAnimationState = null;
+                    BM.activeEnemy.hasConstantAnimationState = false;
+                    animationController(BM.enemyTarget);
+                    enemyAnimationController(BM.activeEnemy);                                                                  
+                    BM.activeEnemy.speedTotal -= 100f;
+                    resolveEnemyAction(default);
+                }
+
+                break;
+
+            case "EnemySpell":
+                setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
+                combat_Log.reportToLog("EnemyStartCast");
+                BM.activeEnemy.constantAnimationState = null;
+                BM.activeEnemy.hasConstantAnimationState = false;
+                BM.activeEnemy.constantAnimationState = "IsChanting";
+                enemyAnimationController(BM.activeEnemy, "IsChanting");
+                BM.activeEnemy.isCastingSpell = true;
+                BM.activeEnemy.hasConstantAnimationState = true;
+                BM.activeEnemy.enemyCastBar.SetActive(true);
+                BM.activeEnemy.castSpeedTotal = BM.activeEnemy.activeSpell.castTime;                                
+                timers_Log.addToTimersLog(null, BM.activeEnemy);
+                BM.activeEnemy.speedTotal -= 100f;
+                resolveEnemyAction(default);
+                break;
+
+            case "EnemyResolveSpell":
+                setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);                
+                BM.activeEnemy.constantAnimationState = null;
+                BM.activeEnemy.hasConstantAnimationState = false;
+                enemyAnimationController(BM.activeEnemy, "IsCasting");
+                BM.activeEnemy.enemyCastAnimCoroutineIsPaused = false;
+
+                if (BM.activeEnemy.enemyCastAnimIsDone)
+                {
+                    combat_Log.enemySpellReportFinished = false;                    
+                    BM.activeEnemy.isCastingSpell = false;
+                    BM.activeEnemy.enemyCastBar.SetActive(false);
+                    BM.activeEnemy.castSpeedTotal = 0f;
+                    resolveEnemyAction(default);
+                }
+                break;
+
+            default:
+                BM.activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
+                BM.activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
+                BM.activeEnemy.enemyAttackAnimIsDone = false;
+                BM.activeEnemy.enemyReadyAnimIsDone = false;
+                enemyAnimationController(BM.activeEnemy);
+                BM.activeEnemy.enemyPanel.GetComponent<Image>().color = BM.defaultColor;
+                BM.ActiveEnemies.Remove(BM.activeEnemy);                               
+                BM.activeEnemy = null;
+                BM.selectedCommand = null;
+
+                if (BM.ActiveEnemies.Count == 0)
+                {
+                    BM.returningStarting = true;
+                    BM.startRoutinesGoingAgain = true;
+                    BM.battleStates = Battle_Manager.BattleStates.DEFAULT;
+                }
+                else
+                {
+                    BM.battleStates = Battle_Manager.BattleStates.SELECT_ENEMY;
                 }
                 break;
         }
