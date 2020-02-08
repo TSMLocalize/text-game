@@ -87,8 +87,7 @@ public class Battle_Manager : MonoBehaviour
         SELECT_OPTION,
         SELECT_TARGET,
         CHANGE_ROW,
-        RESOLVE_ACTION,
-        RESOLVE_SPELL,
+        RESOLVE_ACTION,        
         SELECT_ENEMY,
         SELECT_ENEMY_ACTION,
         SELECT_ENEMY_TARGET,
@@ -163,11 +162,6 @@ public class Battle_Manager : MonoBehaviour
                 Destroy(instantiatedFloatingDamage);
                 floatUp = false;
             }
-        }
-
-        void standIdle(Player playerToIdle)
-        {
-            playerToIdle.battleSprite.transform.position = playerToIdle.position;
         }
 
         m_PointerEventData = new PointerEventData(m_EventSystem);
@@ -302,7 +296,7 @@ public class Battle_Manager : MonoBehaviour
                 //RIGHT CLICK TO GO BACK
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
-                    standIdle(activePlayer);
+                    BM_Funcs.standIdle(activePlayer);
                     activePlayer = null;
                     ActionPanel.SetActive(false);
                     selectedCommand = null;
@@ -804,225 +798,9 @@ public class Battle_Manager : MonoBehaviour
                 {
                     activePlayer.constantAnimationState = null;
                     activePlayer.hasConstantAnimationState = false;
-                }                                
-
-                if (selectedCommand == "Attack")
-                {
-                    BM_Funcs.setPlayerOrEnemyTargetFromID(activePlayer, null);
-                    attackAnimCoroutineIsPaused = false;
-                    StartCoroutine(BM_Enums.waitForAttackAnimation());
-                    BM_Funcs.animationController(activePlayer, "IsAttacking");
-                    BM_Funcs.enemyAnimationController(playerTarget, "TakeDamage");
-
-                    if (attackAnimIsDone)
-                    {
-                        attackAnimCoroutineIsPaused = true;
-
-                        standIdle(activePlayer);
-
-                        BM_Funcs.animationController(activePlayer);
-                        BM_Funcs.enemyAnimationController(playerTarget);
-                        activePlayer.speedTotal -= 100f;
-                        activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                        BM_Funcs.resetChoicePanel();                        
-                        ActionPanel.SetActive(false);
-                        OptionPanel.SetActive(false);
-                        ActivePlayers.Remove(activePlayer);
-                        activePlayer = null;
-                        selectedCommand = null;
-
-                        if (ActivePlayers.Count == 0)
-                        {
-                            returningStarting = true;
-
-                            startRoutinesGoingAgain = true;
-
-                            BM_Funcs.redirectAction();
-                        }
-                        else
-                        {
-                            battleStates = BattleStates.SELECT_PLAYER;
-                        }
-                    }
-                }
-                else if (activePlayer.isCastingSpell)
-                {
-                    BM_Funcs.setPlayerOrEnemyTargetFromID(activePlayer, null);
-                    Combat_Log.reportToLog("PlayerStartCast");
-
-                    BM_Funcs.animationController(activePlayer, "IsChanting");
-                    activePlayer.constantAnimationState = "IsChanting";
-                    activePlayer.hasConstantAnimationState = true;
-                    activePlayer.playerCastBar.SetActive(true);
-                    activePlayer.castSpeedTotal = activePlayer.activeSpell.castTime;
-
-                    standIdle(activePlayer);
-
-                    //reset attack animation to idle
-                    BM_Funcs.animationController(activePlayer);
-
-                    activePlayer.speedTotal -= 100f;
-                    activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                    BM_Funcs.resetChoicePanel();                    
-                    ActionPanel.SetActive(false);
-                    OptionPanel.SetActive(false);
-                    ActivePlayers.Remove(activePlayer);
-                    activePlayer = null;
-                    selectedCommand = null;
-
-                    if (ActivePlayers.Count == 0)
-                    {
-                        returningStarting = true;
-                        startRoutinesGoingAgain = true;
-                        BM_Funcs.redirectAction();
-                    }
-                    else
-                    {
-                        battleStates = BattleStates.SELECT_PLAYER;
-                    }
-                }
-                else if (selectedCommand == "Wait")
-                {
-                    Combat_Log.reportToLog("PlayerWait");
-
-                    BM_Funcs.animationController(activePlayer);
-                    standIdle(activePlayer);
-                    activePlayer.speedTotal = (100f - activePlayer.speed);
-                    activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                    BM_Funcs.resetChoicePanel();                    
-                    ActionPanel.SetActive(false);
-                    OptionPanel.SetActive(false);
-                    ActivePlayers.Remove(activePlayer);
-                    activePlayer = null;
-                    selectedCommand = null;
-
-                    if (ActivePlayers.Count == 0)
-                    {
-                        returningStarting = true;
-                        startRoutinesGoingAgain = true;
-                        BM_Funcs.redirectAction();
-                    }
-                    else
-                    {
-                        battleStates = BattleStates.SELECT_PLAYER;
-                    }
-                }
-                else if (selectedCommand == "Change Row")
-                {
-                    standIdle(activePlayer);
-
-                    BM_Funcs.animationController(activePlayer);
-                    activePlayer.speedTotal -= 100f;
-                    if (isSwitchingWithOtherPlayer)
-                    {
-                        playerToSwitchRowWith.speedTotal -= 100f;
-                        isSwitchingWithOtherPlayer = false;
-                    }
-                    playerToSwitchRowWith = null;
-                    activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                    BM_Funcs.resetChoicePanel();                    
-                    ActionPanel.SetActive(false);
-                    OptionPanel.SetActive(false);
-                    ActivePlayers.Remove(activePlayer);
-                    activePlayer = null;
-                    selectedCommand = null;
-
-                    if (ActivePlayers.Count == 0)
-                    {
-                        returningStarting = true;
-                        startRoutinesGoingAgain = true;
-                        BM_Funcs.redirectAction();
-                    }
-                    else
-                    {
-                        battleStates = BattleStates.SELECT_PLAYER;
-                    }
-                }
-                else if (selectedCommand == "Weapon Skill")
-                {
-                    BM_Funcs.setPlayerOrEnemyTargetFromID(activePlayer, null);
-                    attackAnimCoroutineIsPaused = false;
-                    StartCoroutine(BM_Enums.waitForAttackAnimation());
-                    BM_Funcs.animationController(activePlayer, "IsAttacking");
-                    BM_Funcs.enemyAnimationController(playerTarget, "TakeDamage");
-
-                    if (attackAnimIsDone)
-                    {
-                        attackAnimCoroutineIsPaused = true;
-
-                        standIdle(activePlayer);
-                        
-                        BM_Funcs.animationController(activePlayer);
-                        BM_Funcs.enemyAnimationController(playerTarget);                        
-                        activePlayer.speedTotal -= 100f;
-                        activePlayer.tpTotal = 0;
-                        activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                        BM_Funcs.resetChoicePanel();
-                        ActionPanel.SetActive(false);
-                        OptionPanel.SetActive(false);
-                        ActivePlayers.Remove(activePlayer);
-                        activePlayer = null;
-                        selectedCommand = null;
-
-                        if (ActivePlayers.Count == 0)
-                        {
-                            returningStarting = true;
-
-                            startRoutinesGoingAgain = true;
-
-                            BM_Funcs.redirectAction();
-                        }
-                        else
-                        {
-                            battleStates = BattleStates.SELECT_PLAYER;
-                        }
-                    }
                 }
 
-                break;
-
-            case BattleStates.RESOLVE_SPELL:
-
-                if (selectedCommand == "Cast")
-                {
-                    BM_Funcs.setPlayerOrEnemyTargetFromID(activePlayer, null);
-                    castAnimCoroutineIsPaused = false;
-                    StartCoroutine(BM_Enums.waitForCastAnimation());
-                    BM_Funcs.animationController(activePlayer, "IsCasting");
-
-                    if (castAnimIsDone)
-                    {
-                        Combat_Log.spellReportFinished = false;
-                        castAnimCoroutineIsPaused = true;
-                        activePlayer.constantAnimationState = null;
-                        activePlayer.hasConstantAnimationState = false;
-                        BM_Funcs.animationController(activePlayer);
-                        standIdle(activePlayer);
-                        activePlayer.isCastingSpell = false;
-                        //activePlayer.playerCastBar.SetActive(false);
-                        activePlayer.castSpeedTotal = 0f;
-                        activePlayer.playerOptions.Remove("Cast");
-
-                        activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
-                        BM_Funcs.resetChoicePanel();
-                        ActionPanel.SetActive(false);
-                        ActivePlayers.Remove(activePlayer);
-                        activePlayer = null;
-                        selectedCommand = null;
-
-                        if (ActivePlayers.Count == 0)
-                        {
-                            returningStarting = true;
-
-                            startRoutinesGoingAgain = true;
-                            BM_Funcs.redirectAction();
-                        }
-                        else
-                        {
-                            battleStates = BattleStates.SELECT_PLAYER;
-                        }
-                    }
-                }
+                BM_Funcs.resolveAction(selectedCommand);
 
                 break;
             case BattleStates.SELECT_ENEMY:
