@@ -9533,7 +9533,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    TP: 0
+    storeTP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -9581,7 +9581,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    TP: 0
+    storeTP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -9629,7 +9629,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    TP: 0
+    storeTP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -9677,7 +9677,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    TP: 0
+    storeTP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -9725,7 +9725,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    TP: 0
+    storeTP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -9773,7 +9773,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    TP: 0
+    storeTP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -13793,6 +13793,7 @@ GameObject:
   - component: {fileID: 1548464336}
   - component: {fileID: 1548464337}
   - component: {fileID: 1548464338}
+  - component: {fileID: 1548464339}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -13821,6 +13822,7 @@ MonoBehaviour:
   BM_Enums: {fileID: 0}
   Combat_Log: {fileID: 0}
   Timers_Log: {fileID: 0}
+  combo_Manager: {fileID: 0}
   speed: 0
   startRoutinesGoingAgain: 0
   stepForward: 0
@@ -13856,7 +13858,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    TP: 0
+    storeTP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -13906,7 +13908,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    TP: 0
+    storeTP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -14207,7 +14209,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    TP: 0
+    storeTP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -14350,6 +14352,21 @@ MonoBehaviour:
   instantiatedTimersImageArray: []
   instantiatedTimersTextArray: []
   ListPositions: []
+--- !u!114 &1548464339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548464332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fba5629d2f3d92748a9149de46422c7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BM: {fileID: 0}
+  BM_Funcs: {fileID: 0}
+  Combat_Log: {fileID: 0}
 --- !u!1 &1551812233
 GameObject:
   m_ObjectHideFlags: 0

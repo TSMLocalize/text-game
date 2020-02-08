@@ -17,6 +17,7 @@ public class Battle_Manager : MonoBehaviour
     public Battle_Manager_IEnumerators BM_Enums;
     public Combat_Log Combat_Log;
     public Timers_Log Timers_Log;
+    public Combo_Manager combo_Manager;
     public float speed;
     public bool startRoutinesGoingAgain;
     public bool stepForward;
@@ -104,6 +105,7 @@ public class Battle_Manager : MonoBehaviour
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
         Combat_Log = GetComponent<Combat_Log>();
         Timers_Log = GetComponent<Timers_Log>();
+        combo_Manager = GetComponent<Combo_Manager>();
 
         BM_Funcs.setupCharacters();
 
@@ -531,6 +533,10 @@ public class Battle_Manager : MonoBehaviour
                                     Combat_Log.reportToLog("PlayerAttack");
                                     floatTheFloatingNumbers();
                                 }
+                                else if (selectedCommand == "Weapon Skill")
+                                {
+                                    combo_Manager.PlayerWeaponskill(activePlayer.selectedWeaponSkill.name, activePlayer, playerTarget);
+                                }
 
                                 EnemyPanels[i].GetComponent<Image>().color = Color.red;
 
@@ -945,9 +951,9 @@ public class Battle_Manager : MonoBehaviour
                         attackAnimCoroutineIsPaused = true;
 
                         standIdle(activePlayer);
-
+                        
                         BM_Funcs.animationController(activePlayer);
-                        BM_Funcs.enemyAnimationController(playerTarget);
+                        BM_Funcs.enemyAnimationController(playerTarget);                        
                         activePlayer.speedTotal -= 100f;
                         activePlayer.tpTotal = 0;
                         activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
