@@ -932,6 +932,46 @@ public class Battle_Manager : MonoBehaviour
                         battleStates = BattleStates.SELECT_PLAYER;
                     }
                 }
+                else if (selectedCommand == "Weapon Skill")
+                {
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(activePlayer, null);
+                    attackAnimCoroutineIsPaused = false;
+                    StartCoroutine(BM_Enums.waitForAttackAnimation());
+                    BM_Funcs.animationController(activePlayer, "IsAttacking");
+                    BM_Funcs.enemyAnimationController(playerTarget, "TakeDamage");
+
+                    if (attackAnimIsDone)
+                    {
+                        attackAnimCoroutineIsPaused = true;
+
+                        standIdle(activePlayer);
+
+                        BM_Funcs.animationController(activePlayer);
+                        BM_Funcs.enemyAnimationController(playerTarget);
+                        activePlayer.speedTotal -= 100f;
+                        activePlayer.tpTotal = 0;
+                        activePlayer.playerPanel.GetComponent<Image>().color = defaultColor;
+                        BM_Funcs.resetChoicePanel();
+                        ActionPanel.SetActive(false);
+                        OptionPanel.SetActive(false);
+                        ActivePlayers.Remove(activePlayer);
+                        activePlayer = null;
+                        selectedCommand = null;
+
+                        if (ActivePlayers.Count == 0)
+                        {
+                            returningStarting = true;
+
+                            startRoutinesGoingAgain = true;
+
+                            BM_Funcs.redirectAction();
+                        }
+                        else
+                        {
+                            battleStates = BattleStates.SELECT_PLAYER;
+                        }
+                    }
+                }
 
                 break;
 
