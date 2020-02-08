@@ -10,31 +10,12 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
 {
     public Battle_Manager BM;
 
-    public bool attackAnimIsDone = false;
-    public bool castAnimIsDone = false;
-    public bool attackAnimCoroutineIsPaused = true;
-    public bool castAnimCoroutineIsPaused = true;
-    public bool startRoutinesGoingAgain = false;
-
     // Start is called before the first frame update
     void Start()
     {
         BM = GetComponent<Battle_Manager>();
     }
 
-    public void startSpeedCoroutines()
-    {
-        BM.coroutineIsPaused = false;
-
-        for (int i = 0; i < BM.PlayersInBattle.Count; i++)
-        {
-            StartCoroutine(updatePlayerSpeedBars(BM.PlayersInBattle[i]));
-        }
-        for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
-        {
-            StartCoroutine(updateEnemySpeedBars(BM.EnemiesInBattle[i]));
-        }
-    }
 
     /**
      * IENUMERATORS
@@ -44,32 +25,33 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
      * #4. Speed Bar Ticker for Enemies
      */
 
+
     //#1 Player Wait for Animations
     public IEnumerator waitForAttackAnimation()
     {
-        while (attackAnimCoroutineIsPaused == true)
+        while (BM.attackAnimCoroutineIsPaused == true)
         {
             yield return null;
         }
 
-        while (attackAnimCoroutineIsPaused == false)
+        while (BM.attackAnimCoroutineIsPaused == false)
         {
             yield return new WaitForSeconds(1f);
-            attackAnimIsDone = true;
+            BM.attackAnimIsDone = true;
         }
     }
 
     public IEnumerator waitForCastAnimation()
     {
-        while (castAnimCoroutineIsPaused == true)
+        while (BM.castAnimCoroutineIsPaused == true)
         {
             yield return null;
         }
 
-        while (castAnimCoroutineIsPaused == false)
+        while (BM.castAnimCoroutineIsPaused == false)
         {
             yield return new WaitForSeconds(1f);
-            castAnimIsDone = true;
+            BM.castAnimIsDone = true;
         }
     }
 

@@ -9533,7 +9533,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    storeTP: 0
+    TP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -9581,7 +9581,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    storeTP: 0
+    TP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -9629,7 +9629,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    storeTP: 0
+    TP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -9677,7 +9677,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    storeTP: 0
+    TP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -9725,7 +9725,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    storeTP: 0
+    TP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -9773,7 +9773,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    storeTP: 0
+    TP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -13793,7 +13793,6 @@ GameObject:
   - component: {fileID: 1548464336}
   - component: {fileID: 1548464337}
   - component: {fileID: 1548464338}
-  - component: {fileID: 1548464339}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -13816,12 +13815,19 @@ MonoBehaviour:
   instantiatedFloatingDamage: {fileID: 0}
   floatingDamage: {fileID: 2614911549536912700, guid: ee9280d83beb36a4183dfc82241d258d,
     type: 3}
+  floatUp: 0
   floatingNumberTarget: {x: 0, y: 0, z: 0}
   BM_Funcs: {fileID: 1548464335}
   BM_Enums: {fileID: 0}
-  AnimHdlr: {fileID: 0}
   Combat_Log: {fileID: 0}
   Timers_Log: {fileID: 0}
+  speed: 0
+  startRoutinesGoingAgain: 0
+  stepForward: 0
+  attackAnimIsDone: 0
+  castAnimIsDone: 0
+  attackAnimCoroutineIsPaused: 0
+  castAnimCoroutineIsPaused: 0
   rowSelected: 0
   isSwitchingWithOtherPlayer: 0
   panelChosen: 0
@@ -13850,7 +13856,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    storeTP: 0
+    TP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -13900,7 +13906,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    storeTP: 0
+    TP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -14201,7 +14207,7 @@ MonoBehaviour:
     maxHP: 0
     speed: 0
     speedTotal: 0
-    storeTP: 0
+    TP: 0
     tpTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -14271,7 +14277,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BM: {fileID: 1548464333}
-  startRoutinesGoingAgain: 0
   pfPlayerPanel: {fileID: 6137343275098270327, guid: 1fce35e2deace414d974eb0123323568,
     type: 3}
   instantiatedPlayerPanels: []
@@ -14302,11 +14307,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BM: {fileID: 1548464333}
-  attackAnimIsDone: 0
-  castAnimIsDone: 0
-  attackAnimCoroutineIsPaused: 1
-  castAnimCoroutineIsPaused: 1
-  startRoutinesGoingAgain: 0
 --- !u!114 &1548464337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14321,7 +14321,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BM: {fileID: 0}
   BM_Funcs: {fileID: 0}
-  AnimHdlr: {fileID: 0}
   spellReportFinished: 0
   enemySpellReportFinished: 0
   maxMessages: 0
@@ -14351,22 +14350,6 @@ MonoBehaviour:
   instantiatedTimersImageArray: []
   instantiatedTimersTextArray: []
   ListPositions: []
---- !u!114 &1548464339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548464332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3083b0d8a8986734a958924fd7bf0107, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  stepForward: 0
-  floatUp: 0
-  BM: {fileID: 0}
 --- !u!1 &1551812233
 GameObject:
   m_ObjectHideFlags: 0
