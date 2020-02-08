@@ -11,6 +11,7 @@ public class Combat_Log : MonoBehaviour
 {
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
+    public Animation_Handler AnimHdlr;
     public bool spellReportFinished;
     public bool enemySpellReportFinished;    
     public int maxMessages;
@@ -25,6 +26,7 @@ public class Combat_Log : MonoBehaviour
         messageList = new List<Message>();
         BM = GetComponent<Battle_Manager>();
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
+        AnimHdlr = GetComponent<Animation_Handler>();
     }
 
     [System.Serializable]
@@ -55,14 +57,14 @@ public class Combat_Log : MonoBehaviour
                 {
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " hits the enemy!");
-                    BM_Funcs.createFloatingText(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
+                    AnimHdlr.createFloatingText(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
 
                 }
                 else
                 {
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " misses the enemy...");
-                    BM_Funcs.createFloatingText(BM.playerTarget.battleSprite.transform.position, "Miss!");
+                    AnimHdlr.createFloatingText(BM.playerTarget.battleSprite.transform.position, "Miss!");
                 }
                 break;
             case "PlayerWait":
@@ -101,14 +103,14 @@ public class Combat_Log : MonoBehaviour
                 {
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " hits " + BM.enemyTarget.name + "...");
-                    BM_Funcs.createFloatingText(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString());
+                    AnimHdlr.createFloatingText(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString());
 
                 }
                 else
                 {
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " misses " + BM.enemyTarget.name + "!");
-                    BM_Funcs.createFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");
+                    AnimHdlr.createFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");
                 }
                 break;
             case "EnemyStartCast":

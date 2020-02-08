@@ -9,7 +9,9 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager_Functions : MonoBehaviour
 {
-    public Battle_Manager BM;    
+    public Battle_Manager BM;
+    
+    public bool startRoutinesGoingAgain;
 
     public GameObject pfPlayerPanel;
     public List<GameObject> instantiatedPlayerPanels;
@@ -58,18 +60,6 @@ public class Battle_Manager_Functions : MonoBehaviour
                 }
             }
         }
-    }
-
-    // CREATE TEXT FUNCTIONS
-    public void createFloatingText(Vector3 position, string amount)
-    {
-        BM.instantiatedFloatingDamage = Instantiate(BM.floatingDamage, position, Quaternion.identity);
-
-        BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
-
-        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);
-
-        BM.floatUp = true;
     }
 
     // BATTLE MANAGER UI FUNCTIONS
@@ -368,7 +358,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 
     public void redirectAction()
     {        
-        if (BM.startRoutinesGoingAgain)
+        if (startRoutinesGoingAgain)
         {
             if (BM.ActiveEnemies.Count > 0)
             {
@@ -408,79 +398,5 @@ public class Battle_Manager_Functions : MonoBehaviour
                 BM.battleStates = Battle_Manager.BattleStates.CHANGE_ROW;
             }
         }        
-    }
-
-    //Sets the animation to idle, or to animation specified, or to what the previous animation was if a currentAnimationState is set
-    public void animationController(Player player, string state = null)
-    {
-        player.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
-        player.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
-        player.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
-        player.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
-        player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", false);
-        player.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);
-
-        if (state == "TakeDamage")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", true);
-        }
-        else if (state == "IsAttacking")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
-        }
-        else if (state == "IsCasting")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
-        }
-        else if (state == "IsReady")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
-        }
-        else if (state == "IsChanting")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
-        }
-        else if (state == "IsWalking")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
-        }
-        else if (player.hasConstantAnimationState)
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationState, true);
-        }
-    }
-
-    public void enemyAnimationController(Enemy enemy, string state = null)
-    {
-        enemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", false);
-        enemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
-        enemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
-        enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);        
-        enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);
-
-        if (state == "TakeDamage")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", true);
-        }
-        else if (state == "IsAttacking")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
-        }
-        else if (state == "IsCasting")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
-        }
-        else if (state == "IsReady")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
-        }
-        else if (state == "IsChanting")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
-        }
-        else if (enemy.hasConstantAnimationState)
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool(enemy.constantAnimationState, true);
-        }
     }
 }
