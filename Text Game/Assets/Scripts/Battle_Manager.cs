@@ -817,7 +817,7 @@ public class Battle_Manager : MonoBehaviour
 
                 if (activeEnemy.isCastingSpell == false)
                 {
-                    int randomActionNo = Random.Range(1, 3);
+                    int randomActionNo = Random.Range(2, 3);
 
                     if (randomActionNo == 1)
                     {
@@ -849,7 +849,6 @@ public class Battle_Manager : MonoBehaviour
                     if (randomEnemyTargetNo == i)
                     {
                         activeEnemy.EnemyTargetID = PlayersInBattle[i].name;
-                        enemyTarget = PlayersInBattle[i];
                     }
                 }
 
@@ -858,22 +857,134 @@ public class Battle_Manager : MonoBehaviour
 
                 if (activeEnemy.enemyReadyAnimIsDone == true)
                 {
-                    if (selectedCommand == "EnemyAttack")
-                    {
-                        floatTheFloatingNumbers();
-                    }
-                    
                     activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
                     activeEnemy.enemyReadyAnimIsDone = false;
                     BM_Funcs.enemyAnimationController(activeEnemy);
 
-                    battleStates = BattleStates.RESOLVE_ENEMY_TURN;
+                    if (selectedCommand == "EnemyAttack")
+                    {
+                        Combat_Log.reportToLog("EnemyAttack");
+
+                        battleStates = BattleStates.RESOLVE_ENEMY_TURN;
+                    }
+                    else if (selectedCommand == "EnemySpell")
+                    {
+                        Combat_Log.reportToLog("EnemyStartCast");
+                        battleStates = BattleStates.RESOLVE_ENEMY_TURN;
+                    }
+
                 }
 
                 break;
             case BattleStates.RESOLVE_ENEMY_TURN:
 
-                BM_Funcs.resolveEnemyAction(selectedCommand);
+                if (selectedCommand == "EnemyAttack")
+                {
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
+                    activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
+                    StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));
+                    BM_Funcs.enemyAnimationController(activeEnemy, "IsAttacking");
+                    BM_Funcs.animationController(enemyTarget, "TakeDamage");
+                    
+                    floatTheFloatingNumbers();
+
+                    if (activeEnemy.enemyAttackAnimIsDone == true)
+                    {
+                        activeEnemy.enemyAttackAnimIsDone = false;
+                        activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
+                        activeEnemy.constantAnimationState = null;
+                        activeEnemy.hasConstantAnimationState = false;
+                        BM_Funcs.animationController(enemyTarget);
+                        BM_Funcs.enemyAnimationController(activeEnemy);
+                        activeEnemy.speedTotal -= 100f;
+                        activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
+                        activeEnemy.EnemyTargetID = null;
+                        enemyTarget = null;
+                        ActiveEnemies.Remove(activeEnemy);
+                        activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
+                        activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
+                        activeEnemy.enemyAttackAnimIsDone = false;
+                        activeEnemy.enemyReadyAnimIsDone = false;
+                        activeEnemy = null;
+                        selectedCommand = null;
+
+                        if (ActiveEnemies.Count == 0)
+                        {
+                            returningStarting = true;
+                            startRoutinesGoingAgain = true;
+                            battleStates = BattleStates.DEFAULT;
+                        }
+                        else
+                        {
+                            battleStates = BattleStates.SELECT_ENEMY;
+                        }
+                    }
+                }
+
+                if (selectedCommand == "EnemySpell")
+                {
+                    activeEnemy.constantAnimationState = null;
+                    activeEnemy.hasConstantAnimationState = false;
+                    activeEnemy.constantAnimationState = "IsChanting";
+                    BM_Funcs.enemyAnimationController(activeEnemy, "IsChanting");
+                    activeEnemy.isCastingSpell = true;
+                    activeEnemy.hasConstantAnimationState = true;
+                    activeEnemy.enemyCastBar.SetActive(true);
+                    activeEnemy.castSpeedTotal = activeEnemy.activeSpell.castTime;
+                    activeEnemy.speedTotal -= 100f;
+                    activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
+                    Timers_Log.addToTimersLog(null, activeEnemy);                    
+                    ActiveEnemies.Remove(activeEnemy);
+                    activeEnemy = null;
+                    selectedCommand = null;
+
+                    if (ActiveEnemies.Count == 0)
+                    {
+                        returningStarting = true;
+                        startRoutinesGoingAgain = true;
+                        battleStates = BattleStates.DEFAULT;
+                    }
+                    else
+                    {
+                        battleStates = BattleStates.SELECT_ENEMY;
+                    }
+                }
+
+                if (selectedCommand == "EnemyResolveSpell")
+                {
+                    activeEnemy.constantAnimationState = null;
+                    activeEnemy.hasConstantAnimationState = false;
+                    BM_Funcs.enemyAnimationController(activeEnemy, "IsCasting");
+                    activeEnemy.enemyCastAnimCoroutineIsPaused = false;
+
+                    if (activeEnemy.enemyCastAnimIsDone)
+                    {
+                        Combat_Log.enemySpellReportFinished = false;
+                        activeEnemy.enemyCastAnimIsDone = false;
+                        activeEnemy.enemyCastAnimCoroutineIsPaused = true;                                                
+                        BM_Funcs.enemyAnimationController(activeEnemy);
+                        activeEnemy.isCastingSpell = false;
+                        activeEnemy.enemyCastBar.SetActive(false);
+                        activeEnemy.castSpeedTotal = 0f;
+                        activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
+                        ActiveEnemies.Remove(activeEnemy);
+                        activeEnemy.EnemyTargetID = null;
+                        enemyTarget = null;
+                        activeEnemy = null;
+                        selectedCommand = null;
+
+                        if (ActiveEnemies.Count == 0)
+                        {
+                            returningStarting = true;
+                            startRoutinesGoingAgain = true;
+                            battleStates = BattleStates.DEFAULT;
+                        }
+                        else
+                        {
+                            battleStates = BattleStates.SELECT_ENEMY;
+                        }
+                    }
+                }
 
                 break;
             default:
@@ -896,7 +1007,7 @@ public class Battle_Manager : MonoBehaviour
         }
     }
 
-    public void floatTheFloatingNumbers()
+    void floatTheFloatingNumbers()
     {        
         if (floatUp)
         {

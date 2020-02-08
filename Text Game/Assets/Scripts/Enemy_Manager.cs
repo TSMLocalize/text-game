@@ -19,8 +19,8 @@ public class Enemy_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {        
-        Warrior.speed = 20f;
-        Thief.speed = 20f;
+        Warrior.speed = 1f;
+        Thief.speed = 1f;
         Wizard.speed = 1f;
         Priest.speed = 1f;
         Paladin.speed = 1f;
@@ -28,7 +28,7 @@ public class Enemy_Manager : MonoBehaviour
         Bard.speed = 1f;
         Machinist.speed = 1f;
 
-        Warrior.castSpeed = 10f;
+        Warrior.castSpeed = 1f;
         Thief.castSpeed = 10f;
         Wizard.castSpeed = 1f;
         Priest.castSpeed = 2f;
