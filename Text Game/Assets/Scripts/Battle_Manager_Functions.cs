@@ -236,7 +236,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         {
             BM.activePlayer.playerOptions.Clear();
 
-            if (BM.activePlayer.TP > 100)
+            if (BM.activePlayer.tpTotal > 100)
             {
                 BM.activePlayer.playerOptions.Add("Weapon Skill");
             }
@@ -314,7 +314,7 @@ public class Battle_Manager_Functions : MonoBehaviour
             BM.PlayersInBattle[i].playerSpeedBar.GetComponent<Image>().transform.localScale.z);
 
             //Update Player TP bar data every frame
-            BM.PlayersInBattle[i].playerTPBarText.text = BM.PlayersInBattle[i].tpTotal + "/100 " + "(" + BM.PlayersInBattle[i].TP + ")";
+            BM.PlayersInBattle[i].playerTPBarText.text = BM.PlayersInBattle[i].tpTotal + "/100 " + "(" + BM.PlayersInBattle[i].storeTP + ")";
             BM.PlayersInBattle[i].playerTPBarFill.GetComponent<Image>().transform.localScale = new Vector3(Mathf.Clamp((BM.PlayersInBattle[i].tpTotal / 100), 0, 1),
             BM.PlayersInBattle[i].playerTPBarFill.GetComponent<Image>().transform.localScale.y,
             BM.PlayersInBattle[i].playerTPBarFill.GetComponent<Image>().transform.localScale.z);

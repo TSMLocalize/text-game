@@ -13,7 +13,7 @@ public class Player
     public float maxHP;
     public float speed;
     public float speedTotal;
-    public float TP;
+    public float storeTP;
     public float tpTotal;
     public float castSpeed;
     public float castSpeedTotal;

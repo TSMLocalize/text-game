@@ -465,8 +465,22 @@ public class Battle_Manager : MonoBehaviour
                 {
                     if (OptionPanel.activeSelf == true)
                     {
-                        activePlayer.activeSpell = null;
-                        BM_Funcs.populateSpellOptionList();
+                        if (activePlayer.selectedWeaponSkill != null)
+                        {
+                            activePlayer.selectedWeaponSkill = null;
+                            BM_Funcs.populateWeaponSkillOptionList();
+                        }
+                        else if (activePlayer.activeSpell != null)
+                        {
+                            activePlayer.activeSpell = null;
+                            BM_Funcs.populateSpellOptionList();
+                        }
+
+                        for (int i = 0; i < EnemiesInBattle.Count; i++)
+                        {
+                            EnemiesInBattle[i].enemyPanelBackground.color = defaultColor;
+                        }
+
                         battleStates = BattleStates.SELECT_OPTION;
                     }
                     else
@@ -549,8 +563,18 @@ public class Battle_Manager : MonoBehaviour
                             {
                                 if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Magic" && OptionPanel.activeSelf != true)
                                 {
+                                    activePlayer.selectedWeaponSkill = null;
                                     activePlayer.activeSpell = null;
+                                    
                                     BM_Funcs.populateSpellOptionList();
+                                    battleStates = BattleStates.SELECT_OPTION;
+                                } 
+                                else if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Weapon Skill" && OptionPanel.activeSelf != true)
+                                {
+                                    activePlayer.selectedWeaponSkill = null;
+                                    activePlayer.activeSpell = null;
+
+                                    BM_Funcs.populateWeaponSkillOptionList();
                                     battleStates = BattleStates.SELECT_OPTION;
                                 }
 
@@ -571,9 +595,19 @@ public class Battle_Manager : MonoBehaviour
                         for (int i = 0; i < BM_Funcs.instantiatedSpellOptions.Count; i++)
                         {
                             if (result.gameObject == BM_Funcs.instantiatedSpellOptions[i])
-                            {                                
-                                BM_Funcs.populateSpellOptionList();
+                            {
+                                for (int x = 0; x < BM_Funcs.instantiatedSpellOptions.Count; x++)
+                                {
+                                    BM_Funcs.instantiatedSpellOptions[x].GetComponentInChildren<Image>().color = defaultBlueColor;
+                                }
 
+                                for (int y = 0; y < activePlayer.weaponSkills.Count; y++)
+                                {
+                                    if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.weaponSkills[y].name)
+                                    {
+                                        activePlayer.selectedWeaponSkill = activePlayer.weaponSkills[y];
+                                    }
+                                }
                                 for (int y = 0; y < activePlayer.spellBook.Count; y++)
                                 {
                                     if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.spellBook[y].name)

@@ -25,20 +25,20 @@ public class Party_Manager : MonoBehaviour
         partyMembers.Add(Jenny);
         
         Josie.speed = 20f;
-        Jemima.speed = 1f;
+        Jemima.speed = 20f;
         Jennifer.speed = 1f;
         Jessica.speed = 1f;
         Jody.speed = 1f;
         Jenny.speed = 1f;
 
-        Josie.TP = 120f;
-        Jemima.TP = 1f;
-        Jennifer.TP = 1f;
-        Jessica.TP = 1f;
-        Jody.TP = 1f;
-        Jenny.TP = 1f;
+        Josie.storeTP = 12f;
+        Jemima.storeTP = 1f;
+        Jennifer.storeTP = 1f;
+        Jessica.storeTP = 1f;
+        Jody.storeTP = 1f;
+        Jenny.storeTP = 1f;
 
-        Josie.tpTotal = 20f;
+        Josie.tpTotal = 120f;
         Jemima.tpTotal = 1f;
         Jennifer.tpTotal = 1f;
         Jessica.tpTotal = 1f;
