@@ -7,7 +7,9 @@ using TMPro;
 
 [System.Serializable]
 public class Battle_Manager : MonoBehaviour
-{        
+{
+    
+    public GameObject instantiatedFloatingDamage;    
     public GameObject floatingDamage = null;    
     public bool floatUp;
     public Vector3 floatingNumberTarget;
@@ -124,7 +126,7 @@ public class Battle_Manager : MonoBehaviour
 
         battleStates = BattleStates.DEFAULT;
 
-    }    
+    }
 
     // Update is called once per frame
     void Update()
@@ -144,6 +146,21 @@ public class Battle_Manager : MonoBehaviour
                 BM_Funcs.animationController(activePlayer);
 
                 stepForward = false;
+            }
+        }
+
+        if (floatUp)
+        {
+            speed = 2.0f;
+
+            float step = speed * Time.deltaTime;                       
+
+            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
+
+            if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
+            {
+                Destroy(instantiatedFloatingDamage);
+                floatUp = false;
             }
         }
 
@@ -507,7 +524,8 @@ public class Battle_Manager : MonoBehaviour
                                 }
                                 else if (selectedCommand == "Attack")
                                 {
-                                    ActionHandler.reportOutcome("PlayerAttack");                                    
+                                    ActionHandler.reportOutcome("PlayerAttack");
+                                    floatTheFloatingNumbers();
                                 }
                                 else if (selectedCommand == "Weapon Skill")
                                 {
@@ -866,7 +884,9 @@ public class Battle_Manager : MonoBehaviour
                     activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
                     StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));
                     BM_Funcs.enemyAnimationController(activeEnemy, "IsAttacking");
-                    BM_Funcs.animationController(enemyTarget, "TakeDamage");                                       
+                    BM_Funcs.animationController(enemyTarget, "TakeDamage");
+                    
+                    floatTheFloatingNumbers();
 
                     if (activeEnemy.enemyAttackAnimIsDone == true)
                     {
@@ -985,5 +1005,23 @@ public class Battle_Manager : MonoBehaviour
         {
             StartCoroutine(BM_Enums.updateEnemySpeedBars(EnemiesInBattle[i]));
         }
+    }
+
+    void floatTheFloatingNumbers()
+    {        
+        if (floatUp)
+        {
+            speed = 2.0f;
+
+            float step = speed * Time.deltaTime;
+
+            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
+
+            if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
+            {
+                Destroy(instantiatedFloatingDamage);
+                floatUp = false;
+            }
+        }        
     }
 }

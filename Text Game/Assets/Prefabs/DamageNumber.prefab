@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2614911549536912702}
   - component: {fileID: 1492247046435612043}
   - component: {fileID: 9001177110864630524}
-  - component: {fileID: 5381173734211962310}
   m_Layer: 0
   m_Name: DamageNumber
   m_TagString: Untagged
@@ -210,19 +209,3 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
---- !u!114 &5381173734211962310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2614911549536912700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6feb67b3843d085479df9d4bb5469379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floatingNumberTarget: {x: 0, y: 0, z: 0}
-  floatingNumberText: {fileID: 9001177110864630524}
-  floatingNumber: {fileID: 2614911549536912700}
-  speed: 2

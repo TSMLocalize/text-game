@@ -13579,6 +13579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc694585531b774c9cb4dcd1c229254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instantiatedFloatingDamage: {fileID: 0}
   floatingDamage: {fileID: 2614911549536912700, guid: ee9280d83beb36a4183dfc82241d258d,
     type: 3}
   floatUp: 0
@@ -14063,9 +14064,6 @@ MonoBehaviour:
   instantiatedSpellOptions: []
   instantiatedSpellOption: {fileID: 0}
   SpellOptionPanel: {fileID: 2040265361}
-  pfFloatingDamage: {fileID: 2614911549536912700, guid: ee9280d83beb36a4183dfc82241d258d,
-    type: 3}
-  floatingDamageToFloatList: []
 --- !u!114 &1548464336
 MonoBehaviour:
   m_ObjectHideFlags: 0

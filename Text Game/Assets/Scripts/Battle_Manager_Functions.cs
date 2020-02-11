@@ -30,8 +30,6 @@ public class Battle_Manager_Functions : MonoBehaviour
     public GameObject instantiatedSpellOption;
     public GameObject SpellOptionPanel;
 
-    public GameObject pfFloatingDamage;    
-
     // Start is called before the first frame update
     void Start()
     {   
@@ -44,7 +42,6 @@ public class Battle_Manager_Functions : MonoBehaviour
     {
         playerToIdle.battleSprite.transform.position = playerToIdle.position;
     }
-
 
     //This method has been added because of serialization issues
     //players and enemies store their target by a name ID instead
@@ -180,11 +177,13 @@ public class Battle_Manager_Functions : MonoBehaviour
     // CREATE TEXT FUNCTIONS
     public void createFloatingText(Vector3 position, string amount)
     {
-        FloatingNumber floatingNumber = new FloatingNumber();
-        floatingNumber.floatingNumber = Instantiate(pfFloatingDamage, position, Quaternion.identity);        
-        floatingNumber.floatingNumberTarget = new Vector3(floatingNumber.floatingNumber.transform.position.x, floatingNumber.floatingNumber.transform.position.y + 1f);
-        floatingNumber.floatingNumberText.text = amount;
-        
+        BM.instantiatedFloatingDamage = Instantiate(BM.floatingDamage, position, Quaternion.identity);
+
+        BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
+
+        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);        
+
+        BM.floatUp = true;
     }
 
     // BATTLE MANAGER UI FUNCTIONS
