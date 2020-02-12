@@ -58,6 +58,7 @@ public class Action_Handler : MonoBehaviour
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " hits the enemy!");                    
                     BM_Funcs.createFloatingText(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
+                    BM_Funcs.createFloatingText(BM.activePlayer.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
                 }
                 else
                 {
