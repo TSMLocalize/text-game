@@ -30,31 +30,12 @@ public class Battle_Manager_Functions : MonoBehaviour
     public GameObject instantiatedSpellOption;
     public GameObject SpellOptionPanel;
 
-    public List<FloatingDamage> floatDMGList;
-
     // Start is called before the first frame update
     void Start()
     {   
         BM = GetComponent<Battle_Manager>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
         ActionHandler = GetComponent<Action_Handler>();
-    }
-
-    void Update()
-    {        
-        foreach (FloatingDamage fDMG in floatDMGList)
-        {
-            float speed = 2.0f;
-
-            float step = speed * Time.deltaTime;
-
-            fDMG.FloatingNumber.transform.position = Vector3.MoveTowards(fDMG.FloatingNumber.transform.position, fDMG.Target, step);
-
-            if (fDMG.FloatingNumber.transform.position == fDMG.Target)
-            {
-                Destroy(fDMG.FloatingNumber);
-            }
-        }
     }
 
     public void standIdle(Player playerToIdle)
@@ -193,25 +174,16 @@ public class Battle_Manager_Functions : MonoBehaviour
         }
     }
 
-    [System.Serializable]
-    public class FloatingDamage
-    {
-        public Vector3 Target;        
-        public GameObject FloatingNumber;
-    }
-
     // CREATE TEXT FUNCTIONS
     public void createFloatingText(Vector3 position, string amount)
     {
-        FloatingDamage floatDMG = new FloatingDamage();
+        BM.instantiatedFloatingDamage = Instantiate(BM.floatingDamage, position, Quaternion.identity);
 
-        floatDMG.FloatingNumber = Instantiate(BM.floatingDamage, position, Quaternion.identity);
+        BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
 
-        floatDMG.FloatingNumber.GetComponent<TextMeshPro>().text = amount;
+        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);        
 
-        floatDMG.Target = new Vector3(floatDMG.FloatingNumber.transform.position.x, floatDMG.FloatingNumber.transform.position.y + 1f);
-
-        floatDMGList.Add(floatDMG);
+        BM.floatUp = true;
     }
 
     // BATTLE MANAGER UI FUNCTIONS
