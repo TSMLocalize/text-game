@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2614911549536912702}
   - component: {fileID: 1492247046435612043}
   - component: {fileID: 9001177110864630524}
-  - component: {fileID: 2753410016498114766}
   m_Layer: 0
   m_Name: DamageNumber
   m_TagString: Untagged
@@ -210,18 +209,3 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
---- !u!111 &2753410016498114766
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2614911549536912700}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0

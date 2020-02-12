@@ -9,8 +9,7 @@ using TMPro;
 public class Battle_Manager : MonoBehaviour
 {
     
-    public GameObject instantiatedFloatingDamage;
-    public List<GameObject> instantiatedFloatingDamageList;
+    public GameObject instantiatedFloatingDamage;    
     public GameObject floatingDamage = null;    
     public bool floatUp;
     public Vector3 floatingNumberTarget;
@@ -150,11 +149,21 @@ public class Battle_Manager : MonoBehaviour
             }
         }
 
-        if (instantiatedFloatingDamageList.Count > 0)
+        if (floatUp)
         {
-            floatTheFloatingNumbers();
+            speed = 2.0f;
+
+            float step = speed * Time.deltaTime;                       
+
+            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
+
+            if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
+            {
+                Destroy(instantiatedFloatingDamage);
+                floatUp = false;
+            }
         }
-       
+
         m_PointerEventData = new PointerEventData(m_EventSystem);
         m_PointerEventData.position = Input.mousePosition;
         List<RaycastResult> results = new List<RaycastResult>();
@@ -998,29 +1007,21 @@ public class Battle_Manager : MonoBehaviour
         }
     }
 
-    public void floatTheFloatingNumbers()
-    {
-        float step = 0f;
-
-        speed = 2.0f;
-
-        if (step == 0)        
+    void floatTheFloatingNumbers()
+    {        
+        if (floatUp)
         {
-            step = speed * Time.deltaTime;
-        }        
+            speed = 2.0f;
 
-        for (int i = 0; i < instantiatedFloatingDamageList.Count; i++)
-        {
-            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, 
-                new Vector3(instantiatedFloatingDamage.gameObject.transform.position.x, instantiatedFloatingDamage.gameObject.transform.position.y + 1f), step);
-        }
+            float step = speed * Time.deltaTime;
 
-        for (int i = 0; i < instantiatedFloatingDamageList.Count; i++)
-        {
+            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
+
             if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
             {
                 Destroy(instantiatedFloatingDamage);
+                floatUp = false;
             }
-        }
+        }        
     }
 }

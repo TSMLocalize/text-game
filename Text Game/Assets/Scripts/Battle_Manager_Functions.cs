@@ -181,9 +181,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 
         BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
 
-        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);
-
-        BM.instantiatedFloatingDamageList.Add(BM.instantiatedFloatingDamage);
+        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);        
 
         BM.floatUp = true;
     }
