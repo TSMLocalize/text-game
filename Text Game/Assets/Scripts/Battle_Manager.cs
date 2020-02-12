@@ -149,20 +149,20 @@ public class Battle_Manager : MonoBehaviour
             }
         }
 
-        void floatTheFloatingNumbers(Vector3 position, string amount)
+        if (floatUp)
         {
             speed = 2.0f;
 
-            float step = speed * Time.deltaTime;
+            float step = speed * Time.deltaTime;                       
 
-            instantiatedFloatingDamage = Instantiate(floatingDamage, position, Quaternion.identity);
+            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
 
-            instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
-
-            instantiatedFloatingDamage.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.transform.position,
-                new Vector3(instantiatedFloatingDamage.transform.position.x, instantiatedFloatingDamage.transform.position.y + 1, instantiatedFloatingDamage.transform.position.z), step);
+            if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
+            {
+                Destroy(instantiatedFloatingDamage);
+                floatUp = false;
+            }
         }
-
 
         m_PointerEventData = new PointerEventData(m_EventSystem);
         m_PointerEventData.position = Input.mousePosition;
@@ -525,7 +525,7 @@ public class Battle_Manager : MonoBehaviour
                                 else if (selectedCommand == "Attack")
                                 {
                                     ActionHandler.reportOutcome("PlayerAttack");
-                                    floatTheFloatingNumbers(activePlayer.battleSprite.transform.position, activePlayer.Attack.ToString());
+                                    floatTheFloatingNumbers();
                                 }
                                 else if (selectedCommand == "Weapon Skill")
                                 {
@@ -886,7 +886,7 @@ public class Battle_Manager : MonoBehaviour
                     BM_Funcs.enemyAnimationController(activeEnemy, "IsAttacking");
                     BM_Funcs.animationController(enemyTarget, "TakeDamage");
                     
-                    floatTheFloatingNumbers(enemyTarget.battleSprite.transform.position, enemyTarget.Attack.ToString());
+                    floatTheFloatingNumbers();
 
                     if (activeEnemy.enemyAttackAnimIsDone == true)
                     {
@@ -1007,5 +1007,21 @@ public class Battle_Manager : MonoBehaviour
         }
     }
 
+    void floatTheFloatingNumbers()
+    {        
+        if (floatUp)
+        {
+            speed = 2.0f;
 
+            float step = speed * Time.deltaTime;
+
+            instantiatedFloatingDamage.gameObject.transform.position = Vector3.MoveTowards(instantiatedFloatingDamage.gameObject.transform.position, floatingNumberTarget, step);
+
+            if (instantiatedFloatingDamage.transform.position == floatingNumberTarget)
+            {
+                Destroy(instantiatedFloatingDamage);
+                floatUp = false;
+            }
+        }        
+    }
 }
