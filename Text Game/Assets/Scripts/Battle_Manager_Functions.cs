@@ -176,14 +176,9 @@ public class Battle_Manager_Functions : MonoBehaviour
 
     // CREATE TEXT FUNCTIONS
     public void createFloatingText(Vector3 position, string amount)
-    {
-        BM.instantiatedFloatingDamage = Instantiate(BM.floatingDamage, position, Quaternion.identity);
+    {        
 
-        BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
-
-        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);        
-
-        BM.floatUp = true;
+        
     }
 
     // BATTLE MANAGER UI FUNCTIONS
