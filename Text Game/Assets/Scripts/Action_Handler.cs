@@ -57,13 +57,14 @@ public class Action_Handler : MonoBehaviour
 
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " hits the enemy!");                    
-                    BM_Funcs.createFloatingText(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString());
+                    BM_Funcs.CreateDamagePopUp(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString(), Color.white);
+                    BM_Funcs.CreateDamagePopUp(BM.activePlayer.battleSprite.transform.position, BM.activePlayer.storeTP.ToString() + " TP", Color.yellow);
                 }
                 else
                 {
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " misses the enemy...");
-                    BM_Funcs.createFloatingText(BM.playerTarget.battleSprite.transform.position, "Miss!");
+                    BM_Funcs.CreateDamagePopUp(BM.playerTarget.battleSprite.transform.position, "Miss!", Color.white);
                 }
                 break;
             case "PlayerWait":
@@ -102,14 +103,14 @@ public class Action_Handler : MonoBehaviour
                 {
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " hits " + BM.enemyTarget.name + "...");
-                    BM_Funcs.createFloatingText(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString());
+                    BM_Funcs.CreateDamagePopUp(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString(), Color.white);
 
                 }
                 else
                 {
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " misses " + BM.enemyTarget.name + "!");
-                    BM_Funcs.createFloatingText(BM.enemyTarget.battleSprite.transform.position, "Miss!");
+                    BM_Funcs.CreateDamagePopUp(BM.enemyTarget.battleSprite.transform.position, "Miss!", Color.white);
                 }
                 break;
             case "EnemyStartCast":

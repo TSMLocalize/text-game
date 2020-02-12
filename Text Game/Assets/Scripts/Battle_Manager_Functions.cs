@@ -9,6 +9,9 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager_Functions : MonoBehaviour
 {
+
+    public GameObject floatingDamage;
+
     public Battle_Manager BM;
     public Battle_Manager_IEnumerators BM_Enums;
     public Action_Handler ActionHandler;
@@ -173,17 +176,16 @@ public class Battle_Manager_Functions : MonoBehaviour
                 break;
         }
     }
-
-    // CREATE TEXT FUNCTIONS
-    public void createFloatingText(Vector3 position, string amount)
+    
+    // Create a Damage PopUp
+    public DamagePopUp CreateDamagePopUp(Vector3 position, string damageAmount, Color color)
     {
-        BM.instantiatedFloatingDamage = Instantiate(BM.floatingDamage, position, Quaternion.identity);
+        Transform damagePopupTransform = Instantiate(floatingDamage.transform, position, Quaternion.identity);
 
-        BM.instantiatedFloatingDamage.GetComponent<TextMeshPro>().text = amount;
+        DamagePopUp damagePopUp = damagePopupTransform.GetComponent<DamagePopUp>();
+        damagePopUp.Setup(damageAmount, color);
 
-        BM.floatingNumberTarget = new Vector3(BM.instantiatedFloatingDamage.transform.position.x, BM.instantiatedFloatingDamage.transform.position.y + 1f);        
-
-        BM.floatUp = true;
+        return damagePopUp;
     }
 
     // BATTLE MANAGER UI FUNCTIONS
