@@ -178,6 +178,7 @@ public class Battle_Manager : MonoBehaviour
                 if (startRoutinesGoingAgain)
                 {
                     startSpeedCoroutines();
+                    StartCoroutine(combo_Manager.updateTimeRemaining());
                     startRoutinesGoingAgain = false;
                 }
 

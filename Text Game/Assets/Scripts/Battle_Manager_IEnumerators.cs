@@ -8,12 +8,12 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager_IEnumerators : MonoBehaviour
 {
-    public Battle_Manager BM;
+    public Battle_Manager BM;    
 
     // Start is called before the first frame update
     void Start()
     {
-        BM = GetComponent<Battle_Manager>();
+        BM = GetComponent<Battle_Manager>();        
     }
 
 
@@ -117,7 +117,6 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
             if (player.speedTotal >= 100 || (player.isCastingSpell && player.castSpeedTotal <= 0))
             {
 
-
                 if (player.isCastingSpell)
                 {
                     player.playerCastBar.GetComponent<Image>().transform.localScale = new Vector3(0f, player.playerCastBar.GetComponent<Image>().transform.localScale.y);
@@ -128,14 +127,14 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
                 }
             }
             else
-            {
-
+            {                
                 if (player.isCastingSpell)
-                {
+                {                    
                     player.castSpeedTotal -= player.castSpeed;
                 }
                 else
                 {
+                    
                     player.speedTotal += player.speed;
                 }
 
@@ -163,7 +162,6 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
             if (enemy.speedTotal >= 100 || (enemy.isCastingSpell && enemy.castSpeedTotal <= 0))
             {
 
-
                 if (enemy.isCastingSpell)
                 {
                     enemy.enemyCastBar.GetComponent<Image>().transform.localScale = new Vector3(0f, enemy.enemyCastBar.GetComponent<Image>().transform.localScale.y);
@@ -175,13 +173,12 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
             }
             else
             {
-
                 if (enemy.isCastingSpell)
                 {
                     enemy.castSpeedTotal -= enemy.castSpeed;
                 }
                 else
-                {
+                {                    
                     enemy.speedTotal += enemy.speed;
                 }
 

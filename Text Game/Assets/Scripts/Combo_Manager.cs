@@ -12,13 +12,20 @@ public class Combo_Manager : MonoBehaviour
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
     public Action_Handler ActionHandler;
+    public TextMeshProUGUI WStimer;
+    public float timeRemaining = 50;
+    public bool WSTimerActivated = true;
+    public bool wsCoroutineIsPaused;
+    public bool wsReturningStarting;
 
     // Start is called before the first frame update
     void Start()
     {
         BM = GetComponent<Battle_Manager>();
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
-        ActionHandler = GetComponent<Action_Handler>();
+        ActionHandler = GetComponent<Action_Handler>();        
+
+        StartCoroutine(updateTimeRemaining());
     }
 
     void Update()
@@ -50,5 +57,28 @@ public class Combo_Manager : MonoBehaviour
     public void AddTP(Player player, float amount)
     {
         player.tpTotal += amount;
+    }
+
+    public IEnumerator updateTimeRemaining()
+    {
+        while (BM.coroutineIsPaused == true)
+        {
+            yield return null;
+        }
+
+        while (BM.coroutineIsPaused == false)
+        {
+            if (BM.returningStarting == true)
+            {
+                yield return new WaitForSeconds(0.3f);
+                BM.returningStarting = false;
+            }
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= 1f;
+                WStimer.text = "Time Left: " + timeRemaining.ToString();
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
     }
 }
