@@ -11,4 +11,5 @@ public class WeaponSkill
     public string element;
     public float TPCost;
     public Sprite weaponSkillIcon;
+    public Sprite weaponSkillElement;
 }

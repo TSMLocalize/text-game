@@ -509,7 +509,7 @@ public class Battle_Manager : MonoBehaviour
                                 }
                                 else if (selectedCommand == "Weapon Skill")
                                 {
-                                    combo_Manager.PlayerWeaponskill(activePlayer.selectedWeaponSkill.name, activePlayer, playerTarget);
+                                    combo_Manager.PlayerWeaponskill(activePlayer.selectedWeaponSkill, activePlayer, playerTarget);
                                 }
 
                                 EnemyPanels[i].GetComponent<Image>().color = Color.red;

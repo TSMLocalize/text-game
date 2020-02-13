@@ -17,6 +17,9 @@ public class Combo_Manager : MonoBehaviour
     public bool WSTimerActivated = true;
     public bool wsCoroutineIsPaused;
     public bool wsReturningStarting;
+    public List<GameObject> ComboEntries;
+    public Image[] ComboEntryImageArray;
+    public WeaponSkill WStoBeAdded;
 
     // Start is called before the first frame update
     void Start()
@@ -33,20 +36,38 @@ public class Combo_Manager : MonoBehaviour
         
     }
     
-    public void PlayerWeaponskill(string weaponSkill, Player attacker = null, Enemy target = null)
+    public void addWSToTheList(WeaponSkill WStoAdd)
+    {        
+        for (int i = 0; i < ComboEntries.Count; i++)
+        {
+            if (ComboEntries[i].activeSelf == false)
+            {
+                ComboEntries[i].SetActive(true);
+                ComboEntryImageArray = ComboEntries[i].GetComponentsInChildren<Image>();
+                ComboEntryImageArray[1].overrideSprite = WStoAdd.weaponSkillIcon;
+                ComboEntryImageArray[2].overrideSprite = WStoAdd.weaponSkillElement;
+                ComboEntries[i].GetComponentInChildren<TextMeshProUGUI>().text = WStoAdd.name;
+                break;
+            }
+        }
+    }
+
+    public void PlayerWeaponskill(WeaponSkill weaponSkill, Player attacker = null, Enemy target = null)
     {
-        switch (weaponSkill)
+        
+        switch (weaponSkill.name)
         {
             case "Fast Blade":
-                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill + " on the " + target);
+                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
+                addWSToTheList(weaponSkill);
                 break;
 
             case "Raging Axe":
-                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill + " on the " + target);
+                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
                 break;
 
             case "Penta Thrust":
-                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill + " on the " + target);
+                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
                 break;
 
             default:
