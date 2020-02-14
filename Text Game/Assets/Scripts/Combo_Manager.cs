@@ -13,10 +13,11 @@ public class Combo_Manager : MonoBehaviour
     public Battle_Manager_Functions BM_Funcs;
     public Action_Handler ActionHandler;
     public TextMeshProUGUI WStimer;
-    public float timeRemaining = 50;
+    public float timeRemaining = 5;
     public bool WSTimerActivated = true;
     public bool wsCoroutineIsPaused;
     public bool wsReturningStarting;
+    public GameObject ComboPanel;
     public List<GameObject> ComboEntries;
     public Image[] ComboEntryImageArray;
     public WeaponSkill WStoBeAdded;
@@ -33,7 +34,7 @@ public class Combo_Manager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
     
     public void addWSToTheList(WeaponSkill WStoAdd)
@@ -97,9 +98,9 @@ public class Combo_Manager : MonoBehaviour
             if (timeRemaining > 0)
             {
                 timeRemaining -= 1f;
-                WStimer.text = "Time Left: " + timeRemaining.ToString();
+                WStimer.text = timeRemaining.ToString();
                 yield return new WaitForSeconds(0.5f);
-            }
+            }            
         }
     }
 }
