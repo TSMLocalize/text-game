@@ -16226,8 +16226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0633c8d0c4c49a64783730b4345ed1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatingDamage: {fileID: 2614911549536912700, guid: ee9280d83beb36a4183dfc82241d258d,
-    type: 3}
   BM: {fileID: 1548464333}
   BM_Enums: {fileID: 0}
   ActionHandler: {fileID: 0}
@@ -16273,8 +16271,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465edfa0bd650ee458ee05c174632135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatingDamage: {fileID: 2614911549536912700, guid: ee9280d83beb36a4183dfc82241d258d,
+    type: 3}
   BM: {fileID: 0}
   BM_Funcs: {fileID: 0}
+  BM_Enums: {fileID: 0}
   spellReportFinished: 0
   enemySpellReportFinished: 0
   maxMessages: 0
@@ -16334,6 +16335,7 @@ MonoBehaviour:
   - {fileID: 2019055204}
   - {fileID: 527759433}
   ComboEntryImageArray: []
+  SCEntryImageArray: []
   WStoBeAdded:
     name: 
     element: 

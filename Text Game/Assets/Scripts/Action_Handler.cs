@@ -6,11 +6,17 @@ using System.Linq;
 using UnityEngine.EventSystems;
 using TMPro;
 
+/** WELCOME TO THE ACTION HANDLER SCRIPT
+ * This script calculates the maths and outcomes of selected actions, and creates combat log messages and floating text for them.
+ */
+
 [System.Serializable]
 public class Action_Handler : MonoBehaviour
 {
+    public GameObject floatingDamage;
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
+    public Battle_Manager_IEnumerators BM_Enums;
     public bool spellReportFinished;
     public bool enemySpellReportFinished;
     public int maxMessages;
@@ -25,6 +31,7 @@ public class Action_Handler : MonoBehaviour
         messageList = new List<Message>();
         BM = GetComponent<Battle_Manager>();
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
+        BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
     }
 
     [System.Serializable]
@@ -34,8 +41,7 @@ public class Action_Handler : MonoBehaviour
         public TextMeshProUGUI textObject;
     }
 
-    //GAMEPLAY FUNCTIONS
-
+    //This deals with the combat text, maths and floating text
     public void reportOutcome(string report)
     {
         switch (report)
@@ -57,14 +63,14 @@ public class Action_Handler : MonoBehaviour
 
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " hits the enemy!");                    
-                    BM_Funcs.CreateDamagePopUp(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString(), Color.white);
-                    BM_Funcs.CreateDamagePopUp(BM.activePlayer.battleSprite.transform.position, BM.activePlayer.storeTP.ToString() + " TP", Color.yellow);
+                    CreateDamagePopUp(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString(), Color.white);
+                    CreateDamagePopUp(BM.activePlayer.battleSprite.transform.position, BM.activePlayer.storeTP.ToString() + " TP", Color.yellow);
                 }
                 else
                 {
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " misses the enemy...");
-                    BM_Funcs.CreateDamagePopUp(BM.playerTarget.battleSprite.transform.position, "Miss!", Color.white);
+                    CreateDamagePopUp(BM.playerTarget.battleSprite.transform.position, "Miss!", Color.white);
                 }
                 break;
             case "PlayerWait":
@@ -103,14 +109,14 @@ public class Action_Handler : MonoBehaviour
                 {
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " hits " + BM.enemyTarget.name + "...");
-                    BM_Funcs.CreateDamagePopUp(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString(), Color.white);
+                    CreateDamagePopUp(BM.enemyTarget.battleSprite.transform.position, BM.activeEnemy.Attack.ToString(), Color.white);
 
                 }
                 else
                 {
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " misses " + BM.enemyTarget.name + "!");
-                    BM_Funcs.CreateDamagePopUp(BM.enemyTarget.battleSprite.transform.position, "Miss!", Color.white);
+                    CreateDamagePopUp(BM.enemyTarget.battleSprite.transform.position, "Miss!", Color.white);
                 }
                 break;
             case "EnemyStartCast":
@@ -134,6 +140,123 @@ public class Action_Handler : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    //This deals with the coroutine and animation
+    public void resolveAction(string Command)
+    {
+        switch (Command)
+        {
+            case "Attack":
+                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+                BM.attackAnimCoroutineIsPaused = false;
+                StartCoroutine(BM_Enums.waitForAttackAnimation());
+                BM_Funcs.animationController(BM.activePlayer, "IsAttacking");
+                BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
+
+                if (BM.attackAnimIsDone == true)
+                {
+                    BM.attackAnimCoroutineIsPaused = true;
+                    BM_Funcs.enemyAnimationController(BM.playerTarget);
+                    BM.activePlayer.speedTotal -= 100f;
+                    resolveAction(default);
+                }
+
+                break;
+            case "Magic":
+                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+                reportOutcome("PlayerStartCast");
+                BM_Funcs.animationController(BM.activePlayer, "IsChanting");
+                BM.activePlayer.constantAnimationState = "IsChanting";
+                BM.activePlayer.hasConstantAnimationState = true;
+                BM.activePlayer.playerCastBar.SetActive(true);
+                BM.activePlayer.castSpeedTotal = BM.activePlayer.activeSpell.castTime;
+                BM.activePlayer.speedTotal -= 100f;
+                resolveAction(default);
+                break;
+            case "Wait":
+                reportOutcome("PlayerWait");
+                BM.activePlayer.speedTotal = (100f - BM.activePlayer.speed);
+                resolveAction(default);
+                break;
+            case "Change Row":
+                if (BM.isSwitchingWithOtherPlayer)
+                {
+                    BM.playerToSwitchRowWith.speedTotal -= 100f;
+                    BM.isSwitchingWithOtherPlayer = false;
+                }
+                BM.playerToSwitchRowWith = null;
+                BM.activePlayer.speedTotal -= 100f;
+                resolveAction(default);
+                break;
+            case "Weapon Skill":
+                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+                BM.attackAnimCoroutineIsPaused = false;
+                StartCoroutine(BM_Enums.waitForAttackAnimation());
+                BM_Funcs.animationController(BM.activePlayer, "IsAttacking");
+                BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
+
+                if (BM.attackAnimIsDone == true)
+                {
+                    BM.attackAnimCoroutineIsPaused = true;
+                    BM_Funcs.enemyAnimationController(BM.playerTarget);
+                    BM.activePlayer.speedTotal -= 100f;
+                    BM.activePlayer.tpTotal = 0;
+                    resolveAction(default);
+                }
+                break;
+            case "Cast":
+                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+                BM.castAnimCoroutineIsPaused = false;
+                StartCoroutine(BM_Enums.waitForCastAnimation());
+                BM_Funcs.animationController(BM.activePlayer, "IsCasting");
+
+                if (BM.castAnimIsDone)
+                {
+                    spellReportFinished = false;
+                    BM.castAnimCoroutineIsPaused = true;
+                    BM.activePlayer.constantAnimationState = null;
+                    BM.activePlayer.hasConstantAnimationState = false;
+                    BM.activePlayer.isCastingSpell = false;
+                    BM.activePlayer.castSpeedTotal = 0f;
+                    BM.activePlayer.playerOptions.Remove("Cast");
+                    resolveAction(default);
+                }
+                break;
+            default:
+                BM_Funcs.standIdle(BM.activePlayer);
+                BM_Funcs.animationController(BM.activePlayer);
+                BM.activePlayer.playerPanel.GetComponent<Image>().color = BM.defaultColor;
+                BM_Funcs.resetChoicePanel();
+                BM.ActionPanel.SetActive(false);
+                BM.OptionPanel.SetActive(false);
+                BM.ActivePlayers.Remove(BM.activePlayer);
+                BM.activePlayer = null;
+                BM.selectedCommand = null;
+
+                if (BM.ActivePlayers.Count == 0)
+                {
+                    BM.returningStarting = true;
+                    BM.startRoutinesGoingAgain = true;
+                    BM_Funcs.redirectAction();
+                }
+                else
+                {
+                    BM.battleStates = Battle_Manager.BattleStates.SELECT_PLAYER;
+                }
+                break;
+        }
+    }
+
+    // Create a Damage PopUp
+    public DamagePopUp CreateDamagePopUp(Vector3 position, string damageAmount, Color color)
+    {
+        Transform damagePopupTransform = Instantiate(floatingDamage.transform, position, Quaternion.identity);
+
+        DamagePopUp damagePopUp = damagePopupTransform.GetComponent<DamagePopUp>();
+        damagePopUp.Setup(damageAmount, color);
+
+        return damagePopUp;
     }
 
     public void SendMessagesToCombatLog(string text)

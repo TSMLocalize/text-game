@@ -9,9 +9,6 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager_Functions : MonoBehaviour
 {
-
-    public GameObject floatingDamage;
-
     public Battle_Manager BM;
     public Battle_Manager_IEnumerators BM_Enums;
     public Action_Handler ActionHandler;
@@ -70,122 +67,6 @@ public class Battle_Manager_Functions : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void resolveAction(string Command)
-    {
-        switch (Command)
-        {
-            case "Attack":
-                setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                BM.attackAnimCoroutineIsPaused = false;
-                StartCoroutine(BM_Enums.waitForAttackAnimation());
-                animationController(BM.activePlayer, "IsAttacking");
-                enemyAnimationController(BM.playerTarget, "TakeDamage");
-
-                if (BM.attackAnimIsDone == true)
-                {
-                    BM.attackAnimCoroutineIsPaused = true;
-                    enemyAnimationController(BM.playerTarget);
-                    BM.activePlayer.speedTotal -= 100f;
-                    resolveAction(default);
-                }
-
-                break;
-            case "Magic":
-                setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                ActionHandler.reportOutcome("PlayerStartCast");
-                animationController(BM.activePlayer, "IsChanting");
-                BM.activePlayer.constantAnimationState = "IsChanting";
-                BM.activePlayer.hasConstantAnimationState = true;
-                BM.activePlayer.playerCastBar.SetActive(true);
-                BM.activePlayer.castSpeedTotal = BM.activePlayer.activeSpell.castTime;                
-                BM.activePlayer.speedTotal -= 100f;
-                resolveAction(default);
-                break;
-            case "Wait":
-                ActionHandler.reportOutcome("PlayerWait");                
-                BM.activePlayer.speedTotal = (100f - BM.activePlayer.speed);
-                resolveAction(default);
-                break;
-            case "Change Row":                                
-                if (BM.isSwitchingWithOtherPlayer)
-                {
-                    BM.playerToSwitchRowWith.speedTotal -= 100f;
-                    BM.isSwitchingWithOtherPlayer = false;
-                }
-                BM.playerToSwitchRowWith = null;
-                BM.activePlayer.speedTotal -= 100f;
-                resolveAction(default);
-                break;
-            case "Weapon Skill":
-                setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                BM.attackAnimCoroutineIsPaused = false;
-                StartCoroutine(BM_Enums.waitForAttackAnimation());
-                animationController(BM.activePlayer, "IsAttacking");
-                enemyAnimationController(BM.playerTarget, "TakeDamage");
-
-                if (BM.attackAnimIsDone == true)
-                {
-                    BM.attackAnimCoroutineIsPaused = true;
-                    enemyAnimationController(BM.playerTarget);
-                    BM.activePlayer.speedTotal -= 100f;
-                    BM.activePlayer.tpTotal = 0;
-                    resolveAction(default);
-                }                
-                break;
-            case "Cast":
-                setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                BM.castAnimCoroutineIsPaused = false;
-                StartCoroutine(BM_Enums.waitForCastAnimation());
-                animationController(BM.activePlayer, "IsCasting");
-
-                if (BM.castAnimIsDone)
-                {
-                    ActionHandler.spellReportFinished = false;
-                    BM.castAnimCoroutineIsPaused = true;
-                    BM.activePlayer.constantAnimationState = null;
-                    BM.activePlayer.hasConstantAnimationState = false;                    
-                    BM.activePlayer.isCastingSpell = false;                    
-                    BM.activePlayer.castSpeedTotal = 0f;
-                    BM.activePlayer.playerOptions.Remove("Cast");
-                    resolveAction(default);
-                }
-                break;
-            default:
-                standIdle(BM.activePlayer);
-                animationController(BM.activePlayer);
-                BM.activePlayer.playerPanel.GetComponent<Image>().color = BM.defaultColor;
-                resetChoicePanel();
-                BM.ActionPanel.SetActive(false);
-                BM.OptionPanel.SetActive(false);
-                BM.ActivePlayers.Remove(BM.activePlayer);
-                BM.activePlayer = null;
-                BM.selectedCommand = null;
-
-                if (BM.ActivePlayers.Count == 0)
-                {
-                    BM.returningStarting = true;
-                    BM.startRoutinesGoingAgain = true;
-                    redirectAction();
-                }
-                else
-                {
-                    BM.battleStates = Battle_Manager.BattleStates.SELECT_PLAYER;
-                }
-                break;
-        }
-    }
-    
-    // Create a Damage PopUp
-    public DamagePopUp CreateDamagePopUp(Vector3 position, string damageAmount, Color color)
-    {
-        Transform damagePopupTransform = Instantiate(floatingDamage.transform, position, Quaternion.identity);
-
-        DamagePopUp damagePopUp = damagePopupTransform.GetComponent<DamagePopUp>();
-        damagePopUp.Setup(damageAmount, color);
-
-        return damagePopUp;
     }
 
     // BATTLE MANAGER UI FUNCTIONS

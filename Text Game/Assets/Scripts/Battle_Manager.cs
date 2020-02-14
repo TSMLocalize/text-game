@@ -781,7 +781,7 @@ public class Battle_Manager : MonoBehaviour
                     activePlayer.hasConstantAnimationState = false;
                 }
 
-                BM_Funcs.resolveAction(selectedCommand);
+                ActionHandler.resolveAction(selectedCommand);
 
                 break;
             case BattleStates.SELECT_ENEMY:
