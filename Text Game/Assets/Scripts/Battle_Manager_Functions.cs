@@ -69,8 +69,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         }
     }
 
-    // BATTLE MANAGER UI FUNCTIONS
-
+    // BATTLE MANAGER UI FUNCTION
     public void setupCharacters()
     {
         //Add Players from PlayerManager to PlayersInBattle

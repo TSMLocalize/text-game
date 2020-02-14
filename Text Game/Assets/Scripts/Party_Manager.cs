@@ -26,7 +26,7 @@ public class Party_Manager : MonoBehaviour
         
         Josie.speed = 20f;
         Jemima.speed = 20f;
-        Jennifer.speed = 20f;
+        Jennifer.speed = 1f;
         Jessica.speed = 1f;
         Jody.speed = 1f;
         Jenny.speed = 1f;
@@ -45,8 +45,8 @@ public class Party_Manager : MonoBehaviour
         Jody.tpTotal = 1f;
         Jenny.tpTotal = 1f;
 
-        Josie.castSpeed = 4f;
-        Jemima.castSpeed = 7f;
+        Josie.castSpeed = 10f;
+        Jemima.castSpeed = 10f;
         Jennifer.castSpeed = 2f;
         Jessica.castSpeed = 2f;
         Jody.castSpeed = 3f;

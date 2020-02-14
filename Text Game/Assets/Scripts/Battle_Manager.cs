@@ -325,10 +325,11 @@ public class Battle_Manager : MonoBehaviour
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
                                 activePlayer.battleSprite.transform.position = activePlayer.position;
-                                activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
+                                activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;                                
                                 activePlayer = ActivePlayers[i];
                                 stepForward = true;
                                 selectedCommand = null;
+                                BM_Funcs.populateActionList();
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
