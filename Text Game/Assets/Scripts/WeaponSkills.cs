@@ -7,9 +7,13 @@ using TMPro;
 [System.Serializable]
 public class WeaponSkills : MonoBehaviour
 {
+    //Weaponskills
     public WeaponSkill Fast_Blade;
     public WeaponSkill Raging_Axe;
     public WeaponSkill Penta_Thrust;
+
+    //SkillChains
+    public WeaponSkill Scission;
 
     public Sprite FireElement;
     public Sprite IceElement;
@@ -17,6 +21,9 @@ public class WeaponSkills : MonoBehaviour
     
     private void Start()
     {
+        Scission.name = "Scission";
+        Fast_Blade.element = "Wind";                
+
         Fast_Blade.name = "Fast Blade";
         Fast_Blade.element = "Fire";
         Fast_Blade.TPCost = 100;

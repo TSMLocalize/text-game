@@ -18,16 +18,20 @@ public class Combo_Manager : MonoBehaviour
     public bool wsCoroutineIsPaused;
     public bool wsReturningStarting;
     public GameObject ComboPanel;
+    public GameObject CurrentSkillChain;
     public List<GameObject> ComboEntries;
     public Image[] ComboEntryImageArray;
+    public Image[] SCEntryImageArray;
     public WeaponSkill WStoBeAdded;
+    public WeaponSkills weaponSkills;
 
     // Start is called before the first frame update
     void Start()
     {
         BM = GetComponent<Battle_Manager>();
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
-        ActionHandler = GetComponent<Action_Handler>();        
+        ActionHandler = GetComponent<Action_Handler>();
+        weaponSkills = FindObjectOfType<WeaponSkills>();
 
         StartCoroutine(updateTimeRemaining());
     }
@@ -51,6 +55,15 @@ public class Combo_Manager : MonoBehaviour
                 break;
             }
         }
+
+        if (ComboEntries[0].activeSelf && ComboEntries [1].activeSelf)
+        {
+            CurrentSkillChain.SetActive(true);
+            SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
+            CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = weaponSkills.Scission.name;
+            SCEntryImageArray[1].overrideSprite = weaponSkills.Scission.weaponSkillIcon;            
+        }
+
     }
 
     public void PlayerWeaponskill(WeaponSkill weaponSkill, Player attacker = null, Enemy target = null)
@@ -76,6 +89,13 @@ public class Combo_Manager : MonoBehaviour
         }
     }
 
+    public void SetUpPanel()
+    {
+        timeRemaining = 10;
+        WStimer.text = timeRemaining.ToString();
+        ComboPanel.SetActive(true);        
+    }
+
     public void AddTP(Player player, float amount)
     {
         player.tpTotal += amount;
@@ -95,7 +115,13 @@ public class Combo_Manager : MonoBehaviour
                 yield return new WaitForSeconds(0.3f);
                 BM.returningStarting = false;
             }
-            if (timeRemaining > 0)
+
+            if (timeRemaining < 1)
+            {
+                ComboPanel.SetActive(false);
+                yield return null;
+            }
+            else if (timeRemaining > 0)
             {
                 timeRemaining -= 1f;
                 WStimer.text = timeRemaining.ToString();
