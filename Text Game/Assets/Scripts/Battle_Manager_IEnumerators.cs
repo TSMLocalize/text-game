@@ -41,15 +41,15 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
 
     public IEnumerator waitForWeaponSkillAnimation(float Time)
     {
-        while (BM.attackAnimCoroutineIsPaused == true)
+        while (BM.WSAnimCoroutineIsPaused == true)
         {
             yield return null;
         }
 
-        while (BM.attackAnimCoroutineIsPaused == false)
+        while (BM.WSAnimCoroutineIsPaused == false)
         {
             yield return new WaitForSeconds(Time);
-            BM.attackAnimIsDone = true;
+            BM.WSAnimIsDone = true;
         }
     }
 

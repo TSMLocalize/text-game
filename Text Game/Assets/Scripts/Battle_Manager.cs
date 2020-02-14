@@ -17,8 +17,10 @@ public class Battle_Manager : MonoBehaviour
     public bool startRoutinesGoingAgain;
     public bool stepForward;
     public bool attackAnimIsDone;
+    public bool WSAnimIsDone;
     public bool castAnimIsDone;
     public bool attackAnimCoroutineIsPaused;
+    public bool WSAnimCoroutineIsPaused;
     public bool castAnimCoroutineIsPaused;
     public bool rowSelected;
     public bool isSwitchingWithOtherPlayer;
@@ -113,6 +115,8 @@ public class Battle_Manager : MonoBehaviour
         castAnimIsDone = false;
         attackAnimCoroutineIsPaused = true;
         attackAnimIsDone = false;
+        WSAnimCoroutineIsPaused = true;
+        WSAnimIsDone = false;
 
         //Fetch the Raycaster from the GameObject (the Canvas)
         m_Raycaster = UICanvas.GetComponent<GraphicRaycaster>();

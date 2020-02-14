@@ -73,7 +73,8 @@ public class Combo_Manager : MonoBehaviour
         {
             case "Fast Blade":
                 ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
-                addWSToTheList(weaponSkill);
+                addWSToTheList(weaponSkill);                        
+                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);                
                 break;
 
             case "Raging Axe":
