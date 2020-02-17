@@ -8,12 +8,14 @@ using TMPro;
 [System.Serializable]
 public class Battle_Manager_IEnumerators : MonoBehaviour
 {
-    public Battle_Manager BM;    
+    public Battle_Manager BM;
+    public Action_Handler actionHandler;
 
     // Start is called before the first frame update
     void Start()
     {
-        BM = GetComponent<Battle_Manager>();        
+        BM = GetComponent<Battle_Manager>();
+        actionHandler = GetComponent<Action_Handler>();
     }
 
     /**
@@ -43,13 +45,15 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
     {
         while (BM.WSAnimCoroutineIsPaused == true)
         {
+            BM.WSAnimIsDone = false;
             yield return null;
         }
 
         while (BM.WSAnimCoroutineIsPaused == false)
-        {
-            yield return new WaitForSeconds(Time);
+        {            
+            yield return new WaitForSeconds(Time);            
             BM.WSAnimIsDone = true;
+            yield break;
         }
     }
 

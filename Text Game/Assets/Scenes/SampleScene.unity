@@ -11186,6 +11186,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      numberOfAttacks: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11235,6 +11236,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      numberOfAttacks: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11284,6 +11286,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      numberOfAttacks: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11333,6 +11336,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      numberOfAttacks: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11382,6 +11386,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      numberOfAttacks: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11431,6 +11436,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      numberOfAttacks: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -15772,8 +15778,10 @@ MonoBehaviour:
   startRoutinesGoingAgain: 0
   stepForward: 0
   attackAnimIsDone: 0
+  WSAnimIsDone: 0
   castAnimIsDone: 0
   attackAnimCoroutineIsPaused: 0
+  WSAnimCoroutineIsPaused: 0
   castAnimCoroutineIsPaused: 0
   rowSelected: 0
   isSwitchingWithOtherPlayer: 0
@@ -15819,6 +15827,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      numberOfAttacks: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -15870,6 +15879,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      numberOfAttacks: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -16172,6 +16182,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      numberOfAttacks: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -16259,6 +16270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BM: {fileID: 1548464333}
+  actionHandler: {fileID: 0}
 --- !u!114 &1548464337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16342,6 +16354,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
+    numberOfAttacks: 0
   weaponSkills: {fileID: 0}
 --- !u!1 &1551812233
 GameObject:
@@ -18342,24 +18355,28 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: a3808dd39fa94ff4286ac84eee162ce0, type: 3}
     weaponSkillElement: {fileID: 0}
+    numberOfAttacks: 0
   Raging_Axe:
     name: 
     element: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 2c5175d3e79bc1e4aaca3f0b35f76ce3, type: 3}
     weaponSkillElement: {fileID: 0}
+    numberOfAttacks: 0
   Penta_Thrust:
     name: 
     element: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 45c4199c0a4942040a19c3707b255e62, type: 3}
     weaponSkillElement: {fileID: 0}
+    numberOfAttacks: 0
   Scission:
     name: 
     element: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 2b54618d288ac67469f8ba215cb17fa2, type: 3}
     weaponSkillElement: {fileID: 0}
+    numberOfAttacks: 0
   FireElement: {fileID: 21300000, guid: 28c30d575af277f4c8a9ec3ca60abed5, type: 3}
   IceElement: {fileID: 21300000, guid: 2b5241b10f75c884b815a58c80f394c4, type: 3}
   WindElement: {fileID: 21300000, guid: eb9bbfdaa1e501f49bbd99418cf894aa, type: 3}

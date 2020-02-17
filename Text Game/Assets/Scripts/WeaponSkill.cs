@@ -12,4 +12,5 @@ public class WeaponSkill
     public float TPCost;
     public Sprite weaponSkillIcon;
     public Sprite weaponSkillElement;
+    public int numberOfAttacks;
 }

@@ -267,6 +267,7 @@ public class Battle_Manager : MonoBehaviour
 
                 attackAnimIsDone = false;
                 castAnimIsDone = false;
+                WSAnimIsDone = false;                
 
                 //Instant redirect if not waiting for a mouse click
                 BM_Funcs.redirectAction();
@@ -514,6 +515,8 @@ public class Battle_Manager : MonoBehaviour
                                 }
                                 else if (selectedCommand == "Weapon Skill")
                                 {
+                                    WSAnimIsDone = false;
+                                    WSAnimCoroutineIsPaused = true;
                                     combo_Manager.SetUpPanel();
                                     combo_Manager.PlayerWeaponskill(activePlayer.selectedWeaponSkill, activePlayer, playerTarget);
                                 }

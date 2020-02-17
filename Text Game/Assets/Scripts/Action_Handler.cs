@@ -189,19 +189,34 @@ public class Action_Handler : MonoBehaviour
                 BM.activePlayer.speedTotal -= 100f;
                 resolveAction(default);
                 break;
-            case "Weapon Skill":
+            case "Weapon Skill":                
+                
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
                 BM.WSAnimCoroutineIsPaused = false;
-                StartCoroutine(BM_Enums.waitForWeaponSkillAnimation(1.8f));                
-                BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");                
-                if (BM.WSAnimIsDone == true)
+                
+                if (BM.WSAnimCoroutineIsPaused == false)
                 {
-                    BM.WSAnimCoroutineIsPaused = true;
+                    resolveAction("Resolve Weapon Skill");
+                }
+                
+                break;
+            case "Resolve Weapon Skill":
+                
+                StartCoroutine(BM_Enums.waitForWeaponSkillAnimation(2.8f));
+                BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
+
+                if (BM.WSAnimIsDone == true && BM.activePlayer.selectedWeaponSkill.numberOfAttacks > 0)
+                {
+                    BM.WSAnimIsDone = false;
+                    BM.WSAnimCoroutineIsPaused = true;                    
+                    reportOutcome("PlayerAttack");
                     BM_Funcs.enemyAnimationController(BM.playerTarget);
                     BM.activePlayer.speedTotal -= 100f;
                     BM.activePlayer.tpTotal = 0;
-                    resolveAction(default);
+                    resolveAction(default);                    
                 }
+
+
                 break;
             case "Cast":
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);

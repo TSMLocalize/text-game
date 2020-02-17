@@ -27,6 +27,7 @@ public class WeaponSkills : MonoBehaviour
         Fast_Blade.name = "Fast Blade";
         Fast_Blade.element = "Fire";
         Fast_Blade.TPCost = 100;
+        Fast_Blade.numberOfAttacks = 3;
         Fast_Blade.weaponSkillElement = WindElement;
 
         Raging_Axe.name = "Raging Axe";
