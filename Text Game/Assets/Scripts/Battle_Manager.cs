@@ -16,8 +16,10 @@ public class Battle_Manager : MonoBehaviour
     public float speed;
     public bool startRoutinesGoingAgain;
     public bool stepForward;
+    public bool attackAnimIsDone;
     public bool WSAnimIsDone;
-    public bool castAnimIsDone;    
+    public bool castAnimIsDone;
+    public bool attackAnimCoroutineIsPaused;
     public bool WSAnimCoroutineIsPaused;
     public bool castAnimCoroutineIsPaused;
     public bool rowSelected;
@@ -111,13 +113,8 @@ public class Battle_Manager : MonoBehaviour
 
         castAnimCoroutineIsPaused = true;
         castAnimIsDone = false;
-
-        for (int i = 0; i < PlayersInBattle.Count; i++)
-        {
-            PlayersInBattle[i].attackAnimCoroutineIsPaused = true;
-            PlayersInBattle[i].attackAnimIsDone = false;
-        }
-        
+        attackAnimCoroutineIsPaused = true;
+        attackAnimIsDone = false;
         WSAnimCoroutineIsPaused = true;
         WSAnimIsDone = false;
 
@@ -169,11 +166,7 @@ public class Battle_Manager : MonoBehaviour
         {
             case BattleStates.DEFAULT:
 
-                for (int i = 0; i < PlayersInBattle.Count; i++)
-                {
-                    PlayersInBattle[i].attackAnimIsDone = false;                    
-                }
-
+                attackAnimIsDone = false;
                 castAnimIsDone = false;
 
                 for (int i = 0; i < EnemiesInBattle.Count; i++)
@@ -239,11 +232,7 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.SELECT_PLAYER:
 
-                for (int i = 0; i < PlayersInBattle.Count; i++)
-                {
-                    PlayersInBattle[i].attackAnimIsDone = false;
-                }
-                
+                attackAnimIsDone = false;
                 castAnimIsDone = false;
 
                 for (int i = 0; i < ActivePlayers.Count; i++)
@@ -274,13 +263,9 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 break;
-            case BattleStates.SELECT_ACTION:
+            case BattleStates.SELECT_ACTION:                                
 
-                for (int i = 0; i < PlayersInBattle.Count; i++)
-                {
-                    PlayersInBattle[i].attackAnimIsDone = false;
-                }
-                
+                attackAnimIsDone = false;
                 castAnimIsDone = false;
                 WSAnimIsDone = false;                
 
