@@ -149,14 +149,14 @@ public class Action_Handler : MonoBehaviour
         {
             case "Attack":
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                BM.attackAnimCoroutineIsPaused = false;
+                BM.activePlayer.attackAnimCoroutineIsPaused = false;
                 StartCoroutine(BM_Enums.waitForAttackAnimation());
                 BM_Funcs.animationController(BM.activePlayer, "IsAttacking");
                 BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
-                if (BM.attackAnimIsDone == true)
+                if (BM.activePlayer.attackAnimIsDone == true)
                 {
-                    BM.attackAnimCoroutineIsPaused = true;
+                    BM.activePlayer.attackAnimCoroutineIsPaused = true;
                     BM_Funcs.enemyAnimationController(BM.playerTarget);
                     BM.activePlayer.speedTotal -= 100f;
                     resolveAction(default);

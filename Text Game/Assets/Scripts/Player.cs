@@ -58,5 +58,9 @@ public class Player
     public GameObject currentRowPositionIcon;
     public bool hasConstantAnimationState;
     public string constantAnimationState = "";
-    
+
+    //
+    public bool attackAnimIsDone;
+    public bool attackAnimCoroutineIsPaused;
+
 }
