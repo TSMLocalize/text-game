@@ -13,4 +13,5 @@ public class WeaponSkill
     public Sprite weaponSkillIcon;
     public Sprite weaponSkillElement;
     public int numberOfAttacks;
+    public bool willCreateSkillchain;
 }

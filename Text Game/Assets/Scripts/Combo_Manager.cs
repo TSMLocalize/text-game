@@ -61,7 +61,8 @@ public class Combo_Manager : MonoBehaviour
             CurrentSkillChain.SetActive(true);
             SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
             CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = weaponSkills.Scission.name;
-            SCEntryImageArray[1].overrideSprite = weaponSkills.Scission.weaponSkillIcon;            
+            SCEntryImageArray[1].overrideSprite = weaponSkills.Scission.weaponSkillIcon;
+            BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
         }
 
     }

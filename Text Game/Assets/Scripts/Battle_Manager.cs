@@ -18,9 +18,11 @@ public class Battle_Manager : MonoBehaviour
     public bool stepForward;
     public bool attackAnimIsDone;
     public bool WSAnimIsDone;
+    public bool SCAnimIsDone;
     public bool castAnimIsDone;
     public bool attackAnimCoroutineIsPaused;
     public bool WSAnimCoroutineIsPaused;
+    public bool SCAnimCoroutineIsPaused;
     public bool castAnimCoroutineIsPaused;
     public bool rowSelected;
     public bool isSwitchingWithOtherPlayer;

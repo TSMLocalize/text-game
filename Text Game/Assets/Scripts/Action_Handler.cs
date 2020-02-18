@@ -94,6 +94,14 @@ public class Action_Handler : MonoBehaviour
                     spellReportFinished = true;
                 }
                 break;
+            case "SkillChain":
+
+                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);                
+
+                SendMessagesToCombatLog(
+                        BM.activePlayer.name + " closes a SKILLCHAIN to create Scission!");
+                CreateDamagePopUp(BM.activePlayer.battleSprite.transform.position, "Scission!", Color.blue);                
+                break;
             case "EnemyAttack":
 
                 BM_Funcs.setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
@@ -193,29 +201,49 @@ public class Action_Handler : MonoBehaviour
                 
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
                 BM.WSAnimCoroutineIsPaused = false;
-                
-                if (BM.WSAnimCoroutineIsPaused == false)
-                {
-                    resolveAction("Resolve Weapon Skill");
-                }
-                
-                break;
-            case "Resolve Weapon Skill":
-                
-                StartCoroutine(BM_Enums.waitForWeaponSkillAnimation(2.8f));
+                StartCoroutine(BM_Enums.waitForWeaponSkillAnimation(1.8f));
                 BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
-                if (BM.WSAnimIsDone == true && BM.activePlayer.selectedWeaponSkill.numberOfAttacks > 0)
+                if (BM.WSAnimIsDone == true)
                 {
                     BM.WSAnimIsDone = false;
-                    BM.WSAnimCoroutineIsPaused = true;                    
+                    BM.WSAnimCoroutineIsPaused = true;
                     reportOutcome("PlayerAttack");
                     BM_Funcs.enemyAnimationController(BM.playerTarget);
                     BM.activePlayer.speedTotal -= 100f;
                     BM.activePlayer.tpTotal = 0;
-                    resolveAction(default);                    
+                    if (BM.activePlayer.selectedWeaponSkill.willCreateSkillchain == true)
+                    {
+                        StopAllCoroutines();
+                        reportOutcome("SkillChain");
+                        StartCoroutine(BM_Enums.waitForSkillChainAnimation(1.5f));
+                        BM.SCAnimCoroutineIsPaused = false;
+                        resolveAction("Skillchain");
+                        break;
+                    }
+                    else
+                    {
+                        resolveAction(default);
+                        break;
+                    }                    
                 }
 
+                break;
+            case "Skillchain":
+                
+                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", false);
+                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);                                
+                BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
+
+                if (BM.SCAnimIsDone == true)
+                {
+                    BM.SCAnimIsDone = false;
+                    BM.SCAnimCoroutineIsPaused = true;                    
+                    BM_Funcs.enemyAnimationController(BM.playerTarget);                                       
+                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = false;
+                    resolveAction(default);
+                }
 
                 break;
             case "Cast":
@@ -237,6 +265,11 @@ public class Action_Handler : MonoBehaviour
                 }
                 break;
             default:
+                StopAllCoroutines();
+                BM.WSAnimIsDone = false;
+                BM.WSAnimCoroutineIsPaused = true;
+                BM.SCAnimIsDone = false;
+                BM.SCAnimCoroutineIsPaused = true;
                 BM_Funcs.standIdle(BM.activePlayer);
                 BM_Funcs.animationController(BM.activePlayer);
                 BM.activePlayer.playerPanel.GetComponent<Image>().color = BM.defaultColor;

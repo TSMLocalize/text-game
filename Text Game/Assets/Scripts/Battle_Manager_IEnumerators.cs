@@ -57,6 +57,22 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
         }
     }
 
+    public IEnumerator waitForSkillChainAnimation(float Time)
+    {
+        while (BM.SCAnimCoroutineIsPaused == true)
+        {
+            BM.SCAnimIsDone = false;
+            yield return null;
+        }
+
+        while (BM.SCAnimCoroutineIsPaused == false)
+        {
+            yield return new WaitForSeconds(Time);
+            BM.SCAnimIsDone = true;
+            yield break;
+        }
+    }
+
     public IEnumerator waitForCastAnimation()
     {
         while (BM.castAnimCoroutineIsPaused == true)
