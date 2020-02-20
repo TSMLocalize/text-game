@@ -16,6 +16,7 @@ public class Action_Handler : MonoBehaviour
     public GameObject floatingDamage;
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
+    public Combo_Manager combo_Manager;
     public Battle_Manager_IEnumerators BM_Enums;
     public bool spellReportFinished;
     public bool enemySpellReportFinished;
@@ -32,6 +33,7 @@ public class Action_Handler : MonoBehaviour
         BM = GetComponent<Battle_Manager>();
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
+        combo_Manager = GetComponent<Combo_Manager>();
     }
 
     [System.Serializable]
@@ -93,14 +95,14 @@ public class Action_Handler : MonoBehaviour
                         BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
                     spellReportFinished = true;
                 }
-                break;
+                break;            
             case "SkillChain":
 
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);                
 
                 SendMessagesToCombatLog(
-                        BM.activePlayer.name + " closes a SKILLCHAIN to create Scission!");
-                CreateDamagePopUp(BM.activePlayer.battleSprite.transform.position, "Scission!", Color.blue);                
+                        BM.activePlayer.name + " closes a SKILLCHAIN to create " + combo_Manager.skillChainToCreate.name + "!");
+                CreateDamagePopUp(BM.playerTarget.battleSprite.transform.position, combo_Manager.skillChainToCreate.name + "!", Color.blue);                
                 break;
             case "EnemyAttack":
 
@@ -233,6 +235,7 @@ public class Action_Handler : MonoBehaviour
                 {                                        
                     yield return new WaitForSeconds(1.5f);                    
                     BM_Funcs.enemyAnimationController(BM.playerTarget);
+                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = false;
                     resolveAction(default);
                     StopCoroutine(waitForSkillChainAnimation());
                 }

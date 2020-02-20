@@ -17,6 +17,7 @@ public class Combo_Manager : MonoBehaviour
     public bool WSTimerActivated;   
     public GameObject ComboPanel;
     public GameObject CurrentSkillChain;
+    public WeaponSkill skillChainToCreate;    
     public List<GameObject> ComboEntries;
     public Image[] ComboEntryImageArray;
     public Image[] SCEntryImageArray;
@@ -41,6 +42,7 @@ public class Combo_Manager : MonoBehaviour
     
     public void addWSToTheList(WeaponSkill WStoAdd)
     {        
+        //Adds WS info to the Combolog
         for (int i = 0; i < ComboEntries.Count; i++)
         {
             if (ComboEntries[i].activeSelf == false)
@@ -54,12 +56,40 @@ public class Combo_Manager : MonoBehaviour
             }
         }
 
-        if (ComboEntries[0].activeSelf && ComboEntries [1].activeSelf)
+        //Creates a Skillchain if filling in the 2nd, 4th or 6th WS on the Combolog
+        if (ComboEntries[0].activeSelf && ComboEntries [1].activeSelf && ComboEntries[2].activeSelf == false)
         {
             CurrentSkillChain.SetActive(true);
+
+            // TEMP
+            skillChainToCreate = weaponSkills.Scission;
+            //
+
             SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
-            CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = weaponSkills.Scission.name;
-            SCEntryImageArray[1].overrideSprite = weaponSkills.Scission.weaponSkillIcon;
+            CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = skillChainToCreate.name;
+            SCEntryImageArray[1].overrideSprite = skillChainToCreate.weaponSkillIcon;
+            BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+        } 
+        else if (ComboEntries[2].activeSelf && ComboEntries[3].activeSelf && ComboEntries[4].activeSelf == false)
+        {
+            // TEMP
+            skillChainToCreate = weaponSkills.Fusion;
+            //
+
+            SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
+            CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = skillChainToCreate.name;
+            SCEntryImageArray[1].overrideSprite = skillChainToCreate.weaponSkillIcon;
+            BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+        }
+        else if (ComboEntries[4].activeSelf && ComboEntries[5].activeSelf)
+        {
+            // TEMP
+            skillChainToCreate = weaponSkills.Light;
+            //
+
+            SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
+            CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = skillChainToCreate.name;
+            SCEntryImageArray[1].overrideSprite = skillChainToCreate.weaponSkillIcon;
             BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
         }
 
@@ -70,21 +100,25 @@ public class Combo_Manager : MonoBehaviour
         
         switch (weaponSkill.name)
         {
-            case "Fast Blade":
+            case "Fast Blade":                               
+                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
                 ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
-                addWSToTheList(weaponSkill);                        
-                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);                
+                addWSToTheList(weaponSkill);
                 break;
 
             case "Raging Axe":
+                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
                 ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
+                addWSToTheList(weaponSkill);
                 break;
 
             case "Penta Thrust":
+                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
                 ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
+                addWSToTheList(weaponSkill);
                 break;
 
-            default:
+            default:                
                 break;
         }
     }
@@ -118,11 +152,16 @@ public class Combo_Manager : MonoBehaviour
 
             if (timeRemaining < 1)
             {
+                for (int i = 0; i < ComboEntries.Count; i++)
+                {
+                    ComboEntries[i].SetActive(false);
+                }
+                CurrentSkillChain.SetActive(false);
                 ComboPanel.SetActive(false);
                 yield return null;
             }
             else if (timeRemaining > 0)
-            {
+            {                
                 timeRemaining -= 1f;
                 WStimer.text = timeRemaining.ToString();
                 yield return new WaitForSeconds(0.5f);

@@ -15783,8 +15783,6 @@ MonoBehaviour:
   speed: 0
   startRoutinesGoingAgain: 0
   stepForward: 0
-  attackAnimIsDone: 0
-  attackAnimCoroutineIsPaused: 0
   rowSelected: 0
   isSwitchingWithOtherPlayer: 0
   panelChosen: 0
@@ -16292,6 +16290,7 @@ MonoBehaviour:
     type: 3}
   BM: {fileID: 0}
   BM_Funcs: {fileID: 0}
+  combo_Manager: {fileID: 0}
   BM_Enums: {fileID: 0}
   spellReportFinished: 0
   enemySpellReportFinished: 0
@@ -16342,6 +16341,14 @@ MonoBehaviour:
   WSTimerActivated: 1
   ComboPanel: {fileID: 1473026261}
   CurrentSkillChain: {fileID: 1873478665}
+  skillChainToCreate:
+    name: 
+    element: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 0}
+    weaponSkillElement: {fileID: 0}
+    numberOfAttacks: 0
+    willCreateSkillchain: 0
   ComboEntries:
   - {fileID: 1762346630}
   - {fileID: 1170549385}
@@ -18382,6 +18389,22 @@ MonoBehaviour:
     element: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 2b54618d288ac67469f8ba215cb17fa2, type: 3}
+    weaponSkillElement: {fileID: 0}
+    numberOfAttacks: 0
+    willCreateSkillchain: 0
+  Fusion:
+    name: 
+    element: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: 8913d3d7c66103946976db2f675d74fb, type: 3}
+    weaponSkillElement: {fileID: 0}
+    numberOfAttacks: 0
+    willCreateSkillchain: 0
+  Light:
+    name: 
+    element: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: 0a05622f58da9f64d9597ff744410039, type: 3}
     weaponSkillElement: {fileID: 0}
     numberOfAttacks: 0
     willCreateSkillchain: 0
