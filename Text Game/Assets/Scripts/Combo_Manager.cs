@@ -19,6 +19,7 @@ public class Combo_Manager : MonoBehaviour
     public GameObject CurrentSkillChain;
     public WeaponSkill skillChainToCreate;    
     public List<GameObject> ComboEntries;
+    public List<WeaponSkill> weaponSkillsInList;
     public Image[] ComboEntryImageArray;
     public Image[] SCEntryImageArray;
     public WeaponSkill WStoBeAdded;
@@ -48,6 +49,7 @@ public class Combo_Manager : MonoBehaviour
             if (ComboEntries[i].activeSelf == false)
             {
                 ComboEntries[i].SetActive(true);
+                weaponSkillsInList.Add(WStoAdd);
                 ComboEntryImageArray = ComboEntries[i].GetComponentsInChildren<Image>();
                 ComboEntryImageArray[1].overrideSprite = WStoAdd.weaponSkillIcon;
                 ComboEntryImageArray[2].overrideSprite = WStoAdd.weaponSkillElement;
@@ -59,16 +61,17 @@ public class Combo_Manager : MonoBehaviour
         //Creates a Skillchain if filling in the 2nd, 4th or 6th WS on the Combolog
         if (ComboEntries[0].activeSelf && ComboEntries [1].activeSelf && ComboEntries[2].activeSelf == false)
         {
+            if ((weaponSkillsInList[0].element == "Earth" || weaponSkillsInList[0].element == "Water" || weaponSkillsInList[0].element == "Wind"))
+            {
+
+            }
             CurrentSkillChain.SetActive(true);
 
             // TEMP
             skillChainToCreate = weaponSkills.Scission;
             //
 
-            SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
-            CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = skillChainToCreate.name;
-            SCEntryImageArray[1].overrideSprite = skillChainToCreate.weaponSkillIcon;
-            BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+            setUpSkillChain();
         } 
         else if (ComboEntries[2].activeSelf && ComboEntries[3].activeSelf && ComboEntries[4].activeSelf == false)
         {
@@ -76,51 +79,41 @@ public class Combo_Manager : MonoBehaviour
             skillChainToCreate = weaponSkills.Fusion;
             //
 
-            SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
-            CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = skillChainToCreate.name;
-            SCEntryImageArray[1].overrideSprite = skillChainToCreate.weaponSkillIcon;
-            BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+            setUpSkillChain();
         }
-        else if (ComboEntries[4].activeSelf && ComboEntries[5].activeSelf)
+        else if (ComboEntries[4].activeSelf && ComboEntries[5].activeSelf && ComboEntries[6].activeSelf == false)
         {
             // TEMP
             skillChainToCreate = weaponSkills.Light;
-            //
+            //                   
 
-            SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
-            CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = skillChainToCreate.name;
-            SCEntryImageArray[1].overrideSprite = skillChainToCreate.weaponSkillIcon;
-            BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+            setUpSkillChain();
         }
+        else if (ComboEntries[6].activeSelf && ComboEntries[7].activeSelf)
+        {
+            // TEMP
+            skillChainToCreate = weaponSkills.Dark;
+            //                   
 
+            setUpSkillChain();
+        }
+    }
+
+
+
+    public void setUpSkillChain()
+    {
+        SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
+        CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = skillChainToCreate.name;
+        SCEntryImageArray[1].overrideSprite = skillChainToCreate.weaponSkillIcon;
+        BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
     }
 
     public void PlayerWeaponskill(WeaponSkill weaponSkill, Player attacker = null, Enemy target = null)
     {
-        
-        switch (weaponSkill.name)
-        {
-            case "Fast Blade":                               
-                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
-                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
-                addWSToTheList(weaponSkill);
-                break;
-
-            case "Raging Axe":
-                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
-                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
-                addWSToTheList(weaponSkill);
-                break;
-
-            case "Penta Thrust":
-                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
-                ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
-                addWSToTheList(weaponSkill);
-                break;
-
-            default:                
-                break;
-        }
+        BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
+        ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
+        addWSToTheList(weaponSkill);
     }
 
     public void SetUpPanel()
@@ -167,5 +160,57 @@ public class Combo_Manager : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }            
         }
+    }
+
+    public WeaponSkill determineWhichSkillChain(WeaponSkill entryOne, WeaponSkill entryTwo, WeaponSkill currentSkillChain = null)
+    {
+        if (currentSkillChain == null)
+        {
+            if (entryOne.element == "Earth" || entryOne.element == "Water" || entryOne.element == "Wind" || entryOne.element == "Light")
+            {
+                if (entryTwo.element == "Fire")
+                {
+                    return weaponSkills.Liquefaction;
+                }
+                else if (entryTwo.element == "Ice")
+                {
+                    return weaponSkills.Induration;
+                }
+                else if (entryTwo.element == "Thunder")
+                {
+                    return weaponSkills.Impaction;
+                }
+                else if (entryTwo.element == "Dark")
+                {
+                    return weaponSkills.Compression;
+                }
+            }
+            else if (entryOne.element == "Fire" || entryOne.element == "Ice" || entryOne.element == "Thunder" || entryOne.element == "Dark")
+            {
+                if (entryTwo.element == "Earth")
+                {
+                    return weaponSkills.Scission;
+                }
+                else if (entryTwo.element == "Water")
+                {
+                    return weaponSkills.Reverberation;
+                }
+                else if (entryTwo.element == "Wind")
+                {
+                    return weaponSkills.Detonation;
+                }
+                else if (entryTwo.element == "Light")
+                {
+                    return weaponSkills.Transfixion;
+                }
+            }
+        }
+        else if (currentSkillChain != null)
+        {
+
+        }
+
+
+        return null;
     }
 }

@@ -12,10 +12,23 @@ public class WeaponSkills : MonoBehaviour
     public WeaponSkill Raging_Axe;
     public WeaponSkill Penta_Thrust;
 
-    //SkillChains
+    //SkillChains 1
     public WeaponSkill Scission;
-    public WeaponSkill Fusion;
+    public WeaponSkill Reverberation;
+    public WeaponSkill Detonation;
+    public WeaponSkill Liquefaction;
+    public WeaponSkill Induration;
+    public WeaponSkill Impaction;
+    public WeaponSkill Transfixion;
+    public WeaponSkill Compression;
+    //SkillChains 2
+    public WeaponSkill Fusion; //Fire & Light
+    public WeaponSkill Distortion; //Water & Ice
+    public WeaponSkill Fragmentation; //Wind & Thunder
+    public WeaponSkill Gravitation; //Earth & Dark    
+    //SkillChains 3
     public WeaponSkill Light;
+    public WeaponSkill Dark;
 
     public Sprite FireElement;
     public Sprite IceElement;
@@ -23,9 +36,23 @@ public class WeaponSkills : MonoBehaviour
     
     private void Start()
     {
-        Scission.name = "Scission";
+        //Lv. 1 SCs
+        Scission.name = "Scission";        
+        Reverberation.name = "Reverberation";
+        Detonation.name = "Detonation";
+        Liquefaction.name = "Liquefaction";
+        Induration.name = "Induration";
+        Impaction.name = "Impaction";
+        Transfixion.name = "Transfixion";
+        Compression.name = "Compression";
+        //Lv. 2 SCs
         Fusion.name = "Fusion";
+        Distortion.name = "Distortion";
+        Fragmentation.name = "Fragmentation";
+        Gravitation.name = "Gravitation";
+        //Lv. 3 SCs
         Light.name = "Light";
+        Dark.name = "Dark";
 
         Fast_Blade.name = "Fast Blade";
         Fast_Blade.element = "Fire";
