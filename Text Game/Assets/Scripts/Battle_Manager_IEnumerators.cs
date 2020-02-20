@@ -52,7 +52,7 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
         while (BM.WSAnimCoroutineIsPaused == false)
         {            
             yield return new WaitForSeconds(Time);            
-            BM.WSAnimIsDone = true;
+            BM.WSAnimIsDone = true;            
             yield break;
         }
     }
@@ -68,7 +68,7 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
         while (BM.SCAnimCoroutineIsPaused == false)
         {
             yield return new WaitForSeconds(Time);
-            BM.SCAnimIsDone = true;
+            BM.SCAnimIsDone = true;            
             yield break;
         }
     }

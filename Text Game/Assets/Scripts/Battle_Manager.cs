@@ -119,6 +119,8 @@ public class Battle_Manager : MonoBehaviour
         attackAnimIsDone = false;
         WSAnimCoroutineIsPaused = true;
         WSAnimIsDone = false;
+        SCAnimCoroutineIsPaused = true;
+        SCAnimIsDone = false;
 
         //Fetch the Raycaster from the GameObject (the Canvas)
         m_Raycaster = UICanvas.GetComponent<GraphicRaycaster>();
@@ -186,6 +188,14 @@ public class Battle_Manager : MonoBehaviour
                     startSpeedCoroutines();
                     StartCoroutine(combo_Manager.updateTimeRemaining());
                     startRoutinesGoingAgain = false;
+                }
+
+                if (combo_Manager.pauseForSC == true)
+                {
+                    combo_Manager.pauseForSC = false;
+                    selectedCommand = "SkillChain";
+                    activePlayer = PlayersInBattle[0];
+                    battleStates = BattleStates.RESOLVE_ACTION;
                 }
 
                 //Check if a player is above 100 Speed, and pause the Coroutine
@@ -517,9 +527,7 @@ public class Battle_Manager : MonoBehaviour
                                 }
                                 else if (selectedCommand == "Weapon Skill")
                                 {
-                                    WSAnimIsDone = false;
-                                    WSAnimCoroutineIsPaused = true;
-                                    combo_Manager.SetUpPanel();
+                                    combo_Manager.SetUpPanel();                                    
                                     combo_Manager.PlayerWeaponskill(activePlayer.selectedWeaponSkill, activePlayer, playerTarget);
                                 }
 
