@@ -19,7 +19,6 @@ public class Action_Handler : MonoBehaviour
     public Battle_Manager_IEnumerators BM_Enums;
     public bool spellReportFinished;
     public bool enemySpellReportFinished;
-    public bool skillChainReportFinished;
     public int maxMessages;
     public List<Message> messageList;
     public GameObject chatPanel;
@@ -101,8 +100,7 @@ public class Action_Handler : MonoBehaviour
 
                 SendMessagesToCombatLog(
                         BM.activePlayer.name + " closes a SKILLCHAIN to create Scission!");
-                CreateDamagePopUp(BM.activePlayer.battleSprite.transform.position, "Scission!", Color.blue);
-                skillChainReportFinished = true;
+                CreateDamagePopUp(BM.activePlayer.battleSprite.transform.position, "Scission!", Color.blue);                
                 break;
             case "EnemyAttack":
 
@@ -199,32 +197,51 @@ public class Action_Handler : MonoBehaviour
                 BM.activePlayer.speedTotal -= 100f;
                 resolveAction(default);
                 break;
-            case "Weapon Skill":
-
+            case "Weapon Skill":                
+                
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                BM.attackAnimCoroutineIsPaused = false;
-                StartCoroutine(BM_Enums.waitForAttackAnimation());
-                BM_Funcs.animationController(BM.activePlayer, "IsAttacking");
+                BM.WSAnimCoroutineIsPaused = false;
+                StartCoroutine(BM_Enums.waitForWeaponSkillAnimation(1.8f));
                 BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
-                if (BM.attackAnimIsDone == true)
+                if (BM.WSAnimIsDone == true)
                 {
-                    BM.attackAnimCoroutineIsPaused = true;
+                    BM.WSAnimIsDone = false;
+                    BM.WSAnimCoroutineIsPaused = true;
+                    reportOutcome("PlayerAttack");
                     BM_Funcs.enemyAnimationController(BM.playerTarget);
                     BM.activePlayer.speedTotal -= 100f;
-                    resolveAction(default);
+                    BM.activePlayer.tpTotal = 0;
+                    if (BM.activePlayer.selectedWeaponSkill.willCreateSkillchain == true)
+                    {
+                        StopAllCoroutines();
+                        reportOutcome("SkillChain");
+                        StartCoroutine(BM_Enums.waitForSkillChainAnimation(1.5f));
+                        BM.SCAnimCoroutineIsPaused = false;
+                        resolveAction("Skillchain");
+                        break;
+                    }
+                    else
+                    {
+                        resolveAction(default);
+                        break;
+                    }                    
                 }
 
                 break;
             case "Skillchain":
                 
-                BM.SCAnimCoroutineIsPaused = false;
-                StartCoroutine(BM_Enums.waitForSkillChainAnimation(2f));
+                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", false);
+                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);                                
+                BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
                 if (BM.SCAnimIsDone == true)
                 {
-                    reportOutcome("SkillChain");
-                    BM.SCAnimCoroutineIsPaused = true;                                        
+                    BM.SCAnimIsDone = false;
+                    BM.SCAnimCoroutineIsPaused = true;                    
+                    BM_Funcs.enemyAnimationController(BM.playerTarget);                                       
+                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = false;
                     resolveAction(default);
                 }
 
@@ -247,7 +264,12 @@ public class Action_Handler : MonoBehaviour
                     resolveAction(default);
                 }
                 break;
-            default:                
+            default:
+                StopAllCoroutines();
+                BM.WSAnimIsDone = false;
+                BM.WSAnimCoroutineIsPaused = true;
+                BM.SCAnimIsDone = false;
+                BM.SCAnimCoroutineIsPaused = true;
                 BM_Funcs.standIdle(BM.activePlayer);
                 BM_Funcs.animationController(BM.activePlayer);
                 BM.activePlayer.playerPanel.GetComponent<Image>().color = BM.defaultColor;

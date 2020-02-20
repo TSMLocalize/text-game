@@ -17,7 +17,6 @@ public class Combo_Manager : MonoBehaviour
     public bool WSTimerActivated = true;
     public bool wsCoroutineIsPaused;
     public bool wsReturningStarting;
-    public bool pauseForSC;
     public GameObject ComboPanel;
     public GameObject CurrentSkillChain;
     public List<GameObject> ComboEntries;
@@ -63,7 +62,7 @@ public class Combo_Manager : MonoBehaviour
             SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
             CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = weaponSkills.Scission.name;
             SCEntryImageArray[1].overrideSprite = weaponSkills.Scission.weaponSkillIcon;
-            pauseForSC = true;
+            BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
         }
 
     }
@@ -75,7 +74,8 @@ public class Combo_Manager : MonoBehaviour
         {
             case "Fast Blade":
                 ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
-                addWSToTheList(weaponSkill);                                                        
+                addWSToTheList(weaponSkill);                        
+                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);                
                 break;
 
             case "Raging Axe":
