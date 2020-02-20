@@ -18,43 +18,6 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
         actionHandler = GetComponent<Action_Handler>();
     }
 
-    /**
-     * IENUMERATORS
-     * #1. Player Wait for Animations
-     * #2. Enemy Wait for Animations
-     * #3. Speed Bar Ticker for Players
-     * #4. Speed Bar Ticker for Enemies
-     */
-
-    //#1 Player Wait for Animations
-    public IEnumerator waitForAttackAnimation()
-    {
-        while (BM.attackAnimCoroutineIsPaused == true)
-        {
-            yield return null;
-        }
-
-        while (BM.attackAnimCoroutineIsPaused == false)
-        {
-            yield return new WaitForSeconds(1f);
-            BM.attackAnimIsDone = true;
-        }
-    }
-
-    public IEnumerator waitForCastAnimation()
-    {
-        while (BM.castAnimCoroutineIsPaused == true)
-        {
-            yield return null;
-        }
-
-        while (BM.castAnimCoroutineIsPaused == false)
-        {
-            yield return new WaitForSeconds(1f);
-            BM.castAnimIsDone = true;
-        }
-    }
-
     //#2 Enemy Wait for Animations
     public IEnumerator waitForEnemyReadyAnimation(Enemy enemy)
     {

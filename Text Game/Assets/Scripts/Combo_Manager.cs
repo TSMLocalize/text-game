@@ -14,9 +14,7 @@ public class Combo_Manager : MonoBehaviour
     public Action_Handler ActionHandler;
     public TextMeshProUGUI WStimer;
     public float timeRemaining = 5;
-    public bool WSTimerActivated = true;
-    public bool wsCoroutineIsPaused;
-    public bool wsReturningStarting;
+    public bool WSTimerActivated;   
     public GameObject ComboPanel;
     public GameObject CurrentSkillChain;
     public List<GameObject> ComboEntries;

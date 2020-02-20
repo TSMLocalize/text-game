@@ -1046,10 +1046,10 @@ RectTransform:
   m_Father: {fileID: 649285006}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -50}
+  m_SizeDelta: {x: 40, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &118416409
 MonoBehaviour:
@@ -3548,10 +3548,10 @@ RectTransform:
   m_Father: {fileID: 1855133742}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -50.000004}
+  m_SizeDelta: {x: 40, y: 33.333336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &394594920
 MonoBehaviour:
@@ -4523,10 +4523,10 @@ RectTransform:
   m_Father: {fileID: 1818116809}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -16.666666}
+  m_SizeDelta: {x: 160, y: 33.333332}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &466664722
 MonoBehaviour:
@@ -5039,10 +5039,10 @@ RectTransform:
   m_Father: {fileID: 1876306548}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -50}
+  m_SizeDelta: {x: 160, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &512700923
 MonoBehaviour:
@@ -8242,10 +8242,10 @@ RectTransform:
   m_Father: {fileID: 1818116809}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -50}
+  m_SizeDelta: {x: 160, y: 33.333332}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &845190971
 MonoBehaviour:
@@ -8665,10 +8665,10 @@ RectTransform:
   m_Father: {fileID: 1855133742}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -16.666668}
+  m_SizeDelta: {x: 40, y: 33.333336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &872080843
 MonoBehaviour:
@@ -9121,10 +9121,10 @@ RectTransform:
   m_Father: {fileID: 118416408}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -50.000004}
+  m_SizeDelta: {x: 40, y: 33.333336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &932314874
 MonoBehaviour:
@@ -11187,6 +11187,7 @@ MonoBehaviour:
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
       numberOfAttacks: 0
+      willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11237,6 +11238,7 @@ MonoBehaviour:
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
       numberOfAttacks: 0
+      willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11287,6 +11289,7 @@ MonoBehaviour:
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
       numberOfAttacks: 0
+      willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11337,6 +11340,7 @@ MonoBehaviour:
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
       numberOfAttacks: 0
+      willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11387,6 +11391,7 @@ MonoBehaviour:
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
       numberOfAttacks: 0
+      willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11437,6 +11442,7 @@ MonoBehaviour:
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
       numberOfAttacks: 0
+      willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -12393,10 +12399,10 @@ RectTransform:
   m_Father: {fileID: 118416408}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -83.33334}
+  m_SizeDelta: {x: 40, y: 33.333336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1203489446
 MonoBehaviour:
@@ -13015,10 +13021,10 @@ RectTransform:
   m_Father: {fileID: 118416408}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -16.666668}
+  m_SizeDelta: {x: 40, y: 33.333336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1345256564
 MonoBehaviour:
@@ -14734,7 +14740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1473026262
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15449,10 +15455,10 @@ RectTransform:
   m_Father: {fileID: 1818116809}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -83.33333}
+  m_SizeDelta: {x: 160, y: 33.333332}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1525775917
 MonoBehaviour:
@@ -15778,11 +15784,7 @@ MonoBehaviour:
   startRoutinesGoingAgain: 0
   stepForward: 0
   attackAnimIsDone: 0
-  WSAnimIsDone: 0
-  castAnimIsDone: 0
   attackAnimCoroutineIsPaused: 0
-  WSAnimCoroutineIsPaused: 0
-  castAnimCoroutineIsPaused: 0
   rowSelected: 0
   isSwitchingWithOtherPlayer: 0
   panelChosen: 0
@@ -15828,6 +15830,7 @@ MonoBehaviour:
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
       numberOfAttacks: 0
+      willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -15880,6 +15883,7 @@ MonoBehaviour:
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
       numberOfAttacks: 0
+      willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -16183,6 +16187,7 @@ MonoBehaviour:
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
       numberOfAttacks: 0
+      willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -16335,8 +16340,6 @@ MonoBehaviour:
   WStimer: {fileID: 175032877}
   timeRemaining: 5
   WSTimerActivated: 1
-  wsCoroutineIsPaused: 0
-  wsReturningStarting: 0
   ComboPanel: {fileID: 1473026261}
   CurrentSkillChain: {fileID: 1873478665}
   ComboEntries:
@@ -16355,6 +16358,7 @@ MonoBehaviour:
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
     numberOfAttacks: 0
+    willCreateSkillchain: 0
   weaponSkills: {fileID: 0}
 --- !u!1 &1551812233
 GameObject:
@@ -17782,10 +17786,10 @@ RectTransform:
   m_Father: {fileID: 1876306548}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 280, y: -50}
+  m_SizeDelta: {x: 160, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1818116810
 MonoBehaviour:
@@ -17844,10 +17848,10 @@ RectTransform:
   m_Father: {fileID: 512700922}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -16.666666}
+  m_SizeDelta: {x: 160, y: 33.333332}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1830779241
 MonoBehaviour:
@@ -18036,10 +18040,10 @@ RectTransform:
   m_Father: {fileID: 512700922}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -83.33333}
+  m_SizeDelta: {x: 160, y: 33.333332}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1842558814
 MonoBehaviour:
@@ -18132,10 +18136,10 @@ RectTransform:
   m_Father: {fileID: 649285006}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 214.5, y: -50}
+  m_SizeDelta: {x: 40, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1855133743
 MonoBehaviour:
@@ -18356,6 +18360,7 @@ MonoBehaviour:
     weaponSkillIcon: {fileID: 21300000, guid: a3808dd39fa94ff4286ac84eee162ce0, type: 3}
     weaponSkillElement: {fileID: 0}
     numberOfAttacks: 0
+    willCreateSkillchain: 0
   Raging_Axe:
     name: 
     element: 
@@ -18363,6 +18368,7 @@ MonoBehaviour:
     weaponSkillIcon: {fileID: 21300000, guid: 2c5175d3e79bc1e4aaca3f0b35f76ce3, type: 3}
     weaponSkillElement: {fileID: 0}
     numberOfAttacks: 0
+    willCreateSkillchain: 0
   Penta_Thrust:
     name: 
     element: 
@@ -18370,6 +18376,7 @@ MonoBehaviour:
     weaponSkillIcon: {fileID: 21300000, guid: 45c4199c0a4942040a19c3707b255e62, type: 3}
     weaponSkillElement: {fileID: 0}
     numberOfAttacks: 0
+    willCreateSkillchain: 0
   Scission:
     name: 
     element: 
@@ -18377,6 +18384,7 @@ MonoBehaviour:
     weaponSkillIcon: {fileID: 21300000, guid: 2b54618d288ac67469f8ba215cb17fa2, type: 3}
     weaponSkillElement: {fileID: 0}
     numberOfAttacks: 0
+    willCreateSkillchain: 0
   FireElement: {fileID: 21300000, guid: 28c30d575af277f4c8a9ec3ca60abed5, type: 3}
   IceElement: {fileID: 21300000, guid: 2b5241b10f75c884b815a58c80f394c4, type: 3}
   WindElement: {fileID: 21300000, guid: eb9bbfdaa1e501f49bbd99418cf894aa, type: 3}
@@ -18500,10 +18508,10 @@ RectTransform:
   m_Father: {fileID: 1855133742}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -83.33334}
+  m_SizeDelta: {x: 40, y: 33.333336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1866338037
 MonoBehaviour:
@@ -19173,10 +19181,10 @@ RectTransform:
   m_Father: {fileID: 512700922}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -50}
+  m_SizeDelta: {x: 160, y: 33.333332}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1904092187
 MonoBehaviour:

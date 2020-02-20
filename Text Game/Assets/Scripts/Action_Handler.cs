@@ -150,25 +150,25 @@ public class Action_Handler : MonoBehaviour
         }
     }
 
-    //This deals with the coroutine and animation
+    //This deals with wait coroutines and animations
     public void resolveAction(string Command)
     {
         switch (Command)
         {
             case "Attack":
+
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                BM.attackAnimCoroutineIsPaused = false;
-                StartCoroutine(BM_Enums.waitForAttackAnimation());
+                StartCoroutine(waitForAttackAnimation());
                 BM_Funcs.animationController(BM.activePlayer, "IsAttacking");
                 BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
-                if (BM.attackAnimIsDone == true)
+                IEnumerator waitForAttackAnimation()
                 {
-                    BM.attackAnimCoroutineIsPaused = true;
+                    yield return new WaitForSeconds(1f);
                     BM_Funcs.enemyAnimationController(BM.playerTarget);
                     BM.activePlayer.speedTotal -= 100f;
                     resolveAction(default);
-                }
+                }                               
 
                 break;
             case "Magic":
@@ -214,8 +214,7 @@ public class Action_Handler : MonoBehaviour
                     if (BM.activePlayer.selectedWeaponSkill.willCreateSkillchain == true)
                     {
                         reportOutcome("SkillChain");
-                        resolveAction("Skillchain");
-                        StopCoroutine(waitForWeaponSkillAnimation());
+                        resolveAction("Skillchain");                        
                     }
                     else
                     {
@@ -240,15 +239,14 @@ public class Action_Handler : MonoBehaviour
 
                 break;
             case "Cast":
+
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                BM.castAnimCoroutineIsPaused = false;
-                StartCoroutine(BM_Enums.waitForCastAnimation());
+                StartCoroutine(waitForCastAnimation());
                 BM_Funcs.animationController(BM.activePlayer, "IsCasting");
 
-                if (BM.castAnimIsDone)
+                IEnumerator waitForCastAnimation()
                 {
-                    spellReportFinished = false;
-                    BM.castAnimCoroutineIsPaused = true;
+                    yield return new WaitForSeconds(1f);                                        
                     BM.activePlayer.constantAnimationState = null;
                     BM.activePlayer.hasConstantAnimationState = false;
                     BM.activePlayer.isCastingSpell = false;
@@ -256,13 +254,10 @@ public class Action_Handler : MonoBehaviour
                     BM.activePlayer.playerOptions.Remove("Cast");
                     resolveAction(default);
                 }
+                               
                 break;
             default:
                 StopAllCoroutines();
-                BM.WSAnimIsDone = false;
-                BM.WSAnimCoroutineIsPaused = true;
-                BM.SCAnimIsDone = false;
-                BM.SCAnimCoroutineIsPaused = true;
                 BM_Funcs.standIdle(BM.activePlayer);
                 BM_Funcs.animationController(BM.activePlayer);
                 BM.activePlayer.playerPanel.GetComponent<Image>().color = BM.defaultColor;

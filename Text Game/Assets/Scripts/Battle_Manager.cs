@@ -15,15 +15,7 @@ public class Battle_Manager : MonoBehaviour
     public Combo_Manager combo_Manager;
     public float speed;
     public bool startRoutinesGoingAgain;
-    public bool stepForward;
-    public bool attackAnimIsDone;
-    public bool WSAnimIsDone;
-    public bool SCAnimIsDone;
-    public bool castAnimIsDone;
-    public bool attackAnimCoroutineIsPaused;
-    public bool WSAnimCoroutineIsPaused;
-    public bool SCAnimCoroutineIsPaused;
-    public bool castAnimCoroutineIsPaused;
+    public bool stepForward;    
     public bool rowSelected;
     public bool isSwitchingWithOtherPlayer;
     public bool panelChosen;
@@ -111,14 +103,7 @@ public class Battle_Manager : MonoBehaviour
         defaultColor = ActionPanel.GetComponent<Image>().color;
 
         //Start SpeedBar coroutines for players and enemies
-        startSpeedCoroutines();
-
-        castAnimCoroutineIsPaused = true;
-        castAnimIsDone = false;
-        attackAnimCoroutineIsPaused = true;
-        attackAnimIsDone = false;
-        WSAnimCoroutineIsPaused = true;
-        WSAnimIsDone = false;
+        startSpeedCoroutines();                
 
         //Fetch the Raycaster from the GameObject (the Canvas)
         m_Raycaster = UICanvas.GetComponent<GraphicRaycaster>();
@@ -166,10 +151,7 @@ public class Battle_Manager : MonoBehaviour
 
         switch (battleStates)
         {
-            case BattleStates.DEFAULT:
-
-                attackAnimIsDone = false;
-                castAnimIsDone = false;
+            case BattleStates.DEFAULT:                
 
                 for (int i = 0; i < EnemiesInBattle.Count; i++)
                 {
@@ -232,10 +214,7 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 break;
-            case BattleStates.SELECT_PLAYER:
-
-                attackAnimIsDone = false;
-                castAnimIsDone = false;
+            case BattleStates.SELECT_PLAYER:                
 
                 for (int i = 0; i < ActivePlayers.Count; i++)
                 {
@@ -266,10 +245,6 @@ public class Battle_Manager : MonoBehaviour
 
                 break;
             case BattleStates.SELECT_ACTION:                                
-
-                attackAnimIsDone = false;
-                castAnimIsDone = false;
-                WSAnimIsDone = false;                
 
                 //Instant redirect if not waiting for a mouse click
                 BM_Funcs.redirectAction();
