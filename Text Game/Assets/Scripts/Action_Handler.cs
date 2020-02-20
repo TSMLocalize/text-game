@@ -197,52 +197,45 @@ public class Action_Handler : MonoBehaviour
                 BM.activePlayer.speedTotal -= 100f;
                 resolveAction(default);
                 break;
-            case "Weapon Skill":                
+            case "Weapon Skill":
                 
-                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                BM.WSAnimCoroutineIsPaused = false;
-                StartCoroutine(BM_Enums.waitForWeaponSkillAnimation(1.8f));
+                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);                
+                StartCoroutine(waitForWeaponSkillAnimation());
                 BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
-                if (BM.WSAnimIsDone == true)
+                IEnumerator waitForWeaponSkillAnimation()
                 {
-                    BM.WSAnimIsDone = false;
-                    BM.WSAnimCoroutineIsPaused = true;
-                    reportOutcome("PlayerAttack");
+                    yield return new WaitForSeconds(1.8f);                                        
                     BM_Funcs.enemyAnimationController(BM.playerTarget);
+                    BM_Funcs.animationController(BM.activePlayer, "Ready");
                     BM.activePlayer.speedTotal -= 100f;
                     BM.activePlayer.tpTotal = 0;
+
                     if (BM.activePlayer.selectedWeaponSkill.willCreateSkillchain == true)
                     {
-                        StopAllCoroutines();
                         reportOutcome("SkillChain");
-                        StartCoroutine(BM_Enums.waitForSkillChainAnimation(1.5f));
-                        BM.SCAnimCoroutineIsPaused = false;
                         resolveAction("Skillchain");
-                        break;
+                        StopCoroutine(waitForWeaponSkillAnimation());
                     }
                     else
                     {
-                        resolveAction(default);
-                        break;
+                        resolveAction(default);                        
                     }                    
                 }
 
                 break;
             case "Skillchain":
-                
-                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", false);
-                BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
-                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);                                
+                StopAllCoroutines();
+
+                StartCoroutine(waitForSkillChainAnimation());
                 BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
-                if (BM.SCAnimIsDone == true)
-                {
-                    BM.SCAnimIsDone = false;
-                    BM.SCAnimCoroutineIsPaused = true;                    
-                    BM_Funcs.enemyAnimationController(BM.playerTarget);                                       
-                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = false;
+                IEnumerator waitForSkillChainAnimation()
+                {                                        
+                    yield return new WaitForSeconds(1.5f);                    
+                    BM_Funcs.enemyAnimationController(BM.playerTarget);
                     resolveAction(default);
+                    StopCoroutine(waitForSkillChainAnimation());
                 }
 
                 break;

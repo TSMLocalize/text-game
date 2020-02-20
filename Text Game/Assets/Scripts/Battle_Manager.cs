@@ -517,8 +517,7 @@ public class Battle_Manager : MonoBehaviour
                                 }
                                 else if (selectedCommand == "Weapon Skill")
                                 {
-                                    WSAnimIsDone = false;
-                                    WSAnimCoroutineIsPaused = true;
+                                    ActionHandler.reportOutcome("Weapon Skill");
                                     combo_Manager.SetUpPanel();
                                     combo_Manager.PlayerWeaponskill(activePlayer.selectedWeaponSkill, activePlayer, playerTarget);
                                 }
