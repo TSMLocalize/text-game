@@ -491,10 +491,12 @@ public class Battle_Manager : MonoBehaviour
                                     ActionHandler.reportOutcome("PlayerAttack");                                    
                                 }
                                 else if (selectedCommand == "Weapon Skill")
-                                {
-                                    ActionHandler.reportOutcome("Weapon Skill");
+                                {                                    
                                     combo_Manager.SetUpPanel();
+                                    activePlayer.selectedWeaponSkill.spentAttacks = activePlayer.selectedWeaponSkill.totalAttacks;
                                     combo_Manager.PlayerWeaponskill(activePlayer.selectedWeaponSkill, activePlayer, playerTarget);
+                                    ActionHandler.CreateDamagePopUp(activePlayer.battleSprite.transform.position, activePlayer.selectedWeaponSkill.name, Color.magenta);
+                                    ActionHandler.reportOutcome("Weapon Skill");                                   
                                 }
 
                                 EnemyPanels[i].GetComponent<Image>().color = Color.red;

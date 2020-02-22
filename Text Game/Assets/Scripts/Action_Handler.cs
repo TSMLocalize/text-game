@@ -95,7 +95,51 @@ public class Action_Handler : MonoBehaviour
                         BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
                     spellReportFinished = true;
                 }
-                break;            
+                break;
+            case "Weapon Skill":
+
+                StartCoroutine(delayWSMessageReports());
+
+                IEnumerator delayWSMessageReports()
+                {                    
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+
+                    float WSrandom = Random.Range(1, 101);
+                    float WSoutcome = BM.activePlayer.Accuracy + WSrandom;
+
+                    SendMessagesToCombatLog(
+                            BM.activePlayer.name + "'s hit score is " + WSoutcome + " (" + WSrandom + " + " + BM.activePlayer.Accuracy + " acc)" +
+                            " vs " + BM.playerTarget.EnemyName + "'s evasion of " + BM.playerTarget.Evasion + ".");
+
+                    if (WSoutcome > BM.playerTarget.Evasion)
+                    {
+                        BM.activePlayer.tpTotal += 10 + BM.activePlayer.storeTP;
+
+                        SendMessagesToCombatLog(
+                        BM.activePlayer.name + " hits the enemy!");
+                        CreateDamagePopUp(BM.playerTarget.battleSprite.transform.position, BM.activePlayer.Attack.ToString(), Color.white);                        
+                    }
+                    else
+                    {
+                        SendMessagesToCombatLog(
+                        BM.activePlayer.name + " misses the enemy...");
+                        CreateDamagePopUp(BM.playerTarget.battleSprite.transform.position, "Miss!", Color.white);
+                    }
+                    
+                    yield return new WaitForSeconds(BM.activePlayer.selectedWeaponSkill.wsMultiAttackReportTimer);
+
+                    if (BM.activePlayer.selectedWeaponSkill.spentAttacks > 1)
+                    {
+                        BM.activePlayer.selectedWeaponSkill.spentAttacks = BM.activePlayer.selectedWeaponSkill.spentAttacks - 1;
+                        StartCoroutine(delayWSMessageReports());
+                    }
+                    else
+                    {
+                        StopCoroutine(delayWSMessageReports());
+                    }
+                }
+
+                break;
             case "SkillChain":
 
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);                
@@ -200,14 +244,14 @@ public class Action_Handler : MonoBehaviour
                 resolveAction(default);
                 break;
             case "Weapon Skill":
-                
-                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);                
+
+                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
                 StartCoroutine(waitForWeaponSkillAnimation());
                 BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
                 IEnumerator waitForWeaponSkillAnimation()
                 {
-                    yield return new WaitForSeconds(1.8f);                                        
+                    yield return new WaitForSeconds(BM.activePlayer.selectedWeaponSkill.wsAnimTimer);                                        
                     BM_Funcs.enemyAnimationController(BM.playerTarget);
                     BM_Funcs.animationController(BM.activePlayer, "Ready");
                     BM.activePlayer.speedTotal -= 100f;
@@ -215,13 +259,14 @@ public class Action_Handler : MonoBehaviour
 
                     if (BM.activePlayer.selectedWeaponSkill.willCreateSkillchain == true)
                     {
+                        
                         reportOutcome("SkillChain");
                         resolveAction("Skillchain");                        
                     }
                     else
-                    {
-                        resolveAction(default);                        
-                    }                    
+                    {                        
+                        resolveAction(default);
+                    }
                 }
 
                 break;
@@ -286,7 +331,7 @@ public class Action_Handler : MonoBehaviour
     }
 
     // Create a Damage PopUp
-    public DamagePopUp CreateDamagePopUp(Vector3 position, string damageAmount, Color color)
+    public DamagePopUp CreateDamagePopUp(Vector3 position, string damageAmount, Color color, string fontsize = null)
     {
         Transform damagePopupTransform = Instantiate(floatingDamage.transform, position, Quaternion.identity);
 

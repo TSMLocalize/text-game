@@ -18,7 +18,7 @@ public class DamagePopUp : MonoBehaviour
 
     public void Setup(string damageAmount, Color color)
     {
-        textMesh.SetText(damageAmount.ToString());
+        textMesh.SetText(damageAmount.ToString());                
         textMesh.color = color;
         textColor = color;
         disappearTimer = 0.5f;
