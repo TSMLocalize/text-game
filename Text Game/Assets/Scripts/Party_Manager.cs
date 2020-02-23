@@ -101,6 +101,9 @@ public class Party_Manager : MonoBehaviour
         Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Fast_Blade);
         Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Raging_Axe);
         Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Penta_Thrust);
+        Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Earth_Crusher);
+        Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Blade_Tekko);
+        Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Raiden_Thrust);
 
         Jemima.currentRowPositionID = 2;
         Jemima.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);

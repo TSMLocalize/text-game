@@ -11,6 +11,11 @@ public class WeaponSkills : MonoBehaviour
     public WeaponSkill Fast_Blade;
     public WeaponSkill Raging_Axe;
     public WeaponSkill Penta_Thrust;
+    public WeaponSkill Earth_Crusher;
+    public WeaponSkill Blade_Tekko;
+    public WeaponSkill Raiden_Thrust;
+    public WeaponSkill Guillotine;
+    public WeaponSkill Seraph_Blade;
 
     //SkillChains 1
     public WeaponSkill Scission;
@@ -33,7 +38,10 @@ public class WeaponSkills : MonoBehaviour
     public Sprite FireElement;
     public Sprite IceElement;
     public Sprite WindElement;
-    
+    public Sprite WaterElement;
+    public Sprite EarthElement;
+    public Sprite ThunderElement;
+
     private void Start()
     {
         //Lv. 1 SCs
@@ -54,6 +62,8 @@ public class WeaponSkills : MonoBehaviour
         Light.name = "Light";
         Dark.name = "Dark";
 
+
+        //!! The wsAnimTimer must be higher or the same as the SkillChain timer (currently 1.5f) NO IDEA WHY
         Fast_Blade.name = "Fast Blade";
         Fast_Blade.element = "Fire";
         Fast_Blade.TPCost = 100;        
@@ -70,7 +80,16 @@ public class WeaponSkills : MonoBehaviour
         Raging_Axe.spentAttacks = 1;
         Raging_Axe.totalAttacks = 1;
         Raging_Axe.wsAnimTimer = 1.5f;
-        Raging_Axe.wsMultiAttackReportTimer = 0f;
+        Raging_Axe.wsMultiAttackReportTimer = 1.5f;
+
+        Raiden_Thrust.name = "Raiden Thrust";
+        Raiden_Thrust.element = "Thunder";
+        Raiden_Thrust.TPCost = 100;
+        Raiden_Thrust.weaponSkillElement = ThunderElement;
+        Raiden_Thrust.spentAttacks = 2;
+        Raiden_Thrust.totalAttacks = 2;
+        Raiden_Thrust.wsAnimTimer = 1.8f;
+        Raiden_Thrust.wsMultiAttackReportTimer = 0.9f;
 
         Penta_Thrust.name = "Penta Thrust";
         Penta_Thrust.element = "Wind";
@@ -80,5 +99,23 @@ public class WeaponSkills : MonoBehaviour
         Penta_Thrust.totalAttacks = 5;
         Penta_Thrust.wsAnimTimer = 2.5f;
         Penta_Thrust.wsMultiAttackReportTimer = 0.5f;
+
+        Blade_Tekko.name = "Blade: Tekko";
+        Blade_Tekko.element = "Water";
+        Blade_Tekko.TPCost = 100;
+        Blade_Tekko.weaponSkillElement = WaterElement;
+        Blade_Tekko.spentAttacks = 2;
+        Blade_Tekko.totalAttacks = 2;
+        Blade_Tekko.wsAnimTimer = 1.8f;
+        Blade_Tekko.wsMultiAttackReportTimer = 0.9f;
+
+        Earth_Crusher.name = "Earth Crusher";
+        Earth_Crusher.element = "Earth";
+        Earth_Crusher.TPCost = 100;
+        Earth_Crusher.weaponSkillElement = EarthElement;
+        Earth_Crusher.spentAttacks = 2;
+        Earth_Crusher.totalAttacks = 2;
+        Earth_Crusher.wsAnimTimer = 1.8f;
+        Earth_Crusher.wsMultiAttackReportTimer = 0.9f;
     }
 }

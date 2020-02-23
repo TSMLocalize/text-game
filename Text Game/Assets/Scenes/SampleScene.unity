@@ -11739,7 +11739,10 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
-      animationTimer: 0
+      spentAttacks: 0
+      totalAttacks: 0
+      wsMultiAttackReportTimer: 0
+      wsAnimTimer: 0
       willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
@@ -11790,7 +11793,10 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
-      animationTimer: 0
+      spentAttacks: 0
+      totalAttacks: 0
+      wsMultiAttackReportTimer: 0
+      wsAnimTimer: 0
       willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
@@ -11841,7 +11847,10 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
-      animationTimer: 0
+      spentAttacks: 0
+      totalAttacks: 0
+      wsMultiAttackReportTimer: 0
+      wsAnimTimer: 0
       willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
@@ -11892,7 +11901,10 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
-      animationTimer: 0
+      spentAttacks: 0
+      totalAttacks: 0
+      wsMultiAttackReportTimer: 0
+      wsAnimTimer: 0
       willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
@@ -11943,7 +11955,10 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
-      animationTimer: 0
+      spentAttacks: 0
+      totalAttacks: 0
+      wsMultiAttackReportTimer: 0
+      wsAnimTimer: 0
       willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
@@ -11994,7 +12009,10 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
-      animationTimer: 0
+      spentAttacks: 0
+      totalAttacks: 0
+      wsMultiAttackReportTimer: 0
+      wsAnimTimer: 0
       willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
@@ -16713,7 +16731,10 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
-      animationTimer: 0
+      spentAttacks: 0
+      totalAttacks: 0
+      wsMultiAttackReportTimer: 0
+      wsAnimTimer: 0
       willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
@@ -16766,7 +16787,10 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
-      animationTimer: 0
+      spentAttacks: 0
+      totalAttacks: 0
+      wsMultiAttackReportTimer: 0
+      wsAnimTimer: 0
       willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
@@ -17070,7 +17094,10 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
-      animationTimer: 0
+      spentAttacks: 0
+      totalAttacks: 0
+      wsMultiAttackReportTimer: 0
+      wsAnimTimer: 0
       willCreateSkillchain: 0
     playerOptions: []
     spellBook: []
@@ -17233,7 +17260,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   ComboEntries:
   - {fileID: 1762346630}
@@ -17253,7 +17283,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   weaponSkills: {fileID: 0}
 --- !u!1 &1551812233
@@ -19257,7 +19290,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: a3808dd39fa94ff4286ac84eee162ce0, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Raging_Axe:
     name: 
@@ -19265,7 +19301,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 2c5175d3e79bc1e4aaca3f0b35f76ce3, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Penta_Thrust:
     name: 
@@ -19273,7 +19312,65 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 45c4199c0a4942040a19c3707b255e62, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+  Earth_Crusher:
+    name: 
+    element: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: 668b3c63c46ee4e4a83ac746a8ffa4e9, type: 3}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+  Blade_Tekko:
+    name: 
+    element: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: a17af1340c78da346b334441bb1f2724, type: 3}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+  Raiden_Thrust:
+    name: 
+    element: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: 378e11256086b4a448715eae8a30af03, type: 3}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+  Guillotine:
+    name: 
+    element: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 0}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+  Seraph_Blade:
+    name: 
+    element: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 0}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Scission:
     name: 
@@ -19281,7 +19378,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 2b54618d288ac67469f8ba215cb17fa2, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Reverberation:
     name: 
@@ -19289,7 +19389,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: f2c2ca11c3c97eb4ab2d7245ca89aa7c, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Detonation:
     name: 
@@ -19297,7 +19400,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 35594c2b7a928f8409d618fb9df511b1, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Liquefaction:
     name: 
@@ -19305,7 +19411,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 44b95cbfcb707e84bbcad0a5b2e0101b, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Induration:
     name: 
@@ -19313,7 +19422,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: c4080ab0566096c4f97ade725993a276, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Impaction:
     name: 
@@ -19321,7 +19433,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 334d864f6d15c6648a85c8536d7817f5, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Transfixion:
     name: 
@@ -19329,7 +19444,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: cb66b48b99f5b6a43a8fa93d754718bb, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Compression:
     name: 
@@ -19337,7 +19455,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 620d18983f70e5a4eb693a30e0c45807, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Fusion:
     name: 
@@ -19345,7 +19466,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 8913d3d7c66103946976db2f675d74fb, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Distortion:
     name: 
@@ -19353,7 +19477,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: c7377c6e67a10414c981606e0ec422c9, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Fragmentation:
     name: 
@@ -19361,7 +19488,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 620d18983f70e5a4eb693a30e0c45807, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Gravitation:
     name: 
@@ -19369,7 +19499,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 0c4216a5fc317a5419d39ce960792fff, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Light:
     name: 
@@ -19377,7 +19510,10 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 0a05622f58da9f64d9597ff744410039, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   Dark:
     name: 
@@ -19385,11 +19521,17 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: b7834fef7e4675d48b7476fae475e9aa, type: 3}
     weaponSkillElement: {fileID: 0}
-    animationTimer: 0
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
     willCreateSkillchain: 0
   FireElement: {fileID: 21300000, guid: 28c30d575af277f4c8a9ec3ca60abed5, type: 3}
   IceElement: {fileID: 21300000, guid: 2b5241b10f75c884b815a58c80f394c4, type: 3}
   WindElement: {fileID: 21300000, guid: eb9bbfdaa1e501f49bbd99418cf894aa, type: 3}
+  WaterElement: {fileID: 21300000, guid: c4daba7554fc08a4eafc3a9394ba0029, type: 3}
+  EarthElement: {fileID: 21300000, guid: 2b54618d288ac67469f8ba215cb17fa2, type: 3}
+  ThunderElement: {fileID: 21300000, guid: 334d864f6d15c6648a85c8536d7817f5, type: 3}
 --- !u!4 &1859550956
 Transform:
   m_ObjectHideFlags: 0

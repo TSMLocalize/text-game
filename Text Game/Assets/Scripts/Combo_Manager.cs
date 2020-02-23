@@ -61,14 +61,10 @@ public class Combo_Manager : MonoBehaviour
         //Creates a Skillchain if filling in the 2nd, 4th or 6th WS on the Combolog
         if (ComboEntries[0].activeSelf && ComboEntries [1].activeSelf && ComboEntries[2].activeSelf == false)
         {
-            if ((weaponSkillsInList[0].element == "Earth" || weaponSkillsInList[0].element == "Water" || weaponSkillsInList[0].element == "Wind"))
-            {
-
-            }
             CurrentSkillChain.SetActive(true);
 
             // TEMP
-            skillChainToCreate = weaponSkills.Scission;
+            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[0], weaponSkillsInList[1]);
             //
 
             setUpSkillChain();
@@ -76,7 +72,7 @@ public class Combo_Manager : MonoBehaviour
         else if (ComboEntries[2].activeSelf && ComboEntries[3].activeSelf && ComboEntries[4].activeSelf == false)
         {
             // TEMP
-            skillChainToCreate = weaponSkills.Fusion;
+            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[2], weaponSkillsInList[3]);
             //
 
             setUpSkillChain();
@@ -84,7 +80,7 @@ public class Combo_Manager : MonoBehaviour
         else if (ComboEntries[4].activeSelf && ComboEntries[5].activeSelf && ComboEntries[6].activeSelf == false)
         {
             // TEMP
-            skillChainToCreate = weaponSkills.Light;
+            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[4], weaponSkillsInList[5]);
             //                   
 
             setUpSkillChain();
@@ -92,14 +88,12 @@ public class Combo_Manager : MonoBehaviour
         else if (ComboEntries[6].activeSelf && ComboEntries[7].activeSelf)
         {
             // TEMP
-            skillChainToCreate = weaponSkills.Dark;
+            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[6], weaponSkillsInList[7]);
             //                   
 
             setUpSkillChain();
         }
     }
-
-
 
     public void setUpSkillChain()
     {
@@ -203,14 +197,9 @@ public class Combo_Manager : MonoBehaviour
                 {
                     return weaponSkills.Transfixion;
                 }
-            }
+            }            
         }
-        else if (currentSkillChain != null)
-        {
-
-        }
-
 
         return null;
-    }
+    } 
 }
