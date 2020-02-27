@@ -257,8 +257,9 @@ public class Action_Handler : MonoBehaviour
                     BM.activePlayer.speedTotal -= 100f;
                     BM.activePlayer.tpTotal = 0;
 
-                    if (combo_Manager.skillChainToCreate != null)
-                    {                        
+                    if (BM.activePlayer.selectedWeaponSkill.willCreateSkillchain == true)
+                    {
+                        
                         reportOutcome("SkillChain");
                         resolveAction("Skillchain");                        
                     }
@@ -304,7 +305,7 @@ public class Action_Handler : MonoBehaviour
                                
                 break;
             default:
-                StopAllCoroutines();                
+                StopAllCoroutines();
                 BM_Funcs.standIdle(BM.activePlayer);
                 BM_Funcs.animationController(BM.activePlayer);
                 BM.activePlayer.playerPanel.GetComponent<Image>().color = BM.defaultColor;

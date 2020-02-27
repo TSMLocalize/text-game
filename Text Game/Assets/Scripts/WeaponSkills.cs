@@ -17,8 +17,6 @@ public class WeaponSkills : MonoBehaviour
     public WeaponSkill Guillotine;
     public WeaponSkill Seraph_Blade;
 
-    //returned when failing a SC
-    public WeaponSkill FAIL;
     //SkillChains 1
     public WeaponSkill Scission;
     public WeaponSkill Reverberation;
@@ -46,8 +44,6 @@ public class WeaponSkills : MonoBehaviour
 
     private void Start()
     {
-        //FAIL
-        FAIL.name = "fail";
         //Lv. 1 SCs
         Scission.name = "Scission";        
         Reverberation.name = "Reverberation";

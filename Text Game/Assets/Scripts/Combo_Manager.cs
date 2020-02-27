@@ -42,9 +42,7 @@ public class Combo_Manager : MonoBehaviour
     }
     
     public void addWSToTheList(WeaponSkill WStoAdd)
-    {
-        BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = false;
-
+    {        
         //Adds WS info to the Combolog
         for (int i = 0; i < ComboEntries.Count; i++)
         {
@@ -62,42 +60,43 @@ public class Combo_Manager : MonoBehaviour
 
         //Creates a Skillchain if filling in the 2nd, 4th or 6th WS on the Combolog
         if (ComboEntries[0].activeSelf && ComboEntries [1].activeSelf && ComboEntries[2].activeSelf == false)
-        {            
-            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[0], weaponSkillsInList[1]);                   
+        {
+            CurrentSkillChain.SetActive(true);
+
+            // TEMP
+            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[0], weaponSkillsInList[1]);
+            //
+
+            setUpSkillChain();
         } 
         else if (ComboEntries[2].activeSelf && ComboEntries[3].activeSelf && ComboEntries[4].activeSelf == false)
-        {            
-            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[2], weaponSkillsInList[3]);                     
+        {
+            // TEMP
+            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[2], weaponSkillsInList[3]);
+            //
+
+            setUpSkillChain();
         }
         else if (ComboEntries[4].activeSelf && ComboEntries[5].activeSelf && ComboEntries[6].activeSelf == false)
-        {            
-            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[4], weaponSkillsInList[5]);                     
+        {
+            // TEMP
+            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[4], weaponSkillsInList[5]);
+            //                   
+
+            setUpSkillChain();
         }
         else if (ComboEntries[6].activeSelf && ComboEntries[7].activeSelf)
-        {            
-            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[6], weaponSkillsInList[7]);         
-        }
-
-        if (skillChainToCreate == null)
         {
-            for (int i = 0; i < ComboEntries.Count; i++)
-            {
-                ComboEntries[i].SetActive(false);
-            }
+            // TEMP
+            skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[6], weaponSkillsInList[7]);
+            //                   
 
-            CurrentSkillChain.SetActive(false);
-
-            addWSToTheList(BM.activePlayer.selectedWeaponSkill);
-        }
-        else if (skillChainToCreate != null)
-        {            
             setUpSkillChain();
         }
     }
 
     public void setUpSkillChain()
     {
-        CurrentSkillChain.SetActive(true);
         SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
         CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = skillChainToCreate.name;
         SCEntryImageArray[1].overrideSprite = skillChainToCreate.weaponSkillIcon;
@@ -198,12 +197,7 @@ public class Combo_Manager : MonoBehaviour
                 {
                     return weaponSkills.Transfixion;
                 }
-            }
-            else
-            {
-                skillChainToCreate = null;
-                return null;
-            }
+            }            
         }
 
         return null;
