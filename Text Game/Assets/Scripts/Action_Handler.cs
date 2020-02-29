@@ -305,7 +305,7 @@ public class Action_Handler : MonoBehaviour
                                
                 break;
             default:
-                StopAllCoroutines();
+                StopAllCoroutines();                
                 BM_Funcs.standIdle(BM.activePlayer);
                 BM_Funcs.animationController(BM.activePlayer);
                 BM.activePlayer.playerPanel.GetComponent<Image>().color = BM.defaultColor;

@@ -60,47 +60,33 @@ public class Combo_Manager : MonoBehaviour
 
         //Creates a Skillchain if filling in the 2nd, 4th or 6th WS on the Combolog
         if (ComboEntries[0].activeSelf && ComboEntries [1].activeSelf && ComboEntries[2].activeSelf == false)
-        {
-            CurrentSkillChain.SetActive(true);
-
-            // TEMP
+        {            
             skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[0], weaponSkillsInList[1]);
-            //
-
             setUpSkillChain();
         } 
         else if (ComboEntries[2].activeSelf && ComboEntries[3].activeSelf && ComboEntries[4].activeSelf == false)
-        {
-            // TEMP
+        {            
             skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[2], weaponSkillsInList[3]);
-            //
-
             setUpSkillChain();
         }
         else if (ComboEntries[4].activeSelf && ComboEntries[5].activeSelf && ComboEntries[6].activeSelf == false)
-        {
-            // TEMP
+        {            
             skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[4], weaponSkillsInList[5]);
-            //                   
-
             setUpSkillChain();
         }
         else if (ComboEntries[6].activeSelf && ComboEntries[7].activeSelf)
-        {
-            // TEMP
+        {            
             skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[6], weaponSkillsInList[7]);
-            //                   
-
             setUpSkillChain();
-        }
+        }        
     }
 
     public void setUpSkillChain()
     {
+        CurrentSkillChain.SetActive(true);
         SCEntryImageArray = CurrentSkillChain.GetComponentsInChildren<Image>();
         CurrentSkillChain.GetComponentInChildren<TextMeshProUGUI>().text = skillChainToCreate.name;
-        SCEntryImageArray[1].overrideSprite = skillChainToCreate.weaponSkillIcon;
-        BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+        SCEntryImageArray[1].overrideSprite = skillChainToCreate.weaponSkillIcon;        
     }
 
     public void PlayerWeaponskill(WeaponSkill weaponSkill, Player attacker = null, Enemy target = null)
@@ -158,24 +144,30 @@ public class Combo_Manager : MonoBehaviour
 
     public WeaponSkill determineWhichSkillChain(WeaponSkill entryOne, WeaponSkill entryTwo, WeaponSkill currentSkillChain = null)
     {
+        BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = false;
+
         if (currentSkillChain == null)
         {
             if (entryOne.element == "Earth" || entryOne.element == "Water" || entryOne.element == "Wind" || entryOne.element == "Light")
             {
                 if (entryTwo.element == "Fire")
                 {
+                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
                     return weaponSkills.Liquefaction;
                 }
                 else if (entryTwo.element == "Ice")
                 {
+                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
                     return weaponSkills.Induration;
                 }
                 else if (entryTwo.element == "Thunder")
                 {
+                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
                     return weaponSkills.Impaction;
                 }
                 else if (entryTwo.element == "Dark")
                 {
+                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
                     return weaponSkills.Compression;
                 }
             }
@@ -183,18 +175,22 @@ public class Combo_Manager : MonoBehaviour
             {
                 if (entryTwo.element == "Earth")
                 {
+                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
                     return weaponSkills.Scission;
                 }
                 else if (entryTwo.element == "Water")
                 {
+                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
                     return weaponSkills.Reverberation;
                 }
                 else if (entryTwo.element == "Wind")
                 {
+                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
                     return weaponSkills.Detonation;
                 }
                 else if (entryTwo.element == "Light")
                 {
+                    BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
                     return weaponSkills.Transfixion;
                 }
             }            
