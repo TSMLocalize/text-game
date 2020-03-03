@@ -37,12 +37,17 @@ public class Combo_Manager : MonoBehaviour
     }
     
     public void addWSToTheList(WeaponSkill WStoAdd)
-    {        
+    {
+        if (weaponSkillsInList.Count == 8)
+        {
+            resetWeaponSkills();
+        }
+
         //Adds WS info to the Combolog
         for (int i = 0; i < ComboEntries.Count; i++)
-        {
+        {            
             if (ComboEntries[i].activeSelf == false)
-            {
+            {                
                 ComboEntries[i].SetActive(true);
                 weaponSkillsInList.Add(WStoAdd);
                 ComboEntryImageArray = ComboEntries[i].GetComponentsInChildren<Image>();
@@ -52,49 +57,41 @@ public class Combo_Manager : MonoBehaviour
 
                 //Runs the method to check if the new WS has created a Skillchain
                 if (weaponSkillsInList.Count > 1)
-                {                    
-                    skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[weaponSkillsInList.Count - 2], WStoAdd, skillChainToCreate);
-                    
-                    if (skillChainToCreate != null)
+                {
+                    if (weaponSkillsInList.Count == 2 || weaponSkillsInList.Count == 4 || weaponSkillsInList.Count == 6 || weaponSkillsInList.Count == 8)
                     {
-                        if (weaponSkillsInList.Count == 2 || weaponSkillsInList.Count == 4 || weaponSkillsInList.Count == 6 || weaponSkillsInList.Count == 8)
+                        skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[weaponSkillsInList.Count - 2], WStoAdd);
+
+                        if (skillChainToCreate != null)
                         {
-                            if (weaponSkillsInList.Count <= 8)
-                            {
-                                timeRemaining += 10;
-                                WStimer.text = timeRemaining.ToString();
-                                setUpSkillChain();
-                                BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
-                                break;
-                            }                       
-                            else
-                            {
-                                break;
-                            }                            
-                        }
-                        else
-                        {
+                            timeRemaining += 10;
+                            WStimer.text = timeRemaining.ToString();
+                            setUpSkillChain();
+                            BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
                             break;
                         }
-                    //Don't reset the panel if starting a SC on a new layer
+                        //If failing, reset the panel, and set the WS at the start
+                        else if (skillChainToCreate == null)
+                        {
+                            resetWeaponSkills();
+                            ComboEntries[0].SetActive(true);
+                            weaponSkillsInList.Add(WStoAdd);
+                            ComboEntryImageArray = ComboEntries[0].GetComponentsInChildren<Image>();
+                            ComboEntryImageArray[1].overrideSprite = WStoAdd.weaponSkillIcon;
+                            ComboEntryImageArray[2].overrideSprite = WStoAdd.weaponSkillElement;
+                            ComboEntries[0].GetComponentInChildren<TextMeshProUGUI>().text = WStoAdd.name;
+                            break;
+                        }
+                        //Don't reset the panel if starting a SC on a new layer
                     } else if (weaponSkillsInList.Count == 3 || weaponSkillsInList.Count == 5 || weaponSkillsInList.Count == 7)
                     {
                         break;
                     }                               
-                    //If failing, reset the panel, and set the WS at the start
-                    else
-                    {
-                        resetWeaponSkills();
-                        ComboEntries[0].SetActive(true);
-                        weaponSkillsInList.Add(WStoAdd);
-                        ComboEntryImageArray = ComboEntries[0].GetComponentsInChildren<Image>();
-                        ComboEntryImageArray[1].overrideSprite = WStoAdd.weaponSkillIcon;
-                        ComboEntryImageArray[2].overrideSprite = WStoAdd.weaponSkillElement;
-                        ComboEntries[0].GetComponentInChildren<TextMeshProUGUI>().text = WStoAdd.name;                        
-                    }                    
+                }
+                else 
+                { 
                     break;
-                }                
-                break;
+                }                           
             }
         }
     }
@@ -172,7 +169,7 @@ public class Combo_Manager : MonoBehaviour
         }
     }
 
-    public WeaponSkill determineWhichSkillChain(WeaponSkill entryOne, WeaponSkill entryTwo, WeaponSkill currentSC)
+    public WeaponSkill determineWhichSkillChain(WeaponSkill entryOne, WeaponSkill entryTwo, WeaponSkill currentSC = null)
     {        
         if (entryOne.element == "Earth" || entryOne.element == "Water" || entryOne.element == "Wind" || entryOne.element == "Light")
         {
