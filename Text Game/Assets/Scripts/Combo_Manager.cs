@@ -35,11 +35,6 @@ public class Combo_Manager : MonoBehaviour
 
         StartCoroutine(updateTimeRemaining());
     }
-
-    void Update()
-    {
-
-    }
     
     public void addWSToTheList(WeaponSkill WStoAdd)
     {        
@@ -58,11 +53,47 @@ public class Combo_Manager : MonoBehaviour
                 //Runs the method to check if the new WS has created a Skillchain
                 if (weaponSkillsInList.Count > 1)
                 {                    
-                    skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[weaponSkillsInList.Count - 2], WStoAdd);                    
-                    setUpSkillChain();
+                    skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[weaponSkillsInList.Count - 2], WStoAdd, skillChainToCreate);
+                    
+                    if (skillChainToCreate != null)
+                    {
+                        if (weaponSkillsInList.Count == 2 || weaponSkillsInList.Count == 4 || weaponSkillsInList.Count == 6 || weaponSkillsInList.Count == 8)
+                        {
+                            if (weaponSkillsInList.Count <= 8)
+                            {
+                                timeRemaining += 10;
+                                WStimer.text = timeRemaining.ToString();
+                                setUpSkillChain();
+                                BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+                                break;
+                            }                       
+                            else
+                            {
+                                break;
+                            }                            
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    //Don't reset the panel if starting a SC on a new layer
+                    } else if (weaponSkillsInList.Count == 3 || weaponSkillsInList.Count == 5 || weaponSkillsInList.Count == 7)
+                    {
+                        break;
+                    }                               
+                    //If failing, reset the panel, and set the WS at the start
+                    else
+                    {
+                        resetWeaponSkills();
+                        ComboEntries[0].SetActive(true);
+                        weaponSkillsInList.Add(WStoAdd);
+                        ComboEntryImageArray = ComboEntries[0].GetComponentsInChildren<Image>();
+                        ComboEntryImageArray[1].overrideSprite = WStoAdd.weaponSkillIcon;
+                        ComboEntryImageArray[2].overrideSprite = WStoAdd.weaponSkillElement;
+                        ComboEntries[0].GetComponentInChildren<TextMeshProUGUI>().text = WStoAdd.name;                        
+                    }                    
                     break;
-                }
-                
+                }                
                 break;
             }
         }
@@ -77,6 +108,17 @@ public class Combo_Manager : MonoBehaviour
         SCEntryImageArray[1].overrideSprite = skillChainToCreate.weaponSkillIcon;        
     }
 
+    public void resetWeaponSkills()
+    {
+        weaponSkillsInList.Clear();
+
+        for (int i = 0; i < ComboEntries.Count; i++)
+        {
+            ComboEntries[i].SetActive(false);
+        }
+        CurrentSkillChain.SetActive(false);        
+    }
+
     public void PlayerWeaponskill(WeaponSkill weaponSkill, Player attacker = null, Enemy target = null)
     {
         BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
@@ -86,7 +128,11 @@ public class Combo_Manager : MonoBehaviour
 
     public void SetUpPanel()
     {
-        timeRemaining = 10;
+        if (!ComboPanel.activeSelf)
+        {
+            timeRemaining = 10;
+        }
+        
         WStimer.text = timeRemaining.ToString();
         ComboPanel.SetActive(true);        
     }
@@ -113,11 +159,7 @@ public class Combo_Manager : MonoBehaviour
 
             if (timeRemaining < 1)
             {
-                for (int i = 0; i < ComboEntries.Count; i++)
-                {
-                    ComboEntries[i].SetActive(false);
-                }
-                CurrentSkillChain.SetActive(false);
+                resetWeaponSkills();
                 ComboPanel.SetActive(false);
                 yield return null;
             }
@@ -130,28 +172,24 @@ public class Combo_Manager : MonoBehaviour
         }
     }
 
-    public WeaponSkill determineWhichSkillChain(WeaponSkill entryOne, WeaponSkill entryTwo)
+    public WeaponSkill determineWhichSkillChain(WeaponSkill entryOne, WeaponSkill entryTwo, WeaponSkill currentSC)
     {        
         if (entryOne.element == "Earth" || entryOne.element == "Water" || entryOne.element == "Wind" || entryOne.element == "Light")
         {
             if (entryTwo.element == "Fire")
-            {
-                BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+            {                
                 return weaponSkills.Liquefaction;
             }
             else if (entryTwo.element == "Ice")
-            {
-                BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+            {                
                 return weaponSkills.Induration;
             }
             else if (entryTwo.element == "Thunder")
-            {
-                BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+            {                
                 return weaponSkills.Impaction;
             }
             else if (entryTwo.element == "Dark")
-            {
-                BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+            {                
                 return weaponSkills.Compression;
             }
             else
@@ -162,23 +200,19 @@ public class Combo_Manager : MonoBehaviour
         else if (entryOne.element == "Fire" || entryOne.element == "Ice" || entryOne.element == "Thunder" || entryOne.element == "Dark")
         {
             if (entryTwo.element == "Earth")
-            {
-                BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+            {                
                 return weaponSkills.Scission;
             }
             else if (entryTwo.element == "Water")
-            {
-                BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+            {                
                 return weaponSkills.Reverberation;
             }
             else if (entryTwo.element == "Wind")
-            {
-                BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+            {                
                 return weaponSkills.Detonation;
             }
             else if (entryTwo.element == "Light")
-            {
-                BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = true;
+            {                
                 return weaponSkills.Transfixion;
             }
             else
