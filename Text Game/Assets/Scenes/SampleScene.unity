@@ -11736,6 +11736,7 @@ MonoBehaviour:
     selectedWeaponSkill:
       name: 
       element: 
+      alignment: 
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
@@ -11744,6 +11745,7 @@ MonoBehaviour:
       wsMultiAttackReportTimer: 0
       wsAnimTimer: 0
       willCreateSkillchain: 0
+      skillChainLevel: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11790,6 +11792,7 @@ MonoBehaviour:
     selectedWeaponSkill:
       name: 
       element: 
+      alignment: 
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
@@ -11798,6 +11801,7 @@ MonoBehaviour:
       wsMultiAttackReportTimer: 0
       wsAnimTimer: 0
       willCreateSkillchain: 0
+      skillChainLevel: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11844,6 +11848,7 @@ MonoBehaviour:
     selectedWeaponSkill:
       name: 
       element: 
+      alignment: 
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
@@ -11852,6 +11857,7 @@ MonoBehaviour:
       wsMultiAttackReportTimer: 0
       wsAnimTimer: 0
       willCreateSkillchain: 0
+      skillChainLevel: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11898,6 +11904,7 @@ MonoBehaviour:
     selectedWeaponSkill:
       name: 
       element: 
+      alignment: 
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
@@ -11906,6 +11913,7 @@ MonoBehaviour:
       wsMultiAttackReportTimer: 0
       wsAnimTimer: 0
       willCreateSkillchain: 0
+      skillChainLevel: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -11952,6 +11960,7 @@ MonoBehaviour:
     selectedWeaponSkill:
       name: 
       element: 
+      alignment: 
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
@@ -11960,6 +11969,7 @@ MonoBehaviour:
       wsMultiAttackReportTimer: 0
       wsAnimTimer: 0
       willCreateSkillchain: 0
+      skillChainLevel: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -12006,6 +12016,7 @@ MonoBehaviour:
     selectedWeaponSkill:
       name: 
       element: 
+      alignment: 
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
@@ -12014,6 +12025,7 @@ MonoBehaviour:
       wsMultiAttackReportTimer: 0
       wsAnimTimer: 0
       willCreateSkillchain: 0
+      skillChainLevel: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -16728,6 +16740,7 @@ MonoBehaviour:
     selectedWeaponSkill:
       name: 
       element: 
+      alignment: 
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
@@ -16736,6 +16749,7 @@ MonoBehaviour:
       wsMultiAttackReportTimer: 0
       wsAnimTimer: 0
       willCreateSkillchain: 0
+      skillChainLevel: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -16784,6 +16798,7 @@ MonoBehaviour:
     selectedWeaponSkill:
       name: 
       element: 
+      alignment: 
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
@@ -16792,6 +16807,7 @@ MonoBehaviour:
       wsMultiAttackReportTimer: 0
       wsAnimTimer: 0
       willCreateSkillchain: 0
+      skillChainLevel: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -17091,6 +17107,7 @@ MonoBehaviour:
     selectedWeaponSkill:
       name: 
       element: 
+      alignment: 
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
@@ -17099,6 +17116,7 @@ MonoBehaviour:
       wsMultiAttackReportTimer: 0
       wsAnimTimer: 0
       willCreateSkillchain: 0
+      skillChainLevel: 0
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -17257,6 +17275,7 @@ MonoBehaviour:
   skillChainToCreate:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
@@ -17265,6 +17284,7 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   ComboEntries:
   - {fileID: 1762346630}
   - {fileID: 1170549385}
@@ -17280,6 +17300,7 @@ MonoBehaviour:
   WStoBeAdded:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
@@ -17288,7 +17309,34 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   weaponSkills: {fileID: 0}
+  secondWS:
+    name: 
+    element: 
+    alignment: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 0}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+    skillChainLevel: 0
+  thirdWS:
+    name: 
+    element: 
+    alignment: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 0}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+    skillChainLevel: 0
 --- !u!1 &1551812233
 GameObject:
   m_ObjectHideFlags: 0
@@ -19287,6 +19335,7 @@ MonoBehaviour:
   Fast_Blade:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: a3808dd39fa94ff4286ac84eee162ce0, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19295,9 +19344,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Raging_Axe:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 2c5175d3e79bc1e4aaca3f0b35f76ce3, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19306,9 +19357,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Penta_Thrust:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 45c4199c0a4942040a19c3707b255e62, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19317,9 +19370,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Earth_Crusher:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 668b3c63c46ee4e4a83ac746a8ffa4e9, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19328,9 +19383,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Blade_Tekko:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: a17af1340c78da346b334441bb1f2724, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19339,9 +19396,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Raiden_Thrust:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 378e11256086b4a448715eae8a30af03, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19350,9 +19409,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Guillotine:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
@@ -19361,9 +19422,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Seraph_Blade:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
@@ -19372,9 +19435,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Scission:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 2b54618d288ac67469f8ba215cb17fa2, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19383,9 +19448,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Reverberation:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: f2c2ca11c3c97eb4ab2d7245ca89aa7c, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19394,9 +19461,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Detonation:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 35594c2b7a928f8409d618fb9df511b1, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19405,9 +19474,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Liquefaction:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 44b95cbfcb707e84bbcad0a5b2e0101b, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19416,9 +19487,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Induration:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: c4080ab0566096c4f97ade725993a276, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19427,9 +19500,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
   Impaction:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 334d864f6d15c6648a85c8536d7817f5, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19438,64 +19513,11 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
-  Transfixion:
-    name: 
-    element: 
-    TPCost: 0
-    weaponSkillIcon: {fileID: 21300000, guid: cb66b48b99f5b6a43a8fa93d754718bb, type: 3}
-    weaponSkillElement: {fileID: 0}
-    spentAttacks: 0
-    totalAttacks: 0
-    wsMultiAttackReportTimer: 0
-    wsAnimTimer: 0
-    willCreateSkillchain: 0
-  Compression:
-    name: 
-    element: 
-    TPCost: 0
-    weaponSkillIcon: {fileID: 21300000, guid: 620d18983f70e5a4eb693a30e0c45807, type: 3}
-    weaponSkillElement: {fileID: 0}
-    spentAttacks: 0
-    totalAttacks: 0
-    wsMultiAttackReportTimer: 0
-    wsAnimTimer: 0
-    willCreateSkillchain: 0
-  Fusion:
-    name: 
-    element: 
-    TPCost: 0
-    weaponSkillIcon: {fileID: 21300000, guid: 8913d3d7c66103946976db2f675d74fb, type: 3}
-    weaponSkillElement: {fileID: 0}
-    spentAttacks: 0
-    totalAttacks: 0
-    wsMultiAttackReportTimer: 0
-    wsAnimTimer: 0
-    willCreateSkillchain: 0
-  Distortion:
-    name: 
-    element: 
-    TPCost: 0
-    weaponSkillIcon: {fileID: 21300000, guid: c7377c6e67a10414c981606e0ec422c9, type: 3}
-    weaponSkillElement: {fileID: 0}
-    spentAttacks: 0
-    totalAttacks: 0
-    wsMultiAttackReportTimer: 0
-    wsAnimTimer: 0
-    willCreateSkillchain: 0
-  Fragmentation:
-    name: 
-    element: 
-    TPCost: 0
-    weaponSkillIcon: {fileID: 21300000, guid: 620d18983f70e5a4eb693a30e0c45807, type: 3}
-    weaponSkillElement: {fileID: 0}
-    spentAttacks: 0
-    totalAttacks: 0
-    wsMultiAttackReportTimer: 0
-    wsAnimTimer: 0
-    willCreateSkillchain: 0
+    skillChainLevel: 0
   Gravitation:
     name: 
     element: 
+    alignment: 
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 0c4216a5fc317a5419d39ce960792fff, type: 3}
     weaponSkillElement: {fileID: 0}
@@ -19504,28 +19526,98 @@ MonoBehaviour:
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
-  Light:
+    skillChainLevel: 0
+  Distortion:
     name: 
     element: 
+    alignment: 
     TPCost: 0
-    weaponSkillIcon: {fileID: 21300000, guid: 0a05622f58da9f64d9597ff744410039, type: 3}
+    weaponSkillIcon: {fileID: 21300000, guid: c7377c6e67a10414c981606e0ec422c9, type: 3}
     weaponSkillElement: {fileID: 0}
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
-  Dark:
+    skillChainLevel: 0
+  Fragmentation:
     name: 
     element: 
+    alignment: 
     TPCost: 0
-    weaponSkillIcon: {fileID: 21300000, guid: b7834fef7e4675d48b7476fae475e9aa, type: 3}
+    weaponSkillIcon: {fileID: 21300000, guid: 620d18983f70e5a4eb693a30e0c45807, type: 3}
     weaponSkillElement: {fileID: 0}
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
     wsAnimTimer: 0
     willCreateSkillchain: 0
+    skillChainLevel: 0
+  Fusion:
+    name: 
+    element: 
+    alignment: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: 8913d3d7c66103946976db2f675d74fb, type: 3}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+    skillChainLevel: 0
+  Glaciation:
+    name: 
+    element: 
+    alignment: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: b822eb4f51b82f547972cc33baaea252, type: 3}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+    skillChainLevel: 0
+  Fulmination:
+    name: 
+    element: 
+    alignment: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: 393855f5656ef2441bba846f7cbe39cb, type: 3}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+    skillChainLevel: 0
+  Radiance:
+    name: 
+    element: 
+    alignment: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: bb8a8fa2e70a0214bbbeb816ea357987, type: 3}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+    skillChainLevel: 0
+  Umbra:
+    name: 
+    element: 
+    alignment: 
+    TPCost: 0
+    weaponSkillIcon: {fileID: 21300000, guid: d1f9f07c15684da4fb0f0df3a28f8868, type: 3}
+    weaponSkillElement: {fileID: 0}
+    spentAttacks: 0
+    totalAttacks: 0
+    wsMultiAttackReportTimer: 0
+    wsAnimTimer: 0
+    willCreateSkillchain: 0
+    skillChainLevel: 0
   FireElement: {fileID: 21300000, guid: 28c30d575af277f4c8a9ec3ca60abed5, type: 3}
   IceElement: {fileID: 21300000, guid: 2b5241b10f75c884b815a58c80f394c4, type: 3}
   WindElement: {fileID: 21300000, guid: eb9bbfdaa1e501f49bbd99418cf894aa, type: 3}

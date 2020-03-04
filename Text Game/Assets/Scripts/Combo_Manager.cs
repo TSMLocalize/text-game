@@ -23,7 +23,9 @@ public class Combo_Manager : MonoBehaviour
     public Image[] ComboEntryImageArray;
     public Image[] SCEntryImageArray;
     public WeaponSkill WStoBeAdded;
-    public WeaponSkills weaponSkills;    
+    public WeaponSkills weaponSkills;
+    public WeaponSkill secondWS;
+    public WeaponSkill thirdWS;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +62,7 @@ public class Combo_Manager : MonoBehaviour
                 {
                     if (weaponSkillsInList.Count == 2 || weaponSkillsInList.Count == 4 || weaponSkillsInList.Count == 6 || weaponSkillsInList.Count == 8)
                     {
-                        skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[weaponSkillsInList.Count - 2], WStoAdd, skillChainToCreate);
+                        skillChainToCreate = determineWhichSkillChain();
 
                         if (skillChainToCreate != null)
                         {
@@ -108,7 +110,8 @@ public class Combo_Manager : MonoBehaviour
     public void resetWeaponSkills()
     {
         weaponSkillsInList.Clear();
-
+        secondWS = null;
+        thirdWS = null;
         for (int i = 0; i < ComboEntries.Count; i++)
         {
             ComboEntries[i].SetActive(false);
@@ -169,94 +172,96 @@ public class Combo_Manager : MonoBehaviour
         }
     }
 
-    public WeaponSkill determineWhichSkillChain(WeaponSkill entryOne, WeaponSkill entryTwo, WeaponSkill currentSC = null)
-    {
-        if (entryOne.element == "Earth" || entryOne.element == "Water" || entryOne.element == "Wind" || entryOne.element == "Light")
+    public WeaponSkill determineWhichSkillChain()
+    {        
+        switch (weaponSkillsInList.Count)
         {
-            if (currentSC == null)
-            {
-                if (entryTwo.element == "Fire")
-                {
-                    return weaponSkills.Liquefaction;
-                }
-                else if (entryTwo.element == "Ice")
-                {
-                    return weaponSkills.Induration;
-                }
-                else if (entryTwo.element == "Thunder")
-                {
-                    return weaponSkills.Impaction;
-                }
-            }    
-            else if (currentSC.skillChainLevel == 1) 
-            {
-                if (entryOne.element == "Earth" && entryTwo.element == "Fire")
-                {
-                    return weaponSkills.Fusion;
-                }
-                else if (entryOne.element == "Wind" && entryTwo.element == "Earth")
-                {
-                    return weaponSkills.Gravitation;
-                }
-                else if (entryOne.element == "Water" && entryTwo.element == "Ice")
-                {
-                    return weaponSkills.Glaciation;
-                }
-            }    
-            else if (currentSC.skillChainLevel == 2 && currentSC.alignment == "Dark")
-            {
-                if (entryOne.element == "" && entryTwo.element == "")
-                {
-
-                }
-                return weaponSkills.Radiance;
-            }
-            else
-            {
+            case 2:
+                return findLvl1SC(0, 1);
+            case 4:
+                secondWS = findLvl2SC(2, 3, skillChainToCreate);
+                return secondWS;                
+            case 6:
+                thirdWS = findLvl2SC(4, 5, skillChainToCreate);
+                return thirdWS;
+            case 8:                
+                return findLvl3SC();                
+            default:
                 return null;
-            }
         }
-        else if (entryOne.element == "Fire" || entryOne.element == "Ice" || entryOne.element == "Thunder" || entryOne.element == "Dark")
-        {
-            if (currentSC == null)
-            {
-                if (entryTwo.element == "Earth")
-                {
-                    return weaponSkills.Scission;
-                }
-                else if (entryTwo.element == "Water")
-                {
-                    return weaponSkills.Reverberation;
-                }
-                else if (entryTwo.element == "Wind")
-                {
-                    return weaponSkills.Detonation;
-                }
-                else if (currentSC.skillChainLevel == 1)
-                {
-                    if (entryOne.element == "Fire" && entryTwo.element == "Thunder")
-                    {
-                        return weaponSkills.Fulmination;
-                    }
-                    else if (entryOne.element == "Ice" && entryTwo.element == "Water")
-                    {
-                        return weaponSkills.Distortion;
-                    }
-                    else if (entryOne.element == "Thunder" && entryTwo.element == "Wind")
-                    {
-                        return weaponSkills.Fragmentation;
-                    }
-                }
-                else if (currentSC.skillChainLevel == 2 && currentSC.element == "Light")
-                {
-                    return weaponSkills.Umbra;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-        return null;
     } 
+
+    public WeaponSkill findLvl1SC(int first, int second)
+    {
+        if (weaponSkillsInList[first].element == "Fire" || weaponSkillsInList[first].element == "Ice" || weaponSkillsInList[first].element == "Thunder")
+        {
+            if (weaponSkillsInList[second].element == "Earth")
+                return weaponSkills.Scission;
+            else if (weaponSkillsInList[second].element == "Water")
+                return weaponSkills.Reverberation;
+            else if (weaponSkillsInList[second].element == "Wind")
+                return weaponSkills.Detonation;
+            else return null;
+
+        }
+        else if (weaponSkillsInList[first].element == "Earth" || weaponSkillsInList[first].element == "Water" || weaponSkillsInList[first].element == "Wind")
+        {
+            if (weaponSkillsInList[second].element == "Fire")
+                return weaponSkills.Liquefaction;
+            else if (weaponSkillsInList[second].element == "Ice")
+                return weaponSkills.Induration;
+            else if (weaponSkillsInList[second].element == "Thunder")
+                return weaponSkills.Impaction;
+            else return null;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public WeaponSkill findLvl2SC(int first, int second, WeaponSkill currentSC)
+    {
+        if (currentSC.alignment == "Dark")
+        {
+            if (weaponSkillsInList[first].element == "Wind" && weaponSkillsInList[second].element == "Earth")
+                return weaponSkills.Gravitation;
+            else if (weaponSkillsInList[first].element == "Ice" && weaponSkillsInList[second].element == "Water")
+                return weaponSkills.Distortion;
+            else if (weaponSkillsInList[first].element == "Thunder" && weaponSkillsInList[second].element == "Wind")
+                return weaponSkills.Fragmentation;
+            else return null;
+        } else if (currentSC.alignment == "Light")
+        {
+            if (weaponSkillsInList[first].element == "Earth" && weaponSkillsInList[second].element == "Fire")
+                return weaponSkills.Fusion;
+            else if (weaponSkillsInList[first].element == "Water" && weaponSkillsInList[second].element == "Ice")
+                return weaponSkills.Glaciation;
+            else if (weaponSkillsInList[first].element == "Fire" && weaponSkillsInList[second].element == "Thunder")
+                return weaponSkills.Fulmination;
+            else return null;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public WeaponSkill findLvl3SC()
+    {
+        if (secondWS.alignment == "Light" && thirdWS.alignment == "Dark")
+        {
+            if (findLvl2SC(6, 7, skillChainToCreate).alignment == "Light")            
+                return weaponSkills.Radiance;            
+            else            
+                return null;            
+        } else if (secondWS.alignment == "Dark" && thirdWS.alignment == "Light")
+        {
+            if (findLvl2SC(6, 7, skillChainToCreate).alignment == "Dark")            
+                return weaponSkills.Umbra;            
+            else            
+                return null;            
+        } else        
+            return null;        
+    }
 }
