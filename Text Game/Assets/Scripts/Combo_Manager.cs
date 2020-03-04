@@ -17,7 +17,7 @@ public class Combo_Manager : MonoBehaviour
     public bool WSTimerActivated;   
     public GameObject ComboPanel;
     public GameObject CurrentSkillChain;
-    public WeaponSkill skillChainToCreate;    
+    public WeaponSkill skillChainToCreate = null;    
     public List<GameObject> ComboEntries;
     public List<WeaponSkill> weaponSkillsInList;
     public Image[] ComboEntryImageArray;
@@ -60,7 +60,7 @@ public class Combo_Manager : MonoBehaviour
                 {
                     if (weaponSkillsInList.Count == 2 || weaponSkillsInList.Count == 4 || weaponSkillsInList.Count == 6 || weaponSkillsInList.Count == 8)
                     {
-                        skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[weaponSkillsInList.Count - 2], WStoAdd);
+                        skillChainToCreate = determineWhichSkillChain(weaponSkillsInList[weaponSkillsInList.Count - 2], WStoAdd, skillChainToCreate);
 
                         if (skillChainToCreate != null)
                         {
@@ -170,24 +170,46 @@ public class Combo_Manager : MonoBehaviour
     }
 
     public WeaponSkill determineWhichSkillChain(WeaponSkill entryOne, WeaponSkill entryTwo, WeaponSkill currentSC = null)
-    {        
+    {
         if (entryOne.element == "Earth" || entryOne.element == "Water" || entryOne.element == "Wind" || entryOne.element == "Light")
         {
-            if (entryTwo.element == "Fire")
-            {                
-                return weaponSkills.Liquefaction;
-            }
-            else if (entryTwo.element == "Ice")
-            {                
-                return weaponSkills.Induration;
-            }
-            else if (entryTwo.element == "Thunder")
-            {                
-                return weaponSkills.Impaction;
-            }
-            else if (entryTwo.element == "Dark")
-            {                
-                return weaponSkills.Compression;
+            if (currentSC == null)
+            {
+                if (entryTwo.element == "Fire")
+                {
+                    return weaponSkills.Liquefaction;
+                }
+                else if (entryTwo.element == "Ice")
+                {
+                    return weaponSkills.Induration;
+                }
+                else if (entryTwo.element == "Thunder")
+                {
+                    return weaponSkills.Impaction;
+                }
+            }    
+            else if (currentSC.skillChainLevel == 1) 
+            {
+                if (entryOne.element == "Earth" && entryTwo.element == "Fire")
+                {
+                    return weaponSkills.Fusion;
+                }
+                else if (entryOne.element == "Wind" && entryTwo.element == "Earth")
+                {
+                    return weaponSkills.Gravitation;
+                }
+                else if (entryOne.element == "Water" && entryTwo.element == "Ice")
+                {
+                    return weaponSkills.Glaciation;
+                }
+            }    
+            else if (currentSC.skillChainLevel == 2 && currentSC.alignment == "Dark")
+            {
+                if (entryOne.element == "" && entryTwo.element == "")
+                {
+
+                }
+                return weaponSkills.Radiance;
             }
             else
             {
@@ -196,28 +218,45 @@ public class Combo_Manager : MonoBehaviour
         }
         else if (entryOne.element == "Fire" || entryOne.element == "Ice" || entryOne.element == "Thunder" || entryOne.element == "Dark")
         {
-            if (entryTwo.element == "Earth")
-            {                
-                return weaponSkills.Scission;
-            }
-            else if (entryTwo.element == "Water")
-            {                
-                return weaponSkills.Reverberation;
-            }
-            else if (entryTwo.element == "Wind")
-            {                
-                return weaponSkills.Detonation;
-            }
-            else if (entryTwo.element == "Light")
-            {                
-                return weaponSkills.Transfixion;
-            }
-            else
+            if (currentSC == null)
             {
-                return null;
+                if (entryTwo.element == "Earth")
+                {
+                    return weaponSkills.Scission;
+                }
+                else if (entryTwo.element == "Water")
+                {
+                    return weaponSkills.Reverberation;
+                }
+                else if (entryTwo.element == "Wind")
+                {
+                    return weaponSkills.Detonation;
+                }
+                else if (currentSC.skillChainLevel == 1)
+                {
+                    if (entryOne.element == "Fire" && entryTwo.element == "Thunder")
+                    {
+                        return weaponSkills.Fulmination;
+                    }
+                    else if (entryOne.element == "Ice" && entryTwo.element == "Water")
+                    {
+                        return weaponSkills.Distortion;
+                    }
+                    else if (entryOne.element == "Thunder" && entryTwo.element == "Wind")
+                    {
+                        return weaponSkills.Fragmentation;
+                    }
+                }
+                else if (currentSC.skillChainLevel == 2 && currentSC.element == "Light")
+                {
+                    return weaponSkills.Umbra;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
-
         return null;
     } 
 }

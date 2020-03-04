@@ -9,6 +9,7 @@ public class WeaponSkill
 {
     public string name;
     public string element;
+    public string alignment;
     public float TPCost;
     public Sprite weaponSkillIcon;
     public Sprite weaponSkillElement;    
@@ -22,4 +23,5 @@ public class WeaponSkill
     public float wsAnimTimer;
 
     public bool willCreateSkillchain;
+    public int skillChainLevel;
 }

@@ -24,16 +24,16 @@ public class WeaponSkills : MonoBehaviour
     public WeaponSkill Liquefaction;
     public WeaponSkill Induration;
     public WeaponSkill Impaction;
-    public WeaponSkill Transfixion;
-    public WeaponSkill Compression;
     //SkillChains 2
-    public WeaponSkill Fusion; //Fire & Light
-    public WeaponSkill Distortion; //Water & Ice
-    public WeaponSkill Fragmentation; //Wind & Thunder
-    public WeaponSkill Gravitation; //Earth & Dark    
+    public WeaponSkill Gravitation;
+    public WeaponSkill Distortion;
+    public WeaponSkill Fragmentation; 
+    public WeaponSkill Fusion;        
+    public WeaponSkill Glaciation;
+    public WeaponSkill Fulmination;
     //SkillChains 3
-    public WeaponSkill Light;
-    public WeaponSkill Dark;
+    public WeaponSkill Radiance;
+    public WeaponSkill Umbra;    
 
     public Sprite FireElement;
     public Sprite IceElement;
@@ -51,17 +51,49 @@ public class WeaponSkills : MonoBehaviour
         Liquefaction.name = "Liquefaction";
         Induration.name = "Induration";
         Impaction.name = "Impaction";
-        Transfixion.name = "Transfixion";
-        Compression.name = "Compression";
-        //Lv. 2 SCs
-        Fusion.name = "Fusion";
+        //Lv. 2 SCs        
+        Gravitation.name = "Gravitation";        
         Distortion.name = "Distortion";
         Fragmentation.name = "Fragmentation";
-        Gravitation.name = "Gravitation";
+        Fusion.name = "Fusion";
+        Glaciation.name = "Glaciation";
+        Fulmination.name = "Fulmination";
         //Lv. 3 SCs
-        Light.name = "Light";
-        Dark.name = "Dark";
+        Radiance.name = "Radiance";
+        Umbra.name = "Umbra";
 
+        //SkillChainLevels
+        Scission.skillChainLevel = 1;
+        Reverberation.skillChainLevel = 1;
+        Detonation.skillChainLevel = 1;
+        Liquefaction.skillChainLevel = 1;
+        Induration.skillChainLevel = 1;
+        Impaction.skillChainLevel = 1;        
+        
+        Gravitation.skillChainLevel = 2;
+        Distortion.skillChainLevel = 2;
+        Fragmentation.skillChainLevel = 2;
+        Fusion.skillChainLevel = 2;
+        Glaciation.skillChainLevel = 2;
+        Fulmination.skillChainLevel = 2;        
+        
+        Radiance.skillChainLevel = 3;
+        Umbra.skillChainLevel = 3;
+
+        //SkillChainAlignments
+        Scission.alignment = "Light";
+        Reverberation.alignment = "Light";
+        Detonation.alignment = "Light";
+        Liquefaction.alignment = "Dark";
+        Induration.alignment = "Dark";
+        Impaction.alignment = "Dark";
+
+        Gravitation.alignment = "Light";
+        Distortion.alignment = "Light";
+        Fragmentation.alignment = "Light";
+        Fusion.alignment = "Dark";
+        Glaciation.alignment = "Dark";
+        Fulmination.alignment = "Dark";
 
         //!! The wsAnimTimer must be higher or the same as the SkillChain timer (currently 1.5f) NO IDEA WHY
         Fast_Blade.name = "Fast Blade";
