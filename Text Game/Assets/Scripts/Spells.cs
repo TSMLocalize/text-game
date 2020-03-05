@@ -10,11 +10,13 @@ public class Spells : MonoBehaviour
     public Spell Fire;
     public Spell Ice;
     public Spell Cure;
+    public Spell Firaga;
 
     private void Start()
     {
         Fire.castTime = 34;
         Ice.castTime = 35;
         Cure.castTime = 46;
+        Firaga.castTime = 30;
     }
 }

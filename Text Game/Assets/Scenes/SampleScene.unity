@@ -7926,7 +7926,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25100002, y: 0.18323773}
   m_AnchorMax: {x: 0.748, y: 0.277}
-  m_AnchoredPosition: {x: 0.10068512, y: 0.120010376}
+  m_AnchoredPosition: {x: 0.10068512, y: 0.11999512}
   m_SizeDelta: {x: -0.20129, y: -0.22999954}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &704146870
@@ -11409,7 +11409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.67600006, y: 0.92100006}
   m_AnchorMax: {x: 0.882184, y: 0.9892373}
-  m_AnchoredPosition: {x: 0.08999634, y: -0.055007935}
+  m_AnchoredPosition: {x: 0.08999634, y: -0.054992676}
   m_SizeDelta: {x: -0.95999146, y: 0.11000061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1047151660
@@ -14155,6 +14155,10 @@ MonoBehaviour:
     name: Cure
     castTime: 0
     spellIcon: {fileID: 21300000, guid: f44bd858dee4bd14d992b122452b4816, type: 3}
+  Firaga:
+    name: 
+    castTime: 0
+    spellIcon: {fileID: 21300000, guid: a4eb4012762e8404db1cfaaae059b533, type: 3}
 --- !u!4 &1376954848
 Transform:
   m_ObjectHideFlags: 0
@@ -17145,6 +17149,7 @@ MonoBehaviour:
     hasConstantAnimationState: 0
     constantAnimationState: 
   battleStates: 0
+  JosiePosText: {fileID: 0}
 --- !u!4 &1548464334
 Transform:
   m_ObjectHideFlags: 0
@@ -18924,7 +18929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.080289654, y: 0.0336503}
   m_AnchorMax: {x: 0.91589063, y: 0.18323773}
-  m_AnchoredPosition: {x: 0.7689972, y: 0.19999695}
+  m_AnchoredPosition: {x: 0.7689972, y: 0.19995117}
   m_SizeDelta: {x: -2.15805, y: 0.000030517578}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1833376809

@@ -88,6 +88,9 @@ public class Battle_Manager : MonoBehaviour
 
     public BattleStates battleStates;
 
+    //TESTING
+    public TextMeshProUGUI JosiePosText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -116,7 +119,7 @@ public class Battle_Manager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
         if (stepForward)
         {
             speed = 4.0f;
