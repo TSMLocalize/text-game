@@ -87,14 +87,22 @@ public class Action_Handler : MonoBehaviour
                     BM.activePlayer.name + " starts casting " + BM.activePlayer.activeSpell.name + " on " + BM.playerTarget.EnemyName + ".");
                 break;
             case "PlayerFinishCast":
-                while (spellReportFinished == false)
-                {
-                    BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+                
+                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
 
-                    SendMessagesToCombatLog(
-                        BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
-                    spellReportFinished = true;
+                SendMessagesToCombatLog(
+                    BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
+
+                if (BM.activePlayer.activeSpell.isAoE == true)
+                {
+                    for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+                    {
+                        BM_Funcs.enemyAnimationController(BM.EnemiesInBattle[i], "TakeDamage");
+                        CreateDamagePopUp(BM.EnemiesInBattle[i].battleSprite.transform.position, "70", Color.white);
+                        SendMessagesToCombatLog(BM.activePlayer.name + " deals 70 Damage to " + BM.EnemiesInBattle[i].EnemyName + "!");
+                    }
                 }
+
                 break;
             case "Weapon Skill":
 
@@ -294,7 +302,11 @@ public class Action_Handler : MonoBehaviour
 
                 IEnumerator waitForCastAnimation()
                 {
-                    yield return new WaitForSeconds(1f);                                        
+                    yield return new WaitForSeconds(1f);
+                    for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+                    {
+                        BM_Funcs.enemyAnimationController(BM.EnemiesInBattle[i]);
+                    }                    
                     BM.activePlayer.constantAnimationState = null;
                     BM.activePlayer.hasConstantAnimationState = false;
                     BM.activePlayer.isCastingSpell = false;

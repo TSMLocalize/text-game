@@ -12,8 +12,9 @@ public class WeaponSkill
     public string alignment;
     public float TPCost;
     public Sprite weaponSkillIcon;
-    public Sprite weaponSkillElement;    
-    
+    public Sprite weaponSkillElement;
+    public bool isAoE;
+
     //Spent Attacks are used to store the amount of attacks used, which are refreshed back to totalAttacks after the WS
     public int spentAttacks;
     public int totalAttacks;

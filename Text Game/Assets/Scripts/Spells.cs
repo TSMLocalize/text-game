@@ -18,5 +18,6 @@ public class Spells : MonoBehaviour
         Ice.castTime = 35;
         Cure.castTime = 46;
         Firaga.castTime = 30;
+        Firaga.isAoE = true;
     }
 }

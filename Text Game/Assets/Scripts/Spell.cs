@@ -10,5 +10,6 @@ public class Spell
     public string name;
     public float castTime;    
     public Sprite spellIcon;
+    public bool isAoE;
     
 }

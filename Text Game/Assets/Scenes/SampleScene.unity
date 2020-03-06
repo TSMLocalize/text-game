@@ -14156,7 +14156,7 @@ MonoBehaviour:
     castTime: 0
     spellIcon: {fileID: 21300000, guid: f44bd858dee4bd14d992b122452b4816, type: 3}
   Firaga:
-    name: 
+    name: Firaga
     castTime: 0
     spellIcon: {fileID: 21300000, guid: a4eb4012762e8404db1cfaaae059b533, type: 3}
 --- !u!4 &1376954848
