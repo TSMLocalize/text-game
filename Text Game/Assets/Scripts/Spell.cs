@@ -11,5 +11,5 @@ public class Spell
     public float castTime;    
     public Sprite spellIcon;
     public bool isAoE;
-    
+    public bool isSupport;
 }

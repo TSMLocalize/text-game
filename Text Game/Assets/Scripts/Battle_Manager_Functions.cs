@@ -45,7 +45,7 @@ public class Battle_Manager_Functions : MonoBehaviour
 
     //This method has been added because of serialization issues
     //players and enemies store their target by a name ID instead
-    public void setPlayerOrEnemyTargetFromID(Player player = null, Enemy enemy = null) 
+    public void setPlayerOrEnemyTargetFromID(Player player = null, Enemy enemy = null, Player supportPlayer = null) 
     {
         if (player != null)
         {
@@ -54,6 +54,16 @@ public class Battle_Manager_Functions : MonoBehaviour
                 if (player.PlayerTargetID == BM.EnemiesInBattle[i].EnemyName)
                 {
                     BM.playerTarget = BM.EnemiesInBattle[i];
+                }
+            }
+        }
+        else if (supportPlayer != null)
+        {
+            for (int i = 0; i < BM.PlayersInBattle.Count; i++)
+            {
+                if (supportPlayer.PlayerTargetID == BM.PlayersInBattle[i].name)
+                {
+                    BM.supportTarget = BM.PlayersInBattle[i];
                 }
             }
         }

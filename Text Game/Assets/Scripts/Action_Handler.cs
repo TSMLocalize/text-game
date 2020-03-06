@@ -79,29 +79,51 @@ public class Action_Handler : MonoBehaviour
                 SendMessagesToCombatLog(
                     BM.activePlayer.name + " waits.");
                 break;
-            case "PlayerStartCast":
+            case "PlayerStartCast":                
 
-                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-
-                SendMessagesToCombatLog(
-                    BM.activePlayer.name + " starts casting " + BM.activePlayer.activeSpell.name + " on " + BM.playerTarget.EnemyName + ".");
-                break;
-            case "PlayerFinishCast":
-                
-                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-
-                SendMessagesToCombatLog(
-                    BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
-
-                if (BM.activePlayer.activeSpell.isAoE == true)
+                if (BM.activePlayer.activeSpell.isSupport == true)
                 {
-                    for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
-                    {
-                        BM_Funcs.enemyAnimationController(BM.EnemiesInBattle[i], "TakeDamage");
-                        CreateDamagePopUp(BM.EnemiesInBattle[i].battleSprite.transform.position, "70", Color.white);
-                        SendMessagesToCombatLog(BM.activePlayer.name + " deals 70 Damage to " + BM.EnemiesInBattle[i].EnemyName + "!");
-                    }
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(null, null, BM.activePlayer);
+                    SendMessagesToCombatLog(
+                        BM.activePlayer.name + " starts casting " + BM.activePlayer.activeSpell.name + " on " + BM.supportTarget.name + ".");
+                }                    
+                else
+                {
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+                    SendMessagesToCombatLog(
+                    BM.activePlayer.name + " starts casting " + BM.activePlayer.activeSpell.name + " on " + BM.playerTarget.EnemyName + ".");
                 }
+                
+                break;                
+            case "PlayerFinishCast":
+                                
+                while(spellReportFinished == false)
+                {
+                    if (BM.activePlayer.activeSpell.isSupport == true)
+                    {
+                        BM_Funcs.setPlayerOrEnemyTargetFromID(null, null, BM.activePlayer);
+                        CreateDamagePopUp(BM.supportTarget.battleSprite.transform.position, "70", Color.green);
+                        SendMessagesToCombatLog(
+                            BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.supportTarget.name + "!");
+                    }
+                    else
+                    {
+                        BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+                        SendMessagesToCombatLog(
+                            BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
+                    }
+
+                    if (BM.activePlayer.activeSpell.isAoE == true)
+                    {
+                        for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+                        {
+                            BM_Funcs.enemyAnimationController(BM.EnemiesInBattle[i], "TakeDamage");
+                            CreateDamagePopUp(BM.EnemiesInBattle[i].battleSprite.transform.position, "70", Color.white);
+                            SendMessagesToCombatLog(BM.activePlayer.name + " deals 70 Damage to " + BM.EnemiesInBattle[i].EnemyName + "!");
+                        }
+                    }
+                    spellReportFinished = true;
+                }                
 
                 break;
             case "Weapon Skill":
@@ -226,7 +248,11 @@ public class Action_Handler : MonoBehaviour
 
                 break;
             case "Magic":
-                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+                if (BM.activePlayer.activeSpell.isSupport == true)
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(null, null, BM.activePlayer);                
+                else
+                    BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+
                 reportOutcome("PlayerStartCast");
                 BM_Funcs.animationController(BM.activePlayer, "IsChanting");
                 BM.activePlayer.constantAnimationState = "IsChanting";
@@ -295,13 +321,12 @@ public class Action_Handler : MonoBehaviour
 
                 break;
             case "Cast":
-
-                BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+                
                 StartCoroutine(waitForCastAnimation());
                 BM_Funcs.animationController(BM.activePlayer, "IsCasting");
 
                 IEnumerator waitForCastAnimation()
-                {
+                {                    
                     yield return new WaitForSeconds(1f);
                     for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                     {
@@ -312,6 +337,7 @@ public class Action_Handler : MonoBehaviour
                     BM.activePlayer.isCastingSpell = false;
                     BM.activePlayer.castSpeedTotal = 0f;
                     BM.activePlayer.playerOptions.Remove("Cast");
+                    spellReportFinished = false;
                     resolveAction(default);
                 }
                                
