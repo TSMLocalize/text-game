@@ -224,7 +224,7 @@ public class Battle_Manager : MonoBehaviour
                     ActivePlayers[i].playerPanelBackground.color = Color.yellow;
                 }
 
-                if (Input.GetKeyUp(KeyCode.Mouse0))
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     //Set the player to green and active if clicked
                     foreach (RaycastResult result in results)
@@ -234,13 +234,9 @@ public class Battle_Manager : MonoBehaviour
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
                                 activePlayer = ActivePlayers[i];
-
                                 stepForward = true;
-
                                 BM_Funcs.populateActionList();
-
                                 battleStates = BattleStates.SELECT_ACTION;
-
                             }
                         }
                     }
@@ -354,7 +350,7 @@ public class Battle_Manager : MonoBehaviour
                                 {
                                     if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.spellBook[y].name)
                                     {
-                                        activePlayer.activeSpell = activePlayer.spellBook[y];                                  
+                                        activePlayer.activeSpell = activePlayer.spellBook[y];                                        
                                     }
                                 }
 
@@ -362,7 +358,7 @@ public class Battle_Manager : MonoBehaviour
                                 {
                                     if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.weaponSkills[x].name)
                                     {
-                                        activePlayer.selectedWeaponSkill = activePlayer.weaponSkills[x];
+                                        activePlayer.selectedWeaponSkill = activePlayer.weaponSkills[x];                                        
                                     }
                                 }
 
@@ -543,7 +539,7 @@ public class Battle_Manager : MonoBehaviour
 
                                 BM_Funcs.instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = Color.yellow;
                                 
-                                if (activePlayer.activeSpell.isSupport == true)
+                                if (activePlayer.activeSpell != null && activePlayer.activeSpell.isSupport == true)
                                 {
                                     battleStates = BattleStates.SELECT_FRIENDLY_TARGET;
                                 }
@@ -577,14 +573,14 @@ public class Battle_Manager : MonoBehaviour
                         }
 
                         //This checks whether a WS or Spell is selected for populating the options (just using null isn't working, hence TP and casttime > 0 check...)
-                        if (activePlayer.selectedWeaponSkill.TPCost > 0)
-                        {
-                            activePlayer.selectedWeaponSkill = null;
+                        if (activePlayer.selectedWeaponSkill.wsAnimTimer > 0)
+                        {                            
+                            activePlayer.selectedWeaponSkill = null;                            
                             BM_Funcs.populateWeaponSkillOptionList();
                         }
                         if (activePlayer.activeSpell.castTime > 0)
-                        {
-                            activePlayer.activeSpell = null;
+                        {                            
+                            activePlayer.activeSpell = null;                            
                             BM_Funcs.populateSpellOptionList();
                         }
 
@@ -732,7 +728,7 @@ public class Battle_Manager : MonoBehaviour
 
                                 BM_Funcs.instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = Color.yellow;
                                 
-                                if (activePlayer.activeSpell.isSupport == true)
+                                if (activePlayer.activeSpell != null && activePlayer.activeSpell.isSupport == true)
                                 {
                                     battleStates = BattleStates.SELECT_FRIENDLY_TARGET;
                                 }
@@ -914,7 +910,7 @@ public class Battle_Manager : MonoBehaviour
 
 
                 break;
-            case BattleStates.RESOLVE_ACTION:
+            case BattleStates.RESOLVE_ACTION:               
 
                 if (activePlayer.constantAnimationState == "IsReady")
                 {

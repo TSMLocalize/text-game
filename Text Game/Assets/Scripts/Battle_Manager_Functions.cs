@@ -44,7 +44,7 @@ public class Battle_Manager_Functions : MonoBehaviour
     }
 
     //This method has been added because of serialization issues
-    //players and enemies store their target by a name ID instead
+    //players and enemies store their target by a name ID, which is translated into a public target variable in the BM
     public void setPlayerOrEnemyTargetFromID(Player player = null, Enemy enemy = null, Player supportPlayer = null) 
     {
         if (player != null)
