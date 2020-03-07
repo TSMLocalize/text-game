@@ -75,6 +75,7 @@ public class Battle_Manager : MonoBehaviour
         SELECT_PLAYER,
         SELECT_ACTION,
         SELECT_OPTION,
+        SELECT_FRIENDLY_TARGET,
         SELECT_TARGET,
         CHANGE_ROW,
         RESOLVE_ACTION,        
@@ -353,7 +354,7 @@ public class Battle_Manager : MonoBehaviour
                                 {
                                     if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.spellBook[y].name)
                                     {
-                                        activePlayer.activeSpell = activePlayer.spellBook[y];
+                                        activePlayer.activeSpell = activePlayer.spellBook[y];                                  
                                     }
                                 }
 
@@ -367,7 +368,13 @@ public class Battle_Manager : MonoBehaviour
 
                                 BM_Funcs.instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = Color.yellow;
 
-                                battleStates = BattleStates.SELECT_TARGET;
+                                if (activePlayer.activeSpell.isSupport == true)
+                                {
+                                    battleStates = BattleStates.SELECT_FRIENDLY_TARGET;                                    
+                                } else
+                                {
+                                    battleStates = BattleStates.SELECT_TARGET;
+                                }                                
                             }
                         }
                         //Left click another player to select them instead
@@ -412,294 +419,331 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 break;
-            case BattleStates.SELECT_TARGET:
+            case BattleStates.SELECT_FRIENDLY_TARGET:
 
                 BM_Funcs.animationController(activePlayer, "IsReady");
 
                 //Color all potential target options yellow
-                if (activePlayer.activeSpell.isSupport == true)
+                for (int i = 0; i < PlayersInBattle.Count; i++)
                 {
+                    PlayersInBattle[i].playerPanelBackground.color = Color.yellow;
+                }
+
+                //Right click to go back to select option or select action
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    if (activePlayer.activeSpell != null)
+                    {
+                        activePlayer.activeSpell = null;
+                        BM_Funcs.populateSpellOptionList();
+                    }
+
                     for (int i = 0; i < PlayersInBattle.Count; i++)
                     {
-                        PlayersInBattle[i].playerPanelBackground.color = Color.yellow;
+                        if (ActivePlayers.Contains(PlayersInBattle[i]) == false)
+                        {
+                            PlayersInBattle[i].playerPanelBackground.color = defaultColor;
+                        }
                     }
 
-                    //LEFT CLICK TO SELECT AN ALLY
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    battleStates = BattleStates.SELECT_OPTION;
+                }
+
+                //LEFT CLICK TO SELECT AN ALLY
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    foreach (RaycastResult result in results)
                     {
-                        foreach (RaycastResult result in results)
+                        for (int i = 0; i < PlayersInBattle.Count; i++)
                         {
-                            for (int i = 0; i < PlayersInBattle.Count; i++)
+                            if (!ActivePlayers.Contains(PlayersInBattle[i]))
                             {
                                 PlayersInBattle[i].playerPanelBackground.GetComponent<Image>().color = defaultColor;
+                            }                            
 
-                                if (result.gameObject == PlayersInBattle[i].playerPanel)
-                                {
-                                    for (int y = 0; y < PlayersInBattle.Count; y++)
-                                    {
-                                        if (PlayersInBattle[y].playerPanel == PlayersInBattle[i].playerPanel)
-                                        {
-                                            activePlayer.PlayerTargetID = PlayersInBattle[y].name;
-                                        }
-                                    }
-
-                                    if (selectedCommand == "Magic")
-                                    {
-                                        activePlayer.isCastingSpell = true;
-                                        Timers_Log.addToTimersLog(activePlayer);
-                                    }                                                                        
-
-                                    battleStates = BattleStates.RESOLVE_ACTION;
-                                }
-                            }
-
-                            //Left click another action to select that instead
-                            for (int i = 0; i < BM_Funcs.instantiatedOptions.Count; i++)
+                            if (result.gameObject == PlayersInBattle[i].playerPanel)
                             {
-                                if (result.gameObject == BM_Funcs.instantiatedOptions[i])
+                                for (int y = 0; y < PlayersInBattle.Count; y++)
                                 {
-                                    if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Magic" && OptionPanel.activeSelf != true)
+                                    if (PlayersInBattle[y].playerPanel == PlayersInBattle[i].playerPanel)
                                     {
-                                        activePlayer.selectedWeaponSkill = null;
-                                        activePlayer.activeSpell = null;
-
-                                        BM_Funcs.populateSpellOptionList();
-                                        battleStates = BattleStates.SELECT_OPTION;
+                                        activePlayer.PlayerTargetID = PlayersInBattle[y].name;
                                     }
-                                    else if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Weapon Skill" && OptionPanel.activeSelf != true)
-                                    {
-                                        activePlayer.selectedWeaponSkill = null;
-                                        activePlayer.activeSpell = null;
-
-                                        BM_Funcs.populateWeaponSkillOptionList();
-                                        battleStates = BattleStates.SELECT_OPTION;
-                                    }
-
-                                    for (int y = 0; y < BM_Funcs.instantiatedOptions.Count; y++)
-                                    {
-                                        BM_Funcs.instantiatedOptions[y].GetComponent<Image>().color = defaultBlueColor;
-                                    }
-
-                                    selectedCommand = BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text;
-                                    BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = Color.yellow;
-
-                                    activePlayer.activeSpell = null;
-                                    OptionPanel.SetActive(false);
-                                    battleStates = BattleStates.SELECT_ACTION;
                                 }
-                            }
-                            //Left click another option to select that instead
-                            for (int i = 0; i < BM_Funcs.instantiatedSpellOptions.Count; i++)
-                            {
-                                if (result.gameObject == BM_Funcs.instantiatedSpellOptions[i])
+
+                                if (selectedCommand == "Magic")
                                 {
-                                    for (int x = 0; x < BM_Funcs.instantiatedSpellOptions.Count; x++)
-                                    {
-                                        BM_Funcs.instantiatedSpellOptions[x].GetComponentInChildren<Image>().color = defaultBlueColor;
-                                    }
+                                    activePlayer.isCastingSpell = true;
+                                    Timers_Log.addToTimersLog(activePlayer);
+                                }                                
 
-                                    for (int y = 0; y < activePlayer.weaponSkills.Count; y++)
-                                    {
-                                        if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.weaponSkills[y].name)
-                                        {
-                                            activePlayer.selectedWeaponSkill = activePlayer.weaponSkills[y];
-                                        }
-                                    }
-                                    for (int y = 0; y < activePlayer.spellBook.Count; y++)
-                                    {
-                                        if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.spellBook[y].name)
-                                        {
-                                            activePlayer.activeSpell = activePlayer.spellBook[y];
-                                        }
-                                    }
-
-                                    BM_Funcs.instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = Color.yellow;
-                                    battleStates = BattleStates.SELECT_TARGET;
-                                }
+                                battleStates = BattleStates.RESOLVE_ACTION;
                             }
                         }
-                    }
 
-                }
-                else
-                {
-                    for (int i = 0; i < EnemiesInBattle.Count; i++)
-                    {
-                        EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
-                    }
-
-                    //Right click to go back to select option or select action
-                    if (Input.GetKeyDown(KeyCode.Mouse1))
-                    {
-                        if (OptionPanel.activeSelf == true)
+                        //Left click another action to select that instead
+                        for (int i = 0; i < BM_Funcs.instantiatedOptions.Count; i++)
                         {
-                            if (activePlayer.selectedWeaponSkill != null)
+                            if (result.gameObject == BM_Funcs.instantiatedOptions[i])
                             {
-                                activePlayer.selectedWeaponSkill = null;
-                                BM_Funcs.populateWeaponSkillOptionList();
-                            }
-                            else if (activePlayer.activeSpell != null)
-                            {
+                                if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Magic" && OptionPanel.activeSelf != true)
+                                {
+                                    activePlayer.selectedWeaponSkill = null;
+                                    activePlayer.activeSpell = null;
+
+                                    BM_Funcs.populateSpellOptionList();
+                                    battleStates = BattleStates.SELECT_OPTION;
+                                }
+                                else if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Weapon Skill" && OptionPanel.activeSelf != true)
+                                {
+                                    activePlayer.selectedWeaponSkill = null;
+                                    activePlayer.activeSpell = null;
+
+                                    BM_Funcs.populateWeaponSkillOptionList();
+                                    battleStates = BattleStates.SELECT_OPTION;
+                                }
+
+                                for (int y = 0; y < BM_Funcs.instantiatedOptions.Count; y++)
+                                {
+                                    BM_Funcs.instantiatedOptions[y].GetComponent<Image>().color = defaultBlueColor;
+                                }
+
+                                selectedCommand = BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text;
+                                BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = Color.yellow;
+
                                 activePlayer.activeSpell = null;
-                                BM_Funcs.populateSpellOptionList();
+                                OptionPanel.SetActive(false);
+                                battleStates = BattleStates.SELECT_ACTION;
                             }
-
-                            for (int i = 0; i < EnemiesInBattle.Count; i++)
-                            {
-                                EnemiesInBattle[i].enemyPanelBackground.color = defaultColor;
-                            }
-
-                            battleStates = BattleStates.SELECT_OPTION;
                         }
-                        else
+                        //Left click another option to select that instead
+                        for (int i = 0; i < BM_Funcs.instantiatedSpellOptions.Count; i++)
                         {
-                            BM_Funcs.animationController(activePlayer);
-
-                            for (int i = 0; i < EnemiesInBattle.Count; i++)
+                            if (result.gameObject == BM_Funcs.instantiatedSpellOptions[i])
                             {
-                                EnemiesInBattle[i].enemyPanelBackground.color = defaultColor;
-                            }
-                            for (int i = 0; i < BM_Funcs.instantiatedOptions.Count; i++)
-                            {
-                                BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = defaultBlueColor;
-                            }
-                            selectedCommand = null;
-
-                            battleStates = BattleStates.SELECT_ACTION;
-                        }
-                    }
-
-
-                    //LEFT CLICK TO SELECT ENEMY
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
-                    {
-                        foreach (RaycastResult result in results)
-                        {
-                            for (int i = 0; i < EnemyPanels.Count; i++)
-                            {
-                                EnemyPanels[i].GetComponent<Image>().color = defaultColor;
-
-                                if (result.gameObject == EnemyPanels[i])
+                                for (int x = 0; x < BM_Funcs.instantiatedSpellOptions.Count; x++)
                                 {
-                                    for (int y = 0; y < EnemiesInBattle.Count; y++)
-                                    {
-                                        if (EnemiesInBattle[y].enemyPanel == EnemyPanels[i])
-                                        {
-                                            activePlayer.PlayerTargetID = EnemiesInBattle[y].EnemyName;
-                                        }
-                                    }
-
-                                    if (selectedCommand == "Magic")
-                                    {
-                                        activePlayer.isCastingSpell = true;
-                                        Timers_Log.addToTimersLog(activePlayer);
-                                    }
-                                    else if (selectedCommand == "Attack")
-                                    {
-                                        ActionHandler.reportOutcome("PlayerAttack");
-                                    }
-                                    else if (selectedCommand == "Weapon Skill")
-                                    {
-                                        combo_Manager.SetUpPanel();
-                                        activePlayer.selectedWeaponSkill.spentAttacks = activePlayer.selectedWeaponSkill.totalAttacks;
-                                        combo_Manager.PlayerWeaponskill(activePlayer.selectedWeaponSkill, activePlayer, playerTarget);
-                                        ActionHandler.CreateDamagePopUp(activePlayer.battleSprite.transform.position, activePlayer.selectedWeaponSkill.name, Color.magenta);
-                                        ActionHandler.reportOutcome("Weapon Skill");
-                                    }
-
-                                    EnemyPanels[i].GetComponent<Image>().color = Color.red;
-
-                                    battleStates = BattleStates.RESOLVE_ACTION;
+                                    BM_Funcs.instantiatedSpellOptions[x].GetComponentInChildren<Image>().color = defaultBlueColor;
                                 }
-                            }
 
-                            //Left click another player to select them instead
-                            for (int i = 0; i < ActivePlayers.Count; i++)
-                            {
-                                if (result.gameObject == ActivePlayers[i].playerPanel)
+                                for (int y = 0; y < activePlayer.weaponSkills.Count; y++)
                                 {
-                                    BM_Funcs.resetChoicePanel();
-                                    activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
-                                    BM_Funcs.animationController(activePlayer);
-                                    activePlayer.battleSprite.transform.position = activePlayer.position;
-                                    activePlayer = ActivePlayers[i];
-                                    stepForward = true;
-                                    selectedCommand = null;
-                                    activePlayer.activeSpell = null;
-                                    OptionPanel.SetActive(false);
-                                    BM_Funcs.populateActionList();
-                                    battleStates = BattleStates.SELECT_ACTION;
+                                    if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.weaponSkills[y].name)
+                                    {
+                                        activePlayer.selectedWeaponSkill = activePlayer.weaponSkills[y];
+                                    }
                                 }
-                            }
-                            //Left click another action to select that instead
-                            for (int i = 0; i < BM_Funcs.instantiatedOptions.Count; i++)
-                            {
-                                if (result.gameObject == BM_Funcs.instantiatedOptions[i])
+                                for (int y = 0; y < activePlayer.spellBook.Count; y++)
                                 {
-                                    if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Magic" && OptionPanel.activeSelf != true)
+                                    if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.spellBook[y].name)
                                     {
-                                        activePlayer.selectedWeaponSkill = null;
-                                        activePlayer.activeSpell = null;
-
-                                        BM_Funcs.populateSpellOptionList();
-                                        battleStates = BattleStates.SELECT_OPTION;
+                                        activePlayer.activeSpell = activePlayer.spellBook[y];
                                     }
-                                    else if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Weapon Skill" && OptionPanel.activeSelf != true)
-                                    {
-                                        activePlayer.selectedWeaponSkill = null;
-                                        activePlayer.activeSpell = null;
-
-                                        BM_Funcs.populateWeaponSkillOptionList();
-                                        battleStates = BattleStates.SELECT_OPTION;
-                                    }
-
-                                    for (int y = 0; y < BM_Funcs.instantiatedOptions.Count; y++)
-                                    {
-                                        BM_Funcs.instantiatedOptions[y].GetComponent<Image>().color = defaultBlueColor;
-                                    }
-
-                                    selectedCommand = BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text;
-                                    BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = Color.yellow;
-
-                                    activePlayer.activeSpell = null;
-                                    OptionPanel.SetActive(false);
-                                    battleStates = BattleStates.SELECT_ACTION;
                                 }
-                            }
-                            //Left click another option to select that instead
-                            for (int i = 0; i < BM_Funcs.instantiatedSpellOptions.Count; i++)
-                            {
-                                if (result.gameObject == BM_Funcs.instantiatedSpellOptions[i])
+
+                                BM_Funcs.instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = Color.yellow;
+                                
+                                if (activePlayer.activeSpell.isSupport == true)
                                 {
-                                    for (int x = 0; x < BM_Funcs.instantiatedSpellOptions.Count; x++)
-                                    {
-                                        BM_Funcs.instantiatedSpellOptions[x].GetComponentInChildren<Image>().color = defaultBlueColor;
-                                    }
-
-                                    for (int y = 0; y < activePlayer.weaponSkills.Count; y++)
-                                    {
-                                        if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.weaponSkills[y].name)
-                                        {
-                                            activePlayer.selectedWeaponSkill = activePlayer.weaponSkills[y];
-                                        }
-                                    }
-                                    for (int y = 0; y < activePlayer.spellBook.Count; y++)
-                                    {
-                                        if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.spellBook[y].name)
-                                        {
-                                            activePlayer.activeSpell = activePlayer.spellBook[y];
-                                        }
-                                    }
-
-                                    BM_Funcs.instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = Color.yellow;
+                                    battleStates = BattleStates.SELECT_FRIENDLY_TARGET;
+                                }
+                                else
+                                {
                                     battleStates = BattleStates.SELECT_TARGET;
                                 }
                             }
                         }
                     }
-                }                
+                }
 
-                
+                break;
+
+            case BattleStates.SELECT_TARGET:
+
+
+                for (int i = 0; i < EnemiesInBattle.Count; i++)
+                {
+                    EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
+                }
+
+                //Right click to go back to select option or select action
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    if (OptionPanel.activeSelf == true)
+                    {
+                        for (int i = 0; i < EnemiesInBattle.Count; i++)
+                        {
+                            EnemiesInBattle[i].enemyPanelBackground.color = defaultColor;
+                        }
+
+                        //This checks whether a WS or Spell is selected for populating the options (just using null isn't working, hence TP and casttime > 0 check...)
+                        if (activePlayer.selectedWeaponSkill.TPCost > 0)
+                        {
+                            activePlayer.selectedWeaponSkill = null;
+                            BM_Funcs.populateWeaponSkillOptionList();
+                        }
+                        if (activePlayer.activeSpell.castTime > 0)
+                        {
+                            activePlayer.activeSpell = null;
+                            BM_Funcs.populateSpellOptionList();
+                        }
+
+                        battleStates = BattleStates.SELECT_OPTION;
+                    }
+                    else
+                    {
+                        BM_Funcs.animationController(activePlayer);
+
+                        for (int i = 0; i < EnemiesInBattle.Count; i++)
+                        {
+                            EnemiesInBattle[i].enemyPanelBackground.color = defaultColor;
+                        }
+                        for (int i = 0; i < BM_Funcs.instantiatedOptions.Count; i++)
+                        {
+                            BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = defaultBlueColor;
+                        }
+                        selectedCommand = null;
+
+                        battleStates = BattleStates.SELECT_ACTION;
+                    }                    
+                }
+
+
+                //LEFT CLICK TO SELECT ENEMY
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    foreach (RaycastResult result in results)
+                    {
+                        for (int i = 0; i < EnemyPanels.Count; i++)
+                        {
+                            EnemyPanels[i].GetComponent<Image>().color = defaultColor;
+
+                            if (result.gameObject == EnemyPanels[i])
+                            {
+                                for (int y = 0; y < EnemiesInBattle.Count; y++)
+                                {
+                                    if (EnemiesInBattle[y].enemyPanel == EnemyPanels[i])
+                                    {
+                                        activePlayer.PlayerTargetID = EnemiesInBattle[y].EnemyName;
+                                    }
+                                }
+
+                                if (selectedCommand == "Magic")
+                                {
+                                    activePlayer.isCastingSpell = true;
+                                    Timers_Log.addToTimersLog(activePlayer);
+                                }
+                                else if (selectedCommand == "Attack")
+                                {
+                                    ActionHandler.reportOutcome("PlayerAttack");
+                                }
+                                else if (selectedCommand == "Weapon Skill")
+                                {
+                                    combo_Manager.SetUpPanel();
+                                    activePlayer.selectedWeaponSkill.spentAttacks = activePlayer.selectedWeaponSkill.totalAttacks;
+                                    combo_Manager.PlayerWeaponskill(activePlayer.selectedWeaponSkill, activePlayer, playerTarget);
+                                    ActionHandler.CreateDamagePopUp(activePlayer.battleSprite.transform.position, activePlayer.selectedWeaponSkill.name, Color.magenta);
+                                    ActionHandler.reportOutcome("Weapon Skill");
+                                }
+
+                                EnemyPanels[i].GetComponent<Image>().color = Color.red;
+
+                                battleStates = BattleStates.RESOLVE_ACTION;
+                            }
+                        }
+
+                        //Left click another player to select them instead
+                        for (int i = 0; i < ActivePlayers.Count; i++)
+                        {
+                            if (result.gameObject == ActivePlayers[i].playerPanel)
+                            {
+                                BM_Funcs.resetChoicePanel();
+                                activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
+                                BM_Funcs.animationController(activePlayer);
+                                activePlayer.battleSprite.transform.position = activePlayer.position;
+                                activePlayer = ActivePlayers[i];
+                                stepForward = true;
+                                selectedCommand = null;
+                                activePlayer.activeSpell = null;
+                                OptionPanel.SetActive(false);
+                                BM_Funcs.populateActionList();
+                                battleStates = BattleStates.SELECT_ACTION;
+                            }
+                        }
+                        //Left click another action to select that instead
+                        for (int i = 0; i < BM_Funcs.instantiatedOptions.Count; i++)
+                        {
+                            if (result.gameObject == BM_Funcs.instantiatedOptions[i])
+                            {
+                                if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Magic" && OptionPanel.activeSelf != true)
+                                {
+                                    activePlayer.selectedWeaponSkill = null;
+                                    activePlayer.activeSpell = null;
+
+                                    BM_Funcs.populateSpellOptionList();
+                                    battleStates = BattleStates.SELECT_OPTION;
+                                }
+                                else if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Weapon Skill" && OptionPanel.activeSelf != true)
+                                {
+                                    activePlayer.selectedWeaponSkill = null;
+                                    activePlayer.activeSpell = null;
+
+                                    BM_Funcs.populateWeaponSkillOptionList();
+                                    battleStates = BattleStates.SELECT_OPTION;
+                                }
+
+                                for (int y = 0; y < BM_Funcs.instantiatedOptions.Count; y++)
+                                {
+                                    BM_Funcs.instantiatedOptions[y].GetComponent<Image>().color = defaultBlueColor;
+                                }
+
+                                selectedCommand = BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text;
+                                BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = Color.yellow;
+
+                                activePlayer.activeSpell = null;
+                                OptionPanel.SetActive(false);
+                                battleStates = BattleStates.SELECT_ACTION;
+                            }
+                        }
+                        //Left click another option to select that instead
+                        for (int i = 0; i < BM_Funcs.instantiatedSpellOptions.Count; i++)
+                        {
+                            if (result.gameObject == BM_Funcs.instantiatedSpellOptions[i])
+                            {                                
+                                for (int x = 0; x < BM_Funcs.instantiatedSpellOptions.Count; x++)
+                                {
+                                    BM_Funcs.instantiatedSpellOptions[x].GetComponentInChildren<Image>().color = defaultBlueColor;
+                                }
+
+                                for (int y = 0; y < activePlayer.weaponSkills.Count; y++)
+                                {
+                                    if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.weaponSkills[y].name)
+                                    {
+                                        activePlayer.selectedWeaponSkill = activePlayer.weaponSkills[y];
+                                    }
+                                }
+                                for (int y = 0; y < activePlayer.spellBook.Count; y++)
+                                {
+                                    if (result.gameObject.GetComponentInChildren<TextMeshProUGUI>().text == activePlayer.spellBook[y].name)
+                                    {
+                                        activePlayer.activeSpell = activePlayer.spellBook[y];
+                                    }
+                                }
+
+                                BM_Funcs.instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = Color.yellow;
+                                
+                                if (activePlayer.activeSpell.isSupport == true)
+                                {
+                                    battleStates = BattleStates.SELECT_FRIENDLY_TARGET;
+                                }
+                                else
+                                {
+                                    battleStates = BattleStates.SELECT_TARGET;
+                                }
+                            }
+                        }
+                    }
+                }
 
                 break;
             case BattleStates.CHANGE_ROW:

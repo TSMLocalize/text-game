@@ -7420,6 +7420,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     EnemyPortrait: {fileID: 21300000, guid: b16b1c81d2211db4b9c9c0004ac16789, type: 3}
     enemyPanel: {fileID: 0}
@@ -7460,6 +7462,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     EnemyPortrait: {fileID: 21300000, guid: 8e0148b3bc2e6b440bfc3cdbc1913824, type: 3}
     enemyPanel: {fileID: 0}
@@ -7500,6 +7504,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     EnemyPortrait: {fileID: 21300000, guid: 54cc4bd3fb94fc14ca88b81e50419667, type: 3}
     enemyPanel: {fileID: 0}
@@ -7540,6 +7546,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     EnemyPortrait: {fileID: 21300000, guid: 2966398d1c117b84da49022f17c494c9, type: 3}
     enemyPanel: {fileID: 0}
@@ -7580,6 +7588,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     EnemyPortrait: {fileID: 21300000, guid: ca65f4047d989b643931d4144ac3d3db, type: 3}
     enemyPanel: {fileID: 0}
@@ -7620,6 +7630,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     EnemyPortrait: {fileID: 21300000, guid: 7d224dd25783c8f47970ffcf9b611f8c, type: 3}
     enemyPanel: {fileID: 0}
@@ -7660,6 +7672,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     EnemyPortrait: {fileID: 21300000, guid: c1584bd6c35dd074082052506393517d, type: 3}
     enemyPanel: {fileID: 0}
@@ -7700,6 +7714,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     EnemyPortrait: {fileID: 21300000, guid: 13f5404eac497804b9df53e401e0ec89, type: 3}
     enemyPanel: {fileID: 0}
@@ -11740,6 +11756,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      isAoE: 0
       spentAttacks: 0
       totalAttacks: 0
       wsMultiAttackReportTimer: 0
@@ -11752,6 +11769,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     PlayerPortrait: {fileID: 21300000, guid: 79cf816457472ed48931a23d8cfecd5c, type: 3}
     playerPanel: {fileID: 0}
@@ -11796,6 +11815,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      isAoE: 0
       spentAttacks: 0
       totalAttacks: 0
       wsMultiAttackReportTimer: 0
@@ -11808,6 +11828,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     PlayerPortrait: {fileID: 21300000, guid: 67cd3454cf5863d45903b9bc5bd9708e, type: 3}
     playerPanel: {fileID: 0}
@@ -11852,6 +11874,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      isAoE: 0
       spentAttacks: 0
       totalAttacks: 0
       wsMultiAttackReportTimer: 0
@@ -11864,6 +11887,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     PlayerPortrait: {fileID: 21300000, guid: cd38a231963561246a933d8ba45c4f98, type: 3}
     playerPanel: {fileID: 0}
@@ -11908,6 +11933,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      isAoE: 0
       spentAttacks: 0
       totalAttacks: 0
       wsMultiAttackReportTimer: 0
@@ -11920,6 +11946,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     PlayerPortrait: {fileID: 21300000, guid: 6753d5e63aa63e64aac1a376f8bd9bdb, type: 3}
     playerPanel: {fileID: 0}
@@ -11964,6 +11992,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      isAoE: 0
       spentAttacks: 0
       totalAttacks: 0
       wsMultiAttackReportTimer: 0
@@ -11976,6 +12005,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     PlayerPortrait: {fileID: 21300000, guid: 7009addfb04a26e42824c1f4ca5613b3, type: 3}
     playerPanel: {fileID: 0}
@@ -12020,6 +12051,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      isAoE: 0
       spentAttacks: 0
       totalAttacks: 0
       wsMultiAttackReportTimer: 0
@@ -12032,6 +12064,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     PlayerPortrait: {fileID: 21300000, guid: f7d178f9b4262bb43a18128aa6775fd1, type: 3}
     playerPanel: {fileID: 0}
@@ -14147,18 +14181,32 @@ MonoBehaviour:
     name: Fire
     castTime: 0
     spellIcon: {fileID: 21300000, guid: dbdd0bcd4d8fb224ab80e3654b7256bc, type: 3}
+    isAoE: 0
+    isSupport: 0
   Ice:
     name: Ice
     castTime: 0
     spellIcon: {fileID: 21300000, guid: b539800d16c5e8146b5935caf60c15a8, type: 3}
+    isAoE: 0
+    isSupport: 0
   Cure:
     name: Cure
     castTime: 0
     spellIcon: {fileID: 21300000, guid: f44bd858dee4bd14d992b122452b4816, type: 3}
+    isAoE: 0
+    isSupport: 0
+  Curaga:
+    name: Curaga
+    castTime: 0
+    spellIcon: {fileID: 21300000, guid: f81b6f565386fdc47821d998fe8e6750, type: 3}
+    isAoE: 0
+    isSupport: 0
   Firaga:
     name: Firaga
     castTime: 0
     spellIcon: {fileID: 21300000, guid: a4eb4012762e8404db1cfaaae059b533, type: 3}
+    isAoE: 0
+    isSupport: 0
 --- !u!4 &1376954848
 Transform:
   m_ObjectHideFlags: 0
@@ -16748,6 +16796,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      isAoE: 0
       spentAttacks: 0
       totalAttacks: 0
       wsMultiAttackReportTimer: 0
@@ -16760,6 +16809,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     PlayerPortrait: {fileID: 0}
     playerPanel: {fileID: 0}
@@ -16806,6 +16857,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      isAoE: 0
       spentAttacks: 0
       totalAttacks: 0
       wsMultiAttackReportTimer: 0
@@ -16818,6 +16870,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     PlayerPortrait: {fileID: 0}
     playerPanel: {fileID: 0}
@@ -16860,6 +16914,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     EnemyPortrait: {fileID: 0}
     enemyPanel: {fileID: 0}
@@ -16881,13 +16937,6 @@ MonoBehaviour:
     enemyAttackAnimIsDone: 0
     enemyCastAnimIsDone: 0
     enemyReadyAnimIsDone: 0
-  PlayerPanels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   PlayerSpeedBars:
   - {fileID: 0}
   - {fileID: 0}
@@ -16998,13 +17047,6 @@ MonoBehaviour:
   - {fileID: 290181745}
   - {fileID: 1473521608}
   - {fileID: 436452895}
-  PlayerPanelTexts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   EnemyPanelTexts:
   - {fileID: 595528193}
   - {fileID: 642011294}
@@ -17071,6 +17113,8 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     EnemyPortrait: {fileID: 0}
     enemyPanel: {fileID: 0}
@@ -17115,6 +17159,7 @@ MonoBehaviour:
       TPCost: 0
       weaponSkillIcon: {fileID: 0}
       weaponSkillElement: {fileID: 0}
+      isAoE: 0
       spentAttacks: 0
       totalAttacks: 0
       wsMultiAttackReportTimer: 0
@@ -17127,6 +17172,67 @@ MonoBehaviour:
       name: 
       castTime: 0
       spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
+    isCastingSpell: 0
+    PlayerPortrait: {fileID: 0}
+    playerPanel: {fileID: 0}
+    playerPanelText: {fileID: 0}
+    playerPanelBackground: {fileID: 0}
+    playerSpeedBar: {fileID: 0}
+    playerSpeedBarText: {fileID: 0}
+    playerTPBar: {fileID: 0}
+    playerTPBarFill: {fileID: 0}
+    playerTPBarText: {fileID: 0}
+    playerCastBar: {fileID: 0}
+    playerCastBarFill: {fileID: 0}
+    playerCastBarText: {fileID: 0}
+    battleSprite: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    target: {x: 0, y: 0, z: 0}
+    currentRowPositionID: 0
+    currentRowPosition: {fileID: 0}
+    currentRowPositionIcon: {fileID: 0}
+    hasConstantAnimationState: 0
+    constantAnimationState: 
+  supportTarget:
+    name: 
+    currentHP: 0
+    maxHP: 0
+    speed: 0
+    speedTotal: 0
+    storeTP: 0
+    tpTotal: 0
+    castSpeed: 0
+    castSpeedTotal: 0
+    PlayerTargetID: 
+    Accuracy: 0
+    Evasion: 0
+    Attack: 0
+    Armor: 0
+    weaponSkills: []
+    selectedWeaponSkill:
+      name: 
+      element: 
+      alignment: 
+      TPCost: 0
+      weaponSkillIcon: {fileID: 0}
+      weaponSkillElement: {fileID: 0}
+      isAoE: 0
+      spentAttacks: 0
+      totalAttacks: 0
+      wsMultiAttackReportTimer: 0
+      wsAnimTimer: 0
+      willCreateSkillchain: 0
+      skillChainLevel: 0
+    playerOptions: []
+    spellBook: []
+    activeSpell:
+      name: 
+      castTime: 0
+      spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
     isCastingSpell: 0
     PlayerPortrait: {fileID: 0}
     playerPanel: {fileID: 0}
@@ -17284,6 +17390,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -17309,6 +17416,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -17323,6 +17431,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -17336,6 +17445,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19344,6 +19454,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: a3808dd39fa94ff4286ac84eee162ce0, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19357,6 +19468,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 2c5175d3e79bc1e4aaca3f0b35f76ce3, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19370,6 +19482,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 45c4199c0a4942040a19c3707b255e62, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19383,6 +19496,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 668b3c63c46ee4e4a83ac746a8ffa4e9, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19396,6 +19510,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: a17af1340c78da346b334441bb1f2724, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19409,6 +19524,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 378e11256086b4a448715eae8a30af03, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19422,6 +19538,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19435,6 +19552,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 0}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19448,6 +19566,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 2b54618d288ac67469f8ba215cb17fa2, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19461,6 +19580,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: f2c2ca11c3c97eb4ab2d7245ca89aa7c, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19474,6 +19594,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 35594c2b7a928f8409d618fb9df511b1, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19487,6 +19608,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 44b95cbfcb707e84bbcad0a5b2e0101b, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19500,6 +19622,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: c4080ab0566096c4f97ade725993a276, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19513,6 +19636,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 334d864f6d15c6648a85c8536d7817f5, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19526,6 +19650,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 0c4216a5fc317a5419d39ce960792fff, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19539,6 +19664,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: c7377c6e67a10414c981606e0ec422c9, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19552,6 +19678,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 620d18983f70e5a4eb693a30e0c45807, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19565,6 +19692,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 8913d3d7c66103946976db2f675d74fb, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19578,6 +19706,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: b822eb4f51b82f547972cc33baaea252, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19591,6 +19720,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: 393855f5656ef2441bba846f7cbe39cb, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19604,6 +19734,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: bb8a8fa2e70a0214bbbeb816ea357987, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
@@ -19617,6 +19748,7 @@ MonoBehaviour:
     TPCost: 0
     weaponSkillIcon: {fileID: 21300000, guid: d1f9f07c15684da4fb0f0df3a28f8868, type: 3}
     weaponSkillElement: {fileID: 0}
+    isAoE: 0
     spentAttacks: 0
     totalAttacks: 0
     wsMultiAttackReportTimer: 0
