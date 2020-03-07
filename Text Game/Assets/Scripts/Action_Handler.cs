@@ -99,21 +99,24 @@ public class Action_Handler : MonoBehaviour
                                 
                 while(spellReportFinished == false)
                 {
-                    if (BM.activePlayer.activeSpell.isSupport == true)
+                    if (BM.activePlayer.activeSpell.isSupport == true && BM.activePlayer.activeSpell.isAoE == true)
+                    {
+                        for (int i = 0; i < BM.PlayersInBattle.Count; i++)
+                        {
+                            BM_Funcs.animationController(BM.PlayersInBattle[i], "IsCasting");
+                            CreateDamagePopUp(BM.PlayersInBattle[i].battleSprite.transform.position, "70", Color.green);
+                            SendMessagesToCombatLog(BM.activePlayer.name + " heals " + BM.PlayersInBattle[i].name + " for 70!");
+                        }
+                    }
+                    else if (BM.activePlayer.activeSpell.isSupport == true)
                     {
                         BM_Funcs.setPlayerOrEnemyTargetFromID(null, null, BM.activePlayer);
+                        BM_Funcs.animationController(BM.supportTarget, "IsCasting");
                         CreateDamagePopUp(BM.supportTarget.battleSprite.transform.position, "70", Color.green);
                         SendMessagesToCombatLog(
                             BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.supportTarget.name + "!");
                     }
-                    else
-                    {
-                        BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                        SendMessagesToCombatLog(
-                            BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
-                    }
-
-                    if (BM.activePlayer.activeSpell.isAoE == true)
+                    else if (BM.activePlayer.activeSpell.isAoE == true)
                     {
                         for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                         {
@@ -122,6 +125,13 @@ public class Action_Handler : MonoBehaviour
                             SendMessagesToCombatLog(BM.activePlayer.name + " deals 70 Damage to " + BM.EnemiesInBattle[i].EnemyName + "!");
                         }
                     }
+                    else
+                    {
+                        BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+                        SendMessagesToCombatLog(
+                            BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
+                    }
+                    
                     spellReportFinished = true;
                 }                
 
@@ -331,7 +341,11 @@ public class Action_Handler : MonoBehaviour
                     for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                     {
                         BM_Funcs.enemyAnimationController(BM.EnemiesInBattle[i]);
-                    }                    
+                    }
+                    for (int i = 0; i < BM.PlayersInBattle.Count; i++)
+                    {
+                        BM_Funcs.animationController(BM.PlayersInBattle[i]);    
+                    }
                     BM.activePlayer.constantAnimationState = null;
                     BM.activePlayer.hasConstantAnimationState = false;
                     BM.activePlayer.isCastingSpell = false;

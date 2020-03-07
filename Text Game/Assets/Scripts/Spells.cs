@@ -10,6 +10,7 @@ public class Spells : MonoBehaviour
     public Spell Fire;
     public Spell Ice;
     public Spell Cure;
+    public Spell Curaga;
     public Spell Firaga;
 
     private void Start()
@@ -18,6 +19,9 @@ public class Spells : MonoBehaviour
         Ice.castTime = 35;
         Cure.castTime = 46;
         Cure.isSupport = true;
+        Curaga.castTime = 32;
+        Curaga.isAoE = true;
+        Curaga.isSupport = true;
         Firaga.castTime = 30;
         Firaga.isAoE = true;
     }

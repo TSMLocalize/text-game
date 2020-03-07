@@ -25,7 +25,7 @@ public class Party_Manager : MonoBehaviour
         partyMembers.Add(Jenny);
         
         Josie.speed = 100f;
-        Jemima.speed = 1f;
+        Jemima.speed = 100f;
         Jennifer.speed = 1f;
         Jessica.speed = 1f;
         Jody.speed = 1f;
@@ -98,7 +98,8 @@ public class Party_Manager : MonoBehaviour
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Fire);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Ice);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Cure);
-        Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Firaga);    
+        Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Firaga);
+        Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Curaga);
         Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Fast_Blade);
         Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Raging_Axe);
         Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Penta_Thrust);
