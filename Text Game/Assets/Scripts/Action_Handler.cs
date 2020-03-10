@@ -24,6 +24,7 @@ public class Action_Handler : MonoBehaviour
     public List<Message> messageList;
     public GameObject chatPanel;
     public GameObject textObject;
+    public GameObject statusAilment;
 
     // Start is called before the first frame update
     void Start()
@@ -227,6 +228,10 @@ public class Action_Handler : MonoBehaviour
 
                     SendMessagesToCombatLog(
                         BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
+                    CreateStatusAilment(BM.enemyTarget.battleSprite, 12, "poison");
+                    BM_Funcs.animationController(BM.enemyTarget, "IsCritical");
+                    BM.enemyTarget.constantAnimationState = "IsCritical";
+                    BM.enemyTarget.hasConstantAnimationState = true;
                     enemySpellReportFinished = true;
                 }
 
@@ -391,6 +396,12 @@ public class Action_Handler : MonoBehaviour
         damagePopUp.Setup(damageAmount, color);
 
         return damagePopUp;
+    }
+
+    //Create a status ailment 
+    public void CreateStatusAilment(GameObject target, int timeRemaining, string type)
+    {        
+        Instantiate(statusAilment, target.transform);
     }
 
     public void SendMessagesToCombatLog(string text)

@@ -935,7 +935,7 @@ public class Battle_Manager : MonoBehaviour
 
                 if (activeEnemy.isCastingSpell == false)
                 {
-                    int randomActionNo = Random.Range(1, 3);
+                    int randomActionNo = Random.Range(2, 3);
 
                     if (randomActionNo == 1)
                     {
@@ -943,7 +943,7 @@ public class Battle_Manager : MonoBehaviour
                     }
                     else if (randomActionNo == 2)
                     {
-                        activeEnemy.activeSpell = SpellManager.Fire;
+                        activeEnemy.activeSpell = SpellManager.Poison;
                         selectedCommand = "EnemySpell";
                     }
 

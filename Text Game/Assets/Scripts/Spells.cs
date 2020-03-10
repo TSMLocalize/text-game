@@ -12,6 +12,7 @@ public class Spells : MonoBehaviour
     public Spell Cure;
     public Spell Curaga;
     public Spell Firaga;
+    public Spell Poison;
 
     private void Start()
     {
@@ -24,5 +25,6 @@ public class Spells : MonoBehaviour
         Curaga.isSupport = true;
         Firaga.castTime = 30;
         Firaga.isAoE = true;
+        Poison.castTime = 2;        
     }
 }

@@ -426,6 +426,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", false);
         player.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", false);
+        player.battleSprite.GetComponent<Animator>().SetBool("IsCritical", false);
 
         if (state == "TakeDamage")
         {
@@ -450,6 +451,10 @@ public class Battle_Manager_Functions : MonoBehaviour
         else if (state == "IsWalking")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
+        }
+        else if (state == "IsCritical")
+        {
+            player.battleSprite.GetComponent<Animator>().SetBool("IsCritical", true);
         }
         else if (player.hasConstantAnimationState)
         {
