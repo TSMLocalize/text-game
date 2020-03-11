@@ -305,11 +305,7 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
-                                activePlayer.battleSprite.transform.position = activePlayer.position;
-                                activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;                                
-                                activePlayer = ActivePlayers[i];
-                                stepForward = true;
-                                selectedCommand = null;
+                                BM_Funcs.resetChoice(ActivePlayers[i]);                                
                                 BM_Funcs.populateActionList();
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
@@ -364,7 +360,7 @@ public class Battle_Manager : MonoBehaviour
 
                                 BM_Funcs.instantiatedSpellOptions[i].GetComponentInChildren<Image>().color = Color.yellow;
 
-                                if (activePlayer.activeSpell.isSupport == true)
+                                if (activePlayer.activeSpell != null && activePlayer.activeSpell.isSupport == true)
                                 {
                                     battleStates = BattleStates.SELECT_FRIENDLY_TARGET;                                    
                                 } else
@@ -378,13 +374,7 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
-                                BM_Funcs.resetChoicePanel();
-                                activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
-                                BM_Funcs.animationController(activePlayer);
-                                activePlayer.battleSprite.transform.position = activePlayer.position;
-                                activePlayer = ActivePlayers[i];
-                                stepForward = true;
-                                selectedCommand = null;
+                                BM_Funcs.resetChoice(ActivePlayers[i]);
                                 activePlayer.activeSpell = null;
                                 activePlayer.selectedWeaponSkill = null;
                                 OptionPanel.SetActive(false);                                
@@ -573,12 +563,12 @@ public class Battle_Manager : MonoBehaviour
                         }
 
                         //This checks whether a WS or Spell is selected for populating the options (just using null isn't working, hence TP and casttime > 0 check...)
-                        if (activePlayer.selectedWeaponSkill.wsAnimTimer > 0)
+                        if (activePlayer.selectedWeaponSkill != null && activePlayer.selectedWeaponSkill.wsAnimTimer > 0)
                         {                            
                             activePlayer.selectedWeaponSkill = null;                            
                             BM_Funcs.populateWeaponSkillOptionList();
                         }
-                        if (activePlayer.activeSpell.castTime > 0)
+                        if (activePlayer.activeSpell != null && activePlayer.activeSpell.castTime > 0)
                         {                            
                             activePlayer.activeSpell = null;                            
                             BM_Funcs.populateSpellOptionList();
@@ -653,13 +643,7 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
-                                BM_Funcs.resetChoicePanel();
-                                activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
-                                BM_Funcs.animationController(activePlayer);
-                                activePlayer.battleSprite.transform.position = activePlayer.position;
-                                activePlayer = ActivePlayers[i];
-                                stepForward = true;
-                                selectedCommand = null;
+                                BM_Funcs.resetChoice(ActivePlayers[i]);
                                 activePlayer.activeSpell = null;
                                 OptionPanel.SetActive(false);
                                 BM_Funcs.populateActionList();
@@ -805,13 +789,7 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
-                                BM_Funcs.resetChoicePanel();
-                                activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
-                                BM_Funcs.animationController(activePlayer);
-                                activePlayer.battleSprite.transform.position = activePlayer.position;
-                                activePlayer = ActivePlayers[i];
-                                stepForward = true;
-                                selectedCommand = null;
+                                BM_Funcs.resetChoice(ActivePlayers[i]);
                                 activePlayer.activeSpell = null;                                
                                 OptionPanel.SetActive(false);
 

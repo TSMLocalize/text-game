@@ -38,6 +38,17 @@ public class Battle_Manager_Functions : MonoBehaviour
         ActionHandler = GetComponent<Action_Handler>();
     }
 
+    public void resetChoice(Player player)
+    {
+        resetChoicePanel();
+        BM.activePlayer.playerPanel.GetComponent<Image>().color = Color.yellow;
+        animationController(BM.activePlayer);
+        BM.activePlayer.battleSprite.transform.position = BM.activePlayer.position;
+        BM.activePlayer = player;
+        BM.stepForward = true;
+        BM.selectedCommand = null;
+    }    
+
     public void standIdle(Player playerToIdle)
     {
         playerToIdle.battleSprite.transform.position = playerToIdle.position;
