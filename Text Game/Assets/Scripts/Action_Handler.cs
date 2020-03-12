@@ -352,11 +352,8 @@ public class Action_Handler : MonoBehaviour
                     {
                         BM_Funcs.animationController(BM.PlayersInBattle[i]);    
                     }
-                    if (BM.activePlayer.constantAnimationState == "IsChanting")
-                    {
-                        BM.activePlayer.constantAnimationState = null;
-                        BM.activePlayer.hasConstantAnimationState = false;
-                    }                    
+                    BM.activePlayer.constantAnimationState = null;
+                    BM.activePlayer.hasConstantAnimationState = false;
                     BM.activePlayer.isCastingSpell = false;
                     BM.activePlayer.castSpeedTotal = 0f;
                     BM.activePlayer.playerOptions.Remove("Cast");

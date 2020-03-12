@@ -903,11 +903,8 @@ public class Battle_Manager : MonoBehaviour
 
                 if (activePlayer.constantAnimationState == "IsReady")
                 {
-                    if (activePlayer.constantAnimationState == "IsChanting")
-                    {
-                        activePlayer.constantAnimationState = null;
-                        activePlayer.hasConstantAnimationState = false;
-                    }                    
+                    activePlayer.constantAnimationState = null;
+                    activePlayer.hasConstantAnimationState = false;
                 }
 
                 ActionHandler.resolveAction(selectedCommand);
