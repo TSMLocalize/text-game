@@ -24,7 +24,8 @@ public class Action_Handler : MonoBehaviour
     public List<Message> messageList;
     public GameObject chatPanel;
     public GameObject textObject;
-    public GameObject statusAilment;    
+    public GameObject statusAilment;
+    public List<StatusAilment> statusAilmentList;
 
     // Start is called before the first frame update
     void Start()
@@ -401,7 +402,11 @@ public class Action_Handler : MonoBehaviour
     //Create a status ailment 
     public void CreateStatusAilment(GameObject target, int timeRemaining, string type)
     {        
-        Instantiate(statusAilment, target.transform);
+        GameObject statusAilmentGameObject = Instantiate(statusAilment, target.transform);
+
+        StatusAilment statusAilmentToAdd = statusAilmentGameObject.GetComponentInChildren<StatusAilment>();
+
+        statusAilmentList.Add(statusAilmentToAdd);
     }
 
     public void SendMessagesToCombatLog(string text)

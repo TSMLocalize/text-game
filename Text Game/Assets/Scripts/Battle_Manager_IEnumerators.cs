@@ -149,4 +149,28 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
             }
         }
     }
+
+    public IEnumerator updateStatusAilMentSpeedBars(StatusAilment statusAilment)
+    {
+        while (BM.coroutineIsPaused == true)
+        {
+            yield return null;
+        }
+
+        while (BM.coroutineIsPaused == false)
+        {
+            if (BM.returningStarting == true)
+            {
+                yield return new WaitForSeconds(0.3f);
+                BM.returningStarting = false;
+            }
+
+            if (statusAilment.statusTimerNumber > 0)
+            {
+                statusAilment.statusTimerNumber -= 1f;                
+            }
+
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
 }

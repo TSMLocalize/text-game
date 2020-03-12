@@ -170,7 +170,18 @@ public class Battle_Manager : MonoBehaviour
                 {
                     startSpeedCoroutines();
                     StartCoroutine(combo_Manager.updateTimeRemaining());
+
+                    if (ActionHandler.statusAilmentList.Count > 0)
+                    {
+                        for (int i = 0; i < ActionHandler.statusAilmentList.Count; i++)
+                        {
+                            StartCoroutine(BM_Enums.updateStatusAilMentSpeedBars(ActionHandler.statusAilmentList[i]));
+                        }
+                    }                    
+                    
                     startRoutinesGoingAgain = false;
+
+
                 }
 
                 //Check if a player is above 100 Speed, and pause the Coroutine
