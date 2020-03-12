@@ -24,8 +24,7 @@ public class Action_Handler : MonoBehaviour
     public List<Message> messageList;
     public GameObject chatPanel;
     public GameObject textObject;
-    public GameObject statusAilment;
-    public List<GameObject> statusAilments; 
+    public GameObject statusAilment;    
 
     // Start is called before the first frame update
     void Start()
