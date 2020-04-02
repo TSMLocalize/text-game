@@ -26,6 +26,11 @@ public class Timers_Log : MonoBehaviour
     {        
         BM = GetComponent<Battle_Manager>();
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
+
+        for (int i = 0; i < BM.PlayersInBattle.Count; i++)
+        {
+            addToTimersLog(BM.PlayersInBattle[i]);
+        }
     }
 
     [System.Serializable]
@@ -76,6 +81,21 @@ public class Timers_Log : MonoBehaviour
                     new Vector3(Mathf.Clamp((instantiatedTimersOptions[i].enemy.castSpeedTotal / instantiatedTimersOptions[i].enemy.activeSpell.castTime), 0, 1),
                         instantiatedTimersImageArray[2].transform.localScale.y, instantiatedTimersImageArray[2].transform.localScale.z);
             } 
+            else if (instantiatedTimersOptions[i].player != null && instantiatedTimersOptions[i].player.isCastingSpell == false)
+            {
+                instantiatedTimersOptions[i].timeTilTurn = Mathf.CeilToInt((100 - instantiatedTimersOptions[i].player.speedTotal) / instantiatedTimersOptions[i].player.speed);
+
+                instantiatedTimersImageArray[1].overrideSprite = instantiatedTimersOptions[i].player.PlayerPortrait;
+
+                instantiatedTimersTextArray[0].text =
+                    instantiatedTimersOptions[i].player.name + "\n" + " @" + instantiatedTimersOptions[i].timeTilTurn;
+
+                instantiatedTimersImageArray[2].color = Color.blue;
+
+                instantiatedTimersImageArray[2].transform.localScale =
+                    new Vector3(Mathf.Clamp((((100 - instantiatedTimersOptions[i].player.speedTotal) / instantiatedTimersOptions[i].player.speed) / 10), 0, 1),
+                        instantiatedTimersImageArray[2].transform.localScale.y, instantiatedTimersImageArray[2].transform.localScale.z);
+            }
             else
             {
                 Destroy(instantiatedTimersOptions[i].timersEntry);
@@ -96,7 +116,10 @@ public class Timers_Log : MonoBehaviour
         } else if (enemy != null && enemy.isCastingSpell)
         {
             newTimersEntry.timeTilTurn = Mathf.CeilToInt(enemy.castSpeedTotal / enemy.castSpeed);
-        }                       
+        } else if (player != null && player.isCastingSpell == false)
+        {
+            newTimersEntry.timeTilTurn = Mathf.CeilToInt((100 - player.speedTotal) / player.speed);
+        }                   
         instantiatedTimersOptions.Add(newTimersEntry);        
     }
 }
