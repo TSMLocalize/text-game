@@ -641,7 +641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.000091552734}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: -590.4615, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &73059372
@@ -10820,8 +10820,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1190124505}
   m_HandleRect: {fileID: 1190124504}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99999976
+  m_Value: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17013,6 +17013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc694585531b774c9cb4dcd1c229254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnimHandler: {fileID: 0}
   BM_Funcs: {fileID: 1548464335}
   BM_Enums: {fileID: 0}
   ActionHandler: {fileID: 0}
@@ -17551,6 +17552,7 @@ MonoBehaviour:
   BM: {fileID: 1548464333}
   BM_Enums: {fileID: 0}
   ActionHandler: {fileID: 0}
+  AnimHandler: {fileID: 0}
   pfPlayerPanel: {fileID: 6137343275098270327, guid: 1fce35e2deace414d974eb0123323568,
     type: 3}
   instantiatedPlayerPanels: []
@@ -17599,6 +17601,7 @@ MonoBehaviour:
   BM: {fileID: 0}
   BM_Funcs: {fileID: 0}
   combo_Manager: {fileID: 0}
+  animHandler: {fileID: 0}
   BM_Enums: {fileID: 0}
   spellReportFinished: 0
   enemySpellReportFinished: 0

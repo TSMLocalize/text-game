@@ -17,6 +17,7 @@ public class Action_Handler : MonoBehaviour
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
     public Combo_Manager combo_Manager;
+    public Animation_Handler animHandler;
     public Battle_Manager_IEnumerators BM_Enums;
     public bool spellReportFinished;
     public bool enemySpellReportFinished;
@@ -36,6 +37,7 @@ public class Action_Handler : MonoBehaviour
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
         combo_Manager = GetComponent<Combo_Manager>();
+        animHandler = GetComponent<Animation_Handler>();
     }
 
     [System.Serializable]
@@ -105,7 +107,7 @@ public class Action_Handler : MonoBehaviour
                     {
                         for (int i = 0; i < BM.PlayersInBattle.Count; i++)
                         {
-                            BM_Funcs.animationController(BM.PlayersInBattle[i], "IsCasting");
+                            animHandler.animationController(BM.PlayersInBattle[i], "IsCasting");
                             CreateDamagePopUp(BM.PlayersInBattle[i].battleSprite.transform.position, "70", Color.green);
                             SendMessagesToCombatLog(BM.activePlayer.name + " heals " + BM.PlayersInBattle[i].name + " for 70!");
                         }
@@ -113,7 +115,7 @@ public class Action_Handler : MonoBehaviour
                     else if (BM.activePlayer.activeSpell.isSupport == true)
                     {
                         BM_Funcs.setPlayerOrEnemyTargetFromID(null, null, BM.activePlayer);
-                        BM_Funcs.animationController(BM.supportTarget, "IsCasting");
+                        animHandler.animationController(BM.supportTarget, "IsCasting");
                         CreateDamagePopUp(BM.supportTarget.battleSprite.transform.position, "70", Color.green);
                         SendMessagesToCombatLog(
                             BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.supportTarget.name + "!");
@@ -122,7 +124,7 @@ public class Action_Handler : MonoBehaviour
                     {
                         for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                         {
-                            BM_Funcs.enemyAnimationController(BM.EnemiesInBattle[i], "TakeDamage");
+                            animHandler.enemyAnimationController(BM.EnemiesInBattle[i], "TakeDamage");
                             CreateDamagePopUp(BM.EnemiesInBattle[i].battleSprite.transform.position, "70", Color.white);
                             SendMessagesToCombatLog(BM.activePlayer.name + " deals 70 Damage to " + BM.EnemiesInBattle[i].EnemyName + "!");
                         }
@@ -230,7 +232,7 @@ public class Action_Handler : MonoBehaviour
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
                     CreateStatusAilment(BM.enemyTarget.battleSprite, 12, "poison");
-                    BM_Funcs.animationController(BM.enemyTarget, "IsCritical");
+                    animHandler.animationController(BM.enemyTarget, "IsCritical");
                     BM.enemyTarget.isCritical = true;
                     enemySpellReportFinished = true;
                 }
@@ -250,13 +252,13 @@ public class Action_Handler : MonoBehaviour
 
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
                 StartCoroutine(waitForAttackAnimation());
-                BM_Funcs.animationController(BM.activePlayer, "IsAttacking");
-                BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
+                animHandler.animationController(BM.activePlayer, "IsAttacking");
+                animHandler.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
                 IEnumerator waitForAttackAnimation()
                 {
                     yield return new WaitForSeconds(1f);
-                    BM_Funcs.enemyAnimationController(BM.playerTarget);
+                    animHandler.enemyAnimationController(BM.playerTarget);
                     BM.activePlayer.speedTotal -= 100f;
                     resolveAction(default);
                 }                               
@@ -269,7 +271,7 @@ public class Action_Handler : MonoBehaviour
                     BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
 
                 reportOutcome("PlayerStartCast");
-                BM_Funcs.animationController(BM.activePlayer, "IsChanting");                
+                animHandler.animationController(BM.activePlayer, "IsChanting");                
                 BM.activePlayer.playerCastBar.SetActive(true);
                 BM.activePlayer.castSpeedTotal = BM.activePlayer.activeSpell.castTime;
                 BM.activePlayer.speedTotal -= 100f;
@@ -294,13 +296,13 @@ public class Action_Handler : MonoBehaviour
 
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
                 StartCoroutine(waitForWeaponSkillAnimation());
-                BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
+                animHandler.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
                 IEnumerator waitForWeaponSkillAnimation()
                 {
                     yield return new WaitForSeconds(BM.activePlayer.selectedWeaponSkill.wsAnimTimer);                                        
-                    BM_Funcs.enemyAnimationController(BM.playerTarget);
-                    BM_Funcs.animationController(BM.activePlayer, "Ready");
+                    animHandler.enemyAnimationController(BM.playerTarget);
+                    animHandler.animationController(BM.activePlayer, "Ready");
                     BM.activePlayer.speedTotal -= 100f;
                     BM.activePlayer.tpTotal = 0;
 
@@ -321,12 +323,12 @@ public class Action_Handler : MonoBehaviour
                 StopAllCoroutines();
 
                 StartCoroutine(waitForSkillChainAnimation());
-                BM_Funcs.enemyAnimationController(BM.playerTarget, "TakeDamage");
+                animHandler.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
                 IEnumerator waitForSkillChainAnimation()
                 {                                        
                     yield return new WaitForSeconds(1.5f);                    
-                    BM_Funcs.enemyAnimationController(BM.playerTarget);
+                    animHandler.enemyAnimationController(BM.playerTarget);
                     BM.activePlayer.selectedWeaponSkill.willCreateSkillchain = false;
                     resolveAction(default);
                     StopCoroutine(waitForSkillChainAnimation());
@@ -336,18 +338,18 @@ public class Action_Handler : MonoBehaviour
             case "Cast":
                 
                 StartCoroutine(waitForCastAnimation());
-                BM_Funcs.animationController(BM.activePlayer, "IsCasting");
+                animHandler.animationController(BM.activePlayer, "IsCasting");
 
                 IEnumerator waitForCastAnimation()
                 {                    
                     yield return new WaitForSeconds(1f);
                     for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                     {
-                        BM_Funcs.enemyAnimationController(BM.EnemiesInBattle[i]);
+                        animHandler.enemyAnimationController(BM.EnemiesInBattle[i]);
                     }
                     for (int i = 0; i < BM.PlayersInBattle.Count; i++)
                     {
-                        BM_Funcs.animationController(BM.PlayersInBattle[i]);    
+                        animHandler.animationController(BM.PlayersInBattle[i]);    
                     }                    
                     BM.activePlayer.isCastingSpell = false;
                     BM.activePlayer.activeSpell = null;
@@ -361,7 +363,7 @@ public class Action_Handler : MonoBehaviour
             default:
                 StopAllCoroutines();                
                 BM_Funcs.standIdle(BM.activePlayer);
-                BM_Funcs.animationController(BM.activePlayer);
+                animHandler.animationController(BM.activePlayer);
                 BM.activePlayer.playerPanel.GetComponent<Image>().color = BM.defaultColor;
                 BM_Funcs.resetChoicePanel();
                 BM.ActionPanel.SetActive(false);

@@ -7,7 +7,8 @@ using TMPro;
 
 [System.Serializable]
 public class Battle_Manager : MonoBehaviour
-{       
+{
+    public Animation_Handler AnimHandler;
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
     public Action_Handler ActionHandler;
@@ -99,6 +100,7 @@ public class Battle_Manager : MonoBehaviour
         ActionHandler = GetComponent<Action_Handler>();
         Timers_Log = GetComponent<Timers_Log>();
         combo_Manager = GetComponent<Combo_Manager>();
+        AnimHandler = GetComponent<Animation_Handler>();
 
         BM_Funcs.setupCharacters();
 
@@ -120,41 +122,6 @@ public class Battle_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //This sets a hierarchy of idle animation states based on whether casting or sick etc.
-        for (int i = 0; i < PlayersInBattle.Count; i++)
-        {
-            if (PlayersInBattle[i].isCastingSpell)
-            {
-                PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
-            } else if (PlayersInBattle[i].isCritical)
-            {
-                PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsCritical", true);
-            } else if(PlayersInBattle[i].battleSprite.transform.childCount == 0)
-            {
-                PlayersInBattle[i].isCritical = false;
-                PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsCritical", false);
-            }
-        }
-
-        if (stepForward)
-        {
-            speed = 4.0f;
-
-            //Transform the Sprite forward a set distance and set walking animation
-            BM_Funcs.animationController(activePlayer, "IsWalking");
-
-            float step = speed * Time.deltaTime;
-            activePlayer.battleSprite.transform.position = Vector3.MoveTowards(activePlayer.battleSprite.transform.position, activePlayer.target, step);
-
-            if (activePlayer.battleSprite.transform.position == activePlayer.target)
-            {
-                BM_Funcs.animationController(activePlayer);
-
-                stepForward = false;
-            }
-        }
-
         m_PointerEventData = new PointerEventData(m_EventSystem);
         m_PointerEventData.position = Input.mousePosition;
         List<RaycastResult> results = new List<RaycastResult>();
@@ -206,7 +173,7 @@ public class Battle_Manager : MonoBehaviour
                     {
                         if (EnemiesInBattle[i].isCastingSpell != true)
                         {
-                            BM_Funcs.animationController(PlayersInBattle[i], "IsReady");                            
+                            AnimHandler.animationController(PlayersInBattle[i], "IsReady");                            
                         }
 
                         ActivePlayers.Add(PlayersInBattle[i]);
@@ -219,7 +186,7 @@ public class Battle_Manager : MonoBehaviour
                     {
                         if (EnemiesInBattle[i].isCastingSpell != true)
                         {
-                            BM_Funcs.enemyAnimationController(EnemiesInBattle[i], "IsReady");
+                            AnimHandler.enemyAnimationController(EnemiesInBattle[i], "IsReady");
                             EnemiesInBattle[i].constantAnimationState = "IsReady";
                             EnemiesInBattle[i].hasConstantAnimationState = true;
                         }
@@ -431,7 +398,7 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.SELECT_FRIENDLY_TARGET:
 
-                BM_Funcs.animationController(activePlayer, "IsReady");
+                AnimHandler.animationController(activePlayer, "IsReady");
 
                 //Color all potential target options yellow
                 for (int i = 0; i < PlayersInBattle.Count; i++)
@@ -602,7 +569,7 @@ public class Battle_Manager : MonoBehaviour
                     }
                     else
                     {
-                        BM_Funcs.animationController(activePlayer);
+                        AnimHandler.animationController(activePlayer);
 
                         for (int i = 0; i < EnemiesInBattle.Count; i++)
                         {
@@ -755,7 +722,7 @@ public class Battle_Manager : MonoBehaviour
                 //Populate Row Change Icons, minus the activeplayer's
                 if (!rowSelected)
                 {
-                    BM_Funcs.animationController(activePlayer, "IsReady");
+                    AnimHandler.animationController(activePlayer, "IsReady");
 
                     for (int i = 0; i < RowChangeIcons.Count; i++)
                     {
@@ -769,7 +736,7 @@ public class Battle_Manager : MonoBehaviour
                 //Right click to go back to select action
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
-                    BM_Funcs.animationController(activePlayer);
+                    AnimHandler.animationController(activePlayer);
 
                     for (int i = 0; i < BM_Funcs.instantiatedOptions.Count; i++)
                     {
@@ -789,7 +756,7 @@ public class Battle_Manager : MonoBehaviour
                 //If clicking a row icon, set that row icon as the target and start a hands up animation
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    BM_Funcs.animationController(activePlayer);
+                    AnimHandler.animationController(activePlayer);
 
                     foreach (RaycastResult result in results)
                     {
@@ -798,7 +765,7 @@ public class Battle_Manager : MonoBehaviour
                             if (result.gameObject == RowChangeIcons[i])
                             {
                                 RowToSwitch = Rows[i];
-                                BM_Funcs.animationController(activePlayer, "IsCasting");
+                                AnimHandler.animationController(activePlayer, "IsCasting");
 
                                 for (int y = 0; y < RowChangeIcons.Count; y++)
                                 {
@@ -871,7 +838,7 @@ public class Battle_Manager : MonoBehaviour
                             playerToSwitchRowWith = PlayersInBattle[i];
 
                             //Set hands up animation
-                            BM_Funcs.animationController(PlayersInBattle[i], "IsCasting");
+                            AnimHandler.animationController(PlayersInBattle[i], "IsCasting");
 
                             PlayersInBattle[i].battleSprite.transform.position = Vector3.MoveTowards(PlayersInBattle[i].battleSprite.transform.position,
                                 activePlayer.position, step);
@@ -884,8 +851,8 @@ public class Battle_Manager : MonoBehaviour
                         if (activePlayer.battleSprite.transform.position == RowToSwitch.transform.position &&
                             playerToSwitchRowWith.battleSprite.transform.position == activePlayer.position)
                         {
-                            BM_Funcs.animationController(playerToSwitchRowWith);
-                            BM_Funcs.animationController(activePlayer);
+                            AnimHandler.animationController(playerToSwitchRowWith);
+                            AnimHandler.animationController(activePlayer);
                             rowSelected = false;
                         }
                     }
@@ -894,7 +861,7 @@ public class Battle_Manager : MonoBehaviour
                     {
                         if (activePlayer.battleSprite.transform.position == RowToSwitch.transform.position)
                         {
-                            BM_Funcs.animationController(activePlayer);
+                            AnimHandler.animationController(activePlayer);
                             rowSelected = false;
                         }
                     }
@@ -973,7 +940,7 @@ public class Battle_Manager : MonoBehaviour
                 {
                     activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
                     activeEnemy.enemyReadyAnimIsDone = false;
-                    BM_Funcs.enemyAnimationController(activeEnemy);
+                    AnimHandler.enemyAnimationController(activeEnemy);
 
                     if (selectedCommand == "EnemyAttack")
                     {
@@ -997,8 +964,8 @@ public class Battle_Manager : MonoBehaviour
                     BM_Funcs.setPlayerOrEnemyTargetFromID(null, activeEnemy);
                     activeEnemy.enemyAttackAnimCoroutineIsPaused = false;
                     StartCoroutine(BM_Enums.waitForEnemyAttackAnimation(activeEnemy));
-                    BM_Funcs.enemyAnimationController(activeEnemy, "IsAttacking");
-                    BM_Funcs.animationController(enemyTarget, "TakeDamage");                    
+                    AnimHandler.enemyAnimationController(activeEnemy, "IsAttacking");
+                    AnimHandler.animationController(enemyTarget, "TakeDamage");                    
 
                     if (activeEnemy.enemyAttackAnimIsDone == true)
                     {
@@ -1006,8 +973,8 @@ public class Battle_Manager : MonoBehaviour
                         activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
                         activeEnemy.constantAnimationState = null;
                         activeEnemy.hasConstantAnimationState = false;
-                        BM_Funcs.animationController(enemyTarget);
-                        BM_Funcs.enemyAnimationController(activeEnemy);
+                        AnimHandler.animationController(enemyTarget);
+                        AnimHandler.enemyAnimationController(activeEnemy);
                         activeEnemy.speedTotal -= 100f;
                         activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
                         activeEnemy.EnemyTargetID = null;
@@ -1038,7 +1005,7 @@ public class Battle_Manager : MonoBehaviour
                     activeEnemy.constantAnimationState = null;
                     activeEnemy.hasConstantAnimationState = false;
                     activeEnemy.constantAnimationState = "IsChanting";
-                    BM_Funcs.enemyAnimationController(activeEnemy, "IsChanting");
+                    AnimHandler.enemyAnimationController(activeEnemy, "IsChanting");
                     activeEnemy.isCastingSpell = true;
                     activeEnemy.hasConstantAnimationState = true;
                     activeEnemy.enemyCastBar.SetActive(true);
@@ -1066,7 +1033,7 @@ public class Battle_Manager : MonoBehaviour
                 {
                     activeEnemy.constantAnimationState = null;
                     activeEnemy.hasConstantAnimationState = false;
-                    BM_Funcs.enemyAnimationController(activeEnemy, "IsCasting");
+                    AnimHandler.enemyAnimationController(activeEnemy, "IsCasting");
                     activeEnemy.enemyCastAnimCoroutineIsPaused = false;
 
                     if (activeEnemy.enemyCastAnimIsDone)
@@ -1074,7 +1041,7 @@ public class Battle_Manager : MonoBehaviour
                         ActionHandler.enemySpellReportFinished = false;
                         activeEnemy.enemyCastAnimIsDone = false;
                         activeEnemy.enemyCastAnimCoroutineIsPaused = true;                                                
-                        BM_Funcs.enemyAnimationController(activeEnemy);
+                        AnimHandler.enemyAnimationController(activeEnemy);
                         activeEnemy.isCastingSpell = false;
                         activeEnemy.enemyCastBar.SetActive(false);
                         activeEnemy.castSpeedTotal = 0f;
