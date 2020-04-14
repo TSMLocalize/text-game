@@ -12,6 +12,7 @@ public class Combo_Manager : MonoBehaviour
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
     public Action_Handler ActionHandler;
+    public Animation_Handler AnimHandler;
     public TextMeshProUGUI WStimer;
     public float timeRemaining = 5;
     public bool WSTimerActivated;   
@@ -34,6 +35,7 @@ public class Combo_Manager : MonoBehaviour
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         ActionHandler = GetComponent<Action_Handler>();
         weaponSkills = FindObjectOfType<WeaponSkills>();
+        AnimHandler = FindObjectOfType<Animation_Handler>();
 
         StartCoroutine(updateTimeRemaining());
     }
@@ -121,6 +123,7 @@ public class Combo_Manager : MonoBehaviour
 
     public void PlayerWeaponskill(WeaponSkill weaponSkill, Player attacker = null, Enemy target = null)
     {
+        AnimHandler.animationController(BM.activePlayer);
         BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
         ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
         addWSToTheList(weaponSkill);

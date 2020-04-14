@@ -129,12 +129,7 @@ public class Battle_Manager : MonoBehaviour
 
         BM_Funcs.updateEnemyUIBars();
 
-        BM_Funcs.updatePlayerUIBars();
-        
-        if (Timers_Log.instantiatedTimersOptions.Count >= 1)
-        {
-            Timers_Log.updateTimersLog();
-        }        
+        BM_Funcs.updatePlayerUIBars();       
 
         switch (battleStates)
         {
@@ -451,7 +446,7 @@ public class Battle_Manager : MonoBehaviour
                                 if (selectedCommand == "Magic")
                                 {
                                     activePlayer.isCastingSpell = true;
-                                    Timers_Log.addToTimersLog(activePlayer);
+                                    //Timers_Log.addToTimersLog(activePlayer);
                                 }                                
 
                                 battleStates = BattleStates.RESOLVE_ACTION;
@@ -608,7 +603,7 @@ public class Battle_Manager : MonoBehaviour
                                 if (selectedCommand == "Magic")
                                 {
                                     activePlayer.isCastingSpell = true;
-                                    Timers_Log.addToTimersLog(activePlayer);
+                                    //Timers_Log.addToTimersLog(activePlayer);
                                 }
                                 else if (selectedCommand == "Attack")
                                 {
@@ -1012,7 +1007,7 @@ public class Battle_Manager : MonoBehaviour
                     activeEnemy.castSpeedTotal = activeEnemy.activeSpell.castTime;
                     activeEnemy.speedTotal -= 100f;
                     activeEnemy.enemyPanel.GetComponent<Image>().color = defaultColor;
-                    Timers_Log.addToTimersLog(null, activeEnemy);                    
+                    //Timers_Log.addToTimersLog(null, activeEnemy);                    
                     ActiveEnemies.Remove(activeEnemy);
                     activeEnemy = null;
                     selectedCommand = null;

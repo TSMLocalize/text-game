@@ -32,7 +32,7 @@ public class Animation_Handler : MonoBehaviour
             {
                 BM.PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
             }
-            else if (BM.PlayersInBattle[i].isCritical)
+            else if (BM.PlayersInBattle[i].isCritical && BM.battleStates != Battle_Manager.BattleStates.RESOLVE_ACTION)
             {
                 BM.PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsCritical", true);
             }

@@ -9,6 +9,7 @@ using TMPro;
 [System.Serializable]
 public class Timers_Log : MonoBehaviour
 {
+    /*
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
 
@@ -31,6 +32,14 @@ public class Timers_Log : MonoBehaviour
         {
             addToTimersLog(BM.PlayersInBattle[i]);
         }
+    }
+
+    void Update()
+    {
+        if (Timers_Log.instantiatedTimersOptions.Count >= 1)
+        {
+            Timers_Log.updateTimersLog();
+        }        
     }
 
     [System.Serializable]
@@ -122,4 +131,5 @@ public class Timers_Log : MonoBehaviour
         }                   
         instantiatedTimersOptions.Add(newTimersEntry);        
     }
+    */
 }
