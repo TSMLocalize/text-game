@@ -11,7 +11,8 @@ public class Animation_Handler : MonoBehaviour
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
     public Combo_Manager combo_Manager;
-    public Battle_Manager_IEnumerators BM_Enums;    
+    public Battle_Manager_IEnumerators BM_Enums;
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -46,12 +47,12 @@ public class Animation_Handler : MonoBehaviour
 
         if (BM.stepForward)
         {
-            BM.speed = 4.0f;
+            speed = 4.0f;
 
             //Transform the Sprite forward a set distance and set walking animation
             animationController(BM.activePlayer, "IsWalking");
 
-            float step = BM.speed * Time.deltaTime;
+            float step = speed * Time.deltaTime;
             BM.activePlayer.battleSprite.transform.position = Vector3.MoveTowards(BM.activePlayer.battleSprite.transform.position, BM.activePlayer.target, step);
 
             if (BM.activePlayer.battleSprite.transform.position == BM.activePlayer.target)
