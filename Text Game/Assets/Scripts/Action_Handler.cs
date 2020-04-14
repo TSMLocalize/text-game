@@ -231,8 +231,7 @@ public class Action_Handler : MonoBehaviour
 
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
-                    CreateStatusAilment(BM.enemyTarget.battleSprite, 12, "poison");
-                    animHandler.animationController(BM.enemyTarget, "IsCritical");
+                    CreateStatusAilment(BM.enemyTarget.battleSprite, 12, "poison");                    
                     BM.enemyTarget.isCritical = true;
                     enemySpellReportFinished = true;
                 }
