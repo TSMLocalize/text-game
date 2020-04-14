@@ -466,11 +466,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         else if (state == "IsCritical")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsCritical", true);
-        }
-        else if (player.hasConstantAnimationState)
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationState, true);
-        }
+        }        
     }
 
     public void enemyAnimationController(Enemy enemy, string state = null)

@@ -228,11 +228,10 @@ public class Action_Handler : MonoBehaviour
                     BM_Funcs.setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
 
                     SendMessagesToCombatLog(
-                        BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
+                    BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
                     CreateStatusAilment(BM.enemyTarget.battleSprite, 12, "poison");
                     BM_Funcs.animationController(BM.enemyTarget, "IsCritical");
-                    BM.enemyTarget.constantAnimationState = "IsCritical";
-                    BM.enemyTarget.hasConstantAnimationState = true;
+                    BM.enemyTarget.isCritical = true;
                     enemySpellReportFinished = true;
                 }
 
@@ -270,9 +269,7 @@ public class Action_Handler : MonoBehaviour
                     BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
 
                 reportOutcome("PlayerStartCast");
-                BM_Funcs.animationController(BM.activePlayer, "IsChanting");
-                BM.activePlayer.constantAnimationState = "IsChanting";
-                BM.activePlayer.hasConstantAnimationState = true;
+                BM_Funcs.animationController(BM.activePlayer, "IsChanting");                
                 BM.activePlayer.playerCastBar.SetActive(true);
                 BM.activePlayer.castSpeedTotal = BM.activePlayer.activeSpell.castTime;
                 BM.activePlayer.speedTotal -= 100f;
@@ -351,9 +348,7 @@ public class Action_Handler : MonoBehaviour
                     for (int i = 0; i < BM.PlayersInBattle.Count; i++)
                     {
                         BM_Funcs.animationController(BM.PlayersInBattle[i]);    
-                    }
-                    BM.activePlayer.constantAnimationState = null;
-                    BM.activePlayer.hasConstantAnimationState = false;
+                    }                    
                     BM.activePlayer.isCastingSpell = false;
                     BM.activePlayer.activeSpell = null;
                     BM.activePlayer.castSpeedTotal = 0f;

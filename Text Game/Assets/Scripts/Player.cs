@@ -34,6 +34,7 @@ public class Player
     public List<Spell> spellBook;
     public Spell activeSpell = null;
     public bool isCastingSpell;
+    public bool isCritical;    
 
     //Battle UI Player Elements    
     public Sprite PlayerPortrait;
@@ -55,8 +56,5 @@ public class Player
     public Vector3 target;    
     public int currentRowPositionID;
     public GameObject currentRowPosition;
-    public GameObject currentRowPositionIcon;
-    public bool hasConstantAnimationState;
-    public string constantAnimationState = "";
-    
+    public GameObject currentRowPositionIcon;    
 }

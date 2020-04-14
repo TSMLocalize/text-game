@@ -119,7 +119,24 @@ public class Battle_Manager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+
+        //This sets a hierarchy of idle animation states based on whether casting or sick etc.
+        for (int i = 0; i < PlayersInBattle.Count; i++)
+        {
+            if (PlayersInBattle[i].isCastingSpell)
+            {
+                PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
+            } else if (PlayersInBattle[i].isCritical)
+            {
+                PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsCritical", true);
+            } else if(PlayersInBattle[i].battleSprite.transform.childCount == 0)
+            {
+                PlayersInBattle[i].isCritical = false;
+                PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsCritical", false);
+            }
+        }
+
         if (stepForward)
         {
             speed = 4.0f;
@@ -180,8 +197,6 @@ public class Battle_Manager : MonoBehaviour
                     }                    
                     
                     startRoutinesGoingAgain = false;
-
-
                 }
 
                 //Check if a player is above 100 Speed, and pause the Coroutine
@@ -191,9 +206,7 @@ public class Battle_Manager : MonoBehaviour
                     {
                         if (EnemiesInBattle[i].isCastingSpell != true)
                         {
-                            BM_Funcs.animationController(PlayersInBattle[i], "IsReady");
-                            PlayersInBattle[i].constantAnimationState = "IsReady";
-                            PlayersInBattle[i].hasConstantAnimationState = true;
+                            BM_Funcs.animationController(PlayersInBattle[i], "IsReady");                            
                         }
 
                         ActivePlayers.Add(PlayersInBattle[i]);
@@ -899,13 +912,7 @@ public class Battle_Manager : MonoBehaviour
 
 
                 break;
-            case BattleStates.RESOLVE_ACTION:               
-
-                if (activePlayer.constantAnimationState == "IsReady")
-                {
-                    activePlayer.constantAnimationState = null;
-                    activePlayer.hasConstantAnimationState = false;
-                }
+            case BattleStates.RESOLVE_ACTION:                               
 
                 ActionHandler.resolveAction(selectedCommand);
 

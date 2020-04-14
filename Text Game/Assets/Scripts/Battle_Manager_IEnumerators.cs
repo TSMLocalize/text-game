@@ -96,8 +96,7 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
                     player.castSpeedTotal -= player.castSpeed;
                 }
                 else
-                {
-                    
+                {                    
                     player.speedTotal += player.speed;
                 }
 
@@ -173,7 +172,7 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
                 }
 
                 if (statusAilment.statusTimerNumber == 0)
-                {
+                {                                        
                     Destroy(statusAilment.transform.gameObject);
                     yield return null;
                 }
