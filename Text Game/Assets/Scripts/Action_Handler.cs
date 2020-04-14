@@ -355,6 +355,7 @@ public class Action_Handler : MonoBehaviour
                     BM.activePlayer.constantAnimationState = null;
                     BM.activePlayer.hasConstantAnimationState = false;
                     BM.activePlayer.isCastingSpell = false;
+                    BM.activePlayer.activeSpell = null;
                     BM.activePlayer.castSpeedTotal = 0f;
                     BM.activePlayer.playerOptions.Remove("Cast");
                     spellReportFinished = false;
