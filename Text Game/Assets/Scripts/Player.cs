@@ -50,6 +50,8 @@ public class Player
     public GameObject playerCastBarFill;
     public TextMeshProUGUI playerCastBarText;
 
+    public GameObject playerTimersEntry;
+
     //Battle sprite related
     public GameObject battleSprite;
     public Vector3 position;

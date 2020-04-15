@@ -28,7 +28,7 @@ public class Animation_Handler : MonoBehaviour
     {
         //This sets a hierarchy of idle animation states based on whether casting or sick etc.
         for (int i = 0; i < BM.PlayersInBattle.Count; i++)
-        {
+        {            
             if (BM.PlayersInBattle[i].isCastingSpell)
             {
                 BM.PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);

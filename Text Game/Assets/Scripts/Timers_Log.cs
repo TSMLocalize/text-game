@@ -9,47 +9,73 @@ using TMPro;
 [System.Serializable]
 public class Timers_Log : MonoBehaviour
 {
-    /*
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
 
-    public GameObject pfTimersOption;
-    public GameObject instantiatedTimersOption;
-    public List<TimersEntry> instantiatedTimersOptions;
-    public GameObject TimersOptionPanel;
-    public Image[] instantiatedTimersImageArray;
+    public GameObject pfTimer;
+    public List<GameObject> TimerList;
+    public List<Vector3> TimerListPositions;
+    public GameObject TimersPanel;
+    public Image[] TimersImageArray;
     public TextMeshProUGUI[] instantiatedTimersTextArray;
 
     public List<Vector3> ListPositions;
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
         BM = GetComponent<Battle_Manager>();
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
 
-        for (int i = 0; i < BM.PlayersInBattle.Count; i++)
-        {
-            addToTimersLog(BM.PlayersInBattle[i]);
-        }
     }
 
     void Update()
     {
-        if (Timers_Log.instantiatedTimersOptions.Count >= 1)
+        for (int i = 0; i < BM.PlayersInBattle.Count; i++)
         {
-            Timers_Log.updateTimersLog();
-        }        
+            TimersImageArray = BM.PlayersInBattle[i].playerTimersEntry.GetComponentsInChildren<Image>();
+            TimersImageArray[1].overrideSprite = BM.PlayersInBattle[i].PlayerPortrait;
+            //TimerList = TimerList.OrderByDescending(s => s.);
+        }
+
+        updateTimers();
     }
 
-    [System.Serializable]
-    public class TimersEntry
+    public void updateTimers()
     {
-        public Enemy enemy;
-        public Player player;
-        public GameObject timersEntry;
-        public float timeTilTurn;        
+        TimerListPositions.Clear();
+
+        for (int i = 0; i < TimerList.Count; i++)
+        {
+            TimerListPositions.Add(TimerList[i].transform.position);
+        }
     }
+
+    public class TimerEntry {
+    //This needs to be a class so we can work with it properly
+    }
+
+    /*
+    public void addToTimersLog()
+    {
+        TimersEntry newTimersEntry = new TimersEntry();
+        newTimersEntry.player = player;
+        newTimersEntry.enemy = enemy;
+
+        if (player != null && player.isCastingSpell)
+        {
+            newTimersEntry.timeTilTurn = Mathf.CeilToInt(player.castSpeedTotal / player.castSpeed);
+        } else if (enemy != null && enemy.isCastingSpell)
+        {
+            newTimersEntry.timeTilTurn = Mathf.CeilToInt(enemy.castSpeedTotal / enemy.castSpeed);
+        } else if (player != null && player.isCastingSpell == false)
+        {
+            newTimersEntry.timeTilTurn = Mathf.CeilToInt((100 - player.speedTotal) / player.speed);
+        }                   
+                
+    }
+
+
 
     public void updateTimersLog()
     {
@@ -111,25 +137,6 @@ public class Timers_Log : MonoBehaviour
                 instantiatedTimersOptions.Remove(instantiatedTimersOptions[i]);
             }
         }
-    }
-
-    public void addToTimersLog(Player player = null, Enemy enemy = null)
-    {
-        TimersEntry newTimersEntry = new TimersEntry();
-        newTimersEntry.player = player;
-        newTimersEntry.enemy = enemy;
-
-        if (player != null && player.isCastingSpell)
-        {
-            newTimersEntry.timeTilTurn = Mathf.CeilToInt(player.castSpeedTotal / player.castSpeed);
-        } else if (enemy != null && enemy.isCastingSpell)
-        {
-            newTimersEntry.timeTilTurn = Mathf.CeilToInt(enemy.castSpeedTotal / enemy.castSpeed);
-        } else if (player != null && player.isCastingSpell == false)
-        {
-            newTimersEntry.timeTilTurn = Mathf.CeilToInt((100 - player.speedTotal) / player.speed);
-        }                   
-        instantiatedTimersOptions.Add(newTimersEntry);        
     }
     */
 }
