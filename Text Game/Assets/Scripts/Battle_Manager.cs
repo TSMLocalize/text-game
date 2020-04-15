@@ -53,7 +53,8 @@ public class Battle_Manager : MonoBehaviour
     public GameObject ActionPanel;
     public GameObject OptionPanel;
     public GameObject PartyManager;
-    public GameObject EnemyManager;    
+    public GameObject EnemyManager;
+    public GameObject RowManager;
     public Spells SpellManager;
     public bool coroutineIsPaused = false;
     public bool returningStarting = true;
