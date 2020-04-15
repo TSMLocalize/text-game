@@ -641,7 +641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -590.4615, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &73059372
@@ -18021,7 +18021,6 @@ MonoBehaviour:
   OptionPanel: {fileID: 1713860532}
   PartyManager: {fileID: 1110468976}
   EnemyManager: {fileID: 679064225}
-  RowManager: {fileID: 215790227}
   SpellManager: {fileID: 1376954847}
   coroutineIsPaused: 0
   returningStarting: 0
@@ -18401,6 +18400,7 @@ MonoBehaviour:
   BM_Funcs: {fileID: 0}
   combo_Manager: {fileID: 0}
   BM_Enums: {fileID: 0}
+  speed: 0
 --- !u!1 &1551812233
 GameObject:
   m_ObjectHideFlags: 0
