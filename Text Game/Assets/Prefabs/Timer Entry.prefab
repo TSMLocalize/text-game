@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 8820856181307721946}
   - component: {fileID: 8820856181307721941}
   - component: {fileID: 8820856181307721940}
+  - component: {fileID: 551820044591690428}
   m_Layer: 5
   m_Name: Timer Entry
   m_TagString: TimersEntry
@@ -246,6 +247,78 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &551820044591690428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820856181307721942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e52ed16965e474f9d75b4cd0a264a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimersEntryPlayer:
+    name: 
+    currentHP: 0
+    maxHP: 0
+    speed: 0
+    speedTotal: 0
+    storeTP: 0
+    tpTotal: 0
+    castSpeed: 0
+    castSpeedTotal: 0
+    PlayerTargetID: 
+    Accuracy: 0
+    Evasion: 0
+    Attack: 0
+    Armor: 0
+    weaponSkills: []
+    selectedWeaponSkill:
+      name: 
+      element: 
+      alignment: 
+      TPCost: 0
+      weaponSkillIcon: {fileID: 0}
+      weaponSkillElement: {fileID: 0}
+      isAoE: 0
+      spentAttacks: 0
+      totalAttacks: 0
+      wsMultiAttackReportTimer: 0
+      wsAnimTimer: 0
+      willCreateSkillchain: 0
+      skillChainLevel: 0
+    playerOptions: []
+    spellBook: []
+    activeSpell:
+      name: 
+      castTime: 0
+      spellIcon: {fileID: 0}
+      isAoE: 0
+      isSupport: 0
+    isCastingSpell: 0
+    isCritical: 0
+    PlayerPortrait: {fileID: 0}
+    playerPanel: {fileID: 0}
+    playerPanelText: {fileID: 0}
+    playerPanelBackground: {fileID: 0}
+    playerSpeedBar: {fileID: 0}
+    playerSpeedBarText: {fileID: 0}
+    playerTPBar: {fileID: 0}
+    playerTPBarFill: {fileID: 0}
+    playerTPBarText: {fileID: 0}
+    playerCastBar: {fileID: 0}
+    playerCastBarFill: {fileID: 0}
+    playerCastBarText: {fileID: 0}
+    playerTimersEntry: {fileID: 0}
+    battleSprite: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    target: {x: 0, y: 0, z: 0}
+    currentRowPositionID: 0
+    currentRowPosition: {fileID: 0}
+    currentRowPositionIcon: {fileID: 0}
+  CurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8820856181910260857
 GameObject:
   m_ObjectHideFlags: 0
