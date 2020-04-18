@@ -68,7 +68,7 @@ public class Battle_Manager : MonoBehaviour
     public Enemy playerTarget;
     public Player enemyTarget;
     public Player supportTarget;
-    public Timers_Entry pfTimer_Entry;
+    
     public enum BattleStates
     {
         DEFAULT,
@@ -112,15 +112,7 @@ public class Battle_Manager : MonoBehaviour
         //Fetch the Raycaster from the GameObject (the Canvas)
         m_Raycaster = UICanvas.GetComponent<GraphicRaycaster>();
         //Fetch the Event System from the Scene
-        m_EventSystem = GetComponent<EventSystem>();
-
-        //Setup a Timers Log Entry for each Player in Battle
-        for (int i = 0; i < PlayersInBattle.Count; i++)
-        {
-            pfTimer_Entry.TimersEntryPlayer = PlayersInBattle[i];
-            PlayersInBattle[i].playerTimersEntry = Instantiate(pfTimer_Entry.gameObject, Timers_Log.TimersPanel.transform);            
-            Timers_Log.TimerList.Add(PlayersInBattle[i].playerTimersEntry);            
-        }
+        m_EventSystem = GetComponent<EventSystem>();        
 
         battleStates = BattleStates.DEFAULT;
 

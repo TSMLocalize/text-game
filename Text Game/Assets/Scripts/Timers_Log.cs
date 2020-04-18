@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +15,12 @@ public class Timers_Log : MonoBehaviour
     public List<GameObject> TimerList;    
     public List<Vector3> TimerListPositions;
     public List<float> PlayerSpeeds;
-    public GameObject TimersPanel;    
+    public GameObject TimersPanel;
+    public GameObject[] countOrdered;
+    public Image[] TimerImageArray;
     public TextMeshProUGUI[] instantiatedTimersTextArray;
+    public Timers_Entry pfTimer_Entry;
+    public bool battleStart = true;
 
     public List<Vector3> ListPositions;
 
@@ -28,12 +33,25 @@ public class Timers_Log : MonoBehaviour
 
     void Update()
     {
-        
-    }
+        if (battleStart == true)
+        {            
+            for (int i = 0; i < BM.PlayersInBattle.Count; i++)
+            {
+                pfTimer_Entry.TimersEntryPlayer = BM.PlayersInBattle[i];
+                BM.PlayersInBattle[i].playerTimersEntry = Instantiate(pfTimer_Entry.gameObject, TimersPanel.transform);
+                TimerList.Add(BM.PlayersInBattle[i].playerTimersEntry);
+            }
+            battleStart = false;
+        }
 
-    public class TimersEntry
-    {        
-     
+        countOrdered = TimerList.OrderBy(go => go.GetComponent<Timers_Entry>().TimersEntryPlayer.speedTotal).ToArray();
+
+        for (int i = 0; i < TimerList.Count; i++)
+        {            
+            countOrdered[i].transform.SetSiblingIndex(i);
+        }
+
+        Canvas.ForceUpdateCanvases();
     }
 
     /*

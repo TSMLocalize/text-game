@@ -17509,8 +17509,6 @@ MonoBehaviour:
     currentRowPositionID: 0
     currentRowPosition: {fileID: 0}
     currentRowPositionIcon: {fileID: 0}
-  pfTimer_Entry: {fileID: 551820044591690428, guid: 4d453336385ed794fa9fac6d701c0101,
-    type: 3}
   battleStates: 0
   JosiePosText: {fileID: 0}
 --- !u!4 &1548464334
@@ -17621,7 +17619,10 @@ MonoBehaviour:
   TimerListPositions: []
   PlayerSpeeds: []
   TimersPanel: {fileID: 1777875758}
+  countOrdered: []
   instantiatedTimersTextArray: []
+  pfTimer_Entry: {fileID: 551820044591690428, guid: 4d453336385ed794fa9fac6d701c0101,
+    type: 3}
   ListPositions: []
 --- !u!114 &1548464339
 MonoBehaviour:

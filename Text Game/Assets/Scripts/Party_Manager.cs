@@ -24,11 +24,11 @@ public class Party_Manager : MonoBehaviour
         partyMembers.Add(Jody);
         partyMembers.Add(Jenny);
         
-        Josie.speed = 50f;
-        Jemima.speed = 1f;
-        Jennifer.speed = 1f;
-        Jessica.speed = 1f;
-        Jody.speed = 1f;
+        Josie.speed = 20f;
+        Jemima.speed = 30f;
+        Jennifer.speed = 9f;
+        Jessica.speed = 3f;
+        Jody.speed = 2f;
         Jenny.speed = 1f;
 
         Josie.storeTP = 100f;

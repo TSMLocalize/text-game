@@ -7,17 +7,12 @@ public class Timers_Entry : MonoBehaviour
 {
     public Player TimersEntryPlayer;    
     public Vector3 CurrentPosition;
-    public Image[] TimerImageArray;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        TimerImageArray = this.GetComponentsInChildren<Image>();
-    }
+    public Image[] TimerImageArray;    
 
     // Update is called once per frame
     void Update()
     {
+        TimerImageArray = this.GetComponentsInChildren<Image>();
         TimerImageArray[1].overrideSprite = TimersEntryPlayer.PlayerPortrait;
     }
 }
