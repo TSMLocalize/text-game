@@ -17620,9 +17620,11 @@ MonoBehaviour:
   PlayerSpeeds: []
   TimersPanel: {fileID: 1777875758}
   countOrdered: []
+  TimerImageArray: []
   instantiatedTimersTextArray: []
   pfTimer_Entry: {fileID: 551820044591690428, guid: 4d453336385ed794fa9fac6d701c0101,
     type: 3}
+  battleStart: 1
   ListPositions: []
 --- !u!114 &1548464339
 MonoBehaviour:

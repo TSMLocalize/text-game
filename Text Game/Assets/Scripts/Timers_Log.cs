@@ -14,9 +14,9 @@ public class Timers_Log : MonoBehaviour
     public Battle_Manager_Functions BM_Funcs;    
     public List<GameObject> TimerList;    
     public List<Vector3> TimerListPositions;
-    public List<float> PlayerSpeeds;
+    public List<Player> PlayerSpeeds;
     public GameObject TimersPanel;
-    public GameObject[] countOrdered;
+    public List<GameObject> countOrdered;
     public Image[] TimerImageArray;
     public TextMeshProUGUI[] instantiatedTimersTextArray;
     public Timers_Entry pfTimer_Entry;
@@ -44,11 +44,17 @@ public class Timers_Log : MonoBehaviour
             battleStart = false;
         }
 
-        countOrdered = TimerList.OrderBy(go => go.GetComponent<Timers_Entry>().TimersEntryPlayer.speedTotal).ToArray();
+        updatePositions();
+        
+    }
 
-        for (int i = 0; i < TimerList.Count; i++)
-        {            
-            countOrdered[i].transform.SetSiblingIndex(i);
+    public void updatePositions()
+    {        
+        PlayerSpeeds = BM.PlayersInBattle.OrderBy(go => go.speedTotal).ToList();        
+
+        for (int i = 0; i < PlayerSpeeds.Count; i++)
+        {
+            PlayerSpeeds[i].playerTimersEntry.transform.SetSiblingIndex(i);
         }
 
         Canvas.ForceUpdateCanvases();
