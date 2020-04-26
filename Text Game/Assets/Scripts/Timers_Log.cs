@@ -45,12 +45,26 @@ public class Timers_Log : MonoBehaviour
         }
 
         updatePositions();
-        
     }
 
     public void updatePositions()
-    {        
-        PlayerSpeeds = BM.PlayersInBattle.OrderBy(go => go.speedTotal).ToList();        
+    {
+        for (int i = 0; i < BM.PlayersInBattle.Count; i++)
+        {
+            if (BM.PlayersInBattle[i].isCastingSpell)
+            {
+                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue =
+                    (BM.PlayersInBattle[i].castSpeedTotal / BM.PlayersInBattle[i].castSpeed);
+                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().castMode = true;
+
+            } else
+            {                
+                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue = ((100 - BM.PlayersInBattle[i].speedTotal) / BM.PlayersInBattle[i].speed);
+                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().castMode = false;
+            }
+        }      
+
+        PlayerSpeeds = BM.PlayersInBattle.OrderByDescending(go => go.playerTimersEntry.GetComponent<Timers_Entry>().currentValue).ToList();
 
         for (int i = 0; i < PlayerSpeeds.Count; i++)
         {
