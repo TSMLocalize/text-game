@@ -12,4 +12,5 @@ public class Spell
     public Sprite spellIcon;
     public bool isAoE;
     public bool isSupport;
+    public string methodID;
 }

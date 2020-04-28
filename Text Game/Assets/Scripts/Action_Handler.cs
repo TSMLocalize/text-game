@@ -14,6 +14,7 @@ using TMPro;
 public class Action_Handler : MonoBehaviour
 {
     public GameObject floatingDamage;
+    public Spells spells;
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
     public Combo_Manager combo_Manager;
@@ -32,7 +33,7 @@ public class Action_Handler : MonoBehaviour
     void Start()
     {
         maxMessages = 25;
-        messageList = new List<Message>();
+        messageList = new List<Message>();        
         BM = GetComponent<Battle_Manager>();
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
@@ -103,38 +104,7 @@ public class Action_Handler : MonoBehaviour
                                 
                 while(spellReportFinished == false)
                 {
-                    if (BM.activePlayer.activeSpell.isSupport == true && BM.activePlayer.activeSpell.isAoE == true)
-                    {
-                        for (int i = 0; i < BM.PlayersInBattle.Count; i++)
-                        {
-                            animHandler.animationController(BM.PlayersInBattle[i], "IsCasting");
-                            CreateDamagePopUp(BM.PlayersInBattle[i].battleSprite.transform.position, "70", Color.green);
-                            SendMessagesToCombatLog(BM.activePlayer.name + " heals " + BM.PlayersInBattle[i].name + " for 70!");
-                        }
-                    }
-                    else if (BM.activePlayer.activeSpell.isSupport == true)
-                    {
-                        BM_Funcs.setPlayerOrEnemyTargetFromID(null, null, BM.activePlayer);
-                        animHandler.animationController(BM.supportTarget, "IsCasting");
-                        CreateDamagePopUp(BM.supportTarget.battleSprite.transform.position, "70", Color.green);
-                        SendMessagesToCombatLog(
-                            BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.supportTarget.name + "!");
-                    }
-                    else if (BM.activePlayer.activeSpell.isAoE == true)
-                    {
-                        for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
-                        {
-                            animHandler.enemyAnimationController(BM.EnemiesInBattle[i], "TakeDamage");
-                            CreateDamagePopUp(BM.EnemiesInBattle[i].battleSprite.transform.position, "70", Color.white);
-                            SendMessagesToCombatLog(BM.activePlayer.name + " deals 70 Damage to " + BM.EnemiesInBattle[i].EnemyName + "!");
-                        }
-                    }
-                    else
-                    {
-                        BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
-                        SendMessagesToCombatLog(
-                            BM.activePlayer.name + " casts " + BM.activePlayer.activeSpell.name + " on the " + BM.playerTarget.EnemyName + "!");
-                    }
+                    spells.CastSpell(BM.activePlayer.activeSpell.methodID);
                     
                     spellReportFinished = true;
                 }                
