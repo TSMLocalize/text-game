@@ -59,6 +59,7 @@ public class Timers_Log : MonoBehaviour
 
             if (BM.ActivePlayers.Contains(BM.PlayersInBattle[i]))
             {
+                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue = 0;                 
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().NumberText.text = "--";
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().MainText.text = "READY!";
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().readyMode = true;
@@ -68,14 +69,16 @@ public class Timers_Log : MonoBehaviour
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue =
                     (BM.PlayersInBattle[i].castSpeedTotal / BM.PlayersInBattle[i].castSpeed);
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().castMode = true;                
-                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().NumberText.text = "@" + Mathf.RoundToInt(BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue);
+                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().NumberText.text = 
+                    "@" + Mathf.RoundToInt(BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue);
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().MainText.text = "Spell Ready:";
             }
             else
             {                
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue = ((100 - BM.PlayersInBattle[i].speedTotal) / BM.PlayersInBattle[i].speed);
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().waitMode = true;                
-                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().NumberText.text = "@" + Mathf.RoundToInt(BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue);
+                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().NumberText.text = 
+                    "@" + Mathf.RoundToInt(BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue);
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().MainText.text = "Next Turn:";
             }
         }      
