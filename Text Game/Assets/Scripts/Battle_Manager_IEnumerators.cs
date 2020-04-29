@@ -151,7 +151,7 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
 
     public IEnumerator updateStatusAilMentSpeedBars(StatusAilment statusAilment)
     {
-        if (statusAilment)
+        if (statusAilment.gameObject != null)
         {
             while (BM.coroutineIsPaused == true)
             {
@@ -164,7 +164,7 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
                 {
                     yield return new WaitForSeconds(0.3f);
                     BM.returningStarting = false;
-                }
+                }                
 
                 if (statusAilment.statusTimerNumber > 0)
                 {
@@ -172,13 +172,13 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
                 }
 
                 if (statusAilment.statusTimerNumber == 0)
-                {                                        
+                {
                     Destroy(statusAilment.transform.gameObject);
                     yield return null;
                 }
 
                 yield return new WaitForSeconds(0.5f);
-            }
-        }        
+            }            
+        }
     }
 }

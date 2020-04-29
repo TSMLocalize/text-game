@@ -33,6 +33,7 @@ public class Player
     public List<string> playerOptions;
     public List<Spell> spellBook;
     public Spell activeSpell = null;
+    public bool isReady;
     public bool isCastingSpell;
     public bool isCritical;    
 

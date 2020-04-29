@@ -26,10 +26,15 @@ public class Animation_Handler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //This sets a hierarchy of idle animation states based on whether casting or sick etc.
         for (int i = 0; i < BM.PlayersInBattle.Count; i++)
         {            
-            if (BM.PlayersInBattle[i].isCastingSpell)
+            if (BM.PlayersInBattle[i].isReady)
+            {
+                BM.PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+            }
+            else if (BM.PlayersInBattle[i].isCastingSpell)
             {
                 BM.PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
             }
@@ -43,7 +48,7 @@ public class Animation_Handler : MonoBehaviour
                 BM.PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsCritical", false);
             }
         }
-
+        
 
         if (BM.stepForward)
         {
