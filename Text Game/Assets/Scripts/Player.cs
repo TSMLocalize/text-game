@@ -33,9 +33,9 @@ public class Player
     public List<string> playerOptions;
     public List<Spell> spellBook;
     public Spell activeSpell = null;
-    public bool isReady;
+    public List<string> constantAnimationStates;    
     public bool isCastingSpell;
-    public bool isCritical;    
+    
 
     //Battle UI Player Elements    
     public Sprite PlayerPortrait;

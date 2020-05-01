@@ -201,8 +201,9 @@ public class Action_Handler : MonoBehaviour
 
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
-                    CreateStatusAilment(BM.enemyTarget.battleSprite, 12, "poison");                    
-                    BM.enemyTarget.isCritical = true;
+                    CreateStatusAilment(BM.enemyTarget.battleSprite, 12, "poison");
+                    animHandler.animationController(BM.enemyTarget, "IsCritical");
+                    BM.enemyTarget.constantAnimationStates.Add("IsCritical");
                     enemySpellReportFinished = true;
                 }
 
@@ -240,7 +241,8 @@ public class Action_Handler : MonoBehaviour
                     BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
 
                 reportOutcome("PlayerStartCast");
-                animHandler.animationController(BM.activePlayer, "IsChanting");                
+                animHandler.animationController(BM.activePlayer, "IsChanting");
+                BM.activePlayer.constantAnimationStates.Add("IsChanting");
                 BM.activePlayer.playerCastBar.SetActive(true);
                 BM.activePlayer.castSpeedTotal = BM.activePlayer.activeSpell.castTime;
                 BM.activePlayer.speedTotal -= 100f;
@@ -307,7 +309,9 @@ public class Action_Handler : MonoBehaviour
             case "Cast":
                 
                 StartCoroutine(waitForCastAnimation());
+                
                 animHandler.animationController(BM.activePlayer, "IsCasting");
+                BM.activePlayer.constantAnimationStates.Remove("IsChanting");
 
                 IEnumerator waitForCastAnimation()
                 {                    

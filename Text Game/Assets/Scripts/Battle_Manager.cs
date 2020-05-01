@@ -230,7 +230,7 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.SELECT_ACTION:
 
-                activePlayer.isReady = true;
+                AnimHandler.animationController(activePlayer, "IsReady");
 
                 //Instant redirect if not waiting for a mouse click
                 BM_Funcs.redirectAction();
@@ -533,7 +533,7 @@ public class Battle_Manager : MonoBehaviour
 
             case BattleStates.SELECT_TARGET:
 
-                activePlayer.isReady = true;
+                //AnimHandler.animationController(activePlayer, "Ready");
 
                 for (int i = 0; i < EnemiesInBattle.Count; i++)
                 {
@@ -543,7 +543,7 @@ public class Battle_Manager : MonoBehaviour
                 //Right click to go back to select option or select action
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
-                    activePlayer.isReady = false;
+                    AnimHandler.animationController(activePlayer);
 
                     if (OptionPanel.activeSelf == true)
                     {
@@ -880,7 +880,7 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.RESOLVE_ACTION:
 
-                activePlayer.isReady = false;
+                AnimHandler.animationController(activePlayer);
                 ActionHandler.resolveAction(selectedCommand);
 
                 break;

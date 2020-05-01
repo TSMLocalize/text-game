@@ -26,30 +26,6 @@ public class Animation_Handler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //This sets a hierarchy of idle animation states based on whether casting or sick etc.
-        for (int i = 0; i < BM.PlayersInBattle.Count; i++)
-        {            
-            if (BM.PlayersInBattle[i].isReady)
-            {
-                BM.PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
-            }
-            else if (BM.PlayersInBattle[i].isCastingSpell)
-            {
-                BM.PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
-            }
-            else if (BM.PlayersInBattle[i].isCritical && BM.battleStates != Battle_Manager.BattleStates.RESOLVE_ACTION)
-            {
-                BM.PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsCritical", true);
-            }
-            else if (BM.PlayersInBattle[i].battleSprite.transform.childCount == 0)
-            {
-                BM.PlayersInBattle[i].isCritical = false;
-                BM.PlayersInBattle[i].battleSprite.GetComponent<Animator>().SetBool("IsCritical", false);
-            }
-        }
-        
-
         if (BM.stepForward)
         {
             speed = 4.0f;
@@ -108,6 +84,14 @@ public class Animation_Handler : MonoBehaviour
         else if (state == "IsCritical")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsCritical", true);
+        }
+        else if (player.constantAnimationStates.Count > 1)
+        {
+            player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationStates[1], true);
+        } 
+        else if (player.constantAnimationStates.Count > 0)
+        {
+            player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationStates[0], true);
         }
     }
 
