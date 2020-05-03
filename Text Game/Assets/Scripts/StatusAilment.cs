@@ -21,5 +21,11 @@ public class StatusAilment : MonoBehaviour
     void Update()
     {
         StatusTimer.text = statusTimerNumber.ToString();
+
+        if (this.statusTimerNumber == 0)
+        {
+            Destroy(this.gameObject);
+        }
+        
     }   
 }
