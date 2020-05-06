@@ -122,9 +122,7 @@ public class Combo_Manager : MonoBehaviour
     }
 
     public void PlayerWeaponskill(WeaponSkill weaponSkill, Player attacker = null, Enemy target = null)
-    {
-        AnimHandler.animationController(BM.activePlayer);
-        BM.activePlayer.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
+    {                
         ActionHandler.SendMessagesToCombatLog(attacker.name + " uses " + weaponSkill.name + " on the " + target);
         addWSToTheList(weaponSkill);
     }

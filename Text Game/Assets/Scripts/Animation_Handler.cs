@@ -57,6 +57,10 @@ public class Animation_Handler : MonoBehaviour
         player.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsCritical", false);
 
+        if (state == "IsFastBlade")
+        {
+            player.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
+        }
         if (state == "TakeDamage")
         {
             player.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", true);

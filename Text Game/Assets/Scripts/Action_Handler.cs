@@ -264,8 +264,9 @@ public class Action_Handler : MonoBehaviour
                 resolveAction(default);
                 break;
             case "Weapon Skill":
-
+                
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
+                animHandler.animationController(BM.activePlayer, "IsFastBlade");
                 StartCoroutine(waitForWeaponSkillAnimation());
                 animHandler.enemyAnimationController(BM.playerTarget, "TakeDamage");
 
