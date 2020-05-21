@@ -19,10 +19,14 @@ public class Spells : MonoBehaviour
     public Spell Firaga;
     public Spell Poison;
     public Spell Poisonga;
+    public Spell Sleep;
+
+    //Status Icons
+    public Sprite poison;
+    public Sprite sleep;
 
     private void Start()
     {
-
         Fire.castTime = 34;
         Fire.methodID = "Fire";
         Ice.castTime = 35;
@@ -41,6 +45,8 @@ public class Spells : MonoBehaviour
         Poisonga.castTime = 2;
         Poisonga.isAoE = true;
         Poisonga.methodID = "Poisonga";
+        Sleep.castTime = 10;
+        Sleep.methodID = "Sleep";      
     }
 
 
@@ -48,7 +54,6 @@ public class Spells : MonoBehaviour
     {
         switch (spellID)
         {
-
             case "Cure":
                 BM_Funcs.setPlayerOrEnemyTargetFromID(null, null, BM.activePlayer);
                 animHandler.animationController(BM.supportTarget, "IsCasting");
@@ -85,7 +90,13 @@ public class Spells : MonoBehaviour
             case "Poisonga":
                 for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                 {
-                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 11, "poison");
+                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 11, poison);
+                }
+                break;
+            case "Sleep":
+                for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+                {
+                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 11, sleep);
                 }
                 break;
             default:

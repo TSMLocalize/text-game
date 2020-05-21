@@ -151,30 +151,33 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
 
     public IEnumerator updateStatusAilMentSpeedBars(StatusAilment statusAilment)
     {
-        while (BM.coroutineIsPaused == true)
+        if (statusAilment != null)
         {
-            yield return null;
-        }
-
-        while (BM.coroutineIsPaused == false)
-        {
-            if (BM.returningStarting == true)
-            {
-                yield return new WaitForSeconds(0.3f);
-                BM.returningStarting = false;
-            }
-
-            if (statusAilment.statusTimerNumber > 0)
-            {
-                statusAilment.statusTimerNumber -= 1f;
-            }
-
-            if (statusAilment.statusTimerNumber == 0)
+            while (BM.coroutineIsPaused == true)
             {
                 yield return null;
             }
 
-            yield return new WaitForSeconds(0.5f);
-        }
+            while (BM.coroutineIsPaused == false)
+            {
+                if (BM.returningStarting == true)
+                {
+                    yield return new WaitForSeconds(0.3f);
+                    BM.returningStarting = false;
+                }
+
+                if (statusAilment.statusTimerNumber > 0)
+                {
+                    statusAilment.statusTimerNumber -= 1f;
+                }
+
+                if (statusAilment.statusTimerNumber == 0)
+                {
+                    yield return null;
+                }
+
+                yield return new WaitForSeconds(0.5f);
+            }
+        }        
     }
 }

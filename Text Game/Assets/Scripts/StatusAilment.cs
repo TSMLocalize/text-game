@@ -8,14 +8,15 @@ public class StatusAilment : MonoBehaviour
     public Battle_Manager BM;
     public Battle_Manager_IEnumerators BM_Enums;
     public TextMeshPro StatusTimer;
-    public float statusTimerNumber;    
+    public float statusTimerNumber;
+    public Sprite icon;
 
     // Start is called before the first frame update
     void Start()
-    {
-        statusTimerNumber = 12;
+    {                
         BM = FindObjectOfType<Battle_Manager>();
-        StatusTimer = GetComponentInChildren<TextMeshPro>();        
+        StatusTimer = GetComponentInChildren<TextMeshPro>();
+        GetComponent<SpriteRenderer>().sprite = icon;
     }
 
     void Update()
@@ -25,7 +26,6 @@ public class StatusAilment : MonoBehaviour
         if (this.statusTimerNumber == 0)
         {
             Destroy(this.gameObject);
-        }
-        
+        }        
     }   
 }

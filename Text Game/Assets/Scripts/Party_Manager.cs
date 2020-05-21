@@ -101,6 +101,7 @@ public class Party_Manager : MonoBehaviour
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Firaga);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Curaga);
         Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Poisonga);
+        Josie.spellBook.Add(SpellManager.GetComponent<Spells>().Sleep);
         Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Fast_Blade);
         Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Raging_Axe);
         Josie.weaponSkills.Add(WSManager.GetComponent<WeaponSkills>().Penta_Thrust);

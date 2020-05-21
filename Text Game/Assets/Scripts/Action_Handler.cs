@@ -12,7 +12,7 @@ using TMPro;
 
 [System.Serializable]
 public class Action_Handler : MonoBehaviour
-{
+{        
     public GameObject floatingDamage;
     public Spells spells;
     public Battle_Manager BM;
@@ -201,7 +201,7 @@ public class Action_Handler : MonoBehaviour
 
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
-                    CreateStatusAilment(BM.enemyTarget.battleSprite, 12, "poison");
+                    CreateStatusAilment(BM.enemyTarget.battleSprite, 12, spells.poison);
                     animHandler.animationController(BM.enemyTarget, "IsCritical");
                     BM.enemyTarget.constantAnimationStates.Add("IsCritical");
                     enemySpellReportFinished = true;
@@ -372,12 +372,12 @@ public class Action_Handler : MonoBehaviour
     }
 
     //Create a status ailment 
-    public void CreateStatusAilment(GameObject target, int timeRemaining, string type)
+    public void CreateStatusAilment(GameObject target, int timeRemaining, Sprite icon)
     {        
-        GameObject statusAilmentGameObject = Instantiate(statusAilment, target.transform);
-
+        GameObject statusAilmentGameObject = Instantiate(statusAilment, target.transform);        
         StatusAilment statusAilmentToAdd = statusAilmentGameObject.GetComponentInChildren<StatusAilment>();
-
+        statusAilmentToAdd.icon = icon;
+        statusAilmentToAdd.statusTimerNumber = timeRemaining;        
         statusAilmentList.Add(statusAilmentToAdd);
     }
 

@@ -12088,8 +12088,8 @@ MonoBehaviour:
       isAoE: 0
       isSupport: 0
       methodID: 
+    constantAnimationStates: []
     isCastingSpell: 0
-    isCritical: 0
     PlayerPortrait: {fileID: 21300000, guid: 79cf816457472ed48931a23d8cfecd5c, type: 3}
     playerPanel: {fileID: 0}
     playerPanelText: {fileID: 0}
@@ -12148,8 +12148,8 @@ MonoBehaviour:
       isAoE: 0
       isSupport: 0
       methodID: 
+    constantAnimationStates: []
     isCastingSpell: 0
-    isCritical: 0
     PlayerPortrait: {fileID: 21300000, guid: 67cd3454cf5863d45903b9bc5bd9708e, type: 3}
     playerPanel: {fileID: 0}
     playerPanelText: {fileID: 0}
@@ -12208,8 +12208,8 @@ MonoBehaviour:
       isAoE: 0
       isSupport: 0
       methodID: 
+    constantAnimationStates: []
     isCastingSpell: 0
-    isCritical: 0
     PlayerPortrait: {fileID: 21300000, guid: cd38a231963561246a933d8ba45c4f98, type: 3}
     playerPanel: {fileID: 0}
     playerPanelText: {fileID: 0}
@@ -12268,8 +12268,8 @@ MonoBehaviour:
       isAoE: 0
       isSupport: 0
       methodID: 
+    constantAnimationStates: []
     isCastingSpell: 0
-    isCritical: 0
     PlayerPortrait: {fileID: 21300000, guid: 6753d5e63aa63e64aac1a376f8bd9bdb, type: 3}
     playerPanel: {fileID: 0}
     playerPanelText: {fileID: 0}
@@ -12328,8 +12328,8 @@ MonoBehaviour:
       isAoE: 0
       isSupport: 0
       methodID: 
+    constantAnimationStates: []
     isCastingSpell: 0
-    isCritical: 0
     PlayerPortrait: {fileID: 21300000, guid: 7009addfb04a26e42824c1f4ca5613b3, type: 3}
     playerPanel: {fileID: 0}
     playerPanelText: {fileID: 0}
@@ -12388,8 +12388,8 @@ MonoBehaviour:
       isAoE: 0
       isSupport: 0
       methodID: 
+    constantAnimationStates: []
     isCastingSpell: 0
-    isCritical: 0
     PlayerPortrait: {fileID: 21300000, guid: f7d178f9b4262bb43a18128aa6775fd1, type: 3}
     playerPanel: {fileID: 0}
     playerPanelText: {fileID: 0}
@@ -14597,6 +14597,15 @@ MonoBehaviour:
     isAoE: 0
     isSupport: 0
     methodID: 
+  Sleep:
+    name: Sleep
+    castTime: 0
+    spellIcon: {fileID: 21300000, guid: 7ee77971d26fea349af443ea8a0bf754, type: 3}
+    isAoE: 0
+    isSupport: 0
+    methodID: 
+  poison: {fileID: 21300000, guid: 35594c2b7a928f8409d618fb9df511b1, type: 3}
+  sleep: {fileID: 21300000, guid: 7ee77971d26fea349af443ea8a0bf754, type: 3}
 --- !u!4 &1376954848
 Transform:
   m_ObjectHideFlags: 0
@@ -17279,8 +17288,8 @@ MonoBehaviour:
       isAoE: 0
       isSupport: 0
       methodID: 
+    constantAnimationStates: []
     isCastingSpell: 0
-    isCritical: 0
     PlayerPortrait: {fileID: 0}
     playerPanel: {fileID: 0}
     playerPanelText: {fileID: 0}
@@ -17341,8 +17350,8 @@ MonoBehaviour:
       isAoE: 0
       isSupport: 0
       methodID: 
+    constantAnimationStates: []
     isCastingSpell: 0
-    isCritical: 0
     PlayerPortrait: {fileID: 0}
     playerPanel: {fileID: 0}
     playerPanelText: {fileID: 0}
@@ -17645,8 +17654,8 @@ MonoBehaviour:
       isAoE: 0
       isSupport: 0
       methodID: 
+    constantAnimationStates: []
     isCastingSpell: 0
-    isCritical: 0
     PlayerPortrait: {fileID: 0}
     playerPanel: {fileID: 0}
     playerPanelText: {fileID: 0}
@@ -17705,8 +17714,8 @@ MonoBehaviour:
       isAoE: 0
       isSupport: 0
       methodID: 
+    constantAnimationStates: []
     isCastingSpell: 0
-    isCritical: 0
     PlayerPortrait: {fileID: 0}
     playerPanel: {fileID: 0}
     playerPanelText: {fileID: 0}
@@ -17818,7 +17827,9 @@ MonoBehaviour:
     type: 3}
   statusAilment: {fileID: 8915403152612159213, guid: 7eeecd3e89f68df4e9a56abb00cfc83e,
     type: 3}
-  statusAilmentList: []
+  statusAilmentList:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1548464338
 MonoBehaviour:
   m_ObjectHideFlags: 0
