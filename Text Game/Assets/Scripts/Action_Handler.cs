@@ -15,6 +15,7 @@ public class Action_Handler : MonoBehaviour
 {        
     public GameObject floatingDamage;
     public Spells spells;
+    public Enemy_Spells enemySpells;
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
     public Combo_Manager combo_Manager;
@@ -39,6 +40,7 @@ public class Action_Handler : MonoBehaviour
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
         combo_Manager = GetComponent<Combo_Manager>();
         animHandler = GetComponent<Animation_Handler>();
+        enemySpells = FindObjectOfType<Enemy_Spells>();
     }
 
     [System.Serializable]
@@ -104,7 +106,7 @@ public class Action_Handler : MonoBehaviour
                                 
                 while(spellReportFinished == false)
                 {
-                    spells.CastSpell(BM.activePlayer.activeSpell.methodID);
+                    spells.CastSpell(BM.activePlayer.activeSpell.name);
                     
                     spellReportFinished = true;
                 }                
@@ -203,9 +205,7 @@ public class Action_Handler : MonoBehaviour
 
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
-                    CreateStatusAilment(BM.enemyTarget.battleSprite, 12, spells.poison, "Poison");
-                    animHandler.animationController(BM.enemyTarget, "IsCritical");
-                    BM.enemyTarget.constantAnimationStates.Add("IsCritical");
+                    enemySpells.CastEnemySpell(BM.activeEnemy.activeSpell.name);
                     enemySpellReportFinished = true;
                 }
 
@@ -384,11 +384,14 @@ public class Action_Handler : MonoBehaviour
 
         if(targetEnemy != null)
         {
+            statusAilmentToAdd.playerorenemy = "enemy";
             targetEnemy.currentAfflictions.Add(statusAilmentToAdd);
             statusAilmentToAdd.afflictedEnemy = targetEnemy;
         }
-        else if (targetPlayer != null)
+        
+        if (targetPlayer != null)
         {
+            statusAilmentToAdd.playerorenemy = "player";
             targetPlayer.currentAfflictions.Add(statusAilmentToAdd);
             statusAilmentToAdd.afflictedPlayer = targetPlayer;
         }        

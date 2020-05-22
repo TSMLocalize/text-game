@@ -55,6 +55,7 @@ public class Battle_Manager : MonoBehaviour
     public GameObject PartyManager;
     public GameObject EnemyManager;    
     public Spells SpellManager;
+    public Enemy_Spells EnemySpellManager;
     public bool coroutineIsPaused = false;
     public bool returningStarting = true;
     public string selectedCommand = null;
@@ -66,6 +67,7 @@ public class Battle_Manager : MonoBehaviour
     public Image[] enemyPanelArray;
     public Image[] actionPanelArray;
     public Enemy playerTarget;
+    public Enemy enemySupportTarget;
     public Player enemyTarget;
     public Player supportTarget;
     
@@ -100,6 +102,7 @@ public class Battle_Manager : MonoBehaviour
         Timers_Log = GetComponent<Timers_Log>();
         combo_Manager = GetComponent<Combo_Manager>();
         AnimHandler = GetComponent<Animation_Handler>();
+        EnemySpellManager = FindObjectOfType<Enemy_Spells>();
 
         BM_Funcs.setupCharacters();
 
@@ -154,7 +157,15 @@ public class Battle_Manager : MonoBehaviour
                     {
                         for (int i = 0; i < ActionHandler.statusAilmentList.Count; i++)
                         {
-                            StartCoroutine(SpellManager.tickStatusAilmentCoroutine(ActionHandler.statusAilmentList[i]));
+                            if (ActionHandler.statusAilmentList[i].playerorenemy == "player")
+                            {
+                                StartCoroutine(EnemySpellManager.tickEnemyStatusAilmentCoroutine(ActionHandler.statusAilmentList[i]));
+                            } 
+                            
+                            if (ActionHandler.statusAilmentList[i].playerorenemy == "enemy")
+                            {
+                                StartCoroutine(SpellManager.tickStatusAilmentCoroutine(ActionHandler.statusAilmentList[i]));
+                            }                            
                         }
                     }                    
                     
@@ -897,16 +908,31 @@ public class Battle_Manager : MonoBehaviour
 
                 if (activeEnemy.isCastingSpell == false)
                 {
-                    int randomActionNo = Random.Range(2, 3);
+                    int randomActionNo = Random.Range(1, 5);
 
-                    if (randomActionNo == 1)
+                    switch (randomActionNo)
                     {
-                        selectedCommand = "EnemyAttack";
-                    }
-                    else if (randomActionNo == 2)
-                    {
-                        activeEnemy.activeSpell = SpellManager.Poison;
-                        selectedCommand = "EnemySpell";
+                        case 1:
+                            selectedCommand = "EnemyAttack";
+                            break;
+                        case 2:
+                            activeEnemy.activeSpell = SpellManager.Poison;
+                            selectedCommand = "EnemySpell";
+                            break;
+                        case 3:
+                            activeEnemy.activeSpell = SpellManager.Sleep;
+                            selectedCommand = "EnemySpell";
+                            break;
+                        case 4:
+                            activeEnemy.activeSpell = SpellManager.Poisonga;
+                            selectedCommand = "EnemySpell";
+                            break;
+                        case 5:
+                            activeEnemy.activeSpell = SpellManager.Firaga;
+                            selectedCommand = "EnemySpell";
+                            break;
+                        default:
+                            break;
                     }
 
                     battleStates = BattleStates.SELECT_ENEMY_TARGET;

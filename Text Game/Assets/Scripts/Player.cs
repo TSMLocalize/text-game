@@ -36,7 +36,10 @@ public class Player
     public Spell activeSpell = null;
     public List<string> constantAnimationStates;    
     public bool isCastingSpell;
-    
+
+    //Buff Debuff related
+    public bool isAsleep;
+    public float preDebuffSpeed;    
 
     //Battle UI Player Elements    
     public Sprite PlayerPortrait;

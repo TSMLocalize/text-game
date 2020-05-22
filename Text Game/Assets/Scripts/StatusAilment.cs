@@ -12,7 +12,8 @@ public class StatusAilment : MonoBehaviour
     public Sprite icon;
     public string type;
     public Player afflictedPlayer;
-    public Enemy afflictedEnemy;    
+    public Enemy afflictedEnemy;
+    public string playerorenemy;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class StatusAilment : MonoBehaviour
                 this.afflictedPlayer = null;
 
             } else if (this.afflictedEnemy != null)
-            {
+            {                
                 afflictedEnemy.currentAfflictions.Remove(this);
                 this.afflictedEnemy = null;
             }

@@ -56,47 +56,54 @@ public class Animation_Handler : MonoBehaviour
         player.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsCritical", false);
+        player.battleSprite.GetComponent<Animator>().SetBool("IsDead", false);
 
-        if (state == "IsFastBlade")
+        if (player.isAsleep)
         {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
-        }
-        if (state == "TakeDamage")
+            player.battleSprite.GetComponent<Animator>().SetBool("IsDead", true);
+        } else
         {
-            player.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", true);
-        }
-        else if (state == "IsAttacking")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
-        }
-        else if (state == "IsCasting")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
-        }
-        else if (state == "IsReady")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
-        }
-        else if (state == "IsChanting")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
-        }
-        else if (state == "IsWalking")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
-        }
-        else if (state == "IsCritical")
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool("IsCritical", true);
-        }
-        else if (player.constantAnimationStates.Count > 1)
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationStates[1], true);
-        } 
-        else if (player.constantAnimationStates.Count > 0)
-        {
-            player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationStates[0], true);
-        }
+            if (state == "IsFastBlade")
+            {
+                player.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
+            }
+            if (state == "TakeDamage")
+            {
+                player.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", true);
+            }
+            else if (state == "IsAttacking")
+            {
+                player.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
+            }
+            else if (state == "IsCasting")
+            {
+                player.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
+            }
+            else if (state == "IsReady")
+            {
+                player.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+            }
+            else if (state == "IsChanting")
+            {
+                player.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
+            }
+            else if (state == "IsWalking")
+            {
+                player.battleSprite.GetComponent<Animator>().SetBool("IsWalking", true);
+            }
+            else if (state == "IsCritical")
+            {
+                player.battleSprite.GetComponent<Animator>().SetBool("IsCritical", true);
+            }
+            else if (player.constantAnimationStates.Count > 1)
+            {
+                player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationStates[1], true);
+            }
+            else if (player.constantAnimationStates.Count > 0)
+            {
+                player.battleSprite.GetComponent<Animator>().SetBool(player.constantAnimationStates[0], true);
+            }
+        }        
     }
 
     public void enemyAnimationController(Enemy enemy, string state = null)

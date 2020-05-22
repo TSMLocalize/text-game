@@ -11,6 +11,7 @@ public class Spells : MonoBehaviour
     public Action_Handler action_Handler;
     public Battle_Manager_Functions BM_Funcs;
     public Animation_Handler animHandler;
+    public Enemy_Spells enemySpells;
 
     public Spell Fire;
     public Spell Ice;
@@ -28,25 +29,25 @@ public class Spells : MonoBehaviour
     private void Start()
     {
         Fire.castTime = 34;
-        Fire.methodID = "Fire";
+        Fire.name = "Fire";
         Ice.castTime = 35;
-        Ice.methodID = "Ice";
+        Ice.name = "Ice";
         Cure.castTime = 46;
         Cure.isSupport = true;
-        Cure.methodID = "Cure";
+        Cure.name = "Cure";
         Curaga.castTime = 32;
         Curaga.isAoE = true;
         Curaga.isSupport = true;
-        Curaga.methodID = "Curaga";
+        Curaga.name = "Curaga";
         Firaga.castTime = 30;
         Firaga.isAoE = true;
-        Firaga.methodID = "Firaga";
+        Firaga.name = "Firaga";
         Poison.castTime = 2;
         Poisonga.castTime = 2;
         Poisonga.isAoE = true;
-        Poisonga.methodID = "Poisonga";
+        Poisonga.name = "Poisonga";
         Sleep.castTime = 10;
-        Sleep.methodID = "Sleep";      
+        Sleep.name = "Sleep";      
     }
 
 
@@ -169,6 +170,7 @@ public class Spells : MonoBehaviour
                 if (statusAilment.statusTimerNumber > 0)
                 {
                     statusAilment.statusTimerNumber -= 1f;
+
                     TickStatus(statusAilment.type, statusAilment.afflictedEnemy);
                 }
 
