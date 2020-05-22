@@ -103,26 +103,6 @@ public class Enemy_Spells : MonoBehaviour
         }
     }
 
-    //This is what happens when a status effect wears off
-    public void EnemyEndStatus(string statusID, Enemy targetEnemy = null, Player targetPlayer = null)
-    {
-        switch (statusID)
-        {
-            case "Sleep":
-                targetPlayer.speed = targetPlayer.preDebuffSpeed;
-                targetPlayer.constantAnimationStates.Remove("IsDead");
-                targetPlayer.isAsleep = false;
-                animHandler.animationController(targetPlayer);
-                break;
-            case "Poisonga":
-                targetPlayer.constantAnimationStates.Remove("IsCritical");
-                animHandler.animationController(targetPlayer);
-                break;
-            default:
-                break;
-        }
-    }
-
     //This ticks the status ailment in line with the other coroutines stop/start
     public IEnumerator tickEnemyStatusAilmentCoroutine(StatusAilment statusAilment)
     {
@@ -149,8 +129,7 @@ public class Enemy_Spells : MonoBehaviour
                 }
 
                 if (statusAilment.statusTimerNumber <= 0)
-                {
-                    EnemyEndStatus(statusAilment.type, statusAilment.afflictedEnemy, statusAilment.afflictedPlayer);
+                {                    
                     yield return null;
                 }
 

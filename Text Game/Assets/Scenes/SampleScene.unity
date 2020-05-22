@@ -7687,7 +7687,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     isCastingSpell: 0
     isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: b16b1c81d2211db4b9c9c0004ac16789, type: 3}
@@ -7732,7 +7731,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     isCastingSpell: 0
     isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: 8e0148b3bc2e6b440bfc3cdbc1913824, type: 3}
@@ -7777,7 +7775,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     isCastingSpell: 0
     isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: 54cc4bd3fb94fc14ca88b81e50419667, type: 3}
@@ -7822,7 +7819,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     isCastingSpell: 0
     isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: 2966398d1c117b84da49022f17c494c9, type: 3}
@@ -7867,7 +7863,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     isCastingSpell: 0
     isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: ca65f4047d989b643931d4144ac3d3db, type: 3}
@@ -7912,7 +7907,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     isCastingSpell: 0
     isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: 7d224dd25783c8f47970ffcf9b611f8c, type: 3}
@@ -7957,7 +7951,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     isCastingSpell: 0
     isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: c1584bd6c35dd074082052506393517d, type: 3}
@@ -8002,7 +7995,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     isCastingSpell: 0
     isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: 13f5404eac497804b9df53e401e0ec89, type: 3}
@@ -12104,7 +12096,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     constantAnimationStates: []
     isCastingSpell: 0
     isAsleep: 0
@@ -12167,7 +12158,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     constantAnimationStates: []
     isCastingSpell: 0
     isAsleep: 0
@@ -12230,7 +12220,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     constantAnimationStates: []
     isCastingSpell: 0
     isAsleep: 0
@@ -12293,7 +12282,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     constantAnimationStates: []
     isCastingSpell: 0
     isAsleep: 0
@@ -12356,7 +12344,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     constantAnimationStates: []
     isCastingSpell: 0
     isAsleep: 0
@@ -12419,7 +12406,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     constantAnimationStates: []
     isCastingSpell: 0
     isAsleep: 0
@@ -14590,56 +14576,48 @@ MonoBehaviour:
     spellIcon: {fileID: 21300000, guid: dbdd0bcd4d8fb224ab80e3654b7256bc, type: 3}
     isAoE: 0
     isSupport: 0
-    methodID: 
   Ice:
     name: Ice
     castTime: 0
     spellIcon: {fileID: 21300000, guid: b539800d16c5e8146b5935caf60c15a8, type: 3}
     isAoE: 0
     isSupport: 0
-    methodID: 
   Cure:
     name: Cure
     castTime: 0
     spellIcon: {fileID: 21300000, guid: f44bd858dee4bd14d992b122452b4816, type: 3}
     isAoE: 0
     isSupport: 0
-    methodID: 
   Curaga:
     name: Curaga
     castTime: 0
     spellIcon: {fileID: 21300000, guid: f81b6f565386fdc47821d998fe8e6750, type: 3}
     isAoE: 0
     isSupport: 0
-    methodID: 
   Firaga:
     name: Firaga
     castTime: 0
     spellIcon: {fileID: 21300000, guid: a4eb4012762e8404db1cfaaae059b533, type: 3}
     isAoE: 0
     isSupport: 0
-    methodID: 
   Poison:
     name: Poison
     castTime: 0
     spellIcon: {fileID: 21300000, guid: 4fb31dfa3e08ecf4e8b4b63989203af0, type: 3}
     isAoE: 0
     isSupport: 0
-    methodID: 
   Poisonga:
     name: Poisonga
     castTime: 0
     spellIcon: {fileID: 21300000, guid: f0be26d1f13da2b47b7ace17306c0b2a, type: 3}
     isAoE: 0
     isSupport: 0
-    methodID: 
   Sleep:
     name: Sleep
     castTime: 0
     spellIcon: {fileID: 21300000, guid: 7ee77971d26fea349af443ea8a0bf754, type: 3}
     isAoE: 0
     isSupport: 0
-    methodID: 
   poison: {fileID: 21300000, guid: 35594c2b7a928f8409d618fb9df511b1, type: 3}
   sleep: {fileID: 21300000, guid: 7ee77971d26fea349af443ea8a0bf754, type: 3}
 --- !u!4 &1376954848
@@ -17341,7 +17319,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     constantAnimationStates: []
     isCastingSpell: 0
     isAsleep: 0
@@ -17406,7 +17383,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     constantAnimationStates: []
     isCastingSpell: 0
     isAsleep: 0
@@ -17455,7 +17431,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     isCastingSpell: 0
     isAsleep: 0
     EnemyPortrait: {fileID: 0}
@@ -17657,7 +17632,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     isCastingSpell: 0
     isAsleep: 0
     EnemyPortrait: {fileID: 0}
@@ -17702,7 +17676,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     isCastingSpell: 0
     isAsleep: 0
     EnemyPortrait: {fileID: 0}
@@ -17763,7 +17736,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     constantAnimationStates: []
     isCastingSpell: 0
     isAsleep: 0
@@ -17826,7 +17798,6 @@ MonoBehaviour:
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
-      methodID: 
     constantAnimationStates: []
     isCastingSpell: 0
     isAsleep: 0

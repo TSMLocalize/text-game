@@ -276,7 +276,7 @@ public class Action_Handler : MonoBehaviour
                 {
                     yield return new WaitForSeconds(BM.activePlayer.selectedWeaponSkill.wsAnimTimer);                                        
                     animHandler.enemyAnimationController(BM.playerTarget);
-                    animHandler.animationController(BM.activePlayer, "Ready");
+                    //animHandler.animationController(BM.activePlayer, "Ready");
                     BM.activePlayer.speedTotal -= 100f;
                     BM.activePlayer.tpTotal = 0;
 
