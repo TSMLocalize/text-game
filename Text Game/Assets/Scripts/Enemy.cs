@@ -30,6 +30,7 @@ public class Enemy
     public List<Spell> spellBook;
     public Spell activeSpell = null;
     public bool isCastingSpell;
+    public bool isAsleep;
 
     //Battle UI Player Elements
     public Sprite EnemyPortrait;
@@ -46,9 +47,7 @@ public class Enemy
     public GameObject battleSprite;
     public Vector3 position;
     public Vector3 target;
-    public bool hasConstantAnimationState;
-    public string constantAnimationState = "";
-
+    public List<string> constantAnimationStates;    
 
     //Enemy Animation Coroutine Control Bools
     public bool enemyCastAnimCoroutineIsPaused;

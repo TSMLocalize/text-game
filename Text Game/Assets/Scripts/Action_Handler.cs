@@ -199,6 +199,8 @@ public class Action_Handler : MonoBehaviour
                 {
                     BM_Funcs.setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
 
+                    BM.activeEnemy.constantAnimationStates.Remove("IsChanting");
+
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
                     CreateStatusAilment(BM.enemyTarget.battleSprite, 12, spells.poison, "Poison");

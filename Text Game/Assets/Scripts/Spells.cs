@@ -90,14 +90,19 @@ public class Spells : MonoBehaviour
             case "Poisonga":
                 for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                 {
-                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 11, poison, "poison");
+                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 11, poison, "Poisonga", BM.EnemiesInBattle[i]);
+                    animHandler.enemyAnimationController(BM.EnemiesInBattle[i], "IsCritical");
+                    BM.EnemiesInBattle[i].constantAnimationStates.Add("IsCritical");
+                    TickStatus("Poisonga", BM.EnemiesInBattle[i]);
                 }
                 break;
             case "Sleep":
                 for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                 {
-                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 5, sleep, "Sleep", BM.EnemiesInBattle[i]);
-                    BM.EnemiesInBattle[i].preDebuffSpeed = BM.EnemiesInBattle[i].speed;                                        
+                    BM.EnemiesInBattle[i].isAsleep = true;
+                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 10, sleep, "Sleep", BM.EnemiesInBattle[i]);
+                    BM.EnemiesInBattle[i].preDebuffSpeed = BM.EnemiesInBattle[i].speed;                    
+                    animHandler.enemyAnimationController(BM.EnemiesInBattle[i]);
                     TickStatus("Sleep", BM.EnemiesInBattle[i]);                    
                 }
                 break;
@@ -113,8 +118,9 @@ public class Spells : MonoBehaviour
         switch (statusID)
         {
             case "Sleep":                                
-                targetEnemy.speed = 0;                
-                animHandler.enemyAnimationController(targetEnemy, "IsDead");
+                targetEnemy.speed = 0;                                            
+                break;
+            case "Poisonga":                               
                 break;
             default:
                 break;
@@ -128,7 +134,13 @@ public class Spells : MonoBehaviour
         {
             case "Sleep":
                 targetEnemy.speed = targetEnemy.preDebuffSpeed;
-                targetEnemy.battleSprite.GetComponent<Animator>().SetBool("IsDead", false);
+                targetEnemy.constantAnimationStates.Remove("IsDead");
+                targetEnemy.isAsleep = false;
+                animHandler.enemyAnimationController(targetEnemy);                
+                break;
+            case "Poisonga":
+                targetEnemy.constantAnimationStates.Remove("IsCritical");
+                animHandler.enemyAnimationController(targetEnemy);
                 break;
             default:
                 break;

@@ -105,35 +105,51 @@ public class Animation_Handler : MonoBehaviour
         enemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
         enemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
         enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
-        enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);        
+        enemy.battleSprite.GetComponent<Animator>().SetBool("IsCritical", false);
+        enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);
+        enemy.battleSprite.GetComponent<Animator>().SetBool("IsDead", false);
 
-        if (state == "TakeDamage")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", true);
-        }
-        else if (state == "IsAttacking")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
-        }
-        else if (state == "IsCasting")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
-        }
-        else if (state == "IsReady")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
-        }
-        else if (state == "IsChanting")
-        {
-            enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
-        }
-        else if (state == "IsDead")
-        {
+        if(enemy.isAsleep){
             enemy.battleSprite.GetComponent<Animator>().SetBool("IsDead", true);
         }
-        else if (enemy.hasConstantAnimationState)
+        else
         {
-            enemy.battleSprite.GetComponent<Animator>().SetBool(enemy.constantAnimationState, true);
-        }
+            if (state == "TakeDamage")
+            {
+                enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", true);
+            }
+            else if (state == "IsAttacking")
+            {
+                enemy.battleSprite.GetComponent<Animator>().SetBool("IsAttacking", true);
+            }
+            else if (state == "IsCasting")
+            {
+                enemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", true);
+            }
+            else if (state == "IsReady")
+            {
+                enemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", true);
+            }
+            else if (state == "IsChanting")
+            {
+                enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
+            }
+            else if (state == "IsCritical")
+            {
+                enemy.battleSprite.GetComponent<Animator>().SetBool("IsCritical", true);
+            }
+            else if (state == "IsDead")
+            {
+                enemy.battleSprite.GetComponent<Animator>().SetBool("IsDead", true);
+            }
+            else if (enemy.constantAnimationStates.Count > 1)
+            {
+                enemy.battleSprite.GetComponent<Animator>().SetBool(enemy.constantAnimationStates[1], true);
+            }
+            else if (enemy.constantAnimationStates.Count > 0)
+            {
+                enemy.battleSprite.GetComponent<Animator>().SetBool(enemy.constantAnimationStates[0], true);
+            }
+        }        
     }
 }

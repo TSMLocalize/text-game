@@ -1661,7 +1661,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 31.8
+  m_fontSize: 31.85
   m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7669,6 +7669,7 @@ MonoBehaviour:
     currentHP: 0
     maxHP: 0
     speed: 1
+    preDebuffSpeed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -7688,6 +7689,7 @@ MonoBehaviour:
       isSupport: 0
       methodID: 
     isCastingSpell: 0
+    isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: b16b1c81d2211db4b9c9c0004ac16789, type: 3}
     enemyPanel: {fileID: 0}
     enemyPanelText: {fileID: 0}
@@ -7700,8 +7702,7 @@ MonoBehaviour:
     battleSprite: {fileID: 1885925994}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
+    constantAnimationStates: []
     enemyCastAnimCoroutineIsPaused: 0
     enemyAttackAnimCoroutineIsPaused: 0
     enemyReadyAnimCoroutineIsPaused: 0
@@ -7713,6 +7714,7 @@ MonoBehaviour:
     currentHP: 0
     maxHP: 0
     speed: 1
+    preDebuffSpeed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -7732,6 +7734,7 @@ MonoBehaviour:
       isSupport: 0
       methodID: 
     isCastingSpell: 0
+    isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: 8e0148b3bc2e6b440bfc3cdbc1913824, type: 3}
     enemyPanel: {fileID: 0}
     enemyPanelText: {fileID: 0}
@@ -7744,8 +7747,7 @@ MonoBehaviour:
     battleSprite: {fileID: 167591038}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
+    constantAnimationStates: []
     enemyCastAnimCoroutineIsPaused: 0
     enemyAttackAnimCoroutineIsPaused: 0
     enemyReadyAnimCoroutineIsPaused: 0
@@ -7757,6 +7759,7 @@ MonoBehaviour:
     currentHP: 0
     maxHP: 0
     speed: 0
+    preDebuffSpeed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -7776,6 +7779,7 @@ MonoBehaviour:
       isSupport: 0
       methodID: 
     isCastingSpell: 0
+    isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: 54cc4bd3fb94fc14ca88b81e50419667, type: 3}
     enemyPanel: {fileID: 0}
     enemyPanelText: {fileID: 0}
@@ -7788,8 +7792,7 @@ MonoBehaviour:
     battleSprite: {fileID: 1411950746}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
+    constantAnimationStates: []
     enemyCastAnimCoroutineIsPaused: 0
     enemyAttackAnimCoroutineIsPaused: 0
     enemyReadyAnimCoroutineIsPaused: 0
@@ -7801,6 +7804,7 @@ MonoBehaviour:
     currentHP: 0
     maxHP: 0
     speed: 0
+    preDebuffSpeed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -7820,6 +7824,7 @@ MonoBehaviour:
       isSupport: 0
       methodID: 
     isCastingSpell: 0
+    isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: 2966398d1c117b84da49022f17c494c9, type: 3}
     enemyPanel: {fileID: 0}
     enemyPanelText: {fileID: 0}
@@ -7832,8 +7837,7 @@ MonoBehaviour:
     battleSprite: {fileID: 103519366}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
+    constantAnimationStates: []
     enemyCastAnimCoroutineIsPaused: 0
     enemyAttackAnimCoroutineIsPaused: 0
     enemyReadyAnimCoroutineIsPaused: 0
@@ -7845,6 +7849,7 @@ MonoBehaviour:
     currentHP: 0
     maxHP: 0
     speed: 0
+    preDebuffSpeed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -7864,6 +7869,7 @@ MonoBehaviour:
       isSupport: 0
       methodID: 
     isCastingSpell: 0
+    isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: ca65f4047d989b643931d4144ac3d3db, type: 3}
     enemyPanel: {fileID: 0}
     enemyPanelText: {fileID: 0}
@@ -7876,8 +7882,7 @@ MonoBehaviour:
     battleSprite: {fileID: 1556463658}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
+    constantAnimationStates: []
     enemyCastAnimCoroutineIsPaused: 0
     enemyAttackAnimCoroutineIsPaused: 0
     enemyReadyAnimCoroutineIsPaused: 0
@@ -7889,6 +7894,7 @@ MonoBehaviour:
     currentHP: 0
     maxHP: 0
     speed: 0
+    preDebuffSpeed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -7908,6 +7914,7 @@ MonoBehaviour:
       isSupport: 0
       methodID: 
     isCastingSpell: 0
+    isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: 7d224dd25783c8f47970ffcf9b611f8c, type: 3}
     enemyPanel: {fileID: 0}
     enemyPanelText: {fileID: 0}
@@ -7920,8 +7927,7 @@ MonoBehaviour:
     battleSprite: {fileID: 18041884}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
+    constantAnimationStates: []
     enemyCastAnimCoroutineIsPaused: 0
     enemyAttackAnimCoroutineIsPaused: 0
     enemyReadyAnimCoroutineIsPaused: 0
@@ -7933,6 +7939,7 @@ MonoBehaviour:
     currentHP: 0
     maxHP: 0
     speed: 0
+    preDebuffSpeed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -7952,6 +7959,7 @@ MonoBehaviour:
       isSupport: 0
       methodID: 
     isCastingSpell: 0
+    isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: c1584bd6c35dd074082052506393517d, type: 3}
     enemyPanel: {fileID: 0}
     enemyPanelText: {fileID: 0}
@@ -7964,8 +7972,7 @@ MonoBehaviour:
     battleSprite: {fileID: 613726705}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
+    constantAnimationStates: []
     enemyCastAnimCoroutineIsPaused: 0
     enemyAttackAnimCoroutineIsPaused: 0
     enemyReadyAnimCoroutineIsPaused: 0
@@ -7977,6 +7984,7 @@ MonoBehaviour:
     currentHP: 0
     maxHP: 0
     speed: 0
+    preDebuffSpeed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -7996,6 +8004,7 @@ MonoBehaviour:
       isSupport: 0
       methodID: 
     isCastingSpell: 0
+    isAsleep: 0
     EnemyPortrait: {fileID: 21300000, guid: 13f5404eac497804b9df53e401e0ec89, type: 3}
     enemyPanel: {fileID: 0}
     enemyPanelText: {fileID: 0}
@@ -8008,8 +8017,7 @@ MonoBehaviour:
     battleSprite: {fileID: 474975003}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
+    constantAnimationStates: []
     enemyCastAnimCoroutineIsPaused: 0
     enemyAttackAnimCoroutineIsPaused: 0
     enemyReadyAnimCoroutineIsPaused: 0
@@ -8272,7 +8280,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 23.15
+  m_fontSize: 23.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10965,7 +10973,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1190124504}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999976
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17394,6 +17402,7 @@ MonoBehaviour:
     currentHP: 0
     maxHP: 0
     speed: 0
+    preDebuffSpeed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -17413,6 +17422,7 @@ MonoBehaviour:
       isSupport: 0
       methodID: 
     isCastingSpell: 0
+    isAsleep: 0
     EnemyPortrait: {fileID: 0}
     enemyPanel: {fileID: 0}
     enemyPanelText: {fileID: 0}
@@ -17425,8 +17435,7 @@ MonoBehaviour:
     battleSprite: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
+    constantAnimationStates: []
     enemyCastAnimCoroutineIsPaused: 0
     enemyAttackAnimCoroutineIsPaused: 0
     enemyReadyAnimCoroutineIsPaused: 0
@@ -17594,6 +17603,7 @@ MonoBehaviour:
     currentHP: 0
     maxHP: 0
     speed: 0
+    preDebuffSpeed: 0
     speedTotal: 0
     castSpeed: 0
     castSpeedTotal: 0
@@ -17613,6 +17623,7 @@ MonoBehaviour:
       isSupport: 0
       methodID: 
     isCastingSpell: 0
+    isAsleep: 0
     EnemyPortrait: {fileID: 0}
     enemyPanel: {fileID: 0}
     enemyPanelText: {fileID: 0}
@@ -17625,8 +17636,7 @@ MonoBehaviour:
     battleSprite: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
-    hasConstantAnimationState: 0
-    constantAnimationState: 
+    constantAnimationStates: []
     enemyCastAnimCoroutineIsPaused: 0
     enemyAttackAnimCoroutineIsPaused: 0
     enemyReadyAnimCoroutineIsPaused: 0

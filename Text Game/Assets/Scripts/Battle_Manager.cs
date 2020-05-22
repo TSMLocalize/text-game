@@ -144,6 +144,7 @@ public class Battle_Manager : MonoBehaviour
                     EnemiesInBattle[i].enemyCastAnimIsDone = false;
                 }
 
+                //Enumerators to start running again after game is paused
                 if (startRoutinesGoingAgain)
                 {
                     startSpeedCoroutines();
@@ -156,8 +157,6 @@ public class Battle_Manager : MonoBehaviour
                             StartCoroutine(SpellManager.tickStatusAilmentCoroutine(ActionHandler.statusAilmentList[i]));
                         }
                     }                    
-
-
                     
                     startRoutinesGoingAgain = false;
                 }
@@ -182,9 +181,7 @@ public class Battle_Manager : MonoBehaviour
                     {
                         if (EnemiesInBattle[i].isCastingSpell != true)
                         {
-                            AnimHandler.enemyAnimationController(EnemiesInBattle[i], "IsReady");
-                            EnemiesInBattle[i].constantAnimationState = "IsReady";
-                            EnemiesInBattle[i].hasConstantAnimationState = true;
+                            AnimHandler.enemyAnimationController(EnemiesInBattle[i], "IsReady");                                                
                         }
 
                         EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
@@ -972,9 +969,7 @@ public class Battle_Manager : MonoBehaviour
                     if (activeEnemy.enemyAttackAnimIsDone == true)
                     {
                         activeEnemy.enemyAttackAnimIsDone = false;
-                        activeEnemy.enemyAttackAnimCoroutineIsPaused = true;
-                        activeEnemy.constantAnimationState = null;
-                        activeEnemy.hasConstantAnimationState = false;
+                        activeEnemy.enemyAttackAnimCoroutineIsPaused = true;                        
                         AnimHandler.animationController(enemyTarget);
                         AnimHandler.enemyAnimationController(activeEnemy);
                         activeEnemy.speedTotal -= 100f;
@@ -1003,13 +998,10 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 if (selectedCommand == "EnemySpell")
-                {
-                    activeEnemy.constantAnimationState = null;
-                    activeEnemy.hasConstantAnimationState = false;
-                    activeEnemy.constantAnimationState = "IsChanting";
+                {                    
+                    activeEnemy.constantAnimationStates.Add("IsChanting");
                     AnimHandler.enemyAnimationController(activeEnemy, "IsChanting");
-                    activeEnemy.isCastingSpell = true;
-                    activeEnemy.hasConstantAnimationState = true;
+                    activeEnemy.isCastingSpell = true;                    
                     activeEnemy.enemyCastBar.SetActive(true);
                     activeEnemy.castSpeedTotal = activeEnemy.activeSpell.castTime;
                     activeEnemy.speedTotal -= 100f;
@@ -1032,9 +1024,7 @@ public class Battle_Manager : MonoBehaviour
                 }
 
                 if (selectedCommand == "EnemyResolveSpell")
-                {
-                    activeEnemy.constantAnimationState = null;
-                    activeEnemy.hasConstantAnimationState = false;
+                {                    
                     AnimHandler.enemyAnimationController(activeEnemy, "IsCasting");
                     activeEnemy.enemyCastAnimCoroutineIsPaused = false;
 
