@@ -107,13 +107,13 @@ public class Spells : MonoBehaviour
         }
     }
 
+    //This is what happens each tick for a given status
     public void TickStatus(string statusID, Enemy targetEnemy = null, Player targetPlayer = null)
     {
         switch (statusID)
         {
             case "Sleep":                                
-                targetEnemy.speed = 0;
-                Debug.Log("tick");
+                targetEnemy.speed = 0;                
                 animHandler.enemyAnimationController(targetEnemy, "IsDead");
                 break;
             default:
@@ -121,6 +121,7 @@ public class Spells : MonoBehaviour
         }
     }
 
+    //This is what happens when a status effect wears off
     public void EndStatus(string statusID, Enemy targetEnemy = null, Player targetPlayer = null)
     {
         switch (statusID) 
@@ -134,6 +135,7 @@ public class Spells : MonoBehaviour
         }
     }
 
+    //This ticks the status ailment in line with the other coroutines stop/start
     public IEnumerator tickStatusAilmentCoroutine(StatusAilment statusAilment)
     {
         if (statusAilment != null)
