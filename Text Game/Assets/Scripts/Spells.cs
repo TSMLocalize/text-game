@@ -90,17 +90,30 @@ public class Spells : MonoBehaviour
             case "Poisonga":
                 for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                 {
-                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 11, poison);
+                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 11, poison, "poison");
                 }
                 break;
             case "Sleep":
                 for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                 {
-                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 11, sleep);
+                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 5, sleep, "poison", BM.EnemiesInBattle[i]);  
                 }
                 break;
             default:
                 Debug.Log("Invalid Spell ID Entered");
+                break;
+        }
+    }
+
+    public void TickStatus(string statusID, Enemy targetEnemy = null, Player targetPlayer = null)
+    {
+        switch (statusID)
+        {
+            case "Sleep":                
+                targetEnemy.speed = 0;
+                animHandler.enemyAnimationController(targetEnemy, "IsDead");
+                break;
+            default:
                 break;
         }
     }

@@ -24,6 +24,7 @@ public class Enemy
     public float Armor;
 
     //Spell & ability related
+    public List<StatusAilment> currentAfflictions;
     public List<string> enemyOptions;
     public List<Spell> spellBook;
     public Spell activeSpell = null;

@@ -30,7 +30,8 @@ public class Player
     public WeaponSkill selectedWeaponSkill;
 
     //Spell & ability related
-    public List<string> playerOptions;
+    public List<StatusAilment> currentAfflictions;
+    public List<string> playerOptions;    
     public List<Spell> spellBook;
     public Spell activeSpell = null;
     public List<string> constantAnimationStates;    

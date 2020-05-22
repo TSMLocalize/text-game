@@ -201,7 +201,7 @@ public class Action_Handler : MonoBehaviour
 
                     SendMessagesToCombatLog(
                     BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
-                    CreateStatusAilment(BM.enemyTarget.battleSprite, 12, spells.poison);
+                    CreateStatusAilment(BM.enemyTarget.battleSprite, 12, spells.poison, "Poison");
                     animHandler.animationController(BM.enemyTarget, "IsCritical");
                     BM.enemyTarget.constantAnimationStates.Add("IsCritical");
                     enemySpellReportFinished = true;
@@ -372,12 +372,25 @@ public class Action_Handler : MonoBehaviour
     }
 
     //Create a status ailment 
-    public void CreateStatusAilment(GameObject target, int timeRemaining, Sprite icon)
+    public void CreateStatusAilment(GameObject target, int timeRemaining, Sprite icon, string type, Enemy targetEnemy = null, Player targetPlayer = null)
     {        
         GameObject statusAilmentGameObject = Instantiate(statusAilment, target.transform);        
         StatusAilment statusAilmentToAdd = statusAilmentGameObject.GetComponentInChildren<StatusAilment>();
         statusAilmentToAdd.icon = icon;
-        statusAilmentToAdd.statusTimerNumber = timeRemaining;        
+        statusAilmentToAdd.statusTimerNumber = timeRemaining;
+        statusAilmentToAdd.type = type;
+
+        if(targetEnemy != null)
+        {
+            targetEnemy.currentAfflictions.Add(statusAilmentToAdd);
+            statusAilmentToAdd.afflictedEnemy = targetEnemy;
+        }
+        else if (targetPlayer != null)
+        {
+            targetPlayer.currentAfflictions.Add(statusAilmentToAdd);
+            statusAilmentToAdd.afflictedPlayer = targetPlayer;
+        }        
+
         statusAilmentList.Add(statusAilmentToAdd);
     }
 

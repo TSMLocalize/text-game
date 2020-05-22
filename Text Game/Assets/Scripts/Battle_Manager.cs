@@ -156,6 +156,8 @@ public class Battle_Manager : MonoBehaviour
                             StartCoroutine(BM_Enums.updateStatusAilMentSpeedBars(ActionHandler.statusAilmentList[i]));
                         }
                     }                    
+
+
                     
                     startRoutinesGoingAgain = false;
                 }

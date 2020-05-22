@@ -10,6 +10,7 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
 {
     public Battle_Manager BM;
     public Action_Handler actionHandler;
+    public Spells spells;
 
     // Start is called before the first frame update
     void Start()
@@ -169,6 +170,17 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
                 if (statusAilment.statusTimerNumber > 0)
                 {
                     statusAilment.statusTimerNumber -= 1f;
+
+                    /*
+                    if(statusAilment.afflictedEnemy != null)
+                    {
+                        spells.TickStatus(statusAilment.type, statusAilment.afflictedEnemy, null);
+                    }
+                    else if (statusAilment.afflictedPlayer != null)
+                    {
+                        spells.TickStatus(statusAilment.type, null, statusAilment.afflictedPlayer);
+                    }
+                    */
                 }
 
                 if (statusAilment.statusTimerNumber == 0)

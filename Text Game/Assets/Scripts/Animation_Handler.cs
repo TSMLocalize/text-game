@@ -127,6 +127,10 @@ public class Animation_Handler : MonoBehaviour
         {
             enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", true);
         }
+        else if (state == "IsDead")
+        {
+            enemy.battleSprite.GetComponent<Animator>().SetBool("IsDead", true);
+        }
         else if (enemy.hasConstantAnimationState)
         {
             enemy.battleSprite.GetComponent<Animator>().SetBool(enemy.constantAnimationState, true);

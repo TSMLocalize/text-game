@@ -7677,6 +7677,7 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    currentAfflictions: []
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -7720,6 +7721,7 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    currentAfflictions: []
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -7763,6 +7765,7 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    currentAfflictions: []
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -7806,6 +7809,7 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    currentAfflictions: []
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -7849,6 +7853,7 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    currentAfflictions: []
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -7892,6 +7897,7 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    currentAfflictions: []
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -7935,6 +7941,7 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    currentAfflictions: []
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -7978,6 +7985,7 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    currentAfflictions: []
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -12079,6 +12087,7 @@ MonoBehaviour:
       wsAnimTimer: 0
       willCreateSkillchain: 0
       skillChainLevel: 0
+    currentAfflictions: []
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -12139,6 +12148,7 @@ MonoBehaviour:
       wsAnimTimer: 0
       willCreateSkillchain: 0
       skillChainLevel: 0
+    currentAfflictions: []
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -12199,6 +12209,7 @@ MonoBehaviour:
       wsAnimTimer: 0
       willCreateSkillchain: 0
       skillChainLevel: 0
+    currentAfflictions: []
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -12259,6 +12270,7 @@ MonoBehaviour:
       wsAnimTimer: 0
       willCreateSkillchain: 0
       skillChainLevel: 0
+    currentAfflictions: []
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -12319,6 +12331,7 @@ MonoBehaviour:
       wsAnimTimer: 0
       willCreateSkillchain: 0
       skillChainLevel: 0
+    currentAfflictions: []
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -12379,6 +12392,7 @@ MonoBehaviour:
       wsAnimTimer: 0
       willCreateSkillchain: 0
       skillChainLevel: 0
+    currentAfflictions: []
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -17279,6 +17293,7 @@ MonoBehaviour:
       wsAnimTimer: 0
       willCreateSkillchain: 0
       skillChainLevel: 0
+    currentAfflictions: []
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -17341,6 +17356,7 @@ MonoBehaviour:
       wsAnimTimer: 0
       willCreateSkillchain: 0
       skillChainLevel: 0
+    currentAfflictions: []
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -17386,6 +17402,7 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    currentAfflictions: []
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -17585,6 +17602,7 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    currentAfflictions: []
     enemyOptions: []
     spellBook: []
     activeSpell:
@@ -17645,6 +17663,7 @@ MonoBehaviour:
       wsAnimTimer: 0
       willCreateSkillchain: 0
       skillChainLevel: 0
+    currentAfflictions: []
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -17705,6 +17724,7 @@ MonoBehaviour:
       wsAnimTimer: 0
       willCreateSkillchain: 0
       skillChainLevel: 0
+    currentAfflictions: []
     playerOptions: []
     spellBook: []
     activeSpell:
@@ -17798,6 +17818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BM: {fileID: 1548464333}
   actionHandler: {fileID: 0}
+  spells: {fileID: 0}
 --- !u!114 &1548464337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17827,9 +17848,7 @@ MonoBehaviour:
     type: 3}
   statusAilment: {fileID: 8915403152612159213, guid: 7eeecd3e89f68df4e9a56abb00cfc83e,
     type: 3}
-  statusAilmentList:
-  - {fileID: 0}
-  - {fileID: 0}
+  statusAilmentList: []
 --- !u!114 &1548464338
 MonoBehaviour:
   m_ObjectHideFlags: 0
