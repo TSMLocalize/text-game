@@ -120,7 +120,8 @@ public class Spells : MonoBehaviour
             case "Sleep":                                
                 targetEnemy.speed = 0;                                            
                 break;
-            case "Poisonga":                               
+            case "Poisonga":
+                action_Handler.CreateDamagePopUp(targetEnemy.battleSprite.transform.position, "12", Color.gray);
                 break;
             default:
                 break;
