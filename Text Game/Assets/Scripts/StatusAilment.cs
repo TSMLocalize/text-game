@@ -29,8 +29,8 @@ public class StatusAilment : MonoBehaviour
         StatusTimer.text = statusTimerNumber.ToString();
 
         if (this.statusTimerNumber <= 0)
-        {            
-            if(this.afflictedPlayer != null)
+        {
+            if (this.afflictedPlayer != null)
             {
                 afflictedPlayer.currentAfflictions.Remove(this);
                 this.afflictedPlayer = null;
@@ -43,7 +43,7 @@ public class StatusAilment : MonoBehaviour
 
             act_handler.statusAilmentList.Remove(this);
 
-            Destroy(this.gameObject);
+            Destroy(this.gameObject);            
         }        
     }   
 }
