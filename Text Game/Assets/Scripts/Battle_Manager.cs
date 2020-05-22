@@ -153,7 +153,7 @@ public class Battle_Manager : MonoBehaviour
                     {
                         for (int i = 0; i < ActionHandler.statusAilmentList.Count; i++)
                         {
-                            StartCoroutine(BM_Enums.updateStatusAilMentSpeedBars(ActionHandler.statusAilmentList[i]));
+                            StartCoroutine(SpellManager.tickStatusAilmentCoroutine(ActionHandler.statusAilmentList[i]));
                         }
                     }                    
 

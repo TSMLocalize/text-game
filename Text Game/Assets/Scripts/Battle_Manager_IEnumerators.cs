@@ -16,6 +16,7 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
     void Start()
     {
         BM = GetComponent<Battle_Manager>();
+        spells = FindObjectOfType<Spells>();
         actionHandler = GetComponent<Action_Handler>();
     }
 
@@ -148,48 +149,5 @@ public class Battle_Manager_IEnumerators : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
         }
-    }
-
-    public IEnumerator updateStatusAilMentSpeedBars(StatusAilment statusAilment)
-    {
-        if (statusAilment != null)
-        {
-            while (BM.coroutineIsPaused == true)
-            {
-                yield return null;
-            }
-
-            while (BM.coroutineIsPaused == false)
-            {
-                if (BM.returningStarting == true)
-                {
-                    yield return new WaitForSeconds(0.3f);
-                    BM.returningStarting = false;
-                }
-
-                if (statusAilment.statusTimerNumber > 0)
-                {
-                    statusAilment.statusTimerNumber -= 1f;
-
-                    /*
-                    if(statusAilment.afflictedEnemy != null)
-                    {
-                        spells.TickStatus(statusAilment.type, statusAilment.afflictedEnemy, null);
-                    }
-                    else if (statusAilment.afflictedPlayer != null)
-                    {
-                        spells.TickStatus(statusAilment.type, null, statusAilment.afflictedPlayer);
-                    }
-                    */
-                }
-
-                if (statusAilment.statusTimerNumber == 0)
-                {
-                    yield return null;
-                }
-
-                yield return new WaitForSeconds(0.5f);
-            }
-        }        
     }
 }

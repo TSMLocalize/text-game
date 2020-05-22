@@ -96,7 +96,9 @@ public class Spells : MonoBehaviour
             case "Sleep":
                 for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                 {
-                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 5, sleep, "poison", BM.EnemiesInBattle[i]);  
+                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 5, sleep, "Sleep", BM.EnemiesInBattle[i]);
+                    BM.EnemiesInBattle[i].preDebuffSpeed = BM.EnemiesInBattle[i].speed;                                        
+                    TickStatus("Sleep", BM.EnemiesInBattle[i]);                    
                 }
                 break;
             default:
@@ -109,12 +111,60 @@ public class Spells : MonoBehaviour
     {
         switch (statusID)
         {
-            case "Sleep":                
+            case "Sleep":                                
                 targetEnemy.speed = 0;
+                Debug.Log("tick");
                 animHandler.enemyAnimationController(targetEnemy, "IsDead");
                 break;
             default:
                 break;
+        }
+    }
+
+    public void EndStatus(string statusID, Enemy targetEnemy = null, Player targetPlayer = null)
+    {
+        switch (statusID) 
+        {
+            case "Sleep":
+                targetEnemy.speed = targetEnemy.preDebuffSpeed;
+                targetEnemy.battleSprite.GetComponent<Animator>().SetBool("IsDead", false);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public IEnumerator tickStatusAilmentCoroutine(StatusAilment statusAilment)
+    {
+        if (statusAilment != null)
+        {
+            while (BM.coroutineIsPaused == true)
+            {
+                yield return null;
+            }
+
+            while (BM.coroutineIsPaused == false)
+            {
+                if (BM.returningStarting == true)
+                {
+                    yield return new WaitForSeconds(0.3f);
+                    BM.returningStarting = false;
+                }
+
+                if (statusAilment.statusTimerNumber > 0)
+                {
+                    statusAilment.statusTimerNumber -= 1f;
+                    TickStatus(statusAilment.type, statusAilment.afflictedEnemy);
+                }
+
+                if (statusAilment.statusTimerNumber <= 0)
+                {
+                    EndStatus(statusAilment.type, statusAilment.afflictedEnemy, statusAilment.afflictedPlayer);
+                    yield return null;
+                }
+
+                yield return new WaitForSeconds(0.5f);
+            }
         }
     }
 }

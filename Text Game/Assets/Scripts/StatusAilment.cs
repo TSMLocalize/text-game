@@ -12,12 +12,12 @@ public class StatusAilment : MonoBehaviour
     public Sprite icon;
     public string type;
     public Player afflictedPlayer;
-    public Enemy afflictedEnemy;
+    public Enemy afflictedEnemy;    
 
     // Start is called before the first frame update
     void Start()
     {                
-        BM = FindObjectOfType<Battle_Manager>();
+        BM = FindObjectOfType<Battle_Manager>();        
         act_handler = FindObjectOfType<Action_Handler>();
         StatusTimer = GetComponentInChildren<TextMeshPro>();
         GetComponent<SpriteRenderer>().sprite = icon;
@@ -29,7 +29,7 @@ public class StatusAilment : MonoBehaviour
         StatusTimer.text = statusTimerNumber.ToString();
 
         if (this.statusTimerNumber <= 0)
-        {
+        {            
             if(this.afflictedPlayer != null)
             {
                 afflictedPlayer.currentAfflictions.Remove(this);

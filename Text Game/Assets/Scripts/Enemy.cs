@@ -12,6 +12,7 @@ public class Enemy
     public float currentHP;
     public float maxHP;
     public float speed;
+    public float preDebuffSpeed;
     public float speedTotal;
     public float castSpeed;
     public float castSpeedTotal;

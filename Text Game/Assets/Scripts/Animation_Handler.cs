@@ -105,7 +105,7 @@ public class Animation_Handler : MonoBehaviour
         enemy.battleSprite.GetComponent<Animator>().SetBool("IsCasting", false);
         enemy.battleSprite.GetComponent<Animator>().SetBool("IsReady", false);
         enemy.battleSprite.GetComponent<Animator>().SetBool("IsChanting", false);
-        enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);
+        enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);        
 
         if (state == "TakeDamage")
         {
