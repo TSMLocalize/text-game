@@ -34,7 +34,7 @@ public class StatusAilment : MonoBehaviour
 
         if (this.statusTimerNumber <= 0)
         {            
-            if (afflictedPlayer != null)
+            if (playerorenemy == "player")
             {
                 if(type == "Sleep")
                 {
@@ -47,8 +47,18 @@ public class StatusAilment : MonoBehaviour
                 afflictedPlayer.currentAfflictions.Remove(this);
                 this.afflictedPlayer = null;
 
-            } else if (this.afflictedEnemy != null)
-            {                
+            } 
+            
+            if (playerorenemy == "enemy")
+            {
+                if (type == "Sleep")
+                {
+                    afflictedEnemy.isAsleep = false;
+                    afflictedEnemy.speed = afflictedEnemy.preDebuffSpeed;
+                }
+
+                afflictedEnemy.constantAnimationStates.Remove(associatedAnimationState);
+                animHandler.enemyAnimationController(afflictedEnemy);
                 afflictedEnemy.currentAfflictions.Remove(this);
                 this.afflictedEnemy = null;
             }

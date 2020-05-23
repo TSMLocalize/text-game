@@ -91,7 +91,7 @@ public class Spells : MonoBehaviour
             case "Poisonga":
                 for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                 {
-                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 11, poison, "Poisonga", BM.EnemiesInBattle[i]);
+                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 11, poison, "Poisonga", BM.EnemiesInBattle[i], null, "IsCritical");
                     animHandler.enemyAnimationController(BM.EnemiesInBattle[i], "IsCritical");
                     BM.EnemiesInBattle[i].constantAnimationStates.Add("IsCritical");
                     TickStatus("Poisonga", BM.EnemiesInBattle[i]);
@@ -101,8 +101,9 @@ public class Spells : MonoBehaviour
                 for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                 {
                     BM.EnemiesInBattle[i].isAsleep = true;
-                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 10, sleep, "Sleep", BM.EnemiesInBattle[i]);
-                    BM.EnemiesInBattle[i].preDebuffSpeed = BM.EnemiesInBattle[i].speed;                    
+                    action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 10, sleep, "Sleep", BM.EnemiesInBattle[i], null, "IsDead");
+                    BM.EnemiesInBattle[i].preDebuffSpeed = BM.EnemiesInBattle[i].speed;
+                    BM.EnemiesInBattle[i].speedTotal = 0;                                        
                     animHandler.enemyAnimationController(BM.EnemiesInBattle[i]);
                     TickStatus("Sleep", BM.EnemiesInBattle[i]);                    
                 }

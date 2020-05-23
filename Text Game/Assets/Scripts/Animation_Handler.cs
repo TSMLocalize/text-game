@@ -58,13 +58,6 @@ public class Animation_Handler : MonoBehaviour
         player.battleSprite.GetComponent<Animator>().SetBool("IsCritical", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsDead", false);
 
-        switch (state)
-        {
-            case "IsDead":
-            default:
-                break;
-        }
-
         if (player.isAsleep)
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsDead", true);
@@ -124,7 +117,8 @@ public class Animation_Handler : MonoBehaviour
         enemy.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", false);
         enemy.battleSprite.GetComponent<Animator>().SetBool("IsDead", false);
 
-        if(enemy.isAsleep){
+        if(enemy.isAsleep)
+        {
             enemy.battleSprite.GetComponent<Animator>().SetBool("IsDead", true);
         }
         else
