@@ -266,7 +266,8 @@ public class Action_Handler : MonoBehaviour
                 resolveAction(default);
                 break;
             case "Weapon Skill":
-                
+
+                BM.activePlayer.isWeaponSkill = true;
                 BM_Funcs.setPlayerOrEnemyTargetFromID(BM.activePlayer, null);
                 animHandler.animationController(BM.activePlayer, "IsFastBlade");
                 StartCoroutine(waitForWeaponSkillAnimation());
@@ -275,14 +276,13 @@ public class Action_Handler : MonoBehaviour
                 IEnumerator waitForWeaponSkillAnimation()
                 {
                     yield return new WaitForSeconds(BM.activePlayer.selectedWeaponSkill.wsAnimTimer);                                        
-                    animHandler.enemyAnimationController(BM.playerTarget);
-                    //animHandler.animationController(BM.activePlayer, "Ready");
+                    animHandler.enemyAnimationController(BM.playerTarget);                    
                     BM.activePlayer.speedTotal -= 100f;
                     BM.activePlayer.tpTotal = 0;
+                    BM.activePlayer.isWeaponSkill = false;
 
                     if (BM.activePlayer.selectedWeaponSkill.willCreateSkillchain == true)
-                    {
-                        
+                    {                        
                         reportOutcome("SkillChain");
                         resolveAction("Skillchain");                        
                     }
@@ -374,13 +374,14 @@ public class Action_Handler : MonoBehaviour
     }
 
     //Create a status ailment 
-    public void CreateStatusAilment(GameObject target, int timeRemaining, Sprite icon, string type, Enemy targetEnemy = null, Player targetPlayer = null)
+    public void CreateStatusAilment(GameObject target, int timeRemaining, Sprite icon, string type, Enemy targetEnemy = null, Player targetPlayer = null, string constantAnimationStateToAdd = null)
     {        
         GameObject statusAilmentGameObject = Instantiate(statusAilment, target.transform);        
         StatusAilment statusAilmentToAdd = statusAilmentGameObject.GetComponentInChildren<StatusAilment>();
         statusAilmentToAdd.icon = icon;
         statusAilmentToAdd.statusTimerNumber = timeRemaining;
         statusAilmentToAdd.type = type;
+        statusAilmentToAdd.associatedAnimationState = constantAnimationStateToAdd;        
 
         if(targetEnemy != null)
         {

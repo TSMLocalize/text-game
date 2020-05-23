@@ -65,7 +65,7 @@ public class Enemy_Spells : MonoBehaviour
             case "Poisonga":
                 for (int i = 0; i < BM.PlayersInBattle.Count; i++)
                 {
-                    action_Handler.CreateStatusAilment(BM.PlayersInBattle[i].battleSprite, 11, spells.poison, "Poisonga", null, BM.PlayersInBattle[i]);
+                    action_Handler.CreateStatusAilment(BM.PlayersInBattle[i].battleSprite, 11, spells.poison, "Poisonga", null, BM.PlayersInBattle[i], "IsCritical");
                     animHandler.animationController(BM.PlayersInBattle[i], "IsCritical");
                     BM.PlayersInBattle[i].constantAnimationStates.Add("IsCritical");
                     EnemyTickStatus("Poisonga", null, BM.PlayersInBattle[i]);
@@ -75,7 +75,7 @@ public class Enemy_Spells : MonoBehaviour
                 for (int i = 0; i < BM.PlayersInBattle.Count; i++)
                 {
                     BM.PlayersInBattle[i].isAsleep = true;
-                    action_Handler.CreateStatusAilment(BM.PlayersInBattle[i].battleSprite, 10, spells.sleep, "Sleep", null, BM.PlayersInBattle[i]);
+                    action_Handler.CreateStatusAilment(BM.PlayersInBattle[i].battleSprite, 10, spells.sleep, "Sleep", null, BM.PlayersInBattle[i], "IsDead");
                     BM.PlayersInBattle[i].preDebuffSpeed = BM.PlayersInBattle[i].speed;
                     animHandler.animationController(BM.PlayersInBattle[i]);
                     EnemyTickStatus("Sleep", null, BM.PlayersInBattle[i]);

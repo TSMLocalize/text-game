@@ -36,6 +36,7 @@ public class Player
     public Spell activeSpell = null;
     public List<string> constantAnimationStates;    
     public bool isCastingSpell;
+    public bool isWeaponSkill;
 
     //Buff Debuff related
     public bool isAsleep;

@@ -908,7 +908,7 @@ public class Battle_Manager : MonoBehaviour
 
                 if (activeEnemy.isCastingSpell == false)
                 {
-                    int randomActionNo = Random.Range(1, 5);
+                    int randomActionNo = Random.Range(4, 5);
 
                     switch (randomActionNo)
                     {

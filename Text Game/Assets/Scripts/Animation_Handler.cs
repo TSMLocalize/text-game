@@ -58,15 +58,23 @@ public class Animation_Handler : MonoBehaviour
         player.battleSprite.GetComponent<Animator>().SetBool("IsCritical", false);
         player.battleSprite.GetComponent<Animator>().SetBool("IsDead", false);
 
+        switch (state)
+        {
+            case "IsDead":
+            default:
+                break;
+        }
+
         if (player.isAsleep)
         {
             player.battleSprite.GetComponent<Animator>().SetBool("IsDead", true);
-        } else
+        } 
+        else if (player.isWeaponSkill)
         {
-            if (state == "IsFastBlade")
-            {
-                player.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
-            }
+            player.battleSprite.GetComponent<Animator>().SetBool("IsFastBlade", true);
+        } 
+        else
+        {             
             if (state == "TakeDamage")
             {
                 player.battleSprite.GetComponent<Animator>().SetBool("TakeDamage", true);
