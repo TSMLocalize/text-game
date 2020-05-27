@@ -101,6 +101,21 @@ public class Spells : MonoBehaviour
                 for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
                 {
                     BM.EnemiesInBattle[i].isAsleep = true;
+                    
+                    if (BM.ActiveEnemies.Contains(BM.EnemiesInBattle[i]))
+                    {
+                        BM.ActiveEnemies.Remove(BM.EnemiesInBattle[i]);
+                    }
+
+                    if (BM.EnemiesInBattle[i].isCastingSpell)
+                    {
+                        BM.EnemiesInBattle[i].activeSpell = null;
+                        BM.EnemiesInBattle[i].isCastingSpell = false;
+                        BM.EnemiesInBattle[i].castSpeedTotal = 0;
+                        BM.EnemiesInBattle[i].constantAnimationStates.Remove("IsChanting");
+                        animHandler.enemyAnimationController(BM.EnemiesInBattle[i]);
+                    }
+                    
                     action_Handler.CreateStatusAilment(BM.EnemiesInBattle[i].battleSprite, 10, sleep, "Sleep", BM.EnemiesInBattle[i], null, "IsDead");
                     BM.EnemiesInBattle[i].preDebuffSpeed = BM.EnemiesInBattle[i].speed;
                     BM.EnemiesInBattle[i].speedTotal = 0;                                        
