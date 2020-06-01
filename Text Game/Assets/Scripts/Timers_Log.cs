@@ -57,13 +57,18 @@ public class Timers_Log : MonoBehaviour
             BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().waitMode = false;
             BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().castMode = false;
 
-            if (BM.ActivePlayers.Contains(BM.PlayersInBattle[i]))
+
+            if (BM.PlayersInBattle[i].isAsleep)
+            {
+                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().NumberText.text = "ZZZ";
+            }
+            else if (BM.ActivePlayers.Contains(BM.PlayersInBattle[i]))
             {
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue = 0;                 
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().NumberText.text = "--";
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().MainText.text = "READY!";
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().readyMode = true;
-            } 
+            }             
             else if (BM.PlayersInBattle[i].isCastingSpell)
             {
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue =

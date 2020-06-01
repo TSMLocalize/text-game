@@ -75,11 +75,28 @@ public class Enemy_Spells : MonoBehaviour
                 for (int i = 0; i < BM.PlayersInBattle.Count; i++)
                 {
                     BM.PlayersInBattle[i].isAsleep = true;
+
+                    if (BM.ActivePlayers.Contains(BM.PlayersInBattle[i]))
+                    {
+                        BM.ActivePlayers.Remove(BM.PlayersInBattle[i]);
+                    }
+
+                    if (BM.PlayersInBattle[i].isCastingSpell)
+                    {
+                        BM.PlayersInBattle[i].activeSpell = null;
+                        BM.PlayersInBattle[i].isCastingSpell = false;
+                        BM.PlayersInBattle[i].castSpeedTotal = 0;
+                        BM.PlayersInBattle[i].constantAnimationStates.Remove("IsChanting");
+                        animHandler.animationController(BM.PlayersInBattle[i]);
+                    }
+
                     action_Handler.CreateStatusAilment(BM.PlayersInBattle[i].battleSprite, 10, spells.sleep, "Sleep", null, BM.PlayersInBattle[i], "IsDead");
                     BM.PlayersInBattle[i].preDebuffSpeed = BM.PlayersInBattle[i].speed;
+                    BM.PlayersInBattle[i].speedTotal = 0;
                     animHandler.animationController(BM.PlayersInBattle[i]);
                     EnemyTickStatus("Sleep", null, BM.PlayersInBattle[i]);
                 }
+
                 break;
             default:
                 Debug.Log("Invalid Spell ID Entered");
@@ -93,7 +110,8 @@ public class Enemy_Spells : MonoBehaviour
         switch (statusID)
         {
             case "Sleep":
-                targetPlayer.speed = 0;
+                targetPlayer.speed = 0;                
+
                 break;
             case "Poisonga":
                 action_Handler.CreateDamagePopUp(targetPlayer.battleSprite.transform.position, "12", Color.gray);
