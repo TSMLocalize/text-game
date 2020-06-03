@@ -10,7 +10,7 @@ public class Enmity_Manager : MonoBehaviour
     public Battle_Manager_Functions BM_Funcs;
     public Combo_Manager combo_Manager;
     public Animation_Handler animHandler;
-    public Battle_Manager_IEnumerators BM_Enums;            
+    public Battle_Manager_IEnumerators BM_Enums;                
 
     // Start is called before the first frame update
     void Start()

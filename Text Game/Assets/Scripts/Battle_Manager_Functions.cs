@@ -118,7 +118,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         }
 
         for (int i = 0; i < BM.PlayersInBattle.Count; i++)
-        {
+        {            
             //Instantiate Panels
             instantiatedPlayerPanel = Instantiate(pfPlayerPanel, PlayerPanels.transform);
             instantiatedPlayerPanelImageArray = instantiatedPlayerPanel.GetComponentsInChildren<Image>();
@@ -141,7 +141,9 @@ public class Battle_Manager_Functions : MonoBehaviour
             //Cast Bar setup
             BM.PlayersInBattle[i].playerCastBar = instantiatedPlayerPanelImageArray[10].gameObject;
             BM.PlayersInBattle[i].playerCastBarText = instantiatedPlayerPanelTextArray[5];
-            BM.PlayersInBattle[i].playerCastBarFill = instantiatedPlayerPanelImageArray[11].gameObject;            
+            BM.PlayersInBattle[i].playerCastBarFill = instantiatedPlayerPanelImageArray[11].gameObject;
+            //Instantiate Player Battle Sprites
+            BM.PlayersInBattle[i].battleSprite = Instantiate(BM.PlayersInBattle[i].battleSprite);
             //Set battle sprites to their correct row
             AssignRows();
             //Transforms for moving
@@ -182,7 +184,7 @@ public class Battle_Manager_Functions : MonoBehaviour
             for (int y = 0; y < BM.Rows.Count; y++)
             {
                 if (BM.Rows[y].GetComponent<Row>().ID == BM.PlayersInBattle[i].currentRowPositionID)
-                {
+                {                                   
                     //Setup new movement position for the sprite
                     BM.PlayersInBattle[i].battleSprite.transform.position = BM.Rows[y].gameObject.transform.position;
                     BM.PlayersInBattle[i].position = BM.Rows[y].gameObject.transform.position;

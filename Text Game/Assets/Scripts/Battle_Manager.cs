@@ -13,7 +13,7 @@ public class Battle_Manager : MonoBehaviour
     public Battle_Manager_IEnumerators BM_Enums;
     public Action_Handler ActionHandler;
     public Timers_Log Timers_Log;
-    public Combo_Manager combo_Manager;
+    public Combo_Manager combo_Manager;    
     public float speed;
     public bool startRoutinesGoingAgain;
     public bool stepForward;    
@@ -104,7 +104,7 @@ public class Battle_Manager : MonoBehaviour
         AnimHandler = GetComponent<Animation_Handler>();
         EnemySpellManager = FindObjectOfType<Enemy_Spells>();
 
-        BM_Funcs.setupCharacters();
+        BM_Funcs.setupCharacters();        
 
         ColorUtility.TryParseHtmlString("#010078", out defaultBlueColor);
         defaultColor = ActionPanel.GetComponent<Image>().color;

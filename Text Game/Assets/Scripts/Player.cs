@@ -64,5 +64,5 @@ public class Player
     public Vector3 target;    
     public int currentRowPositionID;
     public GameObject currentRowPosition;
-    public GameObject currentRowPositionIcon;    
+    public GameObject currentRowPositionIcon;
 }
