@@ -213,6 +213,7 @@ public class Battle_Manager_Functions : MonoBehaviour
                     }
                 }
             }
+
         }
 
         //Assign enemy battle sprites to rows
