@@ -21,6 +21,7 @@ public class Battle_Manager : MonoBehaviour
     public bool isSwitchingWithOtherPlayer;
     public bool panelChosen;
     public List<GameObject> Rows;
+    public List<GameObject> EnemyRows;
     public List<GameObject> RowChangeIcons;
     public GameObject RowToSwitch;
     public Player playerToSwitchRowWith;

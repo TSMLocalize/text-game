@@ -144,8 +144,6 @@ public class Battle_Manager_Functions : MonoBehaviour
             BM.PlayersInBattle[i].playerCastBarFill = instantiatedPlayerPanelImageArray[11].gameObject;
             //Instantiate Player Battle Sprites
             BM.PlayersInBattle[i].battleSprite = Instantiate(BM.PlayersInBattle[i].battleSprite);
-            //Set battle sprites to their correct row
-            AssignRows();
             //Transforms for moving
             BM.PlayersInBattle[i].target = new Vector3(BM.PlayersInBattle[i].battleSprite.transform.position.x - 1f, BM.PlayersInBattle[i].battleSprite.transform.position.y,
                 BM.PlayersInBattle[i].battleSprite.transform.position.z);
@@ -172,8 +170,13 @@ public class Battle_Manager_Functions : MonoBehaviour
             BM.EnemiesInBattle[i].enemyCastBar = BM.EnemyCastBars[i];
             BM.EnemiesInBattle[i].enemyCastBarText = BM.EnemyCastBarTexts[i];
             BM.EnemiesInBattle[i].enemyCastBarFill = BM.EnemyCastBarFills[i];
-            BM.EnemyCastBars[i].SetActive(false);            
+            BM.EnemyCastBars[i].SetActive(false);
+            //Instantiate Player Battle Sprites
+            BM.EnemiesInBattle[i].battleSprite = Instantiate(BM.EnemiesInBattle[i].battleSprite);
         }
+
+        //Set battle sprites to their correct row
+        AssignRows();
     }
 
     public void AssignRows()
@@ -211,6 +214,40 @@ public class Battle_Manager_Functions : MonoBehaviour
                 }
             }
         }
+
+        //Assign enemy battle sprites to rows
+        for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+        {
+            for (int y = 0; y < BM.EnemyRows.Count; y++)
+            {
+                if (BM.EnemyRows[y].GetComponent<Row>().ID == BM.EnemiesInBattle[i].currentRowPositionID)
+                {
+                    //Setup new movement position for the sprite
+                    BM.EnemiesInBattle[i].battleSprite.transform.position = BM.EnemyRows[y].gameObject.transform.position;
+                    BM.EnemiesInBattle[i].position = BM.EnemyRows[y].gameObject.transform.position;
+                    //Assign the player with a physical row position
+                    BM.EnemiesInBattle[i].currentRowPosition = BM.EnemyRows[y].gameObject;                    
+
+                    if (BM.EnemiesInBattle[i].currentRowPositionID == 1 || BM.EnemiesInBattle[i].currentRowPositionID == 5)
+                    {
+                        BM.EnemiesInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                    }
+                    else if (BM.EnemiesInBattle[i].currentRowPositionID == 2 || BM.EnemiesInBattle[i].currentRowPositionID == 6)
+                    {
+                        BM.EnemiesInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                    }
+                    else if (BM.EnemiesInBattle[i].currentRowPositionID == 3 || BM.EnemiesInBattle[i].currentRowPositionID == 7)
+                    {
+                        BM.EnemiesInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                    }
+                    else if (BM.EnemiesInBattle[i].currentRowPositionID == 4 || BM.EnemiesInBattle[i].currentRowPositionID == 8)
+                    {
+                        BM.EnemiesInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 4;
+                    }
+                }
+            }
+        }
+
     }
 
     public void updateRowPositions()

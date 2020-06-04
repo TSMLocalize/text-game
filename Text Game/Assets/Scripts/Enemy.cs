@@ -47,7 +47,9 @@ public class Enemy
     public GameObject battleSprite;
     public Vector3 position;
     public Vector3 target;
-    public List<string> constantAnimationStates;    
+    public List<string> constantAnimationStates;
+    public int currentRowPositionID;
+    public GameObject currentRowPosition;    
 
     //Enemy Animation Coroutine Control Bools
     public bool enemyCastAnimCoroutineIsPaused;
