@@ -59,6 +59,7 @@ public class Battle_Manager : MonoBehaviour
     public Enemy_Spells EnemySpellManager;
     public bool coroutineIsPaused = false;
     public bool returningStarting = true;
+    public bool enmityFiguresNeedSetting;
     public string selectedCommand = null;
     public Color defaultColor;
     public Color defaultBlueColor;
@@ -363,6 +364,7 @@ public class Battle_Manager : MonoBehaviour
                                     battleStates = BattleStates.SELECT_FRIENDLY_TARGET;                                    
                                 } else
                                 {
+                                    enmityFiguresNeedSetting = true;
                                     battleStates = BattleStates.SELECT_TARGET;
                                 }                                
                             }
@@ -533,6 +535,7 @@ public class Battle_Manager : MonoBehaviour
                                 }
                                 else
                                 {
+                                    enmityFiguresNeedSetting = true;
                                     battleStates = BattleStates.SELECT_TARGET;
                                 }
                             }
@@ -542,14 +545,20 @@ public class Battle_Manager : MonoBehaviour
 
                 break;
 
-            case BattleStates.SELECT_TARGET:
-
-                //AnimHandler.animationController(activePlayer, "Ready");
+            case BattleStates.SELECT_TARGET:                                
 
                 for (int i = 0; i < EnemiesInBattle.Count; i++)
                 {
                     EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
+
+                    if (enmityFiguresNeedSetting)
+                    {
+                        //Set Enmity Figures and what enmity will go to potentially
+                        ActionHandler.CreateEnmityNumber(activePlayer, EnemiesInBattle[i]);                        
+                    }                    
                 }
+
+                enmityFiguresNeedSetting = false;
 
                 //Right click to go back to select option or select action
                 if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -719,6 +728,7 @@ public class Battle_Manager : MonoBehaviour
                                 }
                                 else
                                 {
+                                    enmityFiguresNeedSetting = true;
                                     battleStates = BattleStates.SELECT_TARGET;
                                 }
                             }

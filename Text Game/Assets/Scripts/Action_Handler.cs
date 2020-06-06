@@ -14,6 +14,8 @@ using TMPro;
 public class Action_Handler : MonoBehaviour
 {        
     public GameObject floatingDamage;
+    public GameObject statusAilment;
+    public GameObject enmityNumberPF;
     public Spells spells;
     public Enemy_Spells enemySpells;
     public Battle_Manager BM;
@@ -26,8 +28,7 @@ public class Action_Handler : MonoBehaviour
     public int maxMessages;
     public List<Message> messageList;
     public GameObject chatPanel;
-    public GameObject textObject;
-    public GameObject statusAilment;
+    public GameObject textObject;    
     public List<StatusAilment> statusAilmentList;
 
     // Start is called before the first frame update
@@ -398,6 +399,14 @@ public class Action_Handler : MonoBehaviour
         }        
 
         statusAilmentList.Add(statusAilmentToAdd);
+    }
+
+    public void CreateEnmityNumber(Player playerToHate, Enemy enemyWhoHates)
+    {
+        GameObject enmityNumber = Instantiate(enmityNumberPF, enemyWhoHates.battleSprite.transform);
+        EnmityFigure enmityNumberToAdd = enmityNumber.GetComponent<EnmityFigure>();
+
+        enmityNumberToAdd.EnmityPercentage.text = "120" + "%";        
     }
 
     public void SendMessagesToCombatLog(string text)

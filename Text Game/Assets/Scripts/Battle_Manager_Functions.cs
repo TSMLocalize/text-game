@@ -452,6 +452,7 @@ public class Battle_Manager_Functions : MonoBehaviour
         {
             if (BM.selectedCommand == "Attack")
             {
+                BM.enmityFiguresNeedSetting = true;
                 BM.battleStates = Battle_Manager.BattleStates.SELECT_TARGET;
             }
             else if (BM.selectedCommand == "Magic")

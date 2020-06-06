@@ -32,6 +32,7 @@ public class StatusAilment : MonoBehaviour
     {
         StatusTimer.text = statusTimerNumber.ToString();
 
+        //Scripts for what to do when applied status hits 0
         if (this.statusTimerNumber <= 0)
         {            
             if (playerorenemy == "player")
