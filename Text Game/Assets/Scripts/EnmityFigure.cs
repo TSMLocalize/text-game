@@ -27,6 +27,9 @@ public class EnmityFigure : MonoBehaviour
 
     void Update()
     {
-        
+        if (BM.battleStates != Battle_Manager.BattleStates.SELECT_TARGET)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

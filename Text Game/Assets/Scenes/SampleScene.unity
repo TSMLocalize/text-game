@@ -16645,6 +16645,7 @@ MonoBehaviour:
   EnemySpellManager: {fileID: 0}
   coroutineIsPaused: 0
   returningStarting: 0
+  enmityFiguresNeedSetting: 0
   selectedCommand: 
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   defaultBlueColor: {r: 0, g: 0, b: 0, a: 0}
