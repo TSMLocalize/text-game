@@ -26,6 +26,7 @@ public class Action_Handler : MonoBehaviour
     public bool spellReportFinished;
     public bool enemySpellReportFinished;
     public int maxMessages;
+    public float currentEnmity;
     public List<Message> messageList;
     public GameObject chatPanel;
     public GameObject textObject;    
@@ -406,7 +407,20 @@ public class Action_Handler : MonoBehaviour
         GameObject enmityNumber = Instantiate(enmityNumberPF, enemyWhoHates.battleSprite.transform);
         EnmityFigure enmityNumberToAdd = enmityNumber.GetComponent<EnmityFigure>();
 
-        enmityNumberToAdd.EnmityPercentage.text = "120" + "%";        
+        for (int i = 0; i < BM.PlayersInBattle.Count; i++)
+        {
+            if (BM.PlayersInBattle[i] == playerToHate)
+            {
+                for (int y = 0; y < enemyWhoHates.EnmityAgainstPlayersList.Count; y++)
+                {
+                    currentEnmity += enemyWhoHates.EnmityAgainstPlayersList[y];
+                }
+
+                currentEnmity = Mathf.Floor((enemyWhoHates.EnmityAgainstPlayersList[i] / currentEnmity) * 100);
+                enmityNumberToAdd.EnmityPercentage.text = currentEnmity.ToString() + "%";
+                currentEnmity = 0;
+            }
+        }        
     }
 
     public void SendMessagesToCombatLog(string text)

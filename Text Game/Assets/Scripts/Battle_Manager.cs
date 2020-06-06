@@ -133,7 +133,7 @@ public class Battle_Manager : MonoBehaviour
 
         BM_Funcs.updateEnemyUIBars();
 
-        BM_Funcs.updatePlayerUIBars();       
+        BM_Funcs.updatePlayerUIBars();        
 
         switch (battleStates)
         {
@@ -361,6 +361,7 @@ public class Battle_Manager : MonoBehaviour
 
                                 if (activePlayer.activeSpell != null && activePlayer.activeSpell.isSupport == true)
                                 {
+                                    enmityFiguresNeedSetting = true;
                                     battleStates = BattleStates.SELECT_FRIENDLY_TARGET;                                    
                                 } else
                                 {
@@ -412,8 +413,18 @@ public class Battle_Manager : MonoBehaviour
                 //Color all potential target options yellow
                 for (int i = 0; i < PlayersInBattle.Count; i++)
                 {
-                    PlayersInBattle[i].playerPanelBackground.color = Color.yellow;
+                    PlayersInBattle[i].playerPanelBackground.color = Color.yellow;                    
                 }
+
+                //Set Enmity numbers to show potential enmity result of healing
+                for (int i = 0; i < EnemiesInBattle.Count; i++)
+                {
+                    if (enmityFiguresNeedSetting)
+                    {
+                        //Set Enmity Figures and what enmity will go to potentially
+                        ActionHandler.CreateEnmityNumber(activePlayer, EnemiesInBattle[i]);
+                    }
+                }                
 
                 //Right click to go back to select option or select action
                 if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -531,6 +542,7 @@ public class Battle_Manager : MonoBehaviour
                                 
                                 if (activePlayer.activeSpell != null && activePlayer.activeSpell.isSupport == true)
                                 {
+                                    enmityFiguresNeedSetting = true;
                                     battleStates = BattleStates.SELECT_FRIENDLY_TARGET;
                                 }
                                 else
@@ -724,6 +736,7 @@ public class Battle_Manager : MonoBehaviour
                                 
                                 if (activePlayer.activeSpell != null && activePlayer.activeSpell.isSupport == true)
                                 {
+                                    enmityFiguresNeedSetting = true;
                                     battleStates = BattleStates.SELECT_FRIENDLY_TARGET;
                                 }
                                 else

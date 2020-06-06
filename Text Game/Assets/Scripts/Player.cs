@@ -16,7 +16,7 @@ public class Player
     public float storeTP;
     public float tpTotal;
     public float castSpeed;
-    public float castSpeedTotal;
+    public float castSpeedTotal;    
     public string PlayerTargetID;
 
     //Battle variables

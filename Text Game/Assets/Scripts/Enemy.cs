@@ -18,6 +18,9 @@ public class Enemy
     public float castSpeedTotal;
     public string EnemyTargetID;
 
+    //Enmity Related
+    public List<float> EnmityAgainstPlayersList;
+
     //Battle variables
     public float Accuracy;
     public float Evasion;

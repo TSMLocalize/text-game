@@ -171,6 +171,11 @@ public class Battle_Manager_Functions : MonoBehaviour
             BM.EnemiesInBattle[i].enemyCastBarText = BM.EnemyCastBarTexts[i];
             BM.EnemiesInBattle[i].enemyCastBarFill = BM.EnemyCastBarFills[i];
             BM.EnemyCastBars[i].SetActive(false);
+            //Set Initial Enmity for each player in battle            
+            for (int y = 0; y < BM.PlayersInBattle.Count; y++)
+            {
+                BM.EnemiesInBattle[i].EnmityAgainstPlayersList.Add(1);
+            }            
             //Instantiate Player Battle Sprites
             BM.EnemiesInBattle[i].battleSprite = Instantiate(BM.EnemiesInBattle[i].battleSprite);
         }
