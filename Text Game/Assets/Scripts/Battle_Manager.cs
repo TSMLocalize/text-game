@@ -620,6 +620,8 @@ public class Battle_Manager : MonoBehaviour
                 //LEFT CLICK TO SELECT ENEMY
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
+                    ActionHandler.enmityFigures.Clear();
+
                     foreach (RaycastResult result in results)
                     {
                         for (int i = 0; i < EnemyPanels.Count; i++)

@@ -15,11 +15,16 @@ public class Battle_Manager_Functions : MonoBehaviour
     public Animation_Handler AnimHandler;
 
     public GameObject pfPlayerPanel;
-    public List<GameObject> instantiatedPlayerPanels;
+    public GameObject pfEnemyPanel;    
     public GameObject instantiatedPlayerPanel;
+    public GameObject instantiatedEnemyPanel;
     public GameObject PlayerPanels;
+    public GameObject EnemyPanelsGO;
+    public List<GameObject> EnemyPanels;
     public Image[] instantiatedPlayerPanelImageArray;
+    public Image[] instantiatedEnemyPanelImageArray;
     public TextMeshProUGUI[] instantiatedPlayerPanelTextArray;
+    public TextMeshProUGUI[] instantiatedEnemyPanelTextArray;
 
     public GameObject pfOption;
     public List<GameObject> instantiatedOptions;
@@ -122,8 +127,7 @@ public class Battle_Manager_Functions : MonoBehaviour
             //Instantiate Panels
             instantiatedPlayerPanel = Instantiate(pfPlayerPanel, PlayerPanels.transform);
             instantiatedPlayerPanelImageArray = instantiatedPlayerPanel.GetComponentsInChildren<Image>();
-            instantiatedPlayerPanelTextArray = instantiatedPlayerPanel.GetComponentsInChildren<TextMeshProUGUI>();
-            //instantiatedPlayerPanels.Add(instantiatedPlayerPanel);
+            instantiatedPlayerPanelTextArray = instantiatedPlayerPanel.GetComponentsInChildren<TextMeshProUGUI>();            
             //Assign Panels and populate
             BM.PlayersInBattle[i].playerPanel = instantiatedPlayerPanel;
             BM.PlayersInBattle[i].playerPanelText = instantiatedPlayerPanelTextArray[0];
@@ -152,25 +156,29 @@ public class Battle_Manager_Functions : MonoBehaviour
 
         for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
         {
+            //Instantiate Panels
+            instantiatedEnemyPanel = Instantiate(pfEnemyPanel, EnemyPanelsGO.transform);
+            instantiatedEnemyPanelImageArray = instantiatedEnemyPanel.GetComponentsInChildren<Image>();
+            instantiatedEnemyPanelTextArray = instantiatedEnemyPanel.GetComponentsInChildren<TextMeshProUGUI>();
             //Assign Panels and populate
-            BM.EnemiesInBattle[i].enemyPanel = BM.EnemyPanels[i];
-            BM.EnemiesInBattle[i].enemyPanelText = BM.EnemyPanelTexts[i];
+            BM.EnemiesInBattle[i].enemyPanel = instantiatedEnemyPanel;
+            BM.EnemiesInBattle[i].enemyPanelText = instantiatedEnemyPanelTextArray[1];
             BM.EnemiesInBattle[i].enemyPanelText.fontSize = 12;
-            BM.EnemiesInBattle[i].enemyPanelBackground = BM.EnemyPanels[i].GetComponent<Image>();
-            BM.enemyPanelArray = BM.EnemyPanels[i].GetComponentsInChildren<Image>();
-            BM.enemyPanelArray[1].overrideSprite = BM.EnemiesInBattle[i].EnemyPortrait;
+            BM.EnemiesInBattle[i].enemyPanelBackground = instantiatedEnemyPanelImageArray[0];            
+            instantiatedEnemyPanelImageArray[1].overrideSprite = BM.EnemiesInBattle[i].EnemyPortrait;
             //Panel Text setup            
             BM.EnemiesInBattle[i].enemyPanelText.text =
                 BM.EnemiesInBattle[i].EnemyName + "\n" +
                 "HP: " + BM.EnemiesInBattle[i].currentHP + "/" + BM.EnemiesInBattle[i].maxHP;
             //Speed Bar setup
-            BM.EnemiesInBattle[i].enemySpeedBarText = BM.EnemySpeedBarTexts[i];
-            BM.EnemiesInBattle[i].enemySpeedBar = BM.EnemySpeedBars[i];
+            BM.EnemiesInBattle[i].enemySpeedBarText = instantiatedEnemyPanelTextArray[0];
+            BM.EnemiesInBattle[i].enemySpeedBar = instantiatedEnemyPanelImageArray[3].gameObject;
             //Cast Bar setup
-            BM.EnemiesInBattle[i].enemyCastBar = BM.EnemyCastBars[i];
-            BM.EnemiesInBattle[i].enemyCastBarText = BM.EnemyCastBarTexts[i];
-            BM.EnemiesInBattle[i].enemyCastBarFill = BM.EnemyCastBarFills[i];
-            BM.EnemyCastBars[i].SetActive(false);
+            BM.EnemiesInBattle[i].enemyCastBar = instantiatedEnemyPanelImageArray[4].gameObject;
+            BM.EnemiesInBattle[i].enemyCastBarText = instantiatedEnemyPanelTextArray[2];
+            BM.EnemiesInBattle[i].enemyCastBarFill = instantiatedEnemyPanelImageArray[5].gameObject;
+            BM.EnemyCastBars.Add(BM.EnemiesInBattle[i].enemyCastBar);
+            BM.EnemyPanels.Add(instantiatedEnemyPanel);
             //Set Initial Enmity for each player in battle            
             for (int y = 0; y < BM.PlayersInBattle.Count; y++)
             {
