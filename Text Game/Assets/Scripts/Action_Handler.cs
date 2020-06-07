@@ -31,6 +31,7 @@ public class Action_Handler : MonoBehaviour
     public GameObject chatPanel;
     public GameObject textObject;    
     public List<StatusAilment> statusAilmentList;
+    public List<EnmityFigure> enmityFigures; 
 
     // Start is called before the first frame update
     void Start()
@@ -402,26 +403,75 @@ public class Action_Handler : MonoBehaviour
         statusAilmentList.Add(statusAilmentToAdd);
     }
 
+    //Creates an enmity number beneath the enemy
     public void CreateEnmityNumber(Player playerToHate, Enemy enemyWhoHates)
-    {
+    {        
         GameObject enmityNumber = Instantiate(enmityNumberPF, enemyWhoHates.battleSprite.transform);
         EnmityFigure enmityNumberToAdd = enmityNumber.GetComponent<EnmityFigure>();
 
+        //Add up all enemy hate vs active player
+        for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+        {
+            for (int y = 0; y < BM.PlayersInBattle.Count; y++)
+            {
+                if (BM.PlayersInBattle[y] == playerToHate)
+                {
+                    currentEnmity += BM.EnemiesInBattle[i].EnmityAgainstPlayersList[y];
+                }
+            }
+        }
+
+        //update amount of the current iterated enemy's hate of the active player as a percentage of the total hate for that player
+        for (int y = 0; y < BM.PlayersInBattle.Count; y++)
+        {
+            if (BM.PlayersInBattle[y] == playerToHate)
+            {
+                enmityNumberToAdd.EnmityPercentage.text = Mathf.Floor((enemyWhoHates.EnmityAgainstPlayersList[y] / currentEnmity) * 100).ToString() + "%";
+                currentEnmity = 0;
+            }
+        }
+
+        enmityFigures.Add(enmityNumberToAdd);
+    }
+
+    //Creates an enmity number beneath the enemy
+    public void UpdateEnmityNumber(Player playerToHate, Enemy enemyWhoHates, EnmityFigure displayFigure)
+    {
+        //Add up all enemy hate vs active player
+        for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+        {
+            for (int y = 0; y < BM.PlayersInBattle.Count; y++)
+            {
+                if (BM.PlayersInBattle[y] == playerToHate)
+                {
+                    currentEnmity += BM.EnemiesInBattle[i].EnmityAgainstPlayersList[y];
+                }
+            }                     
+        }
+
+        //update amount of the current iterated enemy's hate of the active player as a percentage of the total hate for that player
+        for (int y = 0; y < BM.PlayersInBattle.Count; y++)
+        {
+            if (BM.PlayersInBattle[y] == playerToHate)
+            {
+                displayFigure.EnmityPercentage.text = Mathf.Floor((enemyWhoHates.EnmityAgainstPlayersList[y] / currentEnmity) * 100).ToString() + "%";
+                currentEnmity = 0;
+            }
+        }
+    }
+
+    //Increases enmity against the targetted player
+    public void IncreaseEnmity(Player playerToHate, Enemy enemyWhoHates, float amountToIncrease)
+    {
         for (int i = 0; i < BM.PlayersInBattle.Count; i++)
         {
             if (BM.PlayersInBattle[i] == playerToHate)
             {
-                for (int y = 0; y < enemyWhoHates.EnmityAgainstPlayersList.Count; y++)
-                {
-                    currentEnmity += enemyWhoHates.EnmityAgainstPlayersList[y];
-                }
-
-                currentEnmity = Mathf.Floor((enemyWhoHates.EnmityAgainstPlayersList[i] / currentEnmity) * 100);
-                enmityNumberToAdd.EnmityPercentage.text = currentEnmity.ToString() + "%";
-                currentEnmity = 0;
+                enemyWhoHates.EnmityAgainstPlayersList[i] += amountToIncrease;
+                Debug.Log(enemyWhoHates.EnmityAgainstPlayersList[i]);
             }
-        }        
-    }
+        }
+    }    
 
     public void SendMessagesToCombatLog(string text)
     {

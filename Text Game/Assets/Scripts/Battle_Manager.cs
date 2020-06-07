@@ -557,8 +557,8 @@ public class Battle_Manager : MonoBehaviour
 
                 break;
 
-            case BattleStates.SELECT_TARGET:                                
-
+            case BattleStates.SELECT_TARGET:
+                
                 for (int i = 0; i < EnemiesInBattle.Count; i++)
                 {
                     EnemiesInBattle[i].enemyPanelBackground.color = Color.yellow;
@@ -568,7 +568,7 @@ public class Battle_Manager : MonoBehaviour
                         //Set Enmity Figures and what enmity will go to potentially
                         ActionHandler.CreateEnmityNumber(activePlayer, EnemiesInBattle[i]);                        
                     }                    
-                }
+                }                
 
                 enmityFiguresNeedSetting = false;
 
