@@ -912,28 +912,74 @@ public class Battle_Manager : MonoBehaviour
 
                     //Finish up 
                     if (rowSelected == false)
-                    {                        
-                        //reassign 'position' to the new position(s), reset new display layer order priority
-                        BM_Funcs.updateRowPositions();
-                        BM_Funcs.AssignRows();
-
-                        //Setup which way they should be facing, if moving to infiltrate
-                        if (activePlayer.currentRowPosition.GetComponent<Row>().isInfiltrate)
+                    {
+                        //All this crap is for getting the sprite to turn round properly when in the infiltrate row or the other rows
+                        if (RowToSwitch.GetComponent<Row>().ID > 8 && activePlayer.currentRowPosition.GetComponent<Row>().ID <= 8)
                         {
                             activePlayer.battleSprite.transform.localScale =
-                                new Vector2(-activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
+                                    new Vector2(-activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
 
                             activePlayer.target = new Vector3(activePlayer.battleSprite.transform.position.x + 1f, activePlayer.battleSprite.transform.position.y,
                             activePlayer.battleSprite.transform.position.z);
+
+                            if (isSwitchingWithOtherPlayer)
+                            {
+                                playerToSwitchRowWith.battleSprite.transform.localScale =
+                                        new Vector2(-playerToSwitchRowWith.battleSprite.transform.localScale.x, playerToSwitchRowWith.battleSprite.transform.localScale.y);
+                                playerToSwitchRowWith.target = new Vector3(playerToSwitchRowWith.battleSprite.transform.position.x + 1f, playerToSwitchRowWith.battleSprite.transform.position.y,
+                                playerToSwitchRowWith.battleSprite.transform.position.z);
+                            }
                         }
-                        else if (activePlayer.currentRowPosition.GetComponent<Row>().isInfiltrate == false)
+                        else if (RowToSwitch.GetComponent<Row>().ID <= 8 && activePlayer.currentRowPosition.GetComponent<Row>().ID > 8)
                         {
                             activePlayer.battleSprite.transform.localScale =
-                                new Vector2(-activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
+                                    new Vector2(-activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
 
                             activePlayer.target = new Vector3(activePlayer.battleSprite.transform.position.x - 1f, activePlayer.battleSprite.transform.position.y,
                             activePlayer.battleSprite.transform.position.z);
+
+                            if (isSwitchingWithOtherPlayer)
+                            {
+                                playerToSwitchRowWith.battleSprite.transform.localScale =
+                                        new Vector2(-playerToSwitchRowWith.battleSprite.transform.localScale.x, playerToSwitchRowWith.battleSprite.transform.localScale.y);
+                                playerToSwitchRowWith.target = new Vector3(playerToSwitchRowWith.battleSprite.transform.position.x + 1f, playerToSwitchRowWith.battleSprite.transform.position.y,
+                                playerToSwitchRowWith.battleSprite.transform.position.z);
+                            }
+                        } else if (RowToSwitch.GetComponent<Row>().ID <= 8 && activePlayer.currentRowPosition.GetComponent<Row>().ID <= 8)
+                        {
+                            activePlayer.battleSprite.transform.localScale =
+                            new Vector2(activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
+
+                            activePlayer.target = new Vector3(activePlayer.battleSprite.transform.position.x - 1f, activePlayer.battleSprite.transform.position.y,
+                            activePlayer.battleSprite.transform.position.z);
+
+                            if (isSwitchingWithOtherPlayer)
+                            {
+                                playerToSwitchRowWith.battleSprite.transform.localScale =
+                                        new Vector2(playerToSwitchRowWith.battleSprite.transform.localScale.x, playerToSwitchRowWith.battleSprite.transform.localScale.y);
+                                playerToSwitchRowWith.target = new Vector3(playerToSwitchRowWith.battleSprite.transform.position.x - 1f, playerToSwitchRowWith.battleSprite.transform.position.y,
+                                playerToSwitchRowWith.battleSprite.transform.position.z);
+                            }
+                        } else if (RowToSwitch.GetComponent<Row>().ID > 8 && activePlayer.currentRowPosition.GetComponent<Row>().ID > 8)
+                        {
+                            activePlayer.battleSprite.transform.localScale =
+                            new Vector2(activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
+
+                            activePlayer.target = new Vector3(activePlayer.battleSprite.transform.position.x + 1f, activePlayer.battleSprite.transform.position.y,
+                            activePlayer.battleSprite.transform.position.z);
+
+                            if (isSwitchingWithOtherPlayer)
+                            {
+                                playerToSwitchRowWith.battleSprite.transform.localScale =
+                                        new Vector2(playerToSwitchRowWith.battleSprite.transform.localScale.x, playerToSwitchRowWith.battleSprite.transform.localScale.y);
+                                playerToSwitchRowWith.target = new Vector3(playerToSwitchRowWith.battleSprite.transform.position.x + 1f, playerToSwitchRowWith.battleSprite.transform.position.y,
+                                playerToSwitchRowWith.battleSprite.transform.position.z);
+                            }
                         }
+
+                        //reassign 'position' to the new position(s), reset new display layer order priority
+                        BM_Funcs.updateRowPositions();
+                        BM_Funcs.AssignRows();             
 
                         RowToSwitch = null;
                         battleStates = BattleStates.RESOLVE_ACTION;
