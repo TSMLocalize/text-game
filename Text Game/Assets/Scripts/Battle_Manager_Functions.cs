@@ -200,33 +200,32 @@ public class Battle_Manager_Functions : MonoBehaviour
             for (int y = 0; y < BM.Rows.Count; y++)
             {
                 if (BM.Rows[y].GetComponent<Row>().ID == BM.PlayersInBattle[i].currentRowPositionID)
-                {                                   
-                    //Setup new movement position for the sprite
+                {
+                    //Setup new movement position for the sprite                    
                     BM.PlayersInBattle[i].battleSprite.transform.position = BM.Rows[y].gameObject.transform.position;
                     BM.PlayersInBattle[i].position = BM.Rows[y].gameObject.transform.position;
                     //Assign the player with a physical row position
                     BM.PlayersInBattle[i].currentRowPosition = BM.Rows[y].gameObject;
                     BM.PlayersInBattle[i].currentRowPositionIcon = BM.RowChangeIcons[y];
 
-                    if (BM.PlayersInBattle[i].currentRowPositionID == 1 || BM.PlayersInBattle[i].currentRowPositionID == 5)
+                    if (BM.PlayersInBattle[i].currentRowPositionID == 1 || BM.PlayersInBattle[i].currentRowPositionID == 5 || BM.PlayersInBattle[i].currentRowPositionID == 9)
                     {
                         BM.PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 1;
                     }
-                    else if (BM.PlayersInBattle[i].currentRowPositionID == 2 || BM.PlayersInBattle[i].currentRowPositionID == 6)
+                    else if (BM.PlayersInBattle[i].currentRowPositionID == 2 || BM.PlayersInBattle[i].currentRowPositionID == 6 || BM.PlayersInBattle[i].currentRowPositionID == 10)
                     {
                         BM.PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 2;
                     }
-                    else if (BM.PlayersInBattle[i].currentRowPositionID == 3 || BM.PlayersInBattle[i].currentRowPositionID == 7)
+                    else if (BM.PlayersInBattle[i].currentRowPositionID == 3 || BM.PlayersInBattle[i].currentRowPositionID == 7 || BM.PlayersInBattle[i].currentRowPositionID == 11)
                     {
                         BM.PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 3;
                     }
-                    else if (BM.PlayersInBattle[i].currentRowPositionID == 4 || BM.PlayersInBattle[i].currentRowPositionID == 8)
+                    else if (BM.PlayersInBattle[i].currentRowPositionID == 4 || BM.PlayersInBattle[i].currentRowPositionID == 8 || BM.PlayersInBattle[i].currentRowPositionID == 12)
                     {
                         BM.PlayersInBattle[i].battleSprite.GetComponent<SpriteRenderer>().sortingOrder = 4;
                     }
                 }
             }
-
         }
 
         //Assign enemy battle sprites to rows
@@ -273,8 +272,7 @@ public class Battle_Manager_Functions : MonoBehaviour
                 if (BM.PlayersInBattle[y].battleSprite.transform.position == BM.Rows[i].transform.position)
                 {
                     BM.PlayersInBattle[y].position = BM.Rows[i].gameObject.transform.position;
-                    BM.PlayersInBattle[y].target = new Vector3(BM.PlayersInBattle[y].battleSprite.transform.position.x - 1f, BM.PlayersInBattle[y].battleSprite.transform.position.y,
-                BM.PlayersInBattle[y].battleSprite.transform.position.z);
+                    
                     BM.PlayersInBattle[y].currentRowPosition = BM.Rows[i].gameObject;
                     BM.PlayersInBattle[y].currentRowPositionIcon = BM.RowChangeIcons[i];
                     BM.PlayersInBattle[y].currentRowPositionID = BM.Rows[i].GetComponent<Row>().ID;

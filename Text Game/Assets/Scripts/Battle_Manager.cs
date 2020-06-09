@@ -912,10 +912,29 @@ public class Battle_Manager : MonoBehaviour
 
                     //Finish up 
                     if (rowSelected == false)
-                    {
+                    {                        
                         //reassign 'position' to the new position(s), reset new display layer order priority
                         BM_Funcs.updateRowPositions();
                         BM_Funcs.AssignRows();
+
+                        //Setup which way they should be facing, if moving to infiltrate
+                        if (activePlayer.currentRowPosition.GetComponent<Row>().isInfiltrate)
+                        {
+                            activePlayer.battleSprite.transform.localScale =
+                                new Vector2(-activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
+
+                            activePlayer.target = new Vector3(activePlayer.battleSprite.transform.position.x + 1f, activePlayer.battleSprite.transform.position.y,
+                            activePlayer.battleSprite.transform.position.z);
+                        }
+                        else if (activePlayer.currentRowPosition.GetComponent<Row>().isInfiltrate == false)
+                        {
+                            activePlayer.battleSprite.transform.localScale =
+                                new Vector2(-activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
+
+                            activePlayer.target = new Vector3(activePlayer.battleSprite.transform.position.x - 1f, activePlayer.battleSprite.transform.position.y,
+                            activePlayer.battleSprite.transform.position.z);
+                        }
+
                         RowToSwitch = null;
                         battleStates = BattleStates.RESOLVE_ACTION;
                     }

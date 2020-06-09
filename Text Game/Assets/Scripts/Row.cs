@@ -7,4 +7,5 @@ public class Row : MonoBehaviour
 {
     public int ID;
     public bool playerAtPosition;
+    public bool isInfiltrate;
 }

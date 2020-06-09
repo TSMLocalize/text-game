@@ -33,11 +33,11 @@ public class Timers_Entry : MonoBehaviour
             }
             else if (castMode)
             {
-                TimerImageArray[0].color = Color.magenta;
+                TimerImageArray[0].color = new Color32(100, 0, 150, 255);
             }
             else if (waitMode)
             {
-                TimerImageArray[0].color = Color.blue;
+                TimerImageArray[0].color = new Color32(0, 0, 150, 255);
             }
         } 
         
