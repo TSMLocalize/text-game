@@ -14,24 +14,22 @@ using TMPro;
 public class Action_Handler : MonoBehaviour
 {        
     public GameObject floatingDamage;
-    public GameObject statusAilment;
-    public GameObject enmityNumberPF;
+    public GameObject statusAilment;    
     public Spells spells;
     public Enemy_Spells enemySpells;
     public Battle_Manager BM;
     public Battle_Manager_Functions BM_Funcs;
+    public Enmity_Manager EnmityManager;
     public Combo_Manager combo_Manager;
     public Animation_Handler animHandler;
     public Battle_Manager_IEnumerators BM_Enums;
     public bool spellReportFinished;
     public bool enemySpellReportFinished;
-    public int maxMessages;
-    public float currentEnmity;
+    public int maxMessages;    
     public List<Message> messageList;
     public GameObject chatPanel;
     public GameObject textObject;    
-    public List<StatusAilment> statusAilmentList;
-    public List<EnmityFigure> enmityFigures; 
+    public List<StatusAilment> statusAilmentList;    
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +42,7 @@ public class Action_Handler : MonoBehaviour
         combo_Manager = GetComponent<Combo_Manager>();
         animHandler = GetComponent<Animation_Handler>();
         enemySpells = FindObjectOfType<Enemy_Spells>();
+        EnmityManager = GetComponent<Enmity_Manager>();
     }
 
     [System.Serializable]
@@ -84,6 +83,9 @@ public class Action_Handler : MonoBehaviour
                     BM.activePlayer.name + " misses the enemy...");
                     CreateDamagePopUp(BM.playerTarget.battleSprite.transform.position, "Miss!", Color.white);
                 }
+
+                EnmityManager.workOutActualEnmity(BM.activePlayer, BM.playerTarget, "Attack");
+
                 break;
             case "PlayerWait":
                 SendMessagesToCombatLog(
@@ -402,76 +404,6 @@ public class Action_Handler : MonoBehaviour
 
         statusAilmentList.Add(statusAilmentToAdd);
     }
-
-    //Creates an enmity number beneath the enemy
-    public void CreateEnmityNumber(Player playerToHate, Enemy enemyWhoHates)
-    {        
-        GameObject enmityNumber = Instantiate(enmityNumberPF, enemyWhoHates.battleSprite.transform);
-        EnmityFigure enmityNumberToAdd = enmityNumber.GetComponent<EnmityFigure>();
-
-        //Add up all enemy hate vs active player
-        for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
-        {
-            for (int y = 0; y < BM.PlayersInBattle.Count; y++)
-            {
-                if (BM.PlayersInBattle[y] == playerToHate)
-                {
-                    currentEnmity += BM.EnemiesInBattle[i].EnmityAgainstPlayersList[y];
-                }
-            }
-        }
-
-        //update amount of the current iterated enemy's hate of the active player as a percentage of the total hate for that player
-        for (int y = 0; y < BM.PlayersInBattle.Count; y++)
-        {
-            if (BM.PlayersInBattle[y] == playerToHate)
-            {
-                enmityNumberToAdd.EnmityPercentage.text = Mathf.Floor((enemyWhoHates.EnmityAgainstPlayersList[y] / currentEnmity) * 100).ToString() + "%";
-                currentEnmity = 0;
-            }
-        }
-
-        enmityFigures.Add(enmityNumberToAdd);
-    }
-
-    //Creates an enmity number beneath the enemy
-    public void UpdateEnmityNumber(Player playerToHate, Enemy enemyWhoHates, EnmityFigure displayFigure)
-    {
-        //Add up all enemy hate vs active player
-        for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
-        {
-            for (int y = 0; y < BM.PlayersInBattle.Count; y++)
-            {
-                if (BM.PlayersInBattle[y] == playerToHate)
-                {
-                    currentEnmity += BM.EnemiesInBattle[i].EnmityAgainstPlayersList[y];
-                }
-            }                     
-        }
-
-        //update amount of the current iterated enemy's hate of the active player as a percentage of the total hate for that player
-        for (int y = 0; y < BM.PlayersInBattle.Count; y++)
-        {
-            if (BM.PlayersInBattle[y] == playerToHate)
-            {
-                displayFigure.EnmityPercentage.text = Mathf.Floor((enemyWhoHates.EnmityAgainstPlayersList[y] / currentEnmity) * 100).ToString() + "%";
-                currentEnmity = 0;
-            }
-        }
-    }
-
-    //Increases enmity against the targetted player
-    public void IncreaseEnmity(Player playerToHate, Enemy enemyWhoHates, float amountToIncrease)
-    {
-        for (int i = 0; i < BM.PlayersInBattle.Count; i++)
-        {
-            if (BM.PlayersInBattle[i] == playerToHate)
-            {
-                enemyWhoHates.EnmityAgainstPlayersList[i] += amountToIncrease;
-                Debug.Log(enemyWhoHates.EnmityAgainstPlayersList[i]);
-            }
-        }
-    }    
 
     public void SendMessagesToCombatLog(string text)
     {

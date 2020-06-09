@@ -24,6 +24,8 @@ public class Player
     public float Evasion;
     public float Attack;
     public float Armor;
+    public float ActualEnmity;
+    public float ProvisionalEnmity;
 
     //Weaponskill related
     public List<WeaponSkill> weaponSkills;

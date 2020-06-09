@@ -245,7 +245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -590.4615, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &73059372
@@ -6230,7 +6230,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1190124505}
   m_HandleRect: {fileID: 1190124504}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.99999976
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6864,6 +6864,8 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    ActualEnmity: 0
+    ProvisionalEnmity: 0
     weaponSkills: []
     selectedWeaponSkill:
       name: 
@@ -6928,6 +6930,8 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    ActualEnmity: 0
+    ProvisionalEnmity: 0
     weaponSkills: []
     selectedWeaponSkill:
       name: 
@@ -6992,6 +6996,8 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    ActualEnmity: 0
+    ProvisionalEnmity: 0
     weaponSkills: []
     selectedWeaponSkill:
       name: 
@@ -7056,6 +7062,8 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    ActualEnmity: 0
+    ProvisionalEnmity: 0
     weaponSkills: []
     selectedWeaponSkill:
       name: 
@@ -7120,6 +7128,8 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    ActualEnmity: 0
+    ProvisionalEnmity: 0
     weaponSkills: []
     selectedWeaponSkill:
       name: 
@@ -7184,6 +7194,8 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    ActualEnmity: 0
+    ProvisionalEnmity: 0
     weaponSkills: []
     selectedWeaponSkill:
       name: 
@@ -10004,6 +10016,7 @@ MonoBehaviour:
   BM_Funcs: {fileID: 1548464335}
   BM_Enums: {fileID: 0}
   ActionHandler: {fileID: 0}
+  EnmityManager: {fileID: 0}
   Timers_Log: {fileID: 0}
   combo_Manager: {fileID: 0}
   speed: 0
@@ -10055,6 +10068,8 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    ActualEnmity: 0
+    ProvisionalEnmity: 0
     weaponSkills: []
     selectedWeaponSkill:
       name: 
@@ -10120,6 +10135,8 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    ActualEnmity: 0
+    ProvisionalEnmity: 0
     weaponSkills: []
     selectedWeaponSkill:
       name: 
@@ -10476,6 +10493,8 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    ActualEnmity: 0
+    ProvisionalEnmity: 0
     weaponSkills: []
     selectedWeaponSkill:
       name: 
@@ -10539,6 +10558,8 @@ MonoBehaviour:
     Evasion: 0
     Attack: 0
     Armor: 0
+    ActualEnmity: 0
+    ProvisionalEnmity: 0
     weaponSkills: []
     selectedWeaponSkill:
       name: 
@@ -10673,25 +10694,22 @@ MonoBehaviour:
     type: 3}
   statusAilment: {fileID: 8915403152612159213, guid: 7eeecd3e89f68df4e9a56abb00cfc83e,
     type: 3}
-  enmityNumberPF: {fileID: 3835244413104064400, guid: b611e57afc595a540853d2d17cdf2d88,
-    type: 3}
   spells: {fileID: 1376954847}
   enemySpells: {fileID: 0}
   BM: {fileID: 0}
   BM_Funcs: {fileID: 0}
+  EnmityManager: {fileID: 0}
   combo_Manager: {fileID: 0}
   animHandler: {fileID: 0}
   BM_Enums: {fileID: 0}
   spellReportFinished: 0
   enemySpellReportFinished: 0
   maxMessages: 0
-  currentEnmity: 0
   messageList: []
   chatPanel: {fileID: 73059370}
   textObject: {fileID: 4556254075669888279, guid: 1208e6a8c94dc0e4d94b8ce744fd1169,
     type: 3}
   statusAilmentList: []
-  enmityFigures: []
 --- !u!114 &1548464338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10836,13 +10854,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1211f9cda8937e040b9e3b33368af4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spells: {fileID: 0}
-  enemySpells: {fileID: 0}
   BM: {fileID: 0}
   BM_Funcs: {fileID: 0}
-  combo_Manager: {fileID: 0}
-  animHandler: {fileID: 0}
-  BM_Enums: {fileID: 0}
+  act_Handler: {fileID: 0}
+  currentEnmity: 0
+  enmityFigures: []
+  enmityNumberPF: {fileID: 3835244413104064400, guid: b611e57afc595a540853d2d17cdf2d88,
+    type: 3}
 --- !u!1 &1556463658
 GameObject:
   m_ObjectHideFlags: 0

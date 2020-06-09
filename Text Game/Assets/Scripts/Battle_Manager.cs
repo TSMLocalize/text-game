@@ -12,6 +12,7 @@ public class Battle_Manager : MonoBehaviour
     public Battle_Manager_Functions BM_Funcs;
     public Battle_Manager_IEnumerators BM_Enums;
     public Action_Handler ActionHandler;
+    public Enmity_Manager EnmityManager;
     public Timers_Log Timers_Log;
     public Combo_Manager combo_Manager;    
     public float speed;
@@ -101,6 +102,7 @@ public class Battle_Manager : MonoBehaviour
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
         BM_Enums = GetComponent<Battle_Manager_IEnumerators>();
         ActionHandler = GetComponent<Action_Handler>();
+        EnmityManager = GetComponent<Enmity_Manager>();
         Timers_Log = GetComponent<Timers_Log>();
         combo_Manager = GetComponent<Combo_Manager>();
         AnimHandler = GetComponent<Animation_Handler>();
@@ -154,6 +156,7 @@ public class Battle_Manager : MonoBehaviour
                 {
                     startSpeedCoroutines();
                     StartCoroutine(combo_Manager.updateTimeRemaining());
+                    StartCoroutine(EnmityManager.decayEnmityOverTime());
 
                     if (ActionHandler.statusAilmentList.Count > 0)
                     {
@@ -280,9 +283,13 @@ public class Battle_Manager : MonoBehaviour
                                     selectedCommand = activePlayer.playerOptions[i];
                                     BM_Funcs.instantiatedOptions[i].gameObject.GetComponent<Image>().color = Color.yellow;
                                     panelChosen = true;
-                                }                                
+                                }
 
-                                if (selectedCommand == "Magic")
+                                if (selectedCommand == "Attack")
+                                {
+                                    EnmityManager.workOutProvisionalEnmity(activePlayer, "Attack");
+                                }
+                                else if (selectedCommand == "Magic")
                                 {
                                     BM_Funcs.populateSpellOptionList();
                                 }
@@ -422,7 +429,7 @@ public class Battle_Manager : MonoBehaviour
                     if (enmityFiguresNeedSetting)
                     {
                         //Set Enmity Figures and what enmity will go to potentially
-                        ActionHandler.CreateEnmityNumber(activePlayer, EnemiesInBattle[i]);
+                        EnmityManager.CreateEnmityNumber(activePlayer, EnemiesInBattle[i]);
                     }
                 }                
 
@@ -566,7 +573,9 @@ public class Battle_Manager : MonoBehaviour
                     if (enmityFiguresNeedSetting)
                     {
                         //Set Enmity Figures and what enmity will go to potentially
-                        ActionHandler.CreateEnmityNumber(activePlayer, EnemiesInBattle[i]);                        
+                        EnmityManager.CreateEnmityNumber(activePlayer, EnemiesInBattle[i]);
+                        //Set Provisional Enmity figure for preview based on what the player intends to do
+                        EnmityManager.workOutProvisionalEnmity(activePlayer, selectedCommand);
                     }                    
                 }                
 
@@ -620,7 +629,7 @@ public class Battle_Manager : MonoBehaviour
                 //LEFT CLICK TO SELECT ENEMY
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    ActionHandler.enmityFigures.Clear();
+                    EnmityManager.enmityFigures.Clear();
 
                     foreach (RaycastResult result in results)
                     {
@@ -634,7 +643,7 @@ public class Battle_Manager : MonoBehaviour
                                 {
                                     if (EnemiesInBattle[y].enemyPanel == EnemyPanels[i])
                                     {
-                                        activePlayer.PlayerTargetID = EnemiesInBattle[y].EnemyName;
+                                        activePlayer.PlayerTargetID = EnemiesInBattle[y].EnemyName;                                                                                
                                     }
                                 }
 
@@ -914,7 +923,7 @@ public class Battle_Manager : MonoBehaviour
 
 
                 break;
-            case BattleStates.RESOLVE_ACTION:
+            case BattleStates.RESOLVE_ACTION:                                
 
                 AnimHandler.animationController(activePlayer);
                 ActionHandler.resolveAction(selectedCommand);
