@@ -17,10 +17,15 @@ public class Battle_Manager : MonoBehaviour
     public Combo_Manager combo_Manager;    
     public float speed;
     public bool startRoutinesGoingAgain;
-    public bool stepForward;            
+    public bool stepForward;    
+    public bool rowSelected;
+    public bool isSwitchingWithOtherPlayer;
     public bool panelChosen;
     public List<GameObject> Rows;
     public List<GameObject> EnemyRows;
+    public List<GameObject> RowChangeIcons;
+    public GameObject RowToSwitch;
+    public Player playerToSwitchRowWith;
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
@@ -758,6 +763,40 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.CHANGE_ROW:
 
+                //Populate Row Change Icons, minus the activeplayer's
+                if (!rowSelected)
+                {
+                    AnimHandler.animationController(activePlayer, "IsReady");
+
+                    for (int i = 0; i < RowChangeIcons.Count; i++)
+                    {
+                        if (RowChangeIcons[i] != activePlayer.currentRowPositionIcon)
+                        {
+                            RowChangeIcons[i].SetActive(true);
+                        }
+                    }
+                }
+
+                //Right click to go back to select action
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    AnimHandler.animationController(activePlayer);
+
+                    for (int i = 0; i < BM_Funcs.instantiatedOptions.Count; i++)
+                    {
+                        BM_Funcs.instantiatedOptions[i].GetComponent<Image>().color = defaultBlueColor;
+                    }
+
+                    for (int y = 0; y < RowChangeIcons.Count; y++)
+                    {
+                        RowChangeIcons[y].SetActive(false);
+                    }
+
+                    selectedCommand = null;
+
+                    battleStates = BattleStates.SELECT_ACTION;
+                }
+
                 //If clicking a row icon, set that row icon as the target and start a hands up animation
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
@@ -786,7 +825,7 @@ public class Battle_Manager : MonoBehaviour
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
                                 BM_Funcs.resetChoice(ActivePlayers[i]);
-                                activePlayer.activeSpell = null;
+                                activePlayer.activeSpell = null;                                
                                 OptionPanel.SetActive(false);
 
                                 for (int y = 0; y < RowChangeIcons.Count; y++)
@@ -823,6 +862,127 @@ public class Battle_Manager : MonoBehaviour
                                 battleStates = BattleStates.SELECT_ACTION;
                             }
                         }
+                    }
+                }
+
+                //Once a row icon is clicked, check if there's a player there and switch with them
+                if (rowSelected == true)
+                {
+                    speed = 8.0f;
+
+                    float step = speed * Time.deltaTime;
+                    activePlayer.battleSprite.transform.position = Vector3.MoveTowards(activePlayer.battleSprite.transform.position, RowToSwitch.transform.position, step);
+
+                    for (int i = 0; i < PlayersInBattle.Count; i++)
+                    {
+                        if (PlayersInBattle[i].currentRowPosition == RowToSwitch)
+                        {
+                            isSwitchingWithOtherPlayer = true;
+
+                            playerToSwitchRowWith = PlayersInBattle[i];
+
+                            //Set hands up animation
+                            AnimHandler.animationController(PlayersInBattle[i], "IsCasting");
+
+                            PlayersInBattle[i].battleSprite.transform.position = Vector3.MoveTowards(PlayersInBattle[i].battleSprite.transform.position,
+                                activePlayer.position, step);
+                        }
+                    }
+
+                    //Ensure both players are in position (if switching places)
+                    if (isSwitchingWithOtherPlayer)
+                    {
+                        if (activePlayer.battleSprite.transform.position == RowToSwitch.transform.position &&
+                            playerToSwitchRowWith.battleSprite.transform.position == activePlayer.position)
+                        {
+                            AnimHandler.animationController(playerToSwitchRowWith);
+                            AnimHandler.animationController(activePlayer);
+                            rowSelected = false;
+                        }
+                    }
+                    //Ensure one player is in position (if not switching places)
+                    else
+                    {
+                        if (activePlayer.battleSprite.transform.position == RowToSwitch.transform.position)
+                        {
+                            AnimHandler.animationController(activePlayer);
+                            rowSelected = false;
+                        }
+                    }
+
+                    //Finish up 
+                    if (rowSelected == false)
+                    {
+                        //All this crap is for getting the sprite to turn round properly when in the infiltrate row or the other rows
+                        if (RowToSwitch.GetComponent<Row>().ID > 8 && activePlayer.currentRowPosition.GetComponent<Row>().ID <= 8)
+                        {
+                            activePlayer.battleSprite.transform.localScale =
+                                    new Vector2(-activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
+
+                            activePlayer.target = new Vector3(activePlayer.battleSprite.transform.position.x + 1f, activePlayer.battleSprite.transform.position.y,
+                            activePlayer.battleSprite.transform.position.z);
+
+                            if (isSwitchingWithOtherPlayer)
+                            {
+                                playerToSwitchRowWith.battleSprite.transform.localScale =
+                                        new Vector2(-playerToSwitchRowWith.battleSprite.transform.localScale.x, playerToSwitchRowWith.battleSprite.transform.localScale.y);
+                                playerToSwitchRowWith.target = new Vector3(playerToSwitchRowWith.battleSprite.transform.position.x + 1f, playerToSwitchRowWith.battleSprite.transform.position.y,
+                                playerToSwitchRowWith.battleSprite.transform.position.z);
+                            }
+                        }
+                        else if (RowToSwitch.GetComponent<Row>().ID <= 8 && activePlayer.currentRowPosition.GetComponent<Row>().ID > 8)
+                        {
+                            activePlayer.battleSprite.transform.localScale =
+                                    new Vector2(-activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
+
+                            activePlayer.target = new Vector3(activePlayer.battleSprite.transform.position.x - 1f, activePlayer.battleSprite.transform.position.y,
+                            activePlayer.battleSprite.transform.position.z);
+
+                            if (isSwitchingWithOtherPlayer)
+                            {
+                                playerToSwitchRowWith.battleSprite.transform.localScale =
+                                        new Vector2(-playerToSwitchRowWith.battleSprite.transform.localScale.x, playerToSwitchRowWith.battleSprite.transform.localScale.y);
+                                playerToSwitchRowWith.target = new Vector3(playerToSwitchRowWith.battleSprite.transform.position.x + 1f, playerToSwitchRowWith.battleSprite.transform.position.y,
+                                playerToSwitchRowWith.battleSprite.transform.position.z);
+                            }
+                        } else if (RowToSwitch.GetComponent<Row>().ID <= 8 && activePlayer.currentRowPosition.GetComponent<Row>().ID <= 8)
+                        {
+                            activePlayer.battleSprite.transform.localScale =
+                            new Vector2(activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
+
+                            activePlayer.target = new Vector3(activePlayer.battleSprite.transform.position.x - 1f, activePlayer.battleSprite.transform.position.y,
+                            activePlayer.battleSprite.transform.position.z);
+
+                            if (isSwitchingWithOtherPlayer)
+                            {
+                                playerToSwitchRowWith.battleSprite.transform.localScale =
+                                        new Vector2(playerToSwitchRowWith.battleSprite.transform.localScale.x, playerToSwitchRowWith.battleSprite.transform.localScale.y);
+                                playerToSwitchRowWith.target = new Vector3(playerToSwitchRowWith.battleSprite.transform.position.x - 1f, playerToSwitchRowWith.battleSprite.transform.position.y,
+                                playerToSwitchRowWith.battleSprite.transform.position.z);
+                            }
+                        } else if (RowToSwitch.GetComponent<Row>().ID > 8 && activePlayer.currentRowPosition.GetComponent<Row>().ID > 8)
+                        {
+                            activePlayer.battleSprite.transform.localScale =
+                            new Vector2(activePlayer.battleSprite.transform.localScale.x, activePlayer.battleSprite.transform.localScale.y);
+
+                            activePlayer.target = new Vector3(activePlayer.battleSprite.transform.position.x + 1f, activePlayer.battleSprite.transform.position.y,
+                            activePlayer.battleSprite.transform.position.z);
+
+                            if (isSwitchingWithOtherPlayer)
+                            {
+                                playerToSwitchRowWith.battleSprite.transform.localScale =
+                                        new Vector2(playerToSwitchRowWith.battleSprite.transform.localScale.x, playerToSwitchRowWith.battleSprite.transform.localScale.y);
+                                playerToSwitchRowWith.target = new Vector3(playerToSwitchRowWith.battleSprite.transform.position.x + 1f, playerToSwitchRowWith.battleSprite.transform.position.y,
+                                playerToSwitchRowWith.battleSprite.transform.position.z);
+                            }
+                        }
+
+                        //reassign 'position' to the new position(s), reset new display layer order priority
+                        BM_Funcs.updateRowPositions();
+                        BM_Funcs.AssignRows();             
+
+                        RowToSwitch = null;
+                        battleStates = BattleStates.RESOLVE_ACTION;
                     }
                 }
 
