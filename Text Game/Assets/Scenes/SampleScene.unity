@@ -10861,6 +10861,8 @@ MonoBehaviour:
   enmityFigures: []
   enmityNumberPF: {fileID: 3835244413104064400, guid: b611e57afc595a540853d2d17cdf2d88,
     type: 3}
+  enmityRandomizer: 0
+  totalEnmity: 0
 --- !u!1 &1556463658
 GameObject:
   m_ObjectHideFlags: 0

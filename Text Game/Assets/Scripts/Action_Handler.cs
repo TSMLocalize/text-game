@@ -173,6 +173,8 @@ public class Action_Handler : MonoBehaviour
 
                 BM_Funcs.setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
 
+                EnmityManager.determineAttackTargetFromEnmity(BM.activeEnemy);
+
                 float enemyRandom = Random.Range(1, 101);
                 float enemyOutcome = BM.activeEnemy.Accuracy + enemyRandom;
 

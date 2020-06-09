@@ -969,41 +969,32 @@ public class Battle_Manager : MonoBehaviour
                         default:
                             break;
                     }
-
+                                        
                     battleStates = BattleStates.SELECT_ENEMY_TARGET;
 
                 } else if (activeEnemy.isCastingSpell == true)
                 {
                     selectedCommand = "EnemyResolveSpell";
-                    ActionHandler.reportOutcome("EnemyFinishCast");
+                    ActionHandler.reportOutcome("EnemyFinishCast");                    
                     StartCoroutine(BM_Enums.waitForEnemyCastAnimation(activeEnemy));
                     battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                 }
 
                 break;
             case BattleStates.SELECT_ENEMY_TARGET:
-
-                int randomEnemyTargetNo = Random.Range(0, PlayersInBattle.Count);
-
-                for (int i = 0; i < PlayersInBattle.Count; i++)
-                {
-                    if (randomEnemyTargetNo == i)
-                    {
-                        activeEnemy.EnemyTargetID = PlayersInBattle[i].name;
-                    }
-                }
-
+                
                 StartCoroutine(BM_Enums.waitForEnemyReadyAnimation(activeEnemy));
-                activeEnemy.enemyReadyAnimCoroutineIsPaused = false;
+                activeEnemy.enemyReadyAnimCoroutineIsPaused = false;                
 
                 if (activeEnemy.enemyReadyAnimIsDone == true)
                 {
+                    EnmityManager.determineAttackTargetFromEnmity(activeEnemy);
                     activeEnemy.enemyReadyAnimCoroutineIsPaused = true;
                     activeEnemy.enemyReadyAnimIsDone = false;
-                    AnimHandler.enemyAnimationController(activeEnemy);
+                    AnimHandler.enemyAnimationController(activeEnemy);                    
 
                     if (selectedCommand == "EnemyAttack")
-                    {
+                    {                        
                         ActionHandler.reportOutcome("EnemyAttack");
 
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
@@ -1013,7 +1004,6 @@ public class Battle_Manager : MonoBehaviour
                         ActionHandler.reportOutcome("EnemyStartCast");
                         battleStates = BattleStates.RESOLVE_ENEMY_TURN;
                     }
-
                 }
 
                 break;

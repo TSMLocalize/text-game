@@ -12,6 +12,9 @@ public class Enmity_Manager : MonoBehaviour
     public List<EnmityFigure> enmityFigures;
     public GameObject enmityNumberPF;
 
+    public float enmityRandomizer;
+    public float totalEnmity;    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +22,60 @@ public class Enmity_Manager : MonoBehaviour
         BM_Funcs = GetComponent<Battle_Manager_Functions>();
     }    
 
-    public void determineAttackTargetFromEnmity(Enemy enemyToAttack, Player playerTarget)
+    public void determineAttackTargetFromEnmity(Enemy enemyToAttack)
     {
+        enmityRandomizer = Random.Range(1, 100);        
 
+        for (int i = 0; i < enemyToAttack.EnmityAgainstPlayersList.Count; i++)
+        {
+            totalEnmity += enemyToAttack.EnmityAgainstPlayersList[i];
+        }
+
+        if(enmityRandomizer <= enemyToAttack.EnmityAgainstPlayersList[0])
+        {
+            BM.activeEnemy.EnemyTargetID = BM.PlayersInBattle[0].name;
+            Debug.Log(enmityRandomizer);
+            Debug.Log("Player1");
+        }
+        else if(enmityRandomizer > enemyToAttack.EnmityAgainstPlayersList[0] &&
+            enmityRandomizer <= enemyToAttack.EnmityAgainstPlayersList[0] + enemyToAttack.EnmityAgainstPlayersList[1])
+        {
+            BM.activeEnemy.EnemyTargetID = BM.PlayersInBattle[1].name;
+            Debug.Log(enmityRandomizer);
+            Debug.Log("Player2");
+        }
+        else if (enmityRandomizer > enemyToAttack.EnmityAgainstPlayersList[0] + enemyToAttack.EnmityAgainstPlayersList[1] &&
+            enmityRandomizer <= enemyToAttack.EnmityAgainstPlayersList[0] + enemyToAttack.EnmityAgainstPlayersList[1] + enemyToAttack.EnmityAgainstPlayersList[2])
+        {
+            BM.activeEnemy.EnemyTargetID = BM.PlayersInBattle[2].name;
+            Debug.Log(enmityRandomizer);
+            Debug.Log("Player3");
+        }
+        else if (enmityRandomizer > enemyToAttack.EnmityAgainstPlayersList[0] + enemyToAttack.EnmityAgainstPlayersList[1] + enemyToAttack.EnmityAgainstPlayersList[2] &&
+            enmityRandomizer <= enemyToAttack.EnmityAgainstPlayersList[0] + enemyToAttack.EnmityAgainstPlayersList[1] + enemyToAttack.EnmityAgainstPlayersList[2] + enemyToAttack.EnmityAgainstPlayersList[3])
+        {
+            BM.activeEnemy.EnemyTargetID = BM.PlayersInBattle[3].name;
+            Debug.Log(enmityRandomizer);
+            Debug.Log("Player4");
+        }
+        else if (enmityRandomizer > enemyToAttack.EnmityAgainstPlayersList[0] + enemyToAttack.EnmityAgainstPlayersList[1] + 
+            enemyToAttack.EnmityAgainstPlayersList[2] + enemyToAttack.EnmityAgainstPlayersList[3] &&
+            enmityRandomizer <= enemyToAttack.EnmityAgainstPlayersList[0] + enemyToAttack.EnmityAgainstPlayersList[1] + 
+            enemyToAttack.EnmityAgainstPlayersList[2] + enemyToAttack.EnmityAgainstPlayersList[3] + enemyToAttack.EnmityAgainstPlayersList[4])
+        {
+            BM.activeEnemy.EnemyTargetID = BM.PlayersInBattle[4].name;
+            Debug.Log(enmityRandomizer);
+            Debug.Log("Player5");
+        }
+        else if (enmityRandomizer > enemyToAttack.EnmityAgainstPlayersList[0] + enemyToAttack.EnmityAgainstPlayersList[1] +
+            enemyToAttack.EnmityAgainstPlayersList[2] + enemyToAttack.EnmityAgainstPlayersList[3] + enemyToAttack.EnmityAgainstPlayersList[4] &&
+            enmityRandomizer <= enemyToAttack.EnmityAgainstPlayersList[0] + enemyToAttack.EnmityAgainstPlayersList[1] +
+            enemyToAttack.EnmityAgainstPlayersList[2] + enemyToAttack.EnmityAgainstPlayersList[3] + enemyToAttack.EnmityAgainstPlayersList[4] + enemyToAttack.EnmityAgainstPlayersList[5])
+        {
+            BM.activeEnemy.EnemyTargetID = BM.PlayersInBattle[5].name;
+            Debug.Log(enmityRandomizer);
+            Debug.Log("Player6");
+        }
     }
 
     public void showProvisionalEnmity(GameObject panel)
@@ -116,8 +170,7 @@ public class Enmity_Manager : MonoBehaviour
         {
             if (BM.PlayersInBattle[i] == playerToHate)
             {
-                enemyWhoHates.EnmityAgainstPlayersList[i] += amountToIncrease;
-                Debug.Log(enemyWhoHates.EnmityAgainstPlayersList[i]);
+                enemyWhoHates.EnmityAgainstPlayersList[i] += amountToIncrease;                
             }
         }
     }
@@ -127,6 +180,7 @@ public class Enmity_Manager : MonoBehaviour
         switch (typeOfAttack)
         {
             case "Attack":
+                //Eventually, this will be, like, if 10 ~ 20 attack then show enmity from 15
                 playerToAddEnmity.ProvisionalEnmity = 10f;
                 break;
             default:
@@ -148,6 +202,7 @@ public class Enmity_Manager : MonoBehaviour
         switch (typeOfAttack)
         {
             case "Attack":
+                //This will need to check the final score and associated enmity (check ActionLog report action)
                 playerToAddEnmity.ActualEnmity = 20f;                
                 break;
             default:                
