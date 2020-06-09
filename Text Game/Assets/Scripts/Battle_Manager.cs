@@ -926,7 +926,7 @@ public class Battle_Manager : MonoBehaviour
                             {
                                 playerToSwitchRowWith.battleSprite.transform.localScale =
                                         new Vector2(-playerToSwitchRowWith.battleSprite.transform.localScale.x, playerToSwitchRowWith.battleSprite.transform.localScale.y);
-                                playerToSwitchRowWith.target = new Vector3(playerToSwitchRowWith.battleSprite.transform.position.x + 1f, playerToSwitchRowWith.battleSprite.transform.position.y,
+                                playerToSwitchRowWith.target = new Vector3(playerToSwitchRowWith.battleSprite.transform.position.x - 1f, playerToSwitchRowWith.battleSprite.transform.position.y,
                                 playerToSwitchRowWith.battleSprite.transform.position.z);
                             }
                         }
