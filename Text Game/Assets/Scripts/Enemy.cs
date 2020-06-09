@@ -44,7 +44,8 @@ public class Enemy
     public TextMeshProUGUI enemySpeedBarText;
     public GameObject enemyCastBar;
     public GameObject enemyCastBarFill;
-    public TextMeshProUGUI enemyCastBarText;    
+    public TextMeshProUGUI enemyCastBarText;
+    public GameObject enemyTimersEntry;
 
     //Battle Sprite Elements
     public GameObject battleSprite;

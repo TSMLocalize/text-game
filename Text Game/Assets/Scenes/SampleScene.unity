@@ -4251,6 +4251,7 @@ MonoBehaviour:
     enemyCastBar: {fileID: 0}
     enemyCastBarFill: {fileID: 0}
     enemyCastBarText: {fileID: 0}
+    enemyTimersEntry: {fileID: 0}
     battleSprite: {fileID: 6917181917304905642, guid: 0feb2a9fb1c1e6348a4b179c9053dc92,
       type: 3}
     position: {x: 0, y: 0, z: 0}
@@ -4299,6 +4300,7 @@ MonoBehaviour:
     enemyCastBar: {fileID: 0}
     enemyCastBarFill: {fileID: 0}
     enemyCastBarText: {fileID: 0}
+    enemyTimersEntry: {fileID: 0}
     battleSprite: {fileID: 4992519511974346747, guid: 09624aea2ef879a4b92c024c6538b047,
       type: 3}
     position: {x: 0, y: 0, z: 0}
@@ -4347,6 +4349,7 @@ MonoBehaviour:
     enemyCastBar: {fileID: 0}
     enemyCastBarFill: {fileID: 0}
     enemyCastBarText: {fileID: 0}
+    enemyTimersEntry: {fileID: 0}
     battleSprite: {fileID: 1682538046647038552, guid: 718fcb761f04e2f4fb2a2a66567437c2,
       type: 3}
     position: {x: 0, y: 0, z: 0}
@@ -4395,6 +4398,7 @@ MonoBehaviour:
     enemyCastBar: {fileID: 0}
     enemyCastBarFill: {fileID: 0}
     enemyCastBarText: {fileID: 0}
+    enemyTimersEntry: {fileID: 0}
     battleSprite: {fileID: 7324076643194696066, guid: 15dfddd7652488046b8a704d9f13bd53,
       type: 3}
     position: {x: 0, y: 0, z: 0}
@@ -4443,6 +4447,7 @@ MonoBehaviour:
     enemyCastBar: {fileID: 0}
     enemyCastBarFill: {fileID: 0}
     enemyCastBarText: {fileID: 0}
+    enemyTimersEntry: {fileID: 0}
     battleSprite: {fileID: 7738379527654051540, guid: bf959819f4145e54f9149a91a53c0d89,
       type: 3}
     position: {x: 0, y: 0, z: 0}
@@ -4491,6 +4496,7 @@ MonoBehaviour:
     enemyCastBar: {fileID: 0}
     enemyCastBarFill: {fileID: 0}
     enemyCastBarText: {fileID: 0}
+    enemyTimersEntry: {fileID: 0}
     battleSprite: {fileID: 3914892229901895578, guid: 710fd823d7816e8438ea5e589b2e8ef1,
       type: 3}
     position: {x: 0, y: 0, z: 0}
@@ -4539,6 +4545,7 @@ MonoBehaviour:
     enemyCastBar: {fileID: 0}
     enemyCastBarFill: {fileID: 0}
     enemyCastBarText: {fileID: 0}
+    enemyTimersEntry: {fileID: 0}
     battleSprite: {fileID: 4721368892352522457, guid: a5b02b07c162d5046b8650c095a5c051,
       type: 3}
     position: {x: 0, y: 0, z: 0}
@@ -4587,6 +4594,7 @@ MonoBehaviour:
     enemyCastBar: {fileID: 0}
     enemyCastBarFill: {fileID: 0}
     enemyCastBarText: {fileID: 0}
+    enemyTimersEntry: {fileID: 0}
     battleSprite: {fileID: 3174117373235044614, guid: ab49833fcb7c8b74884a152396f7010f,
       type: 3}
     position: {x: 0, y: 0, z: 0}
@@ -10222,6 +10230,7 @@ MonoBehaviour:
     enemyCastBar: {fileID: 0}
     enemyCastBarFill: {fileID: 0}
     enemyCastBarText: {fileID: 0}
+    enemyTimersEntry: {fileID: 0}
     battleSprite: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
@@ -10419,6 +10428,7 @@ MonoBehaviour:
     enemyCastBar: {fileID: 0}
     enemyCastBarFill: {fileID: 0}
     enemyCastBarText: {fileID: 0}
+    enemyTimersEntry: {fileID: 0}
     battleSprite: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
@@ -10466,6 +10476,7 @@ MonoBehaviour:
     enemyCastBar: {fileID: 0}
     enemyCastBarFill: {fileID: 0}
     enemyCastBarText: {fileID: 0}
+    enemyTimersEntry: {fileID: 0}
     battleSprite: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
     target: {x: 0, y: 0, z: 0}
@@ -10727,6 +10738,7 @@ MonoBehaviour:
   TimerList: []
   TimerListPositions: []
   PlayerSpeeds: []
+  EnemySpeeds: []
   TimersPanel: {fileID: 1777875758}
   countOrdered: []
   TimerImageArray: []

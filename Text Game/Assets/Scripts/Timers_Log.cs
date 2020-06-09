@@ -15,6 +15,7 @@ public class Timers_Log : MonoBehaviour
     public List<GameObject> TimerList;    
     public List<Vector3> TimerListPositions;
     public List<Player> PlayerSpeeds;
+    public List<Enemy> EnemySpeeds;    
     public GameObject TimersPanel;
     public List<GameObject> countOrdered;
     public Image[] TimerImageArray;
@@ -39,9 +40,18 @@ public class Timers_Log : MonoBehaviour
             {
                 pfTimer_Entry.TimersEntryPlayer = BM.PlayersInBattle[i];
                 BM.PlayersInBattle[i].playerTimersEntry = Instantiate(pfTimer_Entry.gameObject, TimersPanel.transform);
+                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().isPlayer = true;
                 TimerList.Add(BM.PlayersInBattle[i].playerTimersEntry);                
             }
-            
+
+            for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+            {
+                pfTimer_Entry.TimersEntryEnemy = BM.EnemiesInBattle[i];
+                BM.EnemiesInBattle[i].enemyTimersEntry = Instantiate(pfTimer_Entry.gameObject, TimersPanel.transform);
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().isEnemy = true;
+                TimerList.Add(BM.EnemiesInBattle[i].enemyTimersEntry);
+            }
+
             battleStart = false;
         }
 
@@ -61,6 +71,7 @@ public class Timers_Log : MonoBehaviour
             if (BM.PlayersInBattle[i].isAsleep)
             {
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().NumberText.text = "ZZZ";
+                BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue = 9999;
             }
             else if (BM.ActivePlayers.Contains(BM.PlayersInBattle[i]))
             {
@@ -86,13 +97,51 @@ public class Timers_Log : MonoBehaviour
                     "@" + Mathf.RoundToInt(BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().currentValue);
                 BM.PlayersInBattle[i].playerTimersEntry.GetComponent<Timers_Entry>().MainText.text = "Next Turn:";
             }
-        }      
+        }
 
-        PlayerSpeeds = BM.PlayersInBattle.OrderByDescending(go => go.playerTimersEntry.GetComponent<Timers_Entry>().currentValue).ToList();
-
-        for (int i = 0; i < PlayerSpeeds.Count; i++)
+        for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
         {
-            PlayerSpeeds[i].playerTimersEntry.transform.SetSiblingIndex(i);
+            BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().readyMode = false;
+            BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().waitMode = false;
+            BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().castMode = false;
+
+
+            if (BM.EnemiesInBattle[i].isAsleep)
+            {
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().NumberText.text = "ZZZ";
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().currentValue = 9999;
+            }
+            else if (BM.ActiveEnemies.Contains(BM.EnemiesInBattle[i]))
+            {
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().currentValue = 0;
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().NumberText.text = "--";
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().MainText.text = "READY!";
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().readyMode = true;
+            }
+            else if (BM.EnemiesInBattle[i].isCastingSpell)
+            {
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().currentValue =
+                    (BM.EnemiesInBattle[i].castSpeedTotal / BM.EnemiesInBattle[i].castSpeed);
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().castMode = true;
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().NumberText.text =
+                    "@" + Mathf.RoundToInt(BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().currentValue);
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().MainText.text = "Spell Ready:";
+            }
+            else
+            {
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().currentValue = ((100 - BM.EnemiesInBattle[i].speedTotal) / BM.EnemiesInBattle[i].speed);
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().waitMode = true;
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().NumberText.text =
+                    "@" + Mathf.RoundToInt(BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().currentValue);
+                BM.EnemiesInBattle[i].enemyTimersEntry.GetComponent<Timers_Entry>().MainText.text = "Next Turn:";
+            }
+        }
+
+        TimerList = TimerList.OrderByDescending(go => go.GetComponent<Timers_Entry>().currentValue).ToList();
+        
+        for (int i = 0; i < TimerList.Count; i++)
+        {
+            TimerList[i].transform.SetSiblingIndex(i);
         }
 
         Canvas.ForceUpdateCanvases();
