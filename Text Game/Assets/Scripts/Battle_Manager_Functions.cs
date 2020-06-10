@@ -185,7 +185,7 @@ public class Battle_Manager_Functions : MonoBehaviour
                 BM.EnemiesInBattle[i].EnmityAgainstPlayersList.Add(1);
             }            
             //Instantiate Player Battle Sprites
-            BM.EnemiesInBattle[i].battleSprite = Instantiate(BM.EnemiesInBattle[i].battleSprite);
+            BM.EnemiesInBattle[i].battleSprite = Instantiate(BM.EnemiesInBattle[i].battleSprite, BM.EnemyRows[i].transform);
         }
 
         //Set battle sprites to their correct row
@@ -236,7 +236,7 @@ public class Battle_Manager_Functions : MonoBehaviour
                 if (BM.EnemyRows[y].GetComponent<Row>().ID == BM.EnemiesInBattle[i].currentRowPositionID)
                 {
                     //Setup new movement position for the sprite
-                    BM.EnemiesInBattle[i].battleSprite.transform.position = BM.EnemyRows[y].gameObject.transform.position;
+                    BM.EnemiesInBattle[i].battleSprite.transform.position = BM.EnemyRows[y].transform.position;
                     BM.EnemiesInBattle[i].position = BM.EnemyRows[y].gameObject.transform.position;
                     //Assign the player with a physical row position
                     BM.EnemiesInBattle[i].currentRowPosition = BM.EnemyRows[y].gameObject;                    
