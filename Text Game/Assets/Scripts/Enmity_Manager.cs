@@ -96,6 +96,25 @@ public class Enmity_Manager : MonoBehaviour
                 UpdateEnmityNumber(BM.activePlayer, BM.EnemiesInBattle[i], enmityFigures[i]);
             }
         }
+        else if (BM.battleStates == Battle_Manager.BattleStates.SELECT_FRIENDLY_TARGET)
+        {
+            for (int i = 0; i < BM.PlayersInBattle.Count; i++)
+            {
+                if (panel.gameObject == BM.PlayersInBattle[i].playerPanel)
+                {
+                    for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
+                    {
+                        IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], BM.activePlayer.ProvisionalEnmity);
+                        enmityFigures[y].EnmityPercentage.color = Color.red;
+                    }                    
+                }
+            }
+
+            for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+            {
+                UpdateEnmityNumber(BM.activePlayer, BM.EnemiesInBattle[i], enmityFigures[i]);
+            }
+        }
     }
 
     public void endProvisionalEnmity(GameObject panel)
@@ -116,6 +135,27 @@ public class Enmity_Manager : MonoBehaviour
                 enmityFigures[i].EnmityPercentage.color = Color.white;
             }
         }
+
+        if (BM.battleStates == Battle_Manager.BattleStates.SELECT_FRIENDLY_TARGET)
+        {
+            for (int i = 0; i < BM.PlayersInBattle.Count; i++)
+            {
+                if (panel.gameObject == BM.PlayersInBattle[i].playerPanel)
+                {
+                    for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
+                    {
+                        IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], -BM.activePlayer.ProvisionalEnmity);
+                    }                    
+                }
+            }
+
+            for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+            {
+                UpdateEnmityNumber(BM.activePlayer, BM.EnemiesInBattle[i], enmityFigures[i]);
+                enmityFigures[i].EnmityPercentage.color = Color.white;
+            }
+        }
+
     }
 
     //Creates an enmity number beneath the enemy
@@ -182,6 +222,9 @@ public class Enmity_Manager : MonoBehaviour
             case "Attack":
                 //Eventually, this will be, like, if 10 ~ 20 attack then show enmity from 15
                 playerToAddEnmity.ProvisionalEnmity = 10f;
+                break;
+            case "Magic":
+                playerToAddEnmity.ProvisionalEnmity = 20f;                
                 break;
             default:
                 break;

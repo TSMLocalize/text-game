@@ -415,6 +415,19 @@ public class Battle_Manager : MonoBehaviour
                 break;
             case BattleStates.SELECT_FRIENDLY_TARGET:
 
+                for (int i = 0; i < EnemiesInBattle.Count; i++)
+                {                    
+                    if (enmityFiguresNeedSetting)
+                    {
+                        //Set Enmity Figures and what enmity will go to potentially
+                        EnmityManager.CreateEnmityNumber(activePlayer, EnemiesInBattle[i]);
+                        //Set Provisional Enmity figure for preview based on what the player intends to do
+                        EnmityManager.workOutProvisionalEnmity(activePlayer, selectedCommand);                        
+                    }
+                }           
+
+                enmityFiguresNeedSetting = false;
+
                 AnimHandler.animationController(activePlayer, "IsReady");
 
                 //Color all potential target options yellow
