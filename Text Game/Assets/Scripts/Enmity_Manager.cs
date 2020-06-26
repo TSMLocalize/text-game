@@ -183,6 +183,16 @@ public class Enmity_Manager : MonoBehaviour
         enmityFigures.Add(enmityNumberToAdd);
     }
 
+    public void destroyEnmityNumbers()
+    {
+        for (int i = 0; i < enmityFigures.Count; i++)
+        {
+            Destroy(enmityFigures[i].gameObject);
+        }
+
+        enmityFigures.Clear();
+    }
+
     //Creates an enmity number beneath the enemy
     public void UpdateEnmityNumber(Player playerToHate, Enemy enemyWhoHates, EnmityFigure displayFigure)
     {

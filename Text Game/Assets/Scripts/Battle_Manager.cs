@@ -21,6 +21,7 @@ public class Battle_Manager : MonoBehaviour
     public bool rowSelected;
     public bool isSwitchingWithOtherPlayer;
     public bool panelChosen;
+    public bool clearEnmityNumbers;
     public List<GameObject> Rows;
     public List<GameObject> EnemyRows;
     public List<GameObject> RowChangeIcons;
@@ -449,6 +450,8 @@ public class Battle_Manager : MonoBehaviour
                 //Right click to go back to select option or select action
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
+                    EnmityManager.destroyEnmityNumbers();
+
                     if (activePlayer.activeSpell != null)
                     {
                         activePlayer.activeSpell = null;
@@ -492,8 +495,9 @@ public class Battle_Manager : MonoBehaviour
                                 {
                                     activePlayer.isCastingSpell = true;
                                     //Timers_Log.addToTimersLog(activePlayer);
-                                }                                
+                                }
 
+                                EnmityManager.destroyEnmityNumbers();
                                 battleStates = BattleStates.RESOLVE_ACTION;
                             }
                         }
@@ -503,6 +507,8 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == BM_Funcs.instantiatedOptions[i])
                             {
+                                EnmityManager.destroyEnmityNumbers();
+
                                 if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Magic" && OptionPanel.activeSelf != true)
                                 {
                                     activePlayer.selectedWeaponSkill = null;
@@ -538,6 +544,8 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == BM_Funcs.instantiatedSpellOptions[i])
                             {
+                                EnmityManager.destroyEnmityNumbers();
+
                                 for (int x = 0; x < BM_Funcs.instantiatedSpellOptions.Count; x++)
                                 {
                                     BM_Funcs.instantiatedSpellOptions[x].GetComponentInChildren<Image>().color = defaultBlueColor;
@@ -597,6 +605,8 @@ public class Battle_Manager : MonoBehaviour
                 //Right click to go back to select option or select action
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
+                    EnmityManager.destroyEnmityNumbers();
+
                     AnimHandler.animationController(activePlayer);
 
                     if (OptionPanel.activeSelf == true)
@@ -641,9 +651,7 @@ public class Battle_Manager : MonoBehaviour
 
                 //LEFT CLICK TO SELECT ENEMY
                 if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    EnmityManager.enmityFigures.Clear();
-
+                {                    
                     foreach (RaycastResult result in results)
                     {
                         for (int i = 0; i < EnemyPanels.Count; i++)
@@ -652,6 +660,8 @@ public class Battle_Manager : MonoBehaviour
 
                             if (result.gameObject == EnemyPanels[i])
                             {
+                                EnmityManager.destroyEnmityNumbers();
+
                                 for (int y = 0; y < EnemiesInBattle.Count; y++)
                                 {
                                     if (EnemiesInBattle[y].enemyPanel == EnemyPanels[i])
@@ -689,6 +699,7 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == ActivePlayers[i].playerPanel)
                             {
+                                EnmityManager.destroyEnmityNumbers();
                                 BM_Funcs.resetChoice(ActivePlayers[i]);
                                 activePlayer.activeSpell = null;
                                 OptionPanel.SetActive(false);
@@ -701,6 +712,8 @@ public class Battle_Manager : MonoBehaviour
                         {
                             if (result.gameObject == BM_Funcs.instantiatedOptions[i])
                             {
+                                EnmityManager.destroyEnmityNumbers();
+
                                 if (BM_Funcs.instantiatedOptions[i].GetComponentInChildren<TextMeshProUGUI>().text == "Magic" && OptionPanel.activeSelf != true)
                                 {
                                     activePlayer.selectedWeaponSkill = null;
@@ -735,7 +748,9 @@ public class Battle_Manager : MonoBehaviour
                         for (int i = 0; i < BM_Funcs.instantiatedSpellOptions.Count; i++)
                         {
                             if (result.gameObject == BM_Funcs.instantiatedSpellOptions[i])
-                            {                                
+                            {
+                                EnmityManager.destroyEnmityNumbers();
+
                                 for (int x = 0; x < BM_Funcs.instantiatedSpellOptions.Count; x++)
                                 {
                                     BM_Funcs.instantiatedSpellOptions[x].GetComponentInChildren<Image>().color = defaultBlueColor;

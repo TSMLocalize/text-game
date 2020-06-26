@@ -10561,6 +10561,7 @@ MonoBehaviour:
   rowSelected: 0
   isSwitchingWithOtherPlayer: 0
   panelChosen: 0
+  clearEnmityNumbers: 0
   Rows:
   - {fileID: 1474926304}
   - {fileID: 519372044}
