@@ -78,6 +78,7 @@ public class Enmity_Manager : MonoBehaviour
         }
     }
 
+    //This code shows the red preview numbers below enemies when hovering over them
     public void showProvisionalEnmity(GameObject panel)
     {
         if (BM.battleStates == Battle_Manager.BattleStates.SELECT_TARGET)
@@ -86,8 +87,27 @@ public class Enmity_Manager : MonoBehaviour
             {
                 if (panel.gameObject == BM.EnemiesInBattle[i].enemyPanel)
                 {
-                    IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], BM.activePlayer.ProvisionalEnmity);
-                    enmityFigures[i].EnmityPercentage.color = Color.red;
+                    if (BM.activePlayer.activeSpell != null)
+                    {
+                        if (BM.activePlayer.activeSpell.isAoE)
+                        {
+                            for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
+                            {
+                                IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], BM.activePlayer.ProvisionalEnmity);
+                                enmityFigures[y].EnmityPercentage.color = Color.red;
+                            }
+                        }
+                        else
+                        {
+                            IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], BM.activePlayer.ProvisionalEnmity);
+                            enmityFigures[i].EnmityPercentage.color = Color.red;
+                        }
+                    } 
+                    else
+                    {
+                        IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], BM.activePlayer.ProvisionalEnmity);
+                        enmityFigures[i].EnmityPercentage.color = Color.red;
+                    }                                        
                 }
             }
 
@@ -117,15 +137,33 @@ public class Enmity_Manager : MonoBehaviour
         }
     }
 
+    //This code removes the enmity preview numbers when moving the cursor off of a potential target
     public void endProvisionalEnmity(GameObject panel)
     {
         if (BM.battleStates == Battle_Manager.BattleStates.SELECT_TARGET)
         {
             for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
-            {
+            {                
                 if (panel.gameObject == BM.EnemiesInBattle[i].enemyPanel)
                 {
-                    IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], -BM.activePlayer.ProvisionalEnmity);
+                    if (BM.activePlayer.activeSpell != null)
+                    {
+                        if (BM.activePlayer.activeSpell.isAoE)
+                        {
+                            for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
+                            {
+                                IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], -BM.activePlayer.ProvisionalEnmity);
+                            }
+                        }                        
+                        else if (BM.activePlayer.activeSpell.isAoE == false)
+                        {
+                            IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], -BM.activePlayer.ProvisionalEnmity);
+                        }
+                    }
+                    else
+                    {
+                        IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], -BM.activePlayer.ProvisionalEnmity);
+                    }
                 }
             }
 
