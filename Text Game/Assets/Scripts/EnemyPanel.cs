@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class EnemyPanel : MonoBehaviour
     , IPointerEnterHandler
-    , IPointerExitHandler
+    , IPointerExitHandler    
 
 {
     public Battle_Manager BM;
@@ -37,5 +37,5 @@ public class EnemyPanel : MonoBehaviour
     public void OnPointerExit(PointerEventData eventData)
     {
         enmMngr.endProvisionalEnmity(this.gameObject);
-    }       
+    }
 }
