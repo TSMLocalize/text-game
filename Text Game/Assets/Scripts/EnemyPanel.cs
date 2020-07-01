@@ -20,22 +20,13 @@ public class EnemyPanel : MonoBehaviour
         enmMngr = FindObjectOfType<Enmity_Manager>();
     }
 
-    void Update()
-    {
-        if (panelSelected)
-        {
-            enmMngr.endProvisionalEnmity(this.gameObject);
-            panelSelected = false;
-        }
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
-        enmMngr.showProvisionalEnmity(this.gameObject);
+        enmMngr.showProvisionalEnmity();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        enmMngr.endProvisionalEnmity(this.gameObject);
+        enmMngr.endProvisionalEnmity();
     }       
 }

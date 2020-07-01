@@ -79,35 +79,32 @@ public class Enmity_Manager : MonoBehaviour
     }
 
     //This code shows the red preview numbers below enemies when hovering over them
-    public void showProvisionalEnmity(GameObject panel)
+    public void showProvisionalEnmity()
     {
         if (BM.battleStates == Battle_Manager.BattleStates.SELECT_TARGET)
         {
             for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
             {
-                if (panel.gameObject == BM.EnemiesInBattle[i].enemyPanel)
+                if (BM.activePlayer.activeSpell != null)
                 {
-                    if (BM.activePlayer.activeSpell != null)
+                    if (BM.activePlayer.activeSpell.isAoE)
                     {
-                        if (BM.activePlayer.activeSpell.isAoE)
+                        for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
                         {
-                            for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
-                            {
-                                IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], BM.activePlayer.ProvisionalEnmity);
-                                enmityFigures[y].EnmityPercentage.color = Color.red;
-                            }
+                            IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], BM.activePlayer.ProvisionalEnmity);
+                            enmityFigures[y].EnmityPercentage.color = Color.red;
                         }
-                        else
-                        {
-                            IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], BM.activePlayer.ProvisionalEnmity);
-                            enmityFigures[i].EnmityPercentage.color = Color.red;
-                        }
-                    } 
+                    }
                     else
                     {
                         IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], BM.activePlayer.ProvisionalEnmity);
                         enmityFigures[i].EnmityPercentage.color = Color.red;
-                    }                                        
+                    }
+                }
+                else
+                {
+                    IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], BM.activePlayer.ProvisionalEnmity);
+                    enmityFigures[i].EnmityPercentage.color = Color.red;
                 }
             }
 
@@ -120,13 +117,10 @@ public class Enmity_Manager : MonoBehaviour
         {
             for (int i = 0; i < BM.PlayersInBattle.Count; i++)
             {
-                if (panel.gameObject == BM.PlayersInBattle[i].playerPanel)
+                for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
                 {
-                    for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
-                    {
-                        IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], BM.activePlayer.ProvisionalEnmity);
-                        enmityFigures[y].EnmityPercentage.color = Color.red;
-                    }                    
+                    IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], BM.activePlayer.ProvisionalEnmity);
+                    enmityFigures[y].EnmityPercentage.color = Color.red;
                 }
             }
 
@@ -138,32 +132,29 @@ public class Enmity_Manager : MonoBehaviour
     }
 
     //This code removes the enmity preview numbers when moving the cursor off of a potential target
-    public void endProvisionalEnmity(GameObject panel)
+    public void endProvisionalEnmity()
     {
         if (BM.battleStates == Battle_Manager.BattleStates.SELECT_TARGET)
         {
             for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
-            {                
-                if (panel.gameObject == BM.EnemiesInBattle[i].enemyPanel)
+            {
+                if (BM.activePlayer.activeSpell != null)
                 {
-                    if (BM.activePlayer.activeSpell != null)
+                    if (BM.activePlayer.activeSpell.isAoE)
                     {
-                        if (BM.activePlayer.activeSpell.isAoE)
+                        for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
                         {
-                            for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
-                            {
-                                IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], -BM.activePlayer.ProvisionalEnmity);
-                            }
-                        }                        
-                        else if (BM.activePlayer.activeSpell.isAoE == false)
-                        {
-                            IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], -BM.activePlayer.ProvisionalEnmity);
+                            IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], -BM.activePlayer.ProvisionalEnmity);
                         }
                     }
-                    else
+                    else if (BM.activePlayer.activeSpell.isAoE == false)
                     {
                         IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], -BM.activePlayer.ProvisionalEnmity);
                     }
+                }
+                else
+                {
+                    IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], -BM.activePlayer.ProvisionalEnmity);
                 }
             }
 
@@ -178,12 +169,9 @@ public class Enmity_Manager : MonoBehaviour
         {
             for (int i = 0; i < BM.PlayersInBattle.Count; i++)
             {
-                if (panel.gameObject == BM.PlayersInBattle[i].playerPanel)
+                for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
                 {
-                    for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
-                    {
-                        IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], -BM.activePlayer.ProvisionalEnmity);
-                    }                    
+                    IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], -BM.activePlayer.ProvisionalEnmity);
                 }
             }
 
@@ -223,6 +211,8 @@ public class Enmity_Manager : MonoBehaviour
 
     public void destroyEnmityNumbers()
     {
+        BM.activePlayer.ProvisionalEnmity = 0;
+
         for (int i = 0; i < enmityFigures.Count; i++)
         {
             Destroy(enmityFigures[i].gameObject);

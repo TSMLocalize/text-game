@@ -18,24 +18,15 @@ public class PlayerPanel : MonoBehaviour
         BM_Funcs = FindObjectOfType<Battle_Manager_Functions>();
         Act_Handlr = FindObjectOfType<Action_Handler>();
         enmMngr = FindObjectOfType<Enmity_Manager>();
-    }
-
-    void Update()
-    {
-        if (panelSelected)
-        {
-            enmMngr.endProvisionalEnmity(this.gameObject);
-            panelSelected = false;
-        }
-    }
+    }  
 
     public void OnPointerEnter(PointerEventData eventData)
     {        
-        enmMngr.showProvisionalEnmity(this.gameObject);
+        enmMngr.showProvisionalEnmity();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        enmMngr.endProvisionalEnmity(this.gameObject);
+        enmMngr.endProvisionalEnmity();
     }
 }
