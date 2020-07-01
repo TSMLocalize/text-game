@@ -196,37 +196,6 @@ public class Enmity_Manager : MonoBehaviour
 
     }
 
-    public void endProvisionalEnmityWithoutPanel()
-    {
-        if (BM.activePlayer.ProvisionalEnmity > 0)
-        {            
-            for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
-            {
-                if (BM.activePlayer.activeSpell != null)
-                {
-                    if (BM.activePlayer.activeSpell.isAoE)
-                    {
-                        for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
-                        {
-                            IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], BM.activePlayer.ProvisionalEnmity);
-                        }
-                    }
-                    else if (BM.activePlayer.activeSpell.isAoE == false)
-                    {
-                        IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], BM.activePlayer.ProvisionalEnmity);
-                    }
-                }
-                else
-                {
-                    IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[i], BM.activePlayer.ProvisionalEnmity);
-                }
-            }            
-        }
-
-        BM.activePlayer.ProvisionalEnmity = 0;
-        
-    }
-
     //Creates an enmity number beneath the enemy
     public void CreateEnmityNumber(Player playerToHate, Enemy enemyWhoHates)
     {

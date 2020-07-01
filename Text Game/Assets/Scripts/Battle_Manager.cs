@@ -673,7 +673,6 @@ public class Battle_Manager : MonoBehaviour
                                 if (selectedCommand == "Magic")
                                 {
                                     activePlayer.isCastingSpell = true;
-                                    EnmityManager.endProvisionalEnmityWithoutPanel();
                                     //Timers_Log.addToTimersLog(activePlayer);
                                 }
                                 else if (selectedCommand == "Attack")
@@ -689,7 +688,7 @@ public class Battle_Manager : MonoBehaviour
                                     ActionHandler.reportOutcome("Weapon Skill");
                                 }
 
-                                EnemyPanels[i].GetComponent<Image>().color = Color.red;                                
+                                EnemyPanels[i].GetComponent<Image>().color = Color.red;
 
                                 battleStates = BattleStates.RESOLVE_ACTION;
                             }
@@ -1017,8 +1016,8 @@ public class Battle_Manager : MonoBehaviour
 
 
                 break;
-            case BattleStates.RESOLVE_ACTION:
-                
+            case BattleStates.RESOLVE_ACTION:                                
+
                 AnimHandler.animationController(activePlayer);
                 ActionHandler.resolveAction(selectedCommand);
 
