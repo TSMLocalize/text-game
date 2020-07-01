@@ -81,8 +81,6 @@ public class Enmity_Manager : MonoBehaviour
     //This code shows the red preview numbers below enemies when hovering over them
     public void showProvisionalEnmity(GameObject panel)
     {
-        workOutProvisionalEnmity(BM.activePlayer, BM.selectedCommand);
-
         if (BM.battleStates == Battle_Manager.BattleStates.SELECT_TARGET)
         {
             for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
@@ -169,15 +167,14 @@ public class Enmity_Manager : MonoBehaviour
                 }
             }
 
-            BM.activePlayer.ProvisionalEnmity = 0;
-
             for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
             {
                 UpdateEnmityNumber(BM.activePlayer, BM.EnemiesInBattle[i], enmityFigures[i]);
                 enmityFigures[i].EnmityPercentage.color = Color.white;
             }
         }
-        else if (BM.battleStates == Battle_Manager.BattleStates.SELECT_FRIENDLY_TARGET)
+
+        if (BM.battleStates == Battle_Manager.BattleStates.SELECT_FRIENDLY_TARGET)
         {
             for (int i = 0; i < BM.PlayersInBattle.Count; i++)
             {
@@ -186,41 +183,17 @@ public class Enmity_Manager : MonoBehaviour
                     for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
                     {
                         IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], -BM.activePlayer.ProvisionalEnmity);
-                    }
-                }                
+                    }                    
+                }
             }
-
-            BM.activePlayer.ProvisionalEnmity = 0;
 
             for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
             {
                 UpdateEnmityNumber(BM.activePlayer, BM.EnemiesInBattle[i], enmityFigures[i]);
                 enmityFigures[i].EnmityPercentage.color = Color.white;
-            }            
+            }
         }
-        else if (BM.battleStates != Battle_Manager.BattleStates.SELECT_TARGET && BM.battleStates != Battle_Manager.BattleStates.SELECT_FRIENDLY_TARGET)
-        {
-            if (BM.activePlayer.activeSpell != null)
-            {
-                if (BM.activePlayer.activeSpell.isAoE)
-                {
-                    for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
-                    {
-                        IncreaseEnmity(BM.activePlayer, BM.EnemiesInBattle[y], -BM.activePlayer.ProvisionalEnmity);
-                    }
-                }
-                else if (BM.activePlayer.activeSpell.isAoE == false)
-                {
-                    IncreaseEnmity(BM.activePlayer, BM.playerTarget, -BM.activePlayer.ProvisionalEnmity);
-                }
-            }
-            else
-            {
-                IncreaseEnmity(BM.activePlayer, BM.playerTarget, -BM.activePlayer.ProvisionalEnmity);
-            }
 
-            BM.activePlayer.ProvisionalEnmity = 0;
-        }
     }
 
     //Creates an enmity number beneath the enemy
@@ -254,8 +227,8 @@ public class Enmity_Manager : MonoBehaviour
         {
             Destroy(enmityFigures[i].gameObject);
         }
-        
-        enmityFigures.Clear();        
+
+        enmityFigures.Clear();
     }
 
     //Creates an enmity number beneath the enemy
@@ -323,32 +296,11 @@ public class Enmity_Manager : MonoBehaviour
                 //This will need to check the final score and associated enmity (check ActionLog report action)
                 playerToAddEnmity.ActualEnmity = 20f;                
                 break;
-            case "Magic":
-                playerToAddEnmity.ActualEnmity = playerToAddEnmity.activeSpell.baseEnmity + 10; //the +10 will be replaced with various enmity maths/buffs etc.
-                break;
             default:                
                 break;
         }
 
-        if (playerToAddEnmity.isCastingSpell)
-        {
-            if (playerToAddEnmity.activeSpell.isAoE)
-            {
-                for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
-                {
-                    IncreaseEnmity(playerToAddEnmity, BM.EnemiesInBattle[i], playerToAddEnmity.ActualEnmity);
-                }
-            }
-            else
-            {
-                IncreaseEnmity(playerToAddEnmity, enemyWhoHates, playerToAddEnmity.ActualEnmity);
-            }
-        }
-        else
-        {
-            IncreaseEnmity(playerToAddEnmity, enemyWhoHates, playerToAddEnmity.ActualEnmity);
-        }
-        
+        IncreaseEnmity(playerToAddEnmity, enemyWhoHates, playerToAddEnmity.ActualEnmity);
     }
 
     public IEnumerator decayEnmityOverTime()

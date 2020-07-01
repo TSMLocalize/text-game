@@ -30,32 +30,24 @@ public class Spells : MonoBehaviour
     {
         Fire.castTime = 34;
         Fire.name = "Fire";
-        Fire.baseEnmity = 10;
         Ice.castTime = 35;
         Ice.name = "Ice";
-        Ice.baseEnmity = 10;
         Cure.castTime = 46;
         Cure.isSupport = true;
         Cure.name = "Cure";
-        Cure.baseEnmity = 10;
         Curaga.castTime = 32;
         Curaga.isAoE = true;
         Curaga.isSupport = true;
         Curaga.name = "Curaga";
-        Curaga.baseEnmity = 10;
         Firaga.castTime = 30;
         Firaga.isAoE = true;
         Firaga.name = "Firaga";
-        Firaga.baseEnmity = 10;
         Poison.castTime = 2;
-        Poison.baseEnmity = 10;
         Poisonga.castTime = 2;
         Poisonga.isAoE = true;
         Poisonga.name = "Poisonga";
-        Poisonga.baseEnmity = 10;
         Sleep.castTime = 10;
-        Sleep.name = "Sleep";
-        Sleep.baseEnmity = 10;
+        Sleep.name = "Sleep";      
     }
 
 

@@ -4587,7 +4587,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -4637,7 +4636,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -4687,7 +4685,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -4737,7 +4734,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -4787,7 +4783,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -4837,7 +4832,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -4887,7 +4881,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -4937,7 +4930,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -7427,7 +7419,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -7494,7 +7485,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -7561,7 +7551,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -7628,7 +7617,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -7695,7 +7683,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -7762,7 +7749,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -8872,56 +8858,48 @@ MonoBehaviour:
   Fire:
     name: Fire
     castTime: 0
-    baseEnmity: 0
     spellIcon: {fileID: 21300000, guid: dbdd0bcd4d8fb224ab80e3654b7256bc, type: 3}
     isAoE: 0
     isSupport: 0
   Ice:
     name: Ice
     castTime: 0
-    baseEnmity: 0
     spellIcon: {fileID: 21300000, guid: b539800d16c5e8146b5935caf60c15a8, type: 3}
     isAoE: 0
     isSupport: 0
   Cure:
     name: Cure
     castTime: 0
-    baseEnmity: 0
     spellIcon: {fileID: 21300000, guid: f44bd858dee4bd14d992b122452b4816, type: 3}
     isAoE: 0
     isSupport: 0
   Curaga:
     name: Curaga
     castTime: 0
-    baseEnmity: 0
     spellIcon: {fileID: 21300000, guid: f81b6f565386fdc47821d998fe8e6750, type: 3}
     isAoE: 0
     isSupport: 0
   Firaga:
     name: Firaga
     castTime: 0
-    baseEnmity: 0
     spellIcon: {fileID: 21300000, guid: a4eb4012762e8404db1cfaaae059b533, type: 3}
     isAoE: 0
     isSupport: 0
   Poison:
     name: Poison
     castTime: 0
-    baseEnmity: 0
     spellIcon: {fileID: 21300000, guid: 4fb31dfa3e08ecf4e8b4b63989203af0, type: 3}
     isAoE: 0
     isSupport: 0
   Poisonga:
     name: Poisonga
     castTime: 0
-    baseEnmity: 0
     spellIcon: {fileID: 21300000, guid: f0be26d1f13da2b47b7ace17306c0b2a, type: 3}
     isAoE: 0
     isSupport: 0
   Sleep:
     name: Sleep
     castTime: 0
-    baseEnmity: 0
     spellIcon: {fileID: 21300000, guid: 7ee77971d26fea349af443ea8a0bf754, type: 3}
     isAoE: 0
     isSupport: 0
@@ -10658,7 +10636,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -10726,7 +10703,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -10777,7 +10753,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -10976,7 +10951,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -11025,7 +10999,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -11091,7 +11064,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
@@ -11157,7 +11129,6 @@ MonoBehaviour:
     activeSpell:
       name: 
       castTime: 0
-      baseEnmity: 0
       spellIcon: {fileID: 0}
       isAoE: 0
       isSupport: 0
