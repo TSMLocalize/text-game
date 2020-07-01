@@ -8,7 +8,8 @@ using TMPro;
 public class Spell
 {
     public string name;
-    public float castTime;    
+    public float castTime;
+    public float baseEnmity;
     public Sprite spellIcon;
     public bool isAoE;
     public bool isSupport;    

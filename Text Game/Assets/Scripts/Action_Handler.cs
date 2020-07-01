@@ -114,7 +114,9 @@ public class Action_Handler : MonoBehaviour
                     spells.CastSpell(BM.activePlayer.activeSpell.name);
                     
                     spellReportFinished = true;
-                }                
+                }
+
+                EnmityManager.workOutActualEnmity(BM.activePlayer, BM.playerTarget, "Magic");
 
                 break;
             case "Weapon Skill":
