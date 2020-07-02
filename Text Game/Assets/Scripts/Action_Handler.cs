@@ -105,16 +105,20 @@ public class Action_Handler : MonoBehaviour
                     SendMessagesToCombatLog(
                     BM.activePlayer.name + " starts casting " + BM.activePlayer.activeSpell.name + " on " + BM.playerTarget.EnemyName + ".");
                 }
-                
+
+                EnmityManager.workOutActualEnmity(BM.activePlayer, BM.playerTarget, "StartCast");
+
                 break;                
-            case "PlayerFinishCast":
-                                
-                while(spellReportFinished == false)
+            case "PlayerFinishCast":                
+
+                while (spellReportFinished == false)
                 {
                     spells.CastSpell(BM.activePlayer.activeSpell.name);
                     
                     spellReportFinished = true;
-                }                
+                }
+
+                EnmityManager.workOutActualEnmity(BM.activePlayer, BM.playerTarget, "FinishCast");
 
                 break;
             case "Weapon Skill":

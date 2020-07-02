@@ -270,7 +270,7 @@ public class Enmity_Manager : MonoBehaviour
             case "Attack":
                 //Eventually, this will be, like, if 10 ~ 20 attack then show enmity from 15
                 playerToAddEnmity.ProvisionalEnmity = 10f;
-                break;
+                break;            
             case "Magic":
                 playerToAddEnmity.ProvisionalEnmity = 20f;                
                 break;
@@ -285,7 +285,25 @@ public class Enmity_Manager : MonoBehaviour
         {
             if (BM.PlayersInBattle[i] == BM.activePlayer)
             {
-                BM.playerTarget.EnmityAgainstPlayersList[i] -= BM.activePlayer.ProvisionalEnmity;
+                if (playerToAddEnmity.isCastingSpell)
+                {
+                    if (playerToAddEnmity.activeSpell.isAoE || playerToAddEnmity.activeSpell.isSupport)
+                    {
+                        for (int y = 0; y < BM.EnemiesInBattle.Count; y++)
+                        {
+                            BM.EnemiesInBattle[y].EnmityAgainstPlayersList[i] -= BM.activePlayer.ProvisionalEnmity;
+                        }
+                    }
+                    else
+                    {
+                        BM.playerTarget.EnmityAgainstPlayersList[i] -= BM.activePlayer.ProvisionalEnmity;
+                    }
+                }
+                else
+                {
+                    BM.playerTarget.EnmityAgainstPlayersList[i] -= BM.activePlayer.ProvisionalEnmity;
+                }
+
                 BM.activePlayer.ProvisionalEnmity = 0;
             }
         }
@@ -294,13 +312,31 @@ public class Enmity_Manager : MonoBehaviour
         {
             case "Attack":
                 //This will need to check the final score and associated enmity (check ActionLog report action)
-                playerToAddEnmity.ActualEnmity = 20f;                
+                playerToAddEnmity.ActualEnmity = 20f;
+                IncreaseEnmity(playerToAddEnmity, enemyWhoHates, playerToAddEnmity.ActualEnmity);
+                break;
+            case "StartCast":
+                //Clear all provisional enmity until spell actually goes off                
+                playerToAddEnmity.ActualEnmity = 0;                
+                                
+                for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+                {
+                    IncreaseEnmity(playerToAddEnmity, BM.EnemiesInBattle[i], playerToAddEnmity.ActualEnmity);
+                }          
+
+                break;
+            case "FinishCast":
+                //This will eventually contain all the enmity formulas for various spells.
+                playerToAddEnmity.ActualEnmity = 10f; //VERY WEIRD: DOUBLES THIS NUMBER IN THE RESULT FOR SOME REASON!
+
+                for (int i = 0; i < BM.EnemiesInBattle.Count; i++)
+                {
+                    IncreaseEnmity(playerToAddEnmity, BM.EnemiesInBattle[i], playerToAddEnmity.ActualEnmity);
+                }
                 break;
             default:                
                 break;
-        }
-
-        IncreaseEnmity(playerToAddEnmity, enemyWhoHates, playerToAddEnmity.ActualEnmity);
+        }        
     }
 
     public IEnumerator decayEnmityOverTime()

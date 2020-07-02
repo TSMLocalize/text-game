@@ -299,7 +299,7 @@ public class Battle_Manager : MonoBehaviour
                                     BM_Funcs.populateWeaponSkillOptionList();
                                 } 
                                 else if (selectedCommand == "Cast")
-                                {
+                                {                                    
                                     ActionHandler.reportOutcome("PlayerFinishCast");
                                 }   
                                 
