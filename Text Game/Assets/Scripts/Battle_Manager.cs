@@ -132,7 +132,7 @@ public class Battle_Manager : MonoBehaviour
         m_PointerEventData = new PointerEventData(m_EventSystem);
         m_PointerEventData.position = Input.mousePosition;
         List<RaycastResult> results = new List<RaycastResult>();
-        //m_Raycaster.Raycast(m_PointerEventData, results);
+        m_Raycaster.Raycast(m_PointerEventData, results);
 
         BM_Funcs.updateEnemyUIBars();
 

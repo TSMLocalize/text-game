@@ -19,6 +19,8 @@ public class Player
     public float castSpeedTotal;    
     public string PlayerTargetID;
 
+
+
     //Battle variables
     public float Accuracy;
     public float Evasion;
