@@ -202,8 +202,8 @@ public class Action_Handler : MonoBehaviour
 
                 BM_Funcs.setPlayerOrEnemyTargetFromID(null, BM.activeEnemy);
 
-                SendMessagesToCombatLog(
-                    BM.activeEnemy.EnemyName + " starts casting " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + ".");
+                //SendMessagesToCombatLog(
+                  //  BM.activeEnemy.EnemyName + " starts casting " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + ".");
                 break;
             case "EnemyFinishCast":
                 while (enemySpellReportFinished == false)
@@ -212,10 +212,10 @@ public class Action_Handler : MonoBehaviour
 
                     BM.activeEnemy.constantAnimationStates.Remove("IsChanting");
 
-                    SendMessagesToCombatLog(
-                    BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
+                    // SendMessagesToCombatLog(
+                    //BM.activeEnemy.EnemyName + " casts " + BM.activeEnemy.activeSpell.name + " on " + BM.enemyTarget.name + "!");
                     enemySpells.CastEnemySpell(BM.activeEnemy.activeSpell.name);
-                    enemySpellReportFinished = true;
+                    enemySpellReportFinished = true;                    
                 }
 
                 break;
