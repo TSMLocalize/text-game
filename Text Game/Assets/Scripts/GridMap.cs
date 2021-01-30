@@ -6,14 +6,11 @@ using TMPro;
 public class GridMap : MonoBehaviour
 {
     public GameObject tile;
-    private GameObject playerPrefab;
-    private GameObject player;
-    public GameObject player2;
-    public GameObject player3;
+    public GameObject playerPrefab;
+    public GameObject player;
     public List<GameObject> tiles;
     public List<GameObject> OpenNodes;
     public List<GameObject> ClosedNodes;
-    public List<GameObject> Players;
     public float width;
     public float height;
     public float startX;
@@ -31,13 +28,13 @@ public class GridMap : MonoBehaviour
     public List<GameObject> TestNodes;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        width = 10f;
-        height = 6f;
+    void Start()        
+    {        
+        width = 16f;
+        height = 7f;
 
-        XoffSet = 0.9f;
-        YoffSet = 0.4f;
+        XoffSet = 0.8f;
+        YoffSet = 0.5f;
 
         //Create Grid and set Tile Data
         for (int x = 0; x < width; x++)
@@ -46,13 +43,13 @@ public class GridMap : MonoBehaviour
             {
                 GameObject tileGO;
 
-                if (y % 2 == 0)
+                if (x % 2 == 0)
                 {
-                    tileGO = Instantiate(tile, new Vector3(x * XoffSet, y * YoffSet), Quaternion.identity, this.gameObject.transform);
+                    tileGO = Instantiate(tile, new Vector3((this.gameObject.transform.position.x + x) * XoffSet, (this.gameObject.transform.position.y + y) * YoffSet), Quaternion.identity, this.gameObject.transform);
                 }
                 else
                 {
-                    tileGO = Instantiate(tile, new Vector3((x + 0.5f) * XoffSet, y * YoffSet), Quaternion.identity, this.gameObject.transform);
+                    tileGO = Instantiate(tile, new Vector3((this.gameObject.transform.position.x + x) * XoffSet, ((this.gameObject.transform.position.y + y) + 0.5f) * YoffSet), Quaternion.identity, this.gameObject.transform);
                 }
 
                 tileGO.name = x + ", " + y;
@@ -73,32 +70,28 @@ public class GridMap : MonoBehaviour
         }
 
         player = Instantiate(playerPrefab, new Vector3(0, 0), Quaternion.identity);
-        player2 = Instantiate(playerPrefab, new Vector3(0, 0), Quaternion.identity);
-
-        Players.Add(player);
-        Players.Add(player2);
 
         //Add neighbours to each tile
         for (int i = 0; i < tiles.Count; i++)
         {
             for (int y = 0; y < tiles.Count; y++)
             {
-                if (tiles[y].GetComponent<Tile>().y % 2 == 0)
+                if (tiles[y].GetComponent<Tile>().x % 2 == 0)
                 {
                     //Upper
-                    if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x + 1 &&
-                        tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y - 1)
+                    if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x + 0 &&
+                        tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y + 1)
                     {
                         tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
                     }
                     //Upper Left
                     else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x - 1 &&
-                             tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y + 0)
+                             tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y + 1)
                     {
                         tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
                     }
                     //Upper Right
-                    else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x + 0 &&
+                    else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x + 1 &&
                              tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y + 1)
                     {
                         tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
@@ -110,14 +103,14 @@ public class GridMap : MonoBehaviour
                         tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
                     }
                     //Lower Left
-                    else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x + 1 &&
+                    else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x - 1 &&
                              tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y + 0)
                     {
                         tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
                     }
                     //Lower Right
                     else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x + 1 &&
-                             tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y + 1)
+                             tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y + 0)
                     {
                         tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
                     }
@@ -126,7 +119,7 @@ public class GridMap : MonoBehaviour
                 {
                     //Upper
                     if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x + 0 &&
-                        tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y - 1)
+                        tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y + 1)
                     {
                         tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
                     }
@@ -137,25 +130,25 @@ public class GridMap : MonoBehaviour
                         tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
                     }
                     //Upper Right
-                    else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x + 0 &&
-                             tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y + 1)
-                    {
-                        tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
-                    }
-                    //Lower
-                    else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x - 1 &&
-                             tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y + 1)
-                    {
-                        tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
-                    }
-                    //Lower Left
                     else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x + 1 &&
                              tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y + 0)
                     {
                         tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
                     }
-                    //Lower Right
+                    //Lower
+                    else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x + 0 &&
+                             tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y - 1)
+                    {
+                        tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
+                    }
+                    //Lower Left
                     else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x - 1 &&
+                             tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y - 1)
+                    {
+                        tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
+                    }
+                    //Lower Right
+                    else if (tiles[y].GetComponent<Tile>().x == tiles[i].GetComponent<Tile>().x + 1 &&
                              tiles[y].GetComponent<Tile>().y == tiles[i].GetComponent<Tile>().y - 1)
                     {
                         tiles[i].GetComponent<Tile>().Neighbours.Add(tiles[y]);
@@ -165,15 +158,12 @@ public class GridMap : MonoBehaviour
             }
         }
 
-        foreach (GameObject playerr in Players)
+        for (int i = 0; i < tiles.Count; i++)
         {
-            for (int i = 0; i < tiles.Count; i++)
+            if (player.GetComponent<TestPlayer>().x == tiles[i].GetComponent<Tile>().x &&
+                player.GetComponent<TestPlayer>().y == tiles[i].GetComponent<Tile>().y)
             {
-                if (playerr.GetComponent<TestPlayer>().x == tiles[i].GetComponent<Tile>().x &&
-                    playerr.GetComponent<TestPlayer>().y == tiles[i].GetComponent<Tile>().y)
-                {
-                    playerr.GetComponent<TestPlayer>().currentTile = tiles[i];
-                }
+                player.GetComponent<TestPlayer>().currentTile = tiles[i];
             }
         }
 

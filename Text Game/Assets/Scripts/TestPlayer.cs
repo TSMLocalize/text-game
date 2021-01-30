@@ -8,5 +8,5 @@ public class TestPlayer : MonoBehaviour
     public float x;
     public float y;
     public List<GameObject> path;
-    public GameObject currentTile;    
+    public GameObject currentTile;
 }
