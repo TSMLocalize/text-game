@@ -4,20 +4,9 @@ using UnityEngine;
 
 public class TestPlayer : MonoBehaviour
 {
-    public List<GameObject> path;
-    public GameObject currentTile;
+    //Grid Variables
     public float x;
     public float y;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public List<GameObject> path;
+    public GameObject currentTile;
 }

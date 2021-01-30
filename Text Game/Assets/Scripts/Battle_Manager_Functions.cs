@@ -36,10 +36,6 @@ public class Battle_Manager_Functions : MonoBehaviour
     public GameObject instantiatedSpellOption;
     public GameObject SpellOptionPanel;
 
-    //Gridwork
-
-
-
     // Start is called before the first frame update
     void Start()
     {   

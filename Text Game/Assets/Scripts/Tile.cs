@@ -30,22 +30,10 @@ public class Tile : MonoBehaviour
 
     void OnMouseDown()
     {
-        for (int i = 0; i < map.tiles.Count; i++)
-        {
-            map.tiles[i].GetComponentInChildren<SpriteRenderer>().color = Color.white;
-        }
-
-
         if (map.isMoving == false)
         {
             map.selectedTile = this.gameObject;
         }
-
-        for (int i = 0; i < this.Neighbours.Count; i++)
-        {
-            this.Neighbours[i].GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        }
-
     }
 
     public float fCost
